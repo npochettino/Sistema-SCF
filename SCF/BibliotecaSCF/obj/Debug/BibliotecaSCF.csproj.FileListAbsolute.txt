@@ -1,0 +1,5 @@
+C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.dll
+C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.pdb
+C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.csprojResolveAssemblyReference.cache
+C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.dll
+C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.pdb
