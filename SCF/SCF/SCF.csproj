@@ -4030,10 +4030,21 @@
     <Content Include="assets\global\scripts\datatable.js" />
     <Content Include="assets\global\scripts\metronic.js" />
     <Content Include="blank.aspx" />
+    <Content Include="charts_flotcharts.html" />
+    <Content Include="components_form_tools.html" />
+    <Content Include="components_pickers.html" />
+    <Content Include="ecommerce_products_edit.html" />
+    <Content Include="extra_profile.html" />
+    <Content Include="extra_profile_account.html" />
+    <Content Include="form_controls.html" />
+    <Content Include="form_controls_md.html" />
+    <Content Include="form_layouts.html" />
+    <Content Include="form_wizard.html" />
     <Content Include="index.aspx" />
     <Content Include="index.html" />
     <Content Include="login.aspx" />
-    <Content Include="login.html" />
+    <Content Include="ui_alert_dialog_api.html" />
+    <Content Include="ui_buttons.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
