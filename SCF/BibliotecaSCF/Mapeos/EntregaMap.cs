@@ -1,0 +1,25 @@
+﻿using BibliotecaSCF.Clases;
+using FluentNHibernate.Mapping;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BibliotecaSCF.Mapeos
+{
+    public class EntregaMap : ClassMap<Entrega>
+    {
+        public EntregaMap()
+        {
+            Table("Entregas");
+            Id(x => x.Codigo).Column("codigoEntrega").GeneratedBy.Identity();
+            Map(x => x.FechaRealizacion).Column("fechaEntregaRealizada");
+            Map(x => x.NumeroRemito).Column("numeroRemito");
+            Map(x => x.CodigoEstado).Column("codigoEstado");
+            Map(x => x.Observaciones).Column("observaciones");
+
+            HasMany<ItemEntrega>(x => x.ItemsEntrega).KeyColumn("codigoEntrega").Not.KeyNullable().Cascade.AllDeleteOrphan();
+        }
+    }
+}

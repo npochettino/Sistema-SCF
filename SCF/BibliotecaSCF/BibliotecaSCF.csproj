@@ -5,12 +5,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{11B15D78-A258-4C7B-A43B-7065677A1ADC}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BibliotecaSCF</RootNamespace>
     <AssemblyName>BibliotecaSCF</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,7 +30,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,8 +55,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Catalogos\CatalogoGenerico.cs" />
+    <Compile Include="Catalogos\CatalogoProveedor.cs" />
+    <Compile Include="ClasesComplementarias\ManejoDeNHibernate.cs" />
+    <Compile Include="Clases\Articulo.cs" />
+    <Compile Include="Clases\ArticuloProveedor.cs" />
+    <Compile Include="Clases\Cliente.cs" />
+    <Compile Include="Clases\ContratoMarco.cs" />
+    <Compile Include="Clases\Entrega.cs" />
+    <Compile Include="Clases\HistorialPrecio.cs" />
+    <Compile Include="Clases\ItemContratoMarco.cs" />
+    <Compile Include="Clases\ItemEntrega.cs" />
+    <Compile Include="Clases\ItemNotaDePedido.cs" />
+    <Compile Include="Clases\NotaDePedido.cs" />
+    <Compile Include="Clases\Proveedor.cs" />
+    <Compile Include="Controladores\ControladorGeneral.cs" />
+    <Compile Include="Mapeos\ArticuloMap.cs" />
+    <Compile Include="Mapeos\ArticuloProveedorMap.cs" />
+    <Compile Include="Mapeos\ClienteMap.cs" />
+    <Compile Include="Mapeos\ContratoMarcoMap.cs" />
+    <Compile Include="Mapeos\EntregaMap.cs" />
+    <Compile Include="Mapeos\HistorialPrecioMap.cs" />
+    <Compile Include="Mapeos\ItemContratoMarcoMap.cs" />
+    <Compile Include="Mapeos\ItemEntregaMap.cs" />
+    <Compile Include="Mapeos\ItemNotaDePedidoMap.cs" />
+    <Compile Include="Mapeos\NotaDePedidoMap.cs" />
+    <Compile Include="Mapeos\ProveedorMap.cs" />
+    <Compile Include="ModuloPrueba.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
