@@ -19,9 +19,10 @@ namespace BibliotecaSCF.ClasesComplementarias
             {
 
                 singleton = Fluently.Configure()
-                  .Database(MsSqlConfiguration.MsSql2012
-                  .ConnectionString("data source=SUPLENTE4-PC\\EZEQUIELSQL;initial catalog=SCF;Integrated Security=SSPI;"))//Eze trabajo
+                  //.Database(MsSqlConfiguration.MsSql2012
+                  //.ConnectionString("data source=SUPLENTE4-PC\\EZEQUIELSQL;initial catalog=SCF;Integrated Security=SSPI;"))//Eze trabajo
                   //.ConnectionString("data source=localhost;initial catalog=SCF;Integrated Security=SSPI;"))//Eze notebook
+                  .Database(MsSqlConfiguration.MsSql2008.ConnectionString("data source=localhost;initial catalog=SCF;user=sa;password=ana"))//Nico PC 
                   .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ModuloPrueba>())
                   .BuildSessionFactory();
             }

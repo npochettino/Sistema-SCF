@@ -39,6 +39,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
@@ -4042,7 +4047,9 @@
     <Content Include="form_wizard.html" />
     <Content Include="index.aspx" />
     <Content Include="index.html" />
+    <Content Include="listado_proveedores.aspx" />
     <Content Include="login.aspx" />
+    <Content Include="proveedor.aspx" />
     <Content Include="ui_alert_dialog_api.html" />
     <Content Include="ui_buttons.html" />
     <Content Include="Web.config" />
@@ -4062,6 +4069,13 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="listado_proveedores.aspx.cs">
+      <DependentUpon>listado_proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listado_proveedores.aspx.designer.cs">
+      <DependentUpon>listado_proveedores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4070,6 +4084,13 @@
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="proveedor.aspx.cs">
+      <DependentUpon>proveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="proveedor.aspx.designer.cs">
+      <DependentUpon>proveedor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SiteMaster.Master.cs">
       <DependentUpon>SiteMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4401,6 +4422,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BibliotecaSCF\BibliotecaSCF.csproj">
+      <Project>{11b15d78-a258-4c7b-a43b-7065677a1adc}</Project>
+      <Name>BibliotecaSCF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
