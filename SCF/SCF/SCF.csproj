@@ -4034,6 +4034,9 @@
     <Content Include="assets\global\plugins\zoom\jquery.zoom.min.js" />
     <Content Include="assets\global\scripts\datatable.js" />
     <Content Include="assets\global\scripts\metronic.js" />
+    <Content Include="assets\sweetalert-dev.js" />
+    <Content Include="assets\sweetalert.css" />
+    <Content Include="assets\sweetalert.min.js" />
     <Content Include="blank.aspx" />
     <Content Include="charts_flotcharts.html" />
     <Content Include="components_form_tools.html" />

@@ -2,91 +2,115 @@
 
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
 
-<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!-- BEGIN CONTENT -->
-    <div class="page-content-wrapper">
-        <div class="page-content">
-            <!-- BEGIN PAGE HEAD -->
-            <div class="page-head">
-                <!-- BEGIN PAGE TITLE -->
-                <div class="page-title">
-                    <h1>Proveedores <small>listado de proveedores</small></h1>
+    <form runat="server">
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <!-- BEGIN PAGE HEAD -->
+                <div class="page-head">
+                    <!-- BEGIN PAGE TITLE -->
+                    <div class="page-title">
+                        <h1>Proveedores <small>listado de proveedores</small></h1>
+                    </div>
+                    <!-- END PAGE TITLE -->
+
                 </div>
-                <!-- END PAGE TITLE -->
+                <!-- END PAGE HEAD -->
 
-            </div>
-            <!-- END PAGE HEAD -->
+                <!-- BEGIN PAGE BREADCRUMB -->
+                <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                        <a href="index.aspx">Inicio</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <a href="listado_proveedores.aspx">Listado Proveedores</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                </ul>
+                <!-- END PAGE BREADCRUMB -->
+                <!-- END PAGE HEADER-->
 
-            <!-- BEGIN PAGE BREADCRUMB -->
-            <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="index.aspx">Inicio</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <a href="listado_proveedores.aspx">Listado Proveedores</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-            </ul>
-            <!-- END PAGE BREADCRUMB -->
-            <!-- END PAGE HEADER-->
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="portlet box green">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-users"></i>Listado de Proveedores
-                            </div>
-                            <div class="tools">
-                                <a href="javascript:;" class="fullscreen"></a>
-                            </div>
-                        </div>
-                        <div class="portlet-body form">
-                            <!-- BEGIN FORM-->
-                            <form action="#">
-                                <div class="form-actions top">
-                                    <div class="btn-set pull-left">
-                                        <button type="submit" class="btn green">Submit</button>
-                                        <button type="button" class="btn blue">Other Action</button>
-                                    </div>
-                                    <div class="btn-set pull-right">
-                                        <button type="button" class="btn default">Action 1</button>
-                                        <button type="button" class="btn red">Action 2</button>
-                                        <button type="button" class="btn yellow">Action 3</button>
-                                    </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet box green">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-users"></i>Listado de Proveedores
                                 </div>
-                                <div class="form-body" style="height: 600px">
-                                    <!-- devexpress-->
-                                    <dx:ASPxGridView ID="gvProveedoes" runat="server" KeyFieldName="codigoProveedor" AutoGenerateColumns="False" EnableTheming="True" Theme="Metropolis" Width="100%">
-                                        <Columns>
-                                            <dx:GridViewCommandColumn Caption="razonSocial" VisibleIndex="0" Name="razonSocial">
-                                            </dx:GridViewCommandColumn>
-                                            <dx:GridViewCommandColumn Caption="provincia" VisibleIndex="0" Name="provincia">
-                                            </dx:GridViewCommandColumn>
-                                            <dx:GridViewCommandColumn Caption="localidad" VisibleIndex="0" Name="localidad">
-                                            </dx:GridViewCommandColumn>
-                                            <dx:GridViewCommandColumn Caption="direccion" VisibleIndex="0" Name="direccion">
-                                            </dx:GridViewCommandColumn>
-                                            <dx:GridViewCommandColumn Caption="telefono" VisibleIndex="0" Name="telefono">
-                                            </dx:GridViewCommandColumn>
-                                            <dx:GridViewCommandColumn Caption="mail" VisibleIndex="0" Name="mail">
-                                            </dx:GridViewCommandColumn>
-                                            <dx:GridViewCommandColumn Caption="cuit" VisibleIndex="0" Name="cuit">
-                                            </dx:GridViewCommandColumn>
-                                        </Columns>
-                                        <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
-                                    </dx:ASPxGridView>
+                                <div class="tools">
+                                    <a href="javascript:;" class="fullscreen"></a>
                                 </div>
-                            </form>
+                            </div>
+                            <div class="portlet-body form">
+                                <!-- BEGIN FORM-->
+                                    <div class="form-actions top">
+                                        <div class="btn-set pull-left">
+                                            <asp:Button type="button" id="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" Text="Nuevo" />
+                                            <asp:Button type="button" id="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" Text="Editar" />
+                                            <asp:Button type="button" id="btnEliminar" runat="server" OnClick="btnEliminar_Click" class="btn red" Text="Eliminar" />
+                                        </div>
+                                    </div>
+                                    <div class="form-body" style="height: 600px">
+                                        <!-- devexpress-->
+                                        <%--<dx:ASPxGridView ID="gvProveedores" runat="server" KeyFieldName="codigoProveedor" AutoGenerateColumns="False" EnableTheming="True" Theme="Metropolis" Width="100%">
+                                            <Columns>
+                                                <dx:GridViewDataTextColumn Caption="Razón Social" VisibleIndex="1" FieldName="razonSocial" Visible="true">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Provincia" VisibleIndex="3" FieldName="provincia">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Localidad" VisibleIndex="3" FieldName="localidad">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Direccion" VisibleIndex="4" FieldName="direccion">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Telefono" VisibleIndex="5" FieldName="telefono">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Mail" VisibleIndex="6" FieldName="mail">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="CUIL" VisibleIndex="2" FieldName="cuil">
+                                                </dx:GridViewDataTextColumn>
+                                            </Columns>
+                                            <SettingsBehavior AllowFocusedRow="True" />
+                                            <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
+                                            <Settings ShowFilterRow="True" />
+                                        </dx:ASPxGridView>--%>
+                                        <dx:ASPxGridView ID="gvProveedores" runat="server" Width="100%" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="codigoProveedor" Theme="Metropolis">
+                                            <Columns>
+                                                <dx:GridViewDataTextColumn FieldName="codigoProveedor" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                    <EditFormSettings Visible="False" />
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="razonSocial" VisibleIndex="1">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="provincia" VisibleIndex="2">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="localidad" VisibleIndex="3">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="direccion" VisibleIndex="4">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="telefono" VisibleIndex="5">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="mail" VisibleIndex="6">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="cuil" VisibleIndex="7">
+                                                </dx:GridViewDataTextColumn>
+                                            </Columns>
+                                            <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
+                                            <SettingsBehavior AllowFocusedRow="True" />
+                                            <Settings ShowFilterRow="True" />
+                                        </dx:ASPxGridView>
+                                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SCFConnectionString %>" SelectCommand="SELECT * FROM [Proveedores]"></asp:SqlDataSource>
+                                    </div>
+    
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
-    <!-- END CONTENT -->
+        <!-- END CONTENT -->
+    </form>
 </asp:Content>

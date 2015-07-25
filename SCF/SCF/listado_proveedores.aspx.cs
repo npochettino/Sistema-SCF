@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BibliotecaSCF;
+using BibliotecaSCF.Clases;
 using BibliotecaSCF.Controladores;
 
 namespace SCF
@@ -18,12 +19,54 @@ namespace SCF
             {
                 loadGridProveedores();
             }
+            Session["proveedorActual"] = null;
+            Session["codigoOperacion"] = null;
         }
 
         private void loadGridProveedores()
         {
-            gvProveedoes.DataSource = ControladorGeneral.RecuperarTodosProveedores();
-            gvProveedoes.DataBind();
+           // gvProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores();
+            //gvProveedores.DataBind();
+
+            
+        }
+
+        protected void btnNuevo_Click(object sender, EventArgs e)
+        {
+            NuevoProveedor();
+        }
+
+        private void NuevoProveedor()
+        {
+            Response.Redirect("proveedor.aspx");
+        }
+
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+            EditarProveedor();
+        }
+
+        private void EditarProveedor()
+        {
+            Proveedor proveedorActual = new Proveedor();
+
+            proveedorActual.Codigo = int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString());
+            proveedorActual.Cuil = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "cuil").ToString();
+            proveedorActual.Direccion = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "direccion").ToString();
+            proveedorActual.Localidad = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "localidad").ToString();
+            proveedorActual.Mail = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "mail").ToString();
+            proveedorActual.Provincia = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "provincia").ToString();
+            proveedorActual.RazonSocial = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "razonSocial").ToString();
+            proveedorActual.Telefono = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "telefono").ToString();
+
+            Session.Add("proveedorActual", proveedorActual);
+
+            Response.Redirect("proveedor.aspx");
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
