@@ -11,7 +11,23 @@ namespace SCF
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuarioLogueado"] == null)
+            {
+                Session.Clear();
+                Session.Abandon();
+                Response.Redirect("login.aspx");
+            }
+            else
+            {
+                lblUsuarioLogueado.InnerText = " " + Session["usuarioLogueado"].ToString();
+            }
+        }
 
+        protected void lnkSalir_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("login.aspx");
         }
     }
 }

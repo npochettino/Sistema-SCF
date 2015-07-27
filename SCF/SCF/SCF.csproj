@@ -62,6 +62,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="articulo.aspx" />
     <Content Include="assets\admin\layout4\css\custom.css" />
     <Content Include="assets\admin\layout4\css\layout.css" />
     <Content Include="assets\admin\layout4\css\themes\default.css" />
@@ -4039,8 +4040,11 @@
     <Content Include="assets\sweetalert.min.js" />
     <Content Include="blank.aspx" />
     <Content Include="charts_flotcharts.html" />
+    <Content Include="cliente.aspx" />
     <Content Include="components_form_tools.html" />
     <Content Include="components_pickers.html" />
+    <Content Include="cotizacion.aspx" />
+    <Content Include="datos_empresa.aspx" />
     <Content Include="ecommerce_products_edit.html" />
     <Content Include="extra_profile.html" />
     <Content Include="extra_profile_account.html" />
@@ -4050,20 +4054,52 @@
     <Content Include="form_wizard.html" />
     <Content Include="index.aspx" />
     <Content Include="index.html" />
+    <Content Include="listado_articulos.aspx" />
+    <Content Include="listado_clientes.aspx" />
     <Content Include="listado_proveedores.aspx" />
+    <Content Include="listado_usuarios.aspx" />
     <Content Include="login.aspx" />
     <Content Include="proveedor.aspx" />
     <Content Include="ui_alert_dialog_api.html" />
     <Content Include="ui_buttons.html" />
+    <Content Include="usuario.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="articulo.aspx.cs">
+      <DependentUpon>articulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="articulo.aspx.designer.cs">
+      <DependentUpon>articulo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="blank.aspx.cs">
       <DependentUpon>blank.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="blank.aspx.designer.cs">
       <DependentUpon>blank.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cliente.aspx.cs">
+      <DependentUpon>cliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cliente.aspx.designer.cs">
+      <DependentUpon>cliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cotizacion.aspx.cs">
+      <DependentUpon>cotizacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cotizacion.aspx.designer.cs">
+      <DependentUpon>cotizacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datos_empresa.aspx.cs">
+      <DependentUpon>datos_empresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datos_empresa.aspx.designer.cs">
+      <DependentUpon>datos_empresa.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -4072,12 +4108,33 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="listado_articulos.aspx.cs">
+      <DependentUpon>listado_articulos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listado_articulos.aspx.designer.cs">
+      <DependentUpon>listado_articulos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="listado_clientes.aspx.cs">
+      <DependentUpon>listado_clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listado_clientes.aspx.designer.cs">
+      <DependentUpon>listado_clientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="listado_proveedores.aspx.cs">
       <DependentUpon>listado_proveedores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="listado_proveedores.aspx.designer.cs">
       <DependentUpon>listado_proveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="listado_usuarios.aspx.cs">
+      <DependentUpon>listado_usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listado_usuarios.aspx.designer.cs">
+      <DependentUpon>listado_usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -4100,6 +4157,13 @@
     </Compile>
     <Compile Include="SiteMaster.Master.designer.cs">
       <DependentUpon>SiteMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="usuario.aspx.cs">
+      <DependentUpon>usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usuario.aspx.designer.cs">
+      <DependentUpon>usuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

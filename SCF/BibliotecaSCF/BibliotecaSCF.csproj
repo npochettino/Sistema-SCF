@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Catalogos\CatalogoGenerico.cs" />
     <Compile Include="Catalogos\CatalogoProveedor.cs" />
+    <Compile Include="Catalogos\CatalogoUsuario.cs" />
     <Compile Include="ClasesComplementarias\ManejoDeNHibernate.cs" />
     <Compile Include="Clases\Articulo.cs" />
     <Compile Include="Clases\ArticuloProveedor.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Clases\ItemNotaDePedido.cs" />
     <Compile Include="Clases\NotaDePedido.cs" />
     <Compile Include="Clases\Proveedor.cs" />
+    <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Controladores\ControladorGeneral.cs" />
     <Compile Include="Mapeos\ArticuloMap.cs" />
     <Compile Include="Mapeos\ArticuloProveedorMap.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Mapeos\ItemNotaDePedidoMap.cs" />
     <Compile Include="Mapeos\NotaDePedidoMap.cs" />
     <Compile Include="Mapeos\ProveedorMap.cs" />
+    <Compile Include="Mapeos\UsuarioMap.cs" />
     <Compile Include="ModuloPrueba.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

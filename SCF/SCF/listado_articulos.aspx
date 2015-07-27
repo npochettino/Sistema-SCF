@@ -1,10 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="listado_proveedores.aspx.cs" Inherits="SCF.listado_proveedores" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="listado_articulos.aspx.cs" Inherits="SCF.listado_articulos" %>
 
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
 
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -12,7 +13,7 @@
             <div class="page-head">
                 <!-- BEGIN PAGE TITLE -->
                 <div class="page-title">
-                    <h1>Proveedores <small>listado de proveedores</small></h1>
+                    <h1>Articulos <small>listado de articulos</small></h1>
                 </div>
                 <!-- END PAGE TITLE -->
 
@@ -26,7 +27,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="listado_proveedores.aspx">Listado Proveedores</a>
+                    <a href="listado_articulos.aspx">Listado Articulos</a>
                     <i class="fa fa-circle"></i>
                 </li>
             </ul>
@@ -38,7 +39,7 @@
                     <div class="portlet box green">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-users"></i>Listado de Proveedores
+                                <i class="fa fa-users"></i>Listado de Artículos
                             </div>
                             <div class="tools">
                                 <a href="javascript:;" class="fullscreen"></a>
@@ -56,31 +57,24 @@
                             <div class="form-body" style="height: 600px">
                                 <!-- devexpress-->
 
-                                <dx:ASPxGridView ID="gvProveedores" runat="server" Width="100%" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="codigoProveedor" Theme="Metropolis">
+                                <dx:ASPxGridView ID="gvArticulos" runat="server" Width="100%" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="codigoProveedor" Theme="Metropolis">
                                     <Columns>
-                                        <dx:GridViewDataTextColumn FieldName="codigoProveedor" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                        <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="false" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="razonSocial" VisibleIndex="1">
+                                        <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="1">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="provincia" VisibleIndex="2">
+                                        <dx:GridViewDataTextColumn FieldName="descripcionLarga" VisibleIndex="2">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="localidad" VisibleIndex="3">
+                                        <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="3">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="direccion" VisibleIndex="4">
-                                        </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="telefono" VisibleIndex="5">
-                                        </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="mail" VisibleIndex="6">
-                                        </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="cuil" VisibleIndex="7">
-                                        </dx:GridViewDataTextColumn>
+
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />
                                     <Settings ShowFilterRow="True" />
                                 </dx:ASPxGridView>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SCFConnectionString %>" SelectCommand="SELECT * FROM [Proveedores]"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SCFConnectionString %>" SelectCommand="SELECT * FROM [Articulos]"></asp:SqlDataSource>
                             </div>
 
                         </div>
@@ -98,7 +92,7 @@
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden";
             confirm_value.name = "confirm_value";
-            if (confirm("Decea eliminar el proveedor?")) {
+            if (confirm("Decea eliminar el articulo?")) {
                 confirm_value.value = "Si";
             } else {
                 confirm_value.value = "No";
@@ -108,3 +102,4 @@
 
     </script>
 </asp:Content>
+

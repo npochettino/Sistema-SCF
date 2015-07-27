@@ -47,108 +47,111 @@ License: SempaIT - Todos los derechos reservados.
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="page-md login">
-    <!-- BEGIN LOGO -->
-    <div class="logo">
-        <a>
-            <span style="color:white;font-size:30px">S.C.F SRL</span>
-            <!--<img src="assets/admin/layout4/img/logo-big.png" alt="" />-->
-        </a>
-    </div>
-    <!-- END LOGO -->
-    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-    <div class="menu-toggler sidebar-toggler">
-    </div>
-    <!-- END SIDEBAR TOGGLER BUTTON -->
-    <!-- BEGIN LOGIN -->
-    <div class="content">
-        <!-- BEGIN LOGIN FORM -->
-        <form class="login-form" action="index.html" method="post">
-            <h3 class="form-title">Ingresa a tu cuenta</h3>
-            <div class="alert alert-danger display-hide">
-                <button class="close" data-close="alert"></button>
-                <span>Ingresa algun usuario o contraseña </span>
-            </div>
-            <div class="form-group">
-                <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                <label class="control-label visible-ie8 visible-ie9">Usuario</label>
-                <div class="input-icon">
-                    <i class="fa fa-user"></i>
-                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" id="txtUsuario" placeholder="Username" name="username" required />
+    <form runat="server">
+        <!-- BEGIN LOGO -->
+        <div class="logo">
+            <a>
+                <span style="color: white; font-size: 30px">S.C.F SRL</span>
+                <!--<img src="assets/admin/layout4/img/logo-big.png" alt="" />-->
+            </a>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+        <div class="menu-toggler sidebar-toggler">
+        </div>
+        <!-- END SIDEBAR TOGGLER BUTTON -->
+        <!-- BEGIN LOGIN -->
+        <div class="content">
+            <!-- BEGIN LOGIN FORM -->
+            <form class="login-form" action="index.aspx" method="post">
+                <h3 class="form-title">Ingresa a tu cuenta</h3>
+                <div runat="server" id="divAlertLogin" class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button>
+                    <span>Ingresa usuario o contraseña validos</span>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">Contraseña</label>
-                <div class="input-icon">
-                    <i class="fa fa-lock"></i>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="txtContraseña" placeholder="Password" name="password" required />
+                <div class="form-group">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">Usuario</label>
+                    <div class="input-icon">
+                        <i class="fa fa-user"></i>
+                        <input class="form-control placeholder-no-fix" type="text" runat="server" autocomplete="off" id="txtUsuario" placeholder="Usuario" name="username" required />
+                    </div>
                 </div>
-            </div>
-            <div class="form-actions">
-                <label class="checkbox">
-                    <input type="checkbox" name="remember" value="1" />
-                    Recordarme
-                </label>
-                <button type="submit" class="btn blue pull-right">
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Contraseña</label>
+                    <div class="input-icon">
+                        <i class="fa fa-lock"></i>
+                        <input class="form-control placeholder-no-fix" type="password" runat="server" autocomplete="off" id="txtContraseña" placeholder="Contraseña" name="password" required />
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <label class="checkbox">
+                        <input type="checkbox" name="remember" value="1" />
+                        Recordarme
+                    </label>
+                    <%--<button type="submit" class="btn blue pull-right">
                     Login <i class="m-icon-swapright m-icon-white"></i>
-                </button>
-            </div>
-            
-           
-        </form>
-        <!-- END LOGIN FORM -->
-        
-        
-    </div>
-    <!-- END LOGIN -->
-    <!-- BEGIN COPYRIGHT -->
-    <div class="copyright">
-        2015 &copy; @S.C.F SRL | by <a style="color:white" href="http://www.sempait.com.ar" target="_blank">SempaIT</a> 
-    </div>
-    <!-- END COPYRIGHT -->
-    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-    <!-- BEGIN CORE PLUGINS -->
-    <!--[if lt IE 9]>
+                </button>--%>
+                    <asp:Button type="button" class="btn blue pull-right" runat="server" ID="btnLogin" OnClick="btnLogin_Click" Text="Login" />
+                </div>
+
+
+            </form>
+            <!-- END LOGIN FORM -->
+
+
+        </div>
+        <!-- END LOGIN -->
+        <!-- BEGIN COPYRIGHT -->
+        <div class="copyright">
+            2015 &copy; @S.C.F SRL | by <a style="color: white" href="http://www.sempait.com.ar" target="_blank">SempaIT</a>
+        </div>
+        <!-- END COPYRIGHT -->
+        <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+        <!-- BEGIN CORE PLUGINS -->
+        <!--[if lt IE 9]>
 <script src="assets/global/plugins/respond.min.js"></script>
 <script src="assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
-    <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-    <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-    <script src="assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-    <script src="assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="assets/global/plugins/select2/select2.min.js"></script>
-    <!-- END PAGE LEVEL PLUGINS -->
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="assets/global/scripts/metronic.js" type="text/javascript"></script>
-    <script src="assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
-    <script src="assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-    <script src="assets/admin/pages/scripts/login-soft.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL SCRIPTS -->
-    <script>
-        jQuery(document).ready(function () {
-            Metronic.init(); // init metronic core components
-            Layout.init(); // init current layout
-            Login.init();
-            Demo.init();
-            // init background slide images
-            $.backstretch([
-             //"assets/admin/pages/media/bg/1.jpg",
-             "assets/admin/pages/media/bg/2.jpg",
-             "assets/admin/pages/media/bg/3.jpg",
-             "assets/admin/pages/media/bg/4.jpg"
-            ], {
-                fade: 1000,
-                duration: 8000
-            }
-         );
-        });
-    </script>
-    <!-- END JAVASCRIPTS -->
+        <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="assets/global/plugins/select2/select2.min.js"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="assets/global/scripts/metronic.js" type="text/javascript"></script>
+        <script src="assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+        <script src="assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
+        <script src="assets/admin/pages/scripts/login-soft.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <script>
+            jQuery(document).ready(function () {
+                Metronic.init(); // init metronic core components
+                Layout.init(); // init current layout
+                Login.init();
+                Demo.init();
+                // init background slide images
+                $.backstretch([
+                 //"assets/admin/pages/media/bg/1.jpg",
+                 "assets/admin/pages/media/bg/2.jpg",
+                 "assets/admin/pages/media/bg/3.jpg",
+                 "assets/admin/pages/media/bg/4.jpg"
+                ], {
+                    fade: 1000,
+                    duration: 8000
+                }
+             );
+            });
+        </script>
+        <!-- END JAVASCRIPTS -->
+    </form>
 </body>
 <!-- END BODY -->
 </html>

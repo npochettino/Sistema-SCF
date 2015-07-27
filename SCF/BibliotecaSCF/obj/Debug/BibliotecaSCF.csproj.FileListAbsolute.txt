@@ -1,5 +1,4 @@
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.pdb
-C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.csprojResolveAssemblyReference.cache
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.pdb
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.csprojResolveAssemblyReference.cache
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.pdb
