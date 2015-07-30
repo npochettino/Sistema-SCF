@@ -71,7 +71,7 @@
     <Compile Include="Clases\NotaDePedido.cs" />
     <Compile Include="Clases\Proveedor.cs" />
     <Compile Include="Clases\Usuario.cs" />
-    <Compile Include="Controladores\ControladorGeneral.cs" />
+    <Compile Include="ClasesComplementarias\Controladores\ControladorGeneral.cs" />
     <Compile Include="Mapeos\ArticuloMap.cs" />
     <Compile Include="Mapeos\ArticuloProveedorMap.cs" />
     <Compile Include="Mapeos\ClienteMap.cs" />

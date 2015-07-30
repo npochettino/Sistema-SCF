@@ -59,11 +59,14 @@
                                 <dx:ASPxGridView ID="gvUsuarios" runat="server" Width="100%" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="codigoProveedor" Theme="Metropolis">
                                     <Columns>
                                         <dx:GridViewDataTextColumn FieldName="codigoUsuario" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                            
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="usuario" VisibleIndex="1">
+                                        <dx:GridViewDataTextColumn FieldName="nombreUsuario" VisibleIndex="1">
+                                           
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="contraseña" VisibleIndex="2">
+                                           
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />

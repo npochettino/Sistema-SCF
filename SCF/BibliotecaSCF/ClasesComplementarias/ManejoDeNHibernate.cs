@@ -23,6 +23,7 @@ namespace BibliotecaSCF.ClasesComplementarias
                   //.ConnectionString("data source=SUPLENTE4-PC\\EZEQUIELSQL;initial catalog=SCF;Integrated Security=SSPI;"))//Eze trabajo
                   //.ConnectionString("data source=localhost;initial catalog=SCF;Integrated Security=SSPI;"))//Eze notebook
                   .Database(MsSqlConfiguration.MsSql2008.ConnectionString("data source=localhost;initial catalog=SCF;user=sa;password=ana"))//Nico PC 
+                    //.Database(MsSqlConfiguration.MsSql2008.ConnectionString("data source=localhost;initial catalog=w1402088_SCF;user=w1402088_SCF;password=Algoritmos2015"))//Hosting
                   .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ModuloPrueba>())
                   .BuildSessionFactory();
             }
