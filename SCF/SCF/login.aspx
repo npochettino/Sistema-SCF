@@ -85,21 +85,10 @@ License: SempaIT - Todos los derechos reservados.
                     </div>
                 </div>
                 <div class="form-actions">
-                    <label class="checkbox">
-                        <input type="checkbox" name="remember" value="1" />
-                        Recordarme
-                    </label>
-                    <%--<button type="submit" class="btn blue pull-right">
-                    Login <i class="m-icon-swapright m-icon-white"></i>
-                </button>--%>
                     <asp:Button type="button" class="btn blue pull-right" runat="server" ID="btnLogin" OnClick="btnLogin_Click" Text="Login" />
                 </div>
-
-
             </form>
             <!-- END LOGIN FORM -->
-
-
         </div>
         <!-- END LOGIN -->
         <!-- BEGIN COPYRIGHT -->

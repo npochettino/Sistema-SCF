@@ -18,5 +18,31 @@ namespace SCF
         {
 
         }
+
+        protected void btnEditarArticuloProveedor_Click(object sender, EventArgs e)
+        {
+            pcArticuloProveedor.ShowOnPageLoad = true;
+            
+        }
+
+        protected void btnEliminarArticuloProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarArticuloProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEditarPrecio_Click(object sender, EventArgs e)
+        {
+            pcAddPrecio.ShowOnPageLoad = true;
+        }
+
+        protected void btnEliminarPrecio_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

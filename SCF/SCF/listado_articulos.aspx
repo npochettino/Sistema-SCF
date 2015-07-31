@@ -49,10 +49,12 @@
                             <!-- BEGIN FORM-->
                             <div class="form-actions top">
                                 <div class="btn-set pull-left">
+
                                     <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" Text="Nuevo" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" Text="Editar" />
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClick="btnEliminar_Click" OnClientClick="Confirm()" class="btn red" Text="Eliminar" />
                                 </div>
+
                             </div>
                             <div class="form-body" style="height: 600px">
                                 <!-- devexpress-->
