@@ -25,10 +25,9 @@ namespace SCF
 
         private void loadGridProveedores()
         {
-           // gvProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores();
-            //gvProveedores.DataBind();
+            gvProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores();
+            gvProveedores.DataBind();
 
-            
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -67,9 +66,25 @@ namespace SCF
         protected void btnAceptarEliminarProveedor_Click(object sender, EventArgs e)
         {
 
+<<<<<<< HEAD
+=======
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            //Eliminar proveedor
+            //string test = "";
+            string confirmValue = Request.Form["confirm_value"];
+            if (confirmValue == "Si")
+            {
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You clicked YES!')", true);
+            }
+            else
+            {
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You clicked NO!')", true);
+            }
+>>>>>>> Se agregan metodos de usuarios y clientes
         }
 
-        
-    
+
+
     }
 }

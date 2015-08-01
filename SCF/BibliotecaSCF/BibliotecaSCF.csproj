@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{11B15D78-A258-4C7B-A43B-7065677A1ADC}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BibliotecaSCF</RootNamespace>
     <AssemblyName>BibliotecaSCF</AssemblyName>
@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Catalogos\CatalogoArticulo.cs" />
+    <Compile Include="Catalogos\CatalogoCliente.cs" />
     <Compile Include="Catalogos\CatalogoGenerico.cs" />
     <Compile Include="Catalogos\CatalogoProveedor.cs" />
     <Compile Include="Catalogos\CatalogoUsuario.cs" />
@@ -72,7 +73,7 @@
     <Compile Include="Clases\NotaDePedido.cs" />
     <Compile Include="Clases\Proveedor.cs" />
     <Compile Include="Clases\Usuario.cs" />
-    <Compile Include="ClasesComplementarias\Controladores\ControladorGeneral.cs" />
+    <Compile Include="Controladores\ControladorGeneral.cs" />
     <Compile Include="Mapeos\ArticuloMap.cs" />
     <Compile Include="Mapeos\ArticuloProveedorMap.cs" />
     <Compile Include="Mapeos\ClienteMap.cs" />

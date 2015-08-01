@@ -13,8 +13,8 @@ namespace BibliotecaSCF.Catalogos
         {
             try
             {
-                Usuario usu = RecuperarPor(x => x.Contraseña == contraseña && x.NombreUsuario == nombreUsuario, nhSesion);
-                return usu;
+                Usuario usuario = RecuperarPor(x => x.Contraseña == contraseña && x.NombreUsuario == nombreUsuario, nhSesion);
+                return usuario;
             }
             catch (Exception ex)
             {

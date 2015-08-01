@@ -4573,9 +4573,6 @@
     <Folder Include="assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\BibliotecaSCF\BibliotecaSCF.csproj">
       <Project>{11b15d78-a258-4c7b-a43b-7065677a1adc}</Project>
       <Name>BibliotecaSCF</Name>
