@@ -127,5 +127,30 @@ namespace BibliotecaSCF.Controladores
                 nhSesion.Dispose();
             }
         }
+
+        public static void InsertarActualizarArticulo(int p1, string p2, string p3, string p4)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void EliminarArticulo(int codigoArticulo)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Articulo art = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+                CatalogoArticulo.Eliminar(art, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
     }
 }

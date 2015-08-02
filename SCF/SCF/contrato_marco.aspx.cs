@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace SCF
 {
-    public partial class marco : System.Web.UI.Page
+    public partial class contrato_marco : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -135,47 +135,130 @@
                                         <!--/span-->
                                     </div>
                                     <!--/row-->
+
+                                    <!-- BEGIN ROW -->
+                                    <h3 class="form-section">Items de la Nota de Pedido</h3>
                                     <div class="row">
-                                        <div class="col-md-12 ">
-                                            <div class="form-group">
-                                                <h3 class="form-section">Items Nota de Pedido</h3>
-                                                <%--<label>Items Nota de Pedido</label>--%>
-                                                <div class="form-actions top">
-                                                    <div class="btn-set pull-left">
-                                                        <dx:ASPxButton ID="btnEditarItemsNotaDePedido" runat="server" Text="Agregar/Editar" AutoPostBack="False" UseSubmitBehavior="false" CssClass="btn blue">
-                                                            <ClientSideEvents Click="function(s, e) { ShowEditarItemsNotaDePedido(); }" />
-                                                        </dx:ASPxButton>
+                                        <div class="col-md-6">
+                                            <!-- BEGIN CHART PORTLET-->
+                                            <div class="portlet light">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-bar-chart font-green-haze"></i>
+                                                        <span class="caption-subject bold uppercase font-green-haze">Seleccione los Artículos</span>
+                                                    </div>
+                                                    <div class="tools">
+                                                        <a href="javascript:;" class="collapse"></a>
+                                                        <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                                                        <a href="javascript:;" class="reload"></a>
+                                                        <a href="javascript:;" class="fullscreen"></a>
+                                                        <a href="javascript:;" class="remove"></a>
                                                     </div>
                                                 </div>
-                                                <dx:ASPxGridView ID="gvItemNotaPedido" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
-                                                    <Columns>
-                                                        <dx:GridViewDataTextColumn FieldName="codigoItemNotaDePedido" ReadOnly="True" Visible="false" VisibleIndex="0">
-                                                            <EditFormSettings Visible="False" />
-                                                        </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="cantidad" VisibleIndex="1">
-                                                        </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="fechaEntrega" VisibleIndex="2">
-                                                        </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="codigoArticulo" VisibleIndex="3">
-                                                        </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="dercripcionCorta" VisibleIndex="4">
-                                                        </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="descripcionLarga" VisibleIndex="5">
-                                                        </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="6">
-                                                        </dx:GridViewDataTextColumn>
-                                                    </Columns>
-                                                    <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
-                                                    <SettingsBehavior AllowFocusedRow="True" />
-                                                </dx:ASPxGridView>
+                                                <div class="portlet-body">
+                                                    <div id="chart_8" class="chart" style="height: 400px;">
+                                                        <!-- GRID VIEW ARTICULOS-->
+                                                        <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSourceArticulos"
+                                                            EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis" Width="100%">
+                                                            <Columns>
+                                                                <dx:GridViewCommandColumn ShowSelectCheckbox="True"
+                                                                    VisibleIndex="0" Caption="Seleccionar">
+                                                                </dx:GridViewCommandColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="False" VisibleIndex="0">
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="1">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="descripcionLarga" VisibleIndex="2">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="3">
+                                                                </dx:GridViewDataTextColumn>
+                                                            </Columns>
+                                                            <SettingsBehavior AllowFocusedRow="True" />
+                                                            <Settings ShowFilterRow="True" />
+                                                        </dx:ASPxGridView>
+                                                        <br />
+                                                        <div>
+                                                            <div class="btn-set pull-right">
+                                                                <asp:Button type="button" class="btn green" runat="server" ID="btnSeleccionarArticulos" OnClick="btnSeleccionarArticulos_Click" Text="Seleccionar" />
+                                                            </div>
+                                                        </div>
+                                                        <asp:SqlDataSource ID="SqlDataSourceArticulos" runat="server" ConnectionString="<%$ ConnectionStrings:SCFConnectionString %>" SelectCommand="SELECT * FROM [Articulos]"></asp:SqlDataSource>
+                                                    </div>
+                                                </div>
+                                                <!-- END CHART PORTLET-->
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="col-md-6">
+                                            <!-- BEGIN CHART PORTLET-->
+                                            <div class="portlet light">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-bar-chart font-green-haze"></i>
+                                                        <span class="caption-subject bold uppercase font-green-haze">Items de la Nota de Pedido</span>
+                                                        <span class="caption-helper">cargar items</span>
+                                                    </div>
+                                                    <div class="tools">
+                                                        <a href="javascript:;" class="collapse"></a>
+                                                        <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                                                        <a href="javascript:;" class="reload"></a>
+                                                        <a href="javascript:;" class="fullscreen"></a>
+                                                        <a href="javascript:;" class="remove"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div id="chart_9" class="chart" style="height: 400px;">
+                                                        <!-- GRID VIEW ITEMS SELECCIONADOS-->
+                                                        <dx:ASPxGridView ID="gvArticulosSeleccionados" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigo"
+                                                            Width="100%">
+                                                            <Columns>
+                                                                <dx:GridViewDataTextColumn Caption="Codigo" VisibleIndex="0" FieldName="codigoArticulo"
+                                                                    Visible="false">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn Caption="Desc. Corta" VisibleIndex="1" FieldName="descripcionCorta">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn Caption="Desc. Larga" VisibleIndex="2" FieldName="descripcionLarga">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="3" FieldName="cantidad">
+                                                                    <PropertiesSpinEdit DisplayFormatString="g">
+                                                                    </PropertiesSpinEdit>
+                                                                    <DataItemTemplate>
+                                                                        <dx:ASPxSpinEdit ID="txtTitle" runat="server" Width="100px" MinValue="1" MaxValue="10000">
+                                                                        </dx:ASPxSpinEdit>
+                                                                    </DataItemTemplate>
+                                                                </dx:GridViewDataSpinEditColumn>
+                                                                <dx:GridViewDataDateColumn Caption="Fecha Entrega" VisibleIndex="3" FieldName="fechaEntrega">
+                                                                    <DataItemTemplate>
+                                                                        <dx:ASPxDateEdit ID="txtFechaEntrega" runat="server" Width="100px">
+                                                                        </dx:ASPxDateEdit>
+                                                                    </DataItemTemplate>
+                                                                </dx:GridViewDataDateColumn>
+                                                            </Columns>
+                                                            <SettingsBehavior AllowFocusedRow="True" />
 
-                                </div>
-                                <div class="form-actions right">
-                                    <button type="button" class="btn default" onclick="location.href='listado_nota_pedidos.aspx'">Cancelar</button>
-                                    <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" OnClick="btnGuardar_Click" Text="Guardar" />
+                                                        </dx:ASPxGridView>
+                                                        <br />
+                                                        <div>
+                                                            <div class="btn-set pull-left">
+                                                                <asp:Button type="button" class="btn red" runat="server" ID="btnEliminar" OnClick="btnEliminar_Click" Text="Eliminar" />
+                                                            </div>
+                                                            <div class="btn-set pull-right">
+                                                                <asp:Button type="button" class="btn blue" runat="server" ID="btnAceptar" OnClick="btnAceptar_Click" Text="Aceptar" />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END CHART PORTLET-->
+                                        </div>
+                                    </div>
+                                    <!-- END ROW -->
+
+                                    <div class="form-actions right">
+                                        <button type="button" class="btn default" onclick="location.href='listado_nota_pedidos.aspx'">Cancelar</button>
+                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" OnClick="btnGuardar_Click" Text="Guardar" />
+                                    </div>
                                 </div>
                             </form>
                             <!-- END FORM-->
@@ -207,7 +290,7 @@
                                                 <dx:ASPxTextBox ID="txtCodigoInterno" runat="server" CssClass="form-control" placeholder="Codigo Interno" ClientInstanceName="txtCodigoInterno"></dx:ASPxTextBox>
 
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -228,11 +311,11 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-     <script type="text/javascript">
-         function ShowEditarItemsNotaDePedido() {
-             pcEditarItemsNotaDePedido.Show();
-         }
+    <script type="text/javascript">
+        function ShowEditarItemsNotaDePedido() {
+            pcEditarItemsNotaDePedido.Show();
+        }
     </script>
 
-    
+
 </asp:Content>

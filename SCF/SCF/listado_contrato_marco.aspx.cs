@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace SCF
 {
-    public partial class listado_facturas : System.Web.UI.Page
+    public partial class listado_contrato_marco : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,18 +23,13 @@ namespace SCF
         {
 
         }
-
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         protected void btnVer_Click(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnConfirmarEliminarFactura_Click(object sender, EventArgs e)
+        protected void btnAceptarEliminarContratoMarco_Click(object sender, EventArgs e)
         {
 
         }

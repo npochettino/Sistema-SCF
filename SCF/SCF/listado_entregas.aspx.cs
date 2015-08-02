@@ -13,5 +13,30 @@ namespace SCF
         {
 
         }
+
+        protected void btnNuevo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnVer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAceptarEliminarEntrega_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,5 +1,3 @@
-C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.pdb
-C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.pdb
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.csprojResolveAssemblyReference.cache
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.pdb
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.pdb
@@ -13,6 +11,7 @@ C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\NHibernate.xml
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.exe
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.exe
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.exe
+C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.pdb
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\FluentNHibernate.dll
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\Iesi.Collections.dll
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\NHibernate.dll
@@ -20,4 +19,6 @@ C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\FluentNHibernate.pdb
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\FluentNHibernate.xml
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\Iesi.Collections.xml
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\NHibernate.xml
+C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.csprojResolveAssemblyReference.cache
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.exe
+C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.pdb

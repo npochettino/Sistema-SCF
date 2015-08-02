@@ -17,7 +17,7 @@
             <div class="page-head">
                 <!-- BEGIN PAGE TITLE -->
                 <div class="page-title">
-                    <h1>Cliente <small>editar/nuevo Cliente</small></h1>
+                    <h1>Artículo <small>editar/nuevo Artículo</small></h1>
                 </div>
                 <!-- END PAGE TITLE -->
 
@@ -121,6 +121,9 @@
                                     <%-- Grid View del Articulo - proveedor --%>
                                     <dx:ASPxGridView ID="gvArticuloProveedores" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigo" Theme="Metropolis">
                                     </dx:ASPxGridView>
+                                </div>
+                                <div class="form-actions right">                                    
+                                    <asp:Button type="button" class="btn blue" runat="server" ID="btnGurdarAticuloProveedor" OnClick="btnGurdarAticuloProveedor_Click" Text="Guardar" />
                                 </div>
                             </form>
                             <!-- END FORM-->

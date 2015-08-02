@@ -4039,6 +4039,7 @@
     <Content Include="assets\sweetalert.css" />
     <Content Include="assets\sweetalert.min.js" />
     <Content Include="blank.aspx" />
+    <Content Include="charts_amcharts.html" />
     <Content Include="charts_flotcharts.html" />
     <Content Include="cliente.aspx" />
     <Content Include="components_form_tools.html" />
@@ -4060,13 +4061,13 @@
     <Content Include="listado_clientes.aspx" />
     <Content Include="listado_entregas.aspx" />
     <Content Include="listado_facturas.aspx" />
-    <Content Include="listado_marco.aspx" />
+    <Content Include="listado_contrato_marco.aspx" />
     <Content Include="listado_notas_pedido.aspx" />
     <Content Include="listado_proveedores.aspx" />
     <Content Include="listado_remitos.aspx" />
     <Content Include="listado_usuarios.aspx" />
     <Content Include="login.aspx" />
-    <Content Include="marco.aspx" />
+    <Content Include="contrato_marco.aspx" />
     <Content Include="nota_pedido.aspx" />
     <Content Include="proveedor.aspx" />
     <Content Include="remito.aspx" />
@@ -4161,12 +4162,12 @@
     <Compile Include="listado_facturas.aspx.designer.cs">
       <DependentUpon>listado_facturas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="listado_marco.aspx.cs">
-      <DependentUpon>listado_marco.aspx</DependentUpon>
+    <Compile Include="listado_contrato_marco.aspx.cs">
+      <DependentUpon>listado_contrato_marco.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="listado_marco.aspx.designer.cs">
-      <DependentUpon>listado_marco.aspx</DependentUpon>
+    <Compile Include="listado_contrato_marco.aspx.designer.cs">
+      <DependentUpon>listado_contrato_marco.aspx</DependentUpon>
     </Compile>
     <Compile Include="listado_notas_pedido.aspx.cs">
       <DependentUpon>listado_notas_pedido.aspx</DependentUpon>
@@ -4203,12 +4204,12 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="marco.aspx.cs">
-      <DependentUpon>marco.aspx</DependentUpon>
+    <Compile Include="contrato_marco.aspx.cs">
+      <DependentUpon>contrato_marco.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="marco.aspx.designer.cs">
-      <DependentUpon>marco.aspx</DependentUpon>
+    <Compile Include="contrato_marco.aspx.designer.cs">
+      <DependentUpon>contrato_marco.aspx</DependentUpon>
     </Compile>
     <Compile Include="nota_pedido.aspx.cs">
       <DependentUpon>nota_pedido.aspx</DependentUpon>

@@ -63,20 +63,10 @@ namespace SCF
 
             Response.Redirect("proveedor.aspx");
         }
+               
+        protected void btnAceptarEliminarProveedor_Click(object sender, EventArgs e)
+        {
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {   
-            //Eliminar proveedor
-            //string test = "";
-            string confirmValue = Request.Form["confirm_value"];
-            if (confirmValue == "Si")
-            {
-                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You clicked YES!')", true);
-            }
-            else
-            {
-                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You clicked NO!')", true);
-            }
         }
 
         

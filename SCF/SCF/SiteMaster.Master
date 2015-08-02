@@ -267,15 +267,15 @@ License: SempaIT - Todos los derechos reservados.
                         <li>
                             <a href="javascript:;">
                                 <i class="icon-folder"></i>
-                                <span class="title">Contrato Marco</span>
+                                <span class="title">ContratoS Marco</span>
                                 <span class="arrow "></span>
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="listado_marco.aspx">Listado</a>
+                                    <a href="listado_contrato_marco.aspx">Listado</a>
                                 </li>
                                 <li>
-                                    <a href="marco.aspx">Nuevo</a>
+                                    <a href="contrato_marco.aspx">Nuevo</a>
                                 </li>
                             </ul>
                         </li>

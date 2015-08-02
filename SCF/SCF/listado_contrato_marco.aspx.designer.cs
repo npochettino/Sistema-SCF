@@ -10,7 +10,7 @@
 namespace SCF {
     
     
-    public partial class listado_articulos {
+    public partial class listado_contrato_marco {
         
         /// <summary>
         /// Control btnNuevo.
@@ -40,13 +40,22 @@ namespace SCF {
         protected global::System.Web.UI.WebControls.Button btnEliminar;
         
         /// <summary>
-        /// Control gvArticulos.
+        /// Control btnVer.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvArticulos;
+        protected global::System.Web.UI.WebControls.Button btnVer;
+        
+        /// <summary>
+        /// Control gvContratosMarco.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvContratosMarco;
         
         /// <summary>
         /// Control SqlDataSource1.
@@ -58,13 +67,13 @@ namespace SCF {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
-        /// Control pcConfirmarEliminarArticulo.
+        /// Control pcConfirmarEliminarContratoMarco.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxPopupControl.ASPxPopupControl pcConfirmarEliminarArticulo;
+        protected global::DevExpress.Web.ASPxPopupControl.ASPxPopupControl pcConfirmarEliminarContratoMarco;
         
         /// <summary>
         /// Control PopupControlContentControl1.
@@ -103,12 +112,12 @@ namespace SCF {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// Control Button2.
+        /// Control btnAceptarEliminarContratoMarco.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnAceptarEliminarContratoMarco;
     }
 }

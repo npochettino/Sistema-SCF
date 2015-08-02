@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BibliotecaSCF.Clases;
+using BibliotecaSCF.Controladores;
 
 namespace SCF
 {
@@ -56,20 +57,11 @@ namespace SCF
 
             Response.Redirect("articulo.aspx");
         }
-
-        protected void btnEliminar_Click(object sender, EventArgs e)
+        
+        protected void btnAceptarEliminarArticulo_Click(object sender, EventArgs e)
         {
-            //Eliminar proveedor
-            //string test = "";
-            string confirmValue = Request.Form["confirm_value"];
-            if (confirmValue == "Si")
-            {
-                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You clicked YES!')", true);
-            }
-            else
-            {
-                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You clicked NO!')", true);
-            }
+            ControladorGeneral.EliminarArticulo(int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString()));
+            gvArticulos.DataBind();
         }
     }
 }

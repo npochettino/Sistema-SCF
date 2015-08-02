@@ -50,8 +50,8 @@ namespace SCF
 
             Response.Redirect("nota_pedido.aspx");
         }
-
-        protected void btnEliminar_Click(object sender, EventArgs e)
+        
+        protected void btnAceptarEliminarNotaPedido_Click(object sender, EventArgs e)
         {
 
         }

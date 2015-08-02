@@ -85,6 +85,15 @@ namespace SCF {
         protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvArticuloProveedores;
         
         /// <summary>
+        /// Control btnGurdarAticuloProveedor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGurdarAticuloProveedor;
+        
+        /// <summary>
         /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
