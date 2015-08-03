@@ -20,11 +20,8 @@ C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\FluentNHibernate.xml
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\Iesi.Collections.xml
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\NHibernate.xml
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.exe
-<<<<<<< HEAD
-C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.pdb
-=======
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.csprojResolveAssemblyReference.cache
-C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.csprojResolveAssemblyReference.cache
+C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.dll
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.pdb
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\FluentNHibernate.dll
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\Iesi.Collections.dll
@@ -33,7 +30,5 @@ C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\FluentNHibernate.xml
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\Iesi.Collections.xml
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\NHibernate.xml
-C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.pdb
-C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.dll
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.dll
->>>>>>> Se agregan metodos de usuarios y clientes
+C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.pdb

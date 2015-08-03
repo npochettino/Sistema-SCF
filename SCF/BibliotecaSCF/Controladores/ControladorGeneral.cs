@@ -39,6 +39,7 @@ namespace BibliotecaSCF.Controladores
                 proveedor.Telefono = telefono;
                 proveedor.Mail = mail;
                 proveedor.Cuil = cuil;
+                proveedor.IsInactivo = false;
 
                 CatalogoProveedor.InsertarActualizar(proveedor, nhSesion);
             }
@@ -74,6 +75,36 @@ namespace BibliotecaSCF.Controladores
                 (from p in listaProveedores select p).Aggregate(tablaProveedores, (dt, r) => { dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil); return dt; });
 
                 return tablaProveedores;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void ActivarInactivarProveedor(int codigoProveedor)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Proveedor proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
+
+                if (proveedor.IsInactivo)
+                {
+                    proveedor.IsInactivo = false;
+                }
+                else
+                {
+                    proveedor.IsInactivo = true;
+                }
+
+                CatalogoProveedor.InsertarActualizar(proveedor, nhSesion);
             }
             catch (Exception ex)
             {
@@ -214,6 +245,7 @@ namespace BibliotecaSCF.Controladores
                 cliente.Telefono = telefono;
                 cliente.Mail = mail;
                 cliente.Cuil = cuil;
+                cliente.IsInactivo = false;
 
                 CatalogoCliente.InsertarActualizar(cliente, nhSesion);
             }
@@ -261,6 +293,74 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
+        public static void ActivarInactivarCliente(int codigoCliente)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+
+                if (cliente.IsInactivo)
+                {
+                    cliente.IsInactivo = false;
+                }
+                else
+                {
+                    cliente.IsInactivo = true;
+                }
+
+                CatalogoCliente.InsertarActualizar(cliente, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
         #endregion
+
+        public static void InsertarActualizarArticulo(int codigoArticulo, string descripcionCorta, string descripcionLarga, string marca)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Articulo articulo;
+
+                if (codigoArticulo == 0)
+                {
+                    articulo = new Articulo();
+                }
+                else
+                {
+                    articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+                }
+
+                articulo.DescripcionCorta = descripcionCorta;
+                articulo.DescripcionLarga = descripcionLarga;
+                articulo.Marca = marca;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+
+        }
+
+        public static void EliminarArticulo(int p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

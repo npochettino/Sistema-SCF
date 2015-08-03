@@ -21,6 +21,7 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.Telefono).Column("telefono");
             Map(x => x.Mail).Column("mail");
             Map(x => x.Cuil).Column("cuil");
+            Map(x => x.IsInactivo).Column("isInactivo");
         }
     }
 }

@@ -16,5 +16,6 @@ namespace BibliotecaSCF.Clases
         public virtual string Telefono { get; set; }
         public virtual string Mail { get; set; }
         public virtual string Cuil { get; set; }
+        public virtual bool IsInactivo { get; set; }
     }
 }
