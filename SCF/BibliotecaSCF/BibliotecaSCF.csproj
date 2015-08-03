@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catalogos\CatalogoArticulo.cs" />
     <Compile Include="Catalogos\CatalogoGenerico.cs" />
     <Compile Include="Catalogos\CatalogoProveedor.cs" />
     <Compile Include="Catalogos\CatalogoUsuario.cs" />

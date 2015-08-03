@@ -13,5 +13,10 @@ namespace SCF
         {
 
         }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

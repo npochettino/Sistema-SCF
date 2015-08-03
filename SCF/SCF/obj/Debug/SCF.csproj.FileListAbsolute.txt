@@ -3,8 +3,8 @@ C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\SCF.pdb
 C:\Users\eedgardo\Documents\git\scf\SCF\SCF\obj\Debug\SCF.csprojResolveAssemblyReference.cache
 C:\Users\eedgardo\Documents\git\scf\SCF\SCF\obj\Debug\SCF.dll
 C:\Users\eedgardo\Documents\git\scf\SCF\SCF\obj\Debug\SCF.pdb
-C:\Users\Nicolas\SempaIT\scf\SCF\SCF\obj\Debug\SCF.csprojResolveAssemblyReference.cache
 C:\Users\Nicolas\SempaIT\scf\SCF\SCF\obj\Debug\SCF.dll.licenses
+C:\Users\Nicolas\SempaIT\scf\SCF\SCF\obj\Debug\SCF.csprojResolveAssemblyReference.cache
 C:\Users\Nicolas\SempaIT\scf\SCF\SCF\bin\SCF.dll
 C:\Users\Nicolas\SempaIT\scf\SCF\SCF\bin\SCF.pdb
 C:\Users\Nicolas\SempaIT\scf\SCF\SCF\bin\BibliotecaSCF.exe

@@ -63,7 +63,7 @@ License: SempaIT - Todos los derechos reservados.
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="index.aspx" method="post">
+            <form class="login-form" method="post" action="index.aspx">
                 <h3 class="form-title">Ingresa a tu cuenta</h3>
                 <div runat="server" id="divAlertLogin" class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
@@ -93,7 +93,7 @@ License: SempaIT - Todos los derechos reservados.
         <!-- END LOGIN -->
         <!-- BEGIN COPYRIGHT -->
         <div class="copyright">
-            2015 &copy; @S.C.F SRL | by <a style="color: white" href="http://www.sempait.com.ar" target="_blank">SempaIT</a>
+            2015 &copy; S.C.F SRL | by <a style="color: white" href="http://www.sempait.com.ar" target="_blank">SempaIT</a>
         </div>
         <!-- END COPYRIGHT -->
         <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
