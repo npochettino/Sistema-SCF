@@ -160,8 +160,7 @@
                                             <br />
                                             Proveedor:
                                             <div class="input-group">
-                                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SCFConnectionString %>" SelectCommand="SELECT [razonSocial], [codigoProveedor], [cuil] FROM [Proveedores]"></asp:SqlDataSource>
-                                                <dx:ASPxComboBox ID="cbProveedores" runat="server" DropDownStyle="DropDownList" DataSourceID="SqlDataSource1"
+                                                <dx:ASPxComboBox ID="cbProveedores" runat="server" DropDownStyle="DropDownList" 
                                                     ValueField="codigoProveedor" IncrementalFilteringMode="Contains" ValueType="System.String" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoProveedor" Width="100px" Visible="false" />

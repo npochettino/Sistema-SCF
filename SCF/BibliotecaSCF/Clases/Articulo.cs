@@ -18,6 +18,6 @@ namespace BibliotecaSCF.Clases
         public virtual string DescripcionLarga { get; set; }
         public virtual string Marca { get; set; }
 
-        public virtual List<ArticuloProveedor> ArticulosProveedor { get; set; }
+        public virtual IList<ArticuloProveedor> ArticulosProveedor { get; set; }
     }
 }

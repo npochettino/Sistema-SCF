@@ -10,7 +10,8 @@ namespace BibliotecaSCF.Clases
     {
         public virtual int Codigo { get; set; }
         public virtual DateTime FechaDesde { get; set; }
-        public virtual DateTime FechaHasta { get; set; }
+        public virtual DateTime? FechaHasta { get; set; }
         public virtual double Precio { get; set; }
+        public virtual bool IsDolar { get; set; }
     }
 }

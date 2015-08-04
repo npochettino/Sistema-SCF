@@ -54,7 +54,7 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static DataTable RecuperarTodosProveedores()
+        public static DataTable RecuperarTodosProveedores(bool isInactivos)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -70,9 +70,9 @@ namespace BibliotecaSCF.Controladores
                 tablaProveedores.Columns.Add("mail");
                 tablaProveedores.Columns.Add("cuil");
 
-                List<Proveedor> listaProveedores = CatalogoProveedor.RecuperarTodos(nhSesion);
+                List<Proveedor> listaProveedores = CatalogoProveedor.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
 
-                (from p in listaProveedores select p).Aggregate(tablaProveedores, (dt, r) => { dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil); return dt; });
+                listaProveedores.Aggregate(tablaProveedores, (dt, r) => { dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil); return dt; });
 
                 return tablaProveedores;
             }
@@ -105,6 +105,27 @@ namespace BibliotecaSCF.Controladores
                 }
 
                 CatalogoProveedor.InsertarActualizar(proveedor, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void EliminarProveedor(int codigoProveedor)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Proveedor proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
+
+                CatalogoProveedor.Eliminar(proveedor, nhSesion);
             }
             catch (Exception ex)
             {
@@ -260,7 +281,7 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static DataTable RecuperarTodosClientes()
+        public static DataTable RecuperarTodosClientes(bool isInactivos)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -276,9 +297,9 @@ namespace BibliotecaSCF.Controladores
                 tablaClientes.Columns.Add("mail");
                 tablaClientes.Columns.Add("cuil");
 
-                List<Cliente> listaClientes = CatalogoCliente.RecuperarTodos(nhSesion);
+                List<Cliente> listaClientes = CatalogoCliente.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
 
-                (from p in listaClientes select p).Aggregate(tablaClientes, (dt, r) => { dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil); return dt; });
+                listaClientes.Aggregate(tablaClientes, (dt, r) => { dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil); return dt; });
 
                 return tablaClientes;
             }
@@ -323,7 +344,118 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
+        public static void EliminarCliente(int codigoCliente)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+
+                CatalogoCliente.Eliminar(cliente, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
         #endregion
+
+        #region Articulo
+
+        public static DataTable RecuperarTodosArticulos()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaArticulos = new DataTable();
+                tablaArticulos.Columns.Add("codigoArticulo");
+                tablaArticulos.Columns.Add("descripcionCorta");
+                tablaArticulos.Columns.Add("descripcionLarga");
+                tablaArticulos.Columns.Add("marca");
+
+                List<Articulo> listaArticulos = CatalogoArticulo.RecuperarTodos(nhSesion);
+
+                listaArticulos.Aggregate(tablaArticulos, (dt, r) => { dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca); return dt; });
+
+                return tablaArticulos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarArticulosProveedoresPorArticulo(int codigoArticulo)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaArticulosProveedores = new DataTable();
+                tablaArticulosProveedores.Columns.Add("codigoArticuloProveedor");
+                tablaArticulosProveedores.Columns.Add("codigoProveedor");
+                tablaArticulosProveedores.Columns.Add("razonSocialProveedor");
+                tablaArticulosProveedores.Columns.Add("codigoInterno");
+                tablaArticulosProveedores.Columns.Add("precioActual");
+
+                Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+
+                articulo.ArticulosProveedor.Aggregate(tablaArticulosProveedores, (dt, r) => { dt.Rows.Add(r.Codigo, r.Proveedor.Codigo, r.Proveedor.RazonSocial, r.CodigoInterno, r.HistorialPrecio.Where(x => x.FechaHasta == null).Select(x => x.Precio).SingleOrDefault()); return dt; });
+
+                return tablaArticulosProveedores;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarHistorialPreciosPorArticuloProveedor(int codigoArticuloProveedor)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaHistorialPrecio = new DataTable();
+                tablaHistorialPrecio.Columns.Add("codigoHistorialPrecio");
+                tablaHistorialPrecio.Columns.Add("fechaDesde");
+                tablaHistorialPrecio.Columns.Add("fechaHasta");
+                tablaHistorialPrecio.Columns.Add("precio");
+
+                ArticuloProveedor artProv = CatalogoArticuloProveedor.RecuperarPorCodigo(codigoArticuloProveedor, nhSesion);
+
+                artProv.HistorialPrecio.Aggregate(tablaHistorialPrecio, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Precio); return dt; });
+
+                return tablaHistorialPrecio;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
 
         public static void InsertarActualizarArticulo(int codigoArticulo, string descripcionCorta, string descripcionLarga, string marca)
         {
@@ -345,6 +477,8 @@ namespace BibliotecaSCF.Controladores
                 articulo.DescripcionCorta = descripcionCorta;
                 articulo.DescripcionLarga = descripcionLarga;
                 articulo.Marca = marca;
+
+                CatalogoArticulo.InsertarActualizar(articulo, nhSesion);
             }
             catch (Exception ex)
             {
@@ -355,12 +489,97 @@ namespace BibliotecaSCF.Controladores
                 nhSesion.Close();
                 nhSesion.Dispose();
             }
-
         }
 
-        public static void EliminarArticulo(int p)
+        public static void InsertarActualizarArticuloProveedor(int codigoArticuloProveedor, int codigoArticulo, int codigoInterno, int codigoProveedor, double precio, bool isDolar)
         {
-            throw new NotImplementedException();
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            ITransaction transaccion = nhSesion.BeginTransaction();
+
+            try
+            {
+                Articulo articulo;
+                articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+
+                ArticuloProveedor articuloProveedor;
+
+                if (codigoArticuloProveedor == 0)
+                {
+                    articuloProveedor = new ArticuloProveedor();
+                    articulo.ArticulosProveedor.Add(articuloProveedor);
+                }
+                else
+                {
+                    articuloProveedor = (from ap in articulo.ArticulosProveedor where ap.Codigo == codigoArticuloProveedor select ap).SingleOrDefault();
+                }
+
+                articuloProveedor.CodigoInterno = codigoInterno;
+                articuloProveedor.Proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
+
+                HistorialPrecio histPrecio = (from h in articuloProveedor.HistorialPrecio where h.FechaHasta == null select h).SingleOrDefault();
+
+                if (histPrecio == null)
+                {
+                    histPrecio = new HistorialPrecio();
+                    histPrecio.FechaDesde = DateTime.Now;
+                    histPrecio.FechaHasta = null;
+                    histPrecio.Precio = precio;
+                    histPrecio.IsDolar = isDolar;
+
+                    articuloProveedor.HistorialPrecio.Add(histPrecio);
+                }
+                else
+                {
+                    if (histPrecio.Precio != precio || histPrecio.IsDolar != isDolar)
+                    {
+                        histPrecio.FechaHasta = DateTime.Now.AddSeconds(-1);
+
+                        HistorialPrecio histPrecioNuevo = new HistorialPrecio();
+                        histPrecioNuevo.FechaDesde = DateTime.Now;
+                        histPrecioNuevo.FechaHasta = null;
+                        histPrecioNuevo.Precio = precio;
+                        histPrecio.IsDolar = isDolar;
+
+                        articuloProveedor.HistorialPrecio.Add(histPrecioNuevo);
+                    }
+                }
+
+                CatalogoArticulo.InsertarActualizar(articulo, nhSesion);
+                transaccion.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaccion.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
+
+        public static void EliminarArticulo(int codigoArticulo)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+
+                CatalogoArticulo.Eliminar(articulo, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
     }
 }

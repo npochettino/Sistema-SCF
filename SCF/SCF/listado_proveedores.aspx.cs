@@ -25,7 +25,7 @@ namespace SCF
 
         private void loadGridProveedores()
         {
-            gvProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores();
+            gvProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(false);
             gvProveedores.DataBind();
 
         }

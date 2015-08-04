@@ -30,3 +30,13 @@ C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\SCF\bin\FluentNHibernat
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\SCF\bin\NHibernate.xml
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\SCF\bin\Iesi.Collections.xml
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\SCF\bin\BibliotecaSCF.dll
+C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\FluentNHibernate.dll
+C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\NHibernate.dll
+C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\Iesi.Collections.dll
+C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\BibliotecaSCF.pdb
+C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\FluentNHibernate.pdb
+C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\FluentNHibernate.xml
+C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\NHibernate.xml
+C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\Iesi.Collections.xml
+C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\BibliotecaSCF.xml
+C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\BibliotecaSCF.exe

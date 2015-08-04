@@ -17,6 +17,6 @@ namespace BibliotecaSCF.Clases
         public virtual int CodigoInterno { get; set; }
 
         public virtual Proveedor Proveedor { get; set; }
-        public virtual List<HistorialPrecio> HistorialPrecio { get; set; }
+        public virtual IList<HistorialPrecio> HistorialPrecio { get; set; }
     }
 }

@@ -12,11 +12,12 @@ namespace BibliotecaSCF.Mapeos
     {
         public HistorialPrecioMap()
         {
-            Table("HistorialPrecioArticuloProveedor");
+            Table("HistorialPreciosArticuloProveedor");
             Id(x => x.Codigo).Column("codigoHistorialPrecioArticuloProveedor").GeneratedBy.Identity();
             Map(x => x.FechaDesde).Column("fechaDesde");
             Map(x => x.FechaHasta).Column("fechaHasta");
             Map(x => x.Precio).Column("precio");
+            Map(x => x.IsDolar).Column("isDolar");
         }
     }
 }

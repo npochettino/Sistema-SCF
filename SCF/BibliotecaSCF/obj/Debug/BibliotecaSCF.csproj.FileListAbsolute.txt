@@ -8,8 +8,6 @@ C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\FluentNHibernate
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\FluentNHibernate.xml
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\Iesi.Collections.xml
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\NHibernate.xml
-C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.exe
-C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.exe
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.exe
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.pdb
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\FluentNHibernate.dll
@@ -32,3 +30,6 @@ C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\NHibernate.xml
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.dll
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.pdb
+C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.XML
+C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.exe
+C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.exe
