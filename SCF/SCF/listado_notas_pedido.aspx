@@ -59,7 +59,7 @@
                                 <div class="form-body" style="height: 600px">
                                     <!-- devexpress-->
                                     
-                                    <dx:ASPxGridView ID="gvNotasPedido" runat="server" Width="100%" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Theme="Metropolis">
+                                    <dx:ASPxGridView ID="gvNotasPedido" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" Theme="Metropolis">
                                         <Columns>
                                             <dx:GridViewDataTextColumn FieldName="codigoNotaDePedido" ReadOnly="True" Visible="False" VisibleIndex="0">
                                                 <EditFormSettings Visible="False" />

@@ -115,7 +115,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">Cliente</label>
                                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SCFConnectionString %>" SelectCommand="SELECT codigoCliente,razonSocial,cuil FROM Clientes"></asp:SqlDataSource>
-                                                <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" DataSourceID="SqlDataSource1" CssClass="form-control"
+                                                <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
                                                     ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.String" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoCliente" Width="100px" Visible="false" />
@@ -158,8 +158,7 @@
                                                 <div class="portlet-body">
                                                     <div id="chart_8" class="chart" style="height: 400px;">
                                                         <!-- GRID VIEW ARTICULOS-->
-                                                        <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSourceArticulos"
-                                                            EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis" Width="100%">
+                                                        <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis" Width="100%">
                                                             <Columns>
                                                                 <dx:GridViewCommandColumn ShowSelectCheckbox="True"
                                                                     VisibleIndex="0" Caption="Seleccionar">

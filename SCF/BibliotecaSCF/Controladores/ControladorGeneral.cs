@@ -581,5 +581,238 @@ namespace BibliotecaSCF.Controladores
         }
 
         #endregion
+
+        #region NotaDePedido
+
+        public static DataTable RecuperarNotasDePedido()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaNotasDePedido = new DataTable();
+                tablaNotasDePedido.Columns.Add("codigoNotaDePedido");
+                tablaNotasDePedido.Columns.Add("numeroInternoCliente");
+                tablaNotasDePedido.Columns.Add("fechaEmision");
+                tablaNotasDePedido.Columns.Add("codigoEstado");
+                tablaNotasDePedido.Columns.Add("colorEstado");
+                tablaNotasDePedido.Columns.Add("codigoContratoMarco");
+                tablaNotasDePedido.Columns.Add("descripcionContratoMarco");
+                tablaNotasDePedido.Columns.Add("codigoCliente");
+                tablaNotasDePedido.Columns.Add("razonSocialCliente");
+                tablaNotasDePedido.Columns.Add("observaciones");
+
+                List<NotaDePedido> listaNotasDePedido = CatalogoNotaDePedido.RecuperarTodos(nhSesion);
+
+                foreach (NotaDePedido notaPedido in listaNotasDePedido)
+                {
+                    string colorEstado = string.Empty;
+                    switch (notaPedido.CodigoEstado)
+                    {
+                        case Constantes.EstadosNotaDePedido.VIGENTE:
+                            List<ItemNotaDePedido> listaItemsNotaDePedidoVencidos = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega > DateTime.Now select n).ToList();
+
+                            if (listaItemsNotaDePedidoVencidos.Count > 0)
+                            {
+                                colorEstado = Constantes.ColorEstadosNotaDePedido.VENCIDA;
+                            }
+                            else
+                            {
+                                List<ItemNotaDePedido> listaItemsNotaDePedidoProximosAVencer = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega > DateTime.Now.AddDays(-5) select n).ToList();
+                                if (listaItemsNotaDePedidoVencidos.Count > 0)
+                                {
+                                    colorEstado = Constantes.ColorEstadosNotaDePedido.VENCIDA;
+                                }
+                                else
+                                {
+                                    colorEstado = Constantes.ColorEstadosNotaDePedido.VIGENTE;
+                                }
+                            }
+
+                            break;
+                        case Constantes.EstadosNotaDePedido.ANULADA:
+                            colorEstado = Constantes.ColorEstadosNotaDePedido.ANULADA;
+                            break;
+
+                        case Constantes.EstadosNotaDePedido.ENTREGADA:
+                            colorEstado = Constantes.ColorEstadosNotaDePedido.ENTREGADA;
+                            break;
+
+                        default:
+                            colorEstado = "#FFFFFF";
+                            break;
+                    }
+
+                    tablaNotasDePedido.Rows.Add(new object[] { notaPedido.Codigo, notaPedido.NumeroInternoCliente, notaPedido.FechaEmision, notaPedido.CodigoEstado, colorEstado, notaPedido.ContratoMarco != null ? notaPedido.ContratoMarco.Codigo : 0, 
+                        notaPedido.ContratoMarco != null ? notaPedido.ContratoMarco.Descripcion : "", notaPedido.Cliente.Codigo, notaPedido.Cliente.RazonSocial, notaPedido.Observaciones});
+                }
+
+                return tablaNotasDePedido;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Columnas del DataTabla tablaItemsNotaDePedido: codigoItemNotaDePedido,
+        /// </summary>
+        public static void InsertarActualizarNotaDePedido(int codigoNotaDePedido, int numeroInternoCliente, DateTime fechaEmision, string observaciones, int codigoContratoMarco, int codigoCliente, DataTable tablaItemsNotaDePedido)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            ITransaction transaccion = nhSesion.BeginTransaction();
+
+            try
+            {
+                NotaDePedido notaDePedido;
+
+                if (codigoNotaDePedido == 0)
+                {
+                    notaDePedido = new NotaDePedido();
+                    notaDePedido.CodigoEstado = Constantes.EstadosNotaDePedido.VIGENTE;
+                }
+                else
+                {
+                    notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
+                }
+
+                notaDePedido.Cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+                notaDePedido.ContratoMarco = codigoContratoMarco == 0 ? null : CatalogoContratoMarco.RecuperarPorCodigo(codigoContratoMarco, nhSesion);
+                notaDePedido.FechaEmision = fechaEmision;
+                notaDePedido.NumeroInternoCliente = numeroInternoCliente;
+                notaDePedido.Observaciones = observaciones;
+
+                foreach (DataRow filaItemNotaDePedido in tablaItemsNotaDePedido.Rows)
+                {
+                    int codigoItemNotaDePedido = Convert.ToInt32(filaItemNotaDePedido["codigoItemNotaDePedido"]);
+                    ItemNotaDePedido item = new ItemNotaDePedido();
+
+                    if (codigoItemNotaDePedido == 0)
+                    {
+                        item = new ItemNotaDePedido();
+                        notaDePedido.ItemsNotaDePedido.Add(item);
+                    }
+
+                    item.Articulo = CatalogoArticulo.RecuperarPorCodigo(Convert.ToInt32(filaItemNotaDePedido["codigoArticulo"]), nhSesion);
+                    item.Cantidad = Convert.ToInt32(filaItemNotaDePedido["cantidad"]);
+                    item.FechaEntrega = Convert.ToDateTime(filaItemNotaDePedido["fechaEntrega"]);
+                }
+
+                CatalogoNotaDePedido.InsertarActualizar(notaDePedido, nhSesion);
+                transaccion.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaccion.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void ActivarAnularNotaDePedido(int codigoNotaDePedido, string observaciones)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
+
+                if (notaDePedido.CodigoEstado == Constantes.EstadosNotaDePedido.ANULADA)
+                {
+                    notaDePedido.CodigoEstado = Constantes.EstadosNotaDePedido.VIGENTE;
+                }
+                else
+                {
+                    notaDePedido.CodigoEstado = Constantes.EstadosNotaDePedido.ANULADA;
+                }
+
+                notaDePedido.Observaciones = observaciones;
+
+                CatalogoNotaDePedido.InsertarActualizar(notaDePedido, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region ContratoMarco
+
+        public static DataTable RecuperarContratosMarcoVigentePorCliente(int codigoCliente)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaContratosMarco = new DataTable();
+                tablaContratosMarco.Columns.Add("codigoContratoMarco");
+                tablaContratosMarco.Columns.Add("fechaInicio");
+                tablaContratosMarco.Columns.Add("fechaFin");
+                tablaContratosMarco.Columns.Add("descripcion");
+
+                List<ContratoMarco> listaContratosMarco = CatalogoContratoMarco.RecuperarLista(x => x.FechaInicio < DateTime.Now && x.FechaFin > DateTime.Now && x.Cliente.Codigo == codigoCliente, nhSesion);
+
+                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaInicio, r.FechaFin, r.Descripcion); return dt; });
+
+                return tablaContratosMarco;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarContratosMarcoVigentePorClienteYArticulo(int codigoCliente, int codigoArticulo)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaContratosMarco = new DataTable();
+                tablaContratosMarco.Columns.Add("codigoContratoMarco");
+                tablaContratosMarco.Columns.Add("fechaInicio");
+                tablaContratosMarco.Columns.Add("fechaFin");
+                tablaContratosMarco.Columns.Add("descripcion");
+
+                List<ContratoMarco> listaContratosMarco = CatalogoContratoMarco.RecuperarVigentePorClienteYArticulo(codigoCliente, codigoArticulo, nhSesion);
+
+                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaInicio, r.FechaFin, r.Descripcion); return dt; });
+
+                return tablaContratosMarco;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
     }
 }

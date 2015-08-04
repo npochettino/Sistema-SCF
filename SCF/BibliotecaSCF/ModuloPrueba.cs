@@ -24,8 +24,11 @@ namespace BibliotecaSCF
             //ControladorGeneral.InsertarActualizarArticuloProveedor(4, 1, 2222, 4, 15.50, false);
             //ControladorGeneral.InsertarActualizarArticuloProveedor(4, 1, 1111, 4, 15.50, false);
             //ControladorGeneral.InsertarActualizarArticuloProveedor(4, 1, 1111, 4, 16.50, false);
-            DataTable t3 = ControladorGeneral.RecuperarArticulosProveedoresPorArticulo(1);
-            DataTable t4 = ControladorGeneral.RecuperarHistorialPreciosPorArticuloProveedor(4);
+            //DataTable t3 = ControladorGeneral.RecuperarArticulosProveedoresPorArticulo(1);
+            //DataTable t4 = ControladorGeneral.RecuperarHistorialPreciosPorArticuloProveedor(4);
+            ControladorGeneral.RecuperarContratosMarcoVigentePorCliente(1);
+
+
         }
     }
 }
