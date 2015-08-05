@@ -40,3 +40,6 @@ C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\NHibernate.xml
 C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\Iesi.Collections.xml
 C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\BibliotecaSCF.xml
 C:\Users\eedgardo\Documents\git\scf\SCF\SCF\bin\BibliotecaSCF.exe
+C:\Users\Nicolas\SempaIT\scf\SCF\SCF\bin\BibliotecaSCF.xml
+C:\Users\Nicolas\SempaIT\scf\SCF\SCF\obj\Debug\SCF.dll
+C:\Users\Nicolas\SempaIT\scf\SCF\SCF\obj\Debug\SCF.pdb

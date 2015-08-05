@@ -13,7 +13,7 @@ namespace BibliotecaSCF.Mapeos
         public ClienteMap()
         {
             Table("Clientes");
-            Id(x => x.Codigo).Column("codigoProveedor").GeneratedBy.Identity();
+            Id(x => x.Codigo).Column("codigoCliente").GeneratedBy.Identity();
             Map(x => x.RazonSocial).Column("razonSocial");
             Map(x => x.Provincia).Column("provincia");
             Map(x => x.Localidad).Column("localidad");

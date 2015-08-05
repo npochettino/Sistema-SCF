@@ -18,7 +18,6 @@ C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\FluentNHibernate.xml
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\Iesi.Collections.xml
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\NHibernate.xml
 C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.exe
-C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.csprojResolveAssemblyReference.cache
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.dll
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.pdb
 C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\FluentNHibernate.dll
@@ -33,3 +32,6 @@ C:\Users\Ezequiel Dalaison\Documents\git\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.XML
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.exe
 C:\Users\eedgardo\Documents\git\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.exe
+C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.pdb
+C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\bin\Debug\BibliotecaSCF.XML
+C:\Users\Nicolas\SempaIT\scf\SCF\BibliotecaSCF\obj\Debug\BibliotecaSCF.csprojResolveAssemblyReference.cache

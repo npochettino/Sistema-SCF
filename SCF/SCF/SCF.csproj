@@ -62,7 +62,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="articulo.aspx" />
+    <Content Include="articulos\articulo.aspx" />
     <Content Include="assets\admin\layout4\css\custom.css" />
     <Content Include="assets\admin\layout4\css\layout.css" />
     <Content Include="assets\admin\layout4\css\themes\default.css" />
@@ -4038,93 +4038,93 @@
     <Content Include="assets\sweetalert-dev.js" />
     <Content Include="assets\sweetalert.css" />
     <Content Include="assets\sweetalert.min.js" />
-    <Content Include="blank.aspx" />
-    <Content Include="charts_amcharts.html" />
-    <Content Include="charts_flotcharts.html" />
-    <Content Include="cliente.aspx" />
-    <Content Include="components_form_tools.html" />
-    <Content Include="components_pickers.html" />
-    <Content Include="cotizacion.aspx" />
-    <Content Include="datos_empresa.aspx" />
-    <Content Include="ecommerce_products_edit.html" />
-    <Content Include="entrega.aspx" />
-    <Content Include="extra_profile.html" />
-    <Content Include="extra_profile_account.html" />
-    <Content Include="factura.aspx" />
-    <Content Include="form_controls.html" />
-    <Content Include="form_controls_md.html" />
-    <Content Include="form_layouts.html" />
-    <Content Include="form_wizard.html" />
+    <Content Include="template\blank.aspx" />
+    <Content Include="template\charts_amcharts.html" />
+    <Content Include="template\charts_flotcharts.html" />
+    <Content Include="clientes\cliente.aspx" />
+    <Content Include="template\components_form_tools.html" />
+    <Content Include="template\components_pickers.html" />
+    <Content Include="config\cotizacion.aspx" />
+    <Content Include="config\empresa.aspx" />
+    <Content Include="template\ecommerce_products_edit.html" />
+    <Content Include="entregas\entrega.aspx" />
+    <Content Include="template\extra_profile.html" />
+    <Content Include="template\extra_profile_account.html" />
+    <Content Include="facturas\factura.aspx" />
+    <Content Include="template\form_controls.html" />
+    <Content Include="template\form_controls_md.html" />
+    <Content Include="template\form_layouts.html" />
+    <Content Include="template\form_wizard.html" />
     <Content Include="index.aspx" />
-    <Content Include="index.html" />
-    <Content Include="listado_articulos.aspx" />
-    <Content Include="listado_clientes.aspx" />
-    <Content Include="listado_entregas.aspx" />
-    <Content Include="listado_facturas.aspx" />
-    <Content Include="listado_contrato_marco.aspx" />
-    <Content Include="listado_notas_pedido.aspx" />
-    <Content Include="listado_proveedores.aspx" />
-    <Content Include="listado_remitos.aspx" />
-    <Content Include="listado_usuarios.aspx" />
+    <Content Include="template\index.html" />
+    <Content Include="articulos\listado.aspx" />
+    <Content Include="clientes\listado.aspx" />
+    <Content Include="entregas\listado.aspx" />
+    <Content Include="facturas\listado.aspx" />
+    <Content Include="contrato_marco\listado.aspx" />
+    <Content Include="nota_pedido\listado.aspx" />
+    <Content Include="proveedores\listado.aspx" />
+    <Content Include="remitos\listado.aspx" />
     <Content Include="login.aspx" />
-    <Content Include="contrato_marco.aspx" />
-    <Content Include="nota_pedido.aspx" />
-    <Content Include="proveedor.aspx" />
-    <Content Include="remito.aspx" />
-    <Content Include="ui_alert_dialog_api.html" />
-    <Content Include="ui_buttons.html" />
-    <Content Include="ui_modals.html" />
-    <Content Include="usuario.aspx" />
+    <Content Include="contrato_marco\contrato.aspx" />
+    <Content Include="nota_pedido\nota_pedido.aspx" />
+    <Content Include="proveedores\proveedor.aspx" />
+    <Content Include="remitos\remito.aspx" />
+    <Content Include="template\ui_alert_dialog_api.html" />
+    <Content Include="template\ui_buttons.html" />
+    <Content Include="template\ui_modals.html" />
+    <Content Include="usuarios\listado.aspx" />
+    <Content Include="usuarios\usuario.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="articulo.aspx.cs">
+    <Compile Include="articulos\articulo.aspx.cs">
       <DependentUpon>articulo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="articulo.aspx.designer.cs">
+    <Compile Include="articulos\articulo.aspx.designer.cs">
       <DependentUpon>articulo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="blank.aspx.cs">
+    <Compile Include="template\blank.aspx.cs">
       <DependentUpon>blank.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="blank.aspx.designer.cs">
+    <Compile Include="template\blank.aspx.designer.cs">
       <DependentUpon>blank.aspx</DependentUpon>
     </Compile>
-    <Compile Include="cliente.aspx.cs">
+    <Compile Include="clientes\cliente.aspx.cs">
       <DependentUpon>cliente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="cliente.aspx.designer.cs">
+    <Compile Include="clientes\cliente.aspx.designer.cs">
       <DependentUpon>cliente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="cotizacion.aspx.cs">
+    <Compile Include="config\cotizacion.aspx.cs">
       <DependentUpon>cotizacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="cotizacion.aspx.designer.cs">
+    <Compile Include="config\cotizacion.aspx.designer.cs">
       <DependentUpon>cotizacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="datos_empresa.aspx.cs">
-      <DependentUpon>datos_empresa.aspx</DependentUpon>
+    <Compile Include="config\empresa.aspx.cs">
+      <DependentUpon>empresa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="datos_empresa.aspx.designer.cs">
-      <DependentUpon>datos_empresa.aspx</DependentUpon>
+    <Compile Include="config\empresa.aspx.designer.cs">
+      <DependentUpon>empresa.aspx</DependentUpon>
     </Compile>
-    <Compile Include="entrega.aspx.cs">
+    <Compile Include="entregas\entrega.aspx.cs">
       <DependentUpon>entrega.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="entrega.aspx.designer.cs">
+    <Compile Include="entregas\entrega.aspx.designer.cs">
       <DependentUpon>entrega.aspx</DependentUpon>
     </Compile>
-    <Compile Include="factura.aspx.cs">
+    <Compile Include="facturas\factura.aspx.cs">
       <DependentUpon>factura.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="factura.aspx.designer.cs">
+    <Compile Include="facturas\factura.aspx.designer.cs">
       <DependentUpon>factura.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
@@ -4134,68 +4134,61 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="listado_articulos.aspx.cs">
-      <DependentUpon>listado_articulos.aspx</DependentUpon>
+    <Compile Include="articulos\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="listado_articulos.aspx.designer.cs">
-      <DependentUpon>listado_articulos.aspx</DependentUpon>
+    <Compile Include="articulos\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="listado_clientes.aspx.cs">
-      <DependentUpon>listado_clientes.aspx</DependentUpon>
+    <Compile Include="clientes\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="listado_clientes.aspx.designer.cs">
-      <DependentUpon>listado_clientes.aspx</DependentUpon>
+    <Compile Include="clientes\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="listado_entregas.aspx.cs">
-      <DependentUpon>listado_entregas.aspx</DependentUpon>
+    <Compile Include="entregas\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="listado_entregas.aspx.designer.cs">
-      <DependentUpon>listado_entregas.aspx</DependentUpon>
+    <Compile Include="entregas\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="listado_facturas.aspx.cs">
-      <DependentUpon>listado_facturas.aspx</DependentUpon>
+    <Compile Include="facturas\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="listado_facturas.aspx.designer.cs">
-      <DependentUpon>listado_facturas.aspx</DependentUpon>
+    <Compile Include="facturas\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="listado_contrato_marco.aspx.cs">
-      <DependentUpon>listado_contrato_marco.aspx</DependentUpon>
+    <Compile Include="contrato_marco\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="listado_contrato_marco.aspx.designer.cs">
-      <DependentUpon>listado_contrato_marco.aspx</DependentUpon>
+    <Compile Include="contrato_marco\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="listado_notas_pedido.aspx.cs">
-      <DependentUpon>listado_notas_pedido.aspx</DependentUpon>
+    <Compile Include="nota_pedido\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="listado_notas_pedido.aspx.designer.cs">
-      <DependentUpon>listado_notas_pedido.aspx</DependentUpon>
+    <Compile Include="nota_pedido\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="listado_proveedores.aspx.cs">
-      <DependentUpon>listado_proveedores.aspx</DependentUpon>
+    <Compile Include="proveedores\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="listado_proveedores.aspx.designer.cs">
-      <DependentUpon>listado_proveedores.aspx</DependentUpon>
+    <Compile Include="proveedores\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="listado_remitos.aspx.cs">
-      <DependentUpon>listado_remitos.aspx</DependentUpon>
+    <Compile Include="remitos\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="listado_remitos.aspx.designer.cs">
-      <DependentUpon>listado_remitos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="listado_usuarios.aspx.cs">
-      <DependentUpon>listado_usuarios.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="listado_usuarios.aspx.designer.cs">
-      <DependentUpon>listado_usuarios.aspx</DependentUpon>
+    <Compile Include="remitos\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -4204,33 +4197,33 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="contrato_marco.aspx.cs">
-      <DependentUpon>contrato_marco.aspx</DependentUpon>
+    <Compile Include="contrato_marco\contrato.aspx.cs">
+      <DependentUpon>contrato.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="contrato_marco.aspx.designer.cs">
-      <DependentUpon>contrato_marco.aspx</DependentUpon>
+    <Compile Include="contrato_marco\contrato.aspx.designer.cs">
+      <DependentUpon>contrato.aspx</DependentUpon>
     </Compile>
-    <Compile Include="nota_pedido.aspx.cs">
+    <Compile Include="nota_pedido\nota_pedido.aspx.cs">
       <DependentUpon>nota_pedido.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="nota_pedido.aspx.designer.cs">
+    <Compile Include="nota_pedido\nota_pedido.aspx.designer.cs">
       <DependentUpon>nota_pedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="proveedor.aspx.cs">
+    <Compile Include="proveedores\proveedor.aspx.cs">
       <DependentUpon>proveedor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="proveedor.aspx.designer.cs">
+    <Compile Include="proveedores\proveedor.aspx.designer.cs">
       <DependentUpon>proveedor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="remito.aspx.cs">
+    <Compile Include="remitos\remito.aspx.cs">
       <DependentUpon>remito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="remito.aspx.designer.cs">
+    <Compile Include="remitos\remito.aspx.designer.cs">
       <DependentUpon>remito.aspx</DependentUpon>
     </Compile>
     <Compile Include="SiteMaster.Master.cs">
@@ -4240,11 +4233,18 @@
     <Compile Include="SiteMaster.Master.designer.cs">
       <DependentUpon>SiteMaster.Master</DependentUpon>
     </Compile>
-    <Compile Include="usuario.aspx.cs">
+    <Compile Include="usuarios\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usuarios\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="usuarios\usuario.aspx.cs">
       <DependentUpon>usuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="usuario.aspx.designer.cs">
+    <Compile Include="usuarios\usuario.aspx.designer.cs">
       <DependentUpon>usuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -4577,6 +4577,9 @@
       <Project>{11b15d78-a258-4c7b-a43b-7065677a1adc}</Project>
       <Name>BibliotecaSCF</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
