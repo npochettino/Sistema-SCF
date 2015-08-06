@@ -26,11 +26,11 @@
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
-                    <a href="index.aspx">Inicio</a>
+                    <a href="../index.aspx">Inicio</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="listado_articulos.aspx">Listado Articulos</a>
+                    <a href="listado.aspx">Listado Articulos</a>
                     <i class="fa fa-circle"></i>
                 </li>
             </ul>
@@ -56,7 +56,7 @@
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarArticulo()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleNotaPedido()" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
+                                    <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleArticulo()" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">
@@ -79,7 +79,7 @@
                                     <SettingsBehavior AllowFocusedRow="True" />
                                     <Settings ShowFilterRow="True" />
                                 </dx:ASPxGridView>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -125,11 +125,113 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ID="pcShowDetalleArticulo" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleArticulo"
+        HeaderText="Detalle del Artículo" AllowDragging="True" EnableViewState="False" Width="600px"
+        PopupAnimationType="Fade" Theme="Metropolis">
+        <ClientSideEvents PopUp="function(s, e) {  txtCodigoInterno.Focus(); }" />
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
+                <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btnGuardarAticuloProveedor">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent2" runat="server">
+                            <div data-width="760">
+                                <div class="modal-body">
+                                    <!--INFO DEL ARTICULO-->
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <h3 class="form-section">Info del Articulo</h3>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Descripción Corta</label>
+                                                            <textarea type="text" id="txtDescripcionCorta" placeholder="Descripción Corta" runat="server" class="form-control" required rows="5"></textarea>
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Descripción Larga</label>
+                                                            <textarea type="text" id="txtDescripcionLarga" placeholder="Descripción Larga" runat="server" class="form-control" required rows="5"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Marca</label>
+                                                            <input type="text" id="txtMarca" placeholder="Marca" runat="server" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Precio:</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="txtPrecioActual" placeholder="Precio" runat="server" class="form-control">
+                                                            <span class="input-group-btn">
+                                                    <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()"><span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
+                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/row-->
+                                            </div>
+                                        </form>
+                                        <!-- END FORM-->
+                                    </div>
+                                    <!--INFO DEL PROVEEDOR-->
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <h3 class="form-section">Info de Proveedores</h3>
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <div class="form-group">
+                                                            <dx:ASPxGridView runat="server" ID="gvArticuloProveedores" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                                <Columns>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="cuit" Caption="CUIT" VisibleIndex="2">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="cantidad" Caption="Cantidad" VisibleIndex="3">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="costo" Caption="Costo" VisibleIndex="3">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
+                                                            </dx:ASPxGridView>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
     <!--END POPUP-->
-    
+
     <script lang="javascript" type="text/javascript">
         function ShowConfirmarEliminarArticulo() {
             pcConfirmarEliminarArticulo.Show();
+        }
+        function ShowDetalleArticulo() {
+            pcShowDetalleArticulo.Show();
         }
     </script>
 </asp:Content>

@@ -71,6 +71,7 @@ namespace SCF.clientes
             Response.Redirect("listado.aspx");
         }
 
+        
         protected void rbActivoSi_CheckedChanged(object sender, EventArgs e)
         {
             if (rbActivoSi.Checked == true)
@@ -85,16 +86,14 @@ namespace SCF.clientes
                 LoadGrillaClientesInactivos();
             else
                 LoadGrillaClientesActivos();
-        }
-
-        
+        }              
 
         private void LoadGrillaClientesInactivos()
         {
             btnInactivarCliente.Visible = false;
             btnActivarCliente.Visible = true;
             btnEditar.Visible = false;
-            gvClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
+            gvClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(true);
             gvClientes.DataBind();
         }
 
@@ -103,7 +102,7 @@ namespace SCF.clientes
             btnInactivarCliente.Visible = true;
             btnEditar.Visible = true;
             btnActivarCliente.Visible = false;
-            gvClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(true);
+            gvClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
             gvClientes.DataBind();
         }
 

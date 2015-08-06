@@ -26,7 +26,7 @@
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
-                    <a href="index.aspx">Inicio</a>
+                    <a href="../index.aspx">Inicio</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>

@@ -17,6 +17,7 @@ namespace SCF.articulos
             {
                 
             }
+
             loadGridArticulos();
             
             Session["articuloActual"] = null;
@@ -27,8 +28,6 @@ namespace SCF.articulos
         {
             gvArticulos.DataSource = ControladorGeneral.RecuperarTodosArticulos();
             gvArticulos.DataBind();
-
-
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)

@@ -40,6 +40,15 @@ namespace SCF.nota_pedido {
         protected global::System.Web.UI.WebControls.Button btnEliminar;
         
         /// <summary>
+        /// Control btnVerDetalle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerDetalle;
+        
+        /// <summary>
         /// Control gvNotasPedido.
         /// </summary>
         /// <remarks>
@@ -47,15 +56,6 @@ namespace SCF.nota_pedido {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvNotasPedido;
-        
-        /// <summary>
-        /// Control SqlDataSource1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
         /// Control pcConfirmarEliminarNotaPedido.

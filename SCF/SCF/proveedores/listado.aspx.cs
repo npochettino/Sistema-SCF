@@ -99,7 +99,7 @@ namespace SCF.proveedores
             btnInactivarProveedor.Visible = false;
             btnEditar.Visible = false;
             btnActivarProveedor.Visible = true;
-            gvProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(false);
+            gvProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(true);
             gvProveedores.DataBind();
         }
 
@@ -108,7 +108,7 @@ namespace SCF.proveedores
             btnInactivarProveedor.Visible = true;
             btnEditar.Visible = true;
             btnActivarProveedor.Visible = false;
-            gvProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(true);
+            gvProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(false);
             gvProveedores.DataBind();
         }
 
