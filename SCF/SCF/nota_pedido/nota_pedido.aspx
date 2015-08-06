@@ -57,14 +57,15 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Nro. Interno Nota Pedido del Cliente</label>
-                                                <input type="text" id="txtNroInternoCliente" runat="server" class="form-control" placeholder="Nro. Interno Nota Pedido Cliente" required>
+                                                <dx:ASPxTextBox ID="txtNroInternoCliente" runat="server" CssClass="form-control" placeholder="Nro. Interno Nota Pedido Cliente" ClientInstanceName="txtNroInternoCliente"></dx:ASPxTextBox>
+                                                <%--<input type="text" id="txtNroInternoCliente" runat="server" class="form-control" placeholder="Nro. Interno Nota Pedido Cliente" required>--%>
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Fecha Emisión</label>
-                                                <dx:ASPxDateEdit ID="txtFechaEmision" runat="server" CssClass="form-control" Theme="Metropolis" Width="100%" EditFormat="DateTime">
+                                                <dx:ASPxDateEdit ID="txtFechaEmision" runat="server" CssClass="form-control" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
                                                     <TimeSectionProperties Visible="True">
                                                     </TimeSectionProperties>
 
@@ -81,7 +82,7 @@
                                                 <label class="control-label">Cliente</label>
                                                 
                                                 <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
-                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.String" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
+                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoCliente" Width="100px" Visible="false" />
                                                         <dx:ListBoxColumn FieldName="cuil" Width="100px" />
@@ -173,7 +174,7 @@
                                                 <div class="portlet-body">
                                                     <div id="chart_9" class="chart" style="height: 400px;">
                                                         <!-- GRID VIEW ITEMS SELECCIONADOS-->
-                                                        <dx:ASPxGridView ID="gvArticulosSeleccionados" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigo"
+                                                        <dx:ASPxGridView ID="gvArticulosSeleccionados" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoArticulo"
                                                             Width="100%">
                                                             <Columns>
                                                                 <dx:GridViewDataTextColumn Caption="Codigo" VisibleIndex="0" FieldName="codigoArticulo"
@@ -183,20 +184,24 @@
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="Desc. Larga" VisibleIndex="2" FieldName="descripcionLarga">
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="3" FieldName="cantidad">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g">
+                                                                <dx:GridViewDataTextColumn Caption="Cantidad" VisibleIndex="3" FieldName="cantidad">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn Caption="Fecha de entrega" VisibleIndex="4" FieldName="fechaEntrega">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <%--<dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="3" FieldName="cantidad" UnboundType="Integer">
+                                                                    <PropertiesSpinEdit DisplayFormatString="g" AllowUserInput="false">
                                                                     </PropertiesSpinEdit>
                                                                     <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit ID="txtTitle" runat="server" Width="100px" MinValue="1" MaxValue="10000">
+                                                                        <dx:ASPxSpinEdit ID="cantidad" runat="server" Width="100px" MinValue="1" MaxValue="10000"> 
                                                                         </dx:ASPxSpinEdit>
                                                                     </DataItemTemplate>
-                                                                </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataDateColumn Caption="Fecha Entrega" VisibleIndex="3" FieldName="fechaEntrega">
+                                                                </dx:GridViewDataSpinEditColumn>--%>
+                                                                <%--<dx:GridViewDataDateColumn Caption="Fecha Entrega" VisibleIndex="3" FieldName="fechaEntrega">
                                                                     <DataItemTemplate>
                                                                         <dx:ASPxDateEdit ID="txtFechaEntrega" runat="server" Width="100px">
                                                                         </dx:ASPxDateEdit>
                                                                     </DataItemTemplate>
-                                                                </dx:GridViewDataDateColumn>
+                                                                </dx:GridViewDataDateColumn>--%>
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
 

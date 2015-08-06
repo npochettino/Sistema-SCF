@@ -62,42 +62,30 @@
                             <div class="form-body" style="height: 600px">
                                 <!-- devexpress-->
 
-                                <dx:ASPxGridView ID="gvNotasPedido" runat="server" Width="100%" AutoGenerateColumns="False" KeyFieldName="codigoNotaDePedido" EnableTheming="True" Theme="Metropolis">
+                                <dx:ASPxGridView ID="gvNotasPedido" runat="server" Width="100%" AutoGenerateColumns="False" KeyFieldName="codigoNotaDePedido" EnableTheming="True" Theme="Metropolis" OnCellEditorInitialize="gvNotasPedido_CellEditorInitialize" OnHtmlRowPrepared="gvNotasPedido_HtmlRowPrepared">
                                     <Columns>
                                         <dx:GridViewDataTextColumn FieldName="codigoNotaDePedido" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="numeroInternoCliente" VisibleIndex="1">
+                                        <dx:GridViewDataTextColumn FieldName="numeroInternoCliente" VisibleIndex="1" Visible="true" Caption="Nro interno cliente">
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataDateColumn FieldName="fechaEmision" VisibleIndex="2" Caption="Fecha Emisión">
                                         </dx:GridViewDataDateColumn>
                                         <dx:GridViewDataTextColumn FieldName="codigoEstado" Visible="false" VisibleIndex="3">
                                         </dx:GridViewDataTextColumn>                                        
+                                        <dx:GridViewDataTextColumn FieldName="colorEstado" VisibleIndex="4" Visible="False">
+                                        </dx:GridViewDataTextColumn>                                    
                                         <dx:GridViewDataTextColumn FieldName="codigoContratoMarco" VisibleIndex="5" Visible="False">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="codigoCliente" VisibleIndex="6" Visible="False">
+                                        <dx:GridViewDataTextColumn FieldName="descripcionContratoMarco" VisibleIndex="6" Visible="true" Caption="Contrato marco">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="razonSocial" VisibleIndex="9" Caption="Razon Social">
+                                        <dx:GridViewDataTextColumn FieldName="codigoCliente" VisibleIndex="9" Caption="false">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="provincia" VisibleIndex="10" Visible="false">
+                                        <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="10" Visible="true" Caption="Razón social">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="localidad" VisibleIndex="11" Visible="false">
+                                        <dx:GridViewDataTextColumn FieldName="fechaHoraProximaEntrega" VisibleIndex="11" Visible="true" Caption="Próxima entrega">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="direccion" VisibleIndex="12" Visible="false">
-                                        </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="telefono" VisibleIndex="13" Visible="false">
-                                        </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="mail" Visible="False" VisibleIndex="14">
-                                        </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="cuil" VisibleIndex="8" Visible="false" Caption="CUIL">
-                                        </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataDateColumn FieldName="fechaInicio" VisibleIndex="18" Visible="false">
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="fechaFin" VisibleIndex="19" Visible="false">
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataTextColumn FieldName="descripcion" VisibleIndex="17" Caption="Contrato Marco">
-                                        </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="18" Caption="Observación">
+                                        <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="12" Visible="true" Caption="Observaciones">
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />

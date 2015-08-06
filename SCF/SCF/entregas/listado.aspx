@@ -63,25 +63,26 @@
                             <div class="form-body" style="height: 600px">
                                 <!-- devexpress-->
 
-                                <dx:ASPxGridView ID="gvEntregas" runat="server" Width="100%" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="codigoEntrega" Theme="Metropolis">
+                                <dx:ASPxGridView ID="gvEntregas" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoEntrega" Theme="Metropolis">
                                     <Columns>
                                         <dx:GridViewDataTextColumn FieldName="codigoEntrega" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataDateColumn FieldName="fechaEntregaRealizada" VisibleIndex="1">
+                                        <dx:GridViewDataDateColumn FieldName="notaDePedido" VisibleIndex="1" Caption="Nota de pedido">
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataTextColumn FieldName="numeroRemito" VisibleIndex="2">
+                                        <dx:GridViewDataDateColumn FieldName="fechaEntregaRealizada" VisibleIndex="2" Caption="Fecha de la entrega">
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataTextColumn FieldName="numeroRemito" VisibleIndex="3" Caption="Numero remito">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="codigoEstado" VisibleIndex="3">
+                                        <dx:GridViewDataTextColumn FieldName="codigoEstado" VisibleIndex="4" Visible="false">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="4">
+                                        <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="5" Caption="Observaciones">
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />
                                     <Settings ShowFilterRow="True" />
                                 </dx:ASPxGridView>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SCFConnectionString %>" SelectCommand="SELECT * FROM [Entregas]"></asp:SqlDataSource>
                             </div>
 
                         </div>
