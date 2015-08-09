@@ -624,7 +624,7 @@ namespace BibliotecaSCF.Controladores
                                 }
                                 else
                                 {
-                                    List<ItemNotaDePedido> listaItemsNotaDePedidoProximosAVencer = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega > DateTime.Now.AddDays(5) select n).ToList();
+                                    List<ItemNotaDePedido> listaItemsNotaDePedidoProximosAVencer = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now.AddDays(5) select n).ToList();
                                     if (listaItemsNotaDePedidoProximosAVencer.Count > 0)
                                     {
                                         colorEstado = Constantes.ColorEstadosNotaDePedido.PROXIMA_VENCER;
@@ -697,21 +697,21 @@ namespace BibliotecaSCF.Controladores
                 notaDePedido.NumeroInternoCliente = numeroInternoCliente;
                 notaDePedido.Observaciones = observaciones;
 
-                //foreach (DataRow filaItemNotaDePedido in tablaItemsNotaDePedido.Rows)
-                //{
-                //    int codigoItemNotaDePedido = Convert.ToInt32(filaItemNotaDePedido["codigoItemNotaDePedido"]);
-                //    ItemNotaDePedido item = new ItemNotaDePedido();
+                foreach (DataRow filaItemNotaDePedido in tablaItemsNotaDePedido.Rows)
+                {
+                    int codigoItemNotaDePedido = Convert.ToInt32(filaItemNotaDePedido["codigoItemNotaDePedido"]);
+                    ItemNotaDePedido item = new ItemNotaDePedido();
 
-                //    if (codigoItemNotaDePedido == 0)
-                //    {
-                //        item = new ItemNotaDePedido();
-                //        notaDePedido.ItemsNotaDePedido.Add(item);
-                //    }
+                    if (codigoItemNotaDePedido == 0)
+                    {
+                        item = new ItemNotaDePedido();
+                        notaDePedido.ItemsNotaDePedido.Add(item);
+                    }
 
-                //    item.Articulo = CatalogoArticulo.RecuperarPorCodigo(Convert.ToInt32(filaItemNotaDePedido["codigoArticulo"]), nhSesion);
-                //    item.Cantidad = Convert.ToInt32(filaItemNotaDePedido["cantidad"]);
-                //    item.FechaEntrega = Convert.ToDateTime(filaItemNotaDePedido["fechaEntrega"]);
-                //}
+                    item.Articulo = CatalogoArticulo.RecuperarPorCodigo(Convert.ToInt32(filaItemNotaDePedido["codigoArticulo"]), nhSesion);
+                    item.Cantidad = Convert.ToInt32(filaItemNotaDePedido["cantidad"]);
+                    item.FechaEntrega = Convert.ToDateTime(filaItemNotaDePedido["fechaEntrega"]);
+                }
 
                 CatalogoNotaDePedido.InsertarActualizar(notaDePedido, nhSesion);
                 transaccion.Commit();

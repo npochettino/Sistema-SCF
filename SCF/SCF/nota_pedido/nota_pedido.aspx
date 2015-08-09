@@ -129,14 +129,18 @@
                                                                 <dx:GridViewCommandColumn ShowSelectCheckbox="True"
                                                                     VisibleIndex="0" Caption="Seleccionar">
                                                                 </dx:GridViewCommandColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="False" VisibleIndex="0">
+                                                                <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="False" VisibleIndex="1">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="1">
+                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="descripcionLarga" VisibleIndex="2">
+                                                                <dx:GridViewDataTextColumn FieldName="descripcionLarga" VisibleIndex="3">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="3">
+                                                                <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="4">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
@@ -179,14 +183,19 @@
                                                             <Columns>
                                                                 <dx:GridViewDataTextColumn Caption="Codigo" VisibleIndex="0" FieldName="codigoArticulo"
                                                                     Visible="false">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="Desc. Corta" VisibleIndex="1" FieldName="descripcionCorta">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="Desc. Larga" VisibleIndex="2" FieldName="descripcionLarga">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="Cantidad" VisibleIndex="3" FieldName="cantidad">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="Fecha de entrega" VisibleIndex="4" FieldName="fechaEntrega">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <%--<dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="3" FieldName="cantidad" UnboundType="Integer">
                                                                     <PropertiesSpinEdit DisplayFormatString="g" AllowUserInput="false">
@@ -204,6 +213,8 @@
                                                                 </dx:GridViewDataDateColumn>--%>
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
+
+                                                            <Settings ShowFilterRow="True" />
 
                                                         </dx:ASPxGridView>
                                                         <br />

@@ -101,7 +101,7 @@ namespace SCF.nota_pedido
                         color = Color.LightGray;
                         break;
                     case "#FFFF00":
-                        color = Color.LightYellow;
+                        color = Color.Yellow;
                         break;
                     case "#FF0000":
                         color = Color.OrangeRed;

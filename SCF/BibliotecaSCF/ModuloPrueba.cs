@@ -35,17 +35,17 @@ namespace BibliotecaSCF
             //ControladorGeneral.InsertarActualizarArticulo(0, "TOMACORRIENTE EXTERIOR 3P+T 32A 380VC*I*", "", "Marca 1");
             //ControladorGeneral.InsertarActualizarArticulo(0, "CAJA (GABINETE) CHAPA 450X450X300 MM *I*", "", "Marca 1");
 
-            //DateTime fechahora = DateTime.Now.AddDays(-1);
+            DateTime fechahora = DateTime.Now.AddDays(-1);
 
-            //DataTable tabla = new DataTable();
-            //tabla.Columns.Add("codigoItemNotaDePedido");
-            //tabla.Columns.Add("codigoArticulo");
-            //tabla.Columns.Add("cantidad");
-            //tabla.Columns.Add("fechaEntrega");
+            DataTable tabla = new DataTable();
+            tabla.Columns.Add("codigoItemNotaDePedido");
+            tabla.Columns.Add("codigoArticulo");
+            tabla.Columns.Add("cantidad");
+            tabla.Columns.Add("fechaEntrega");
 
-            //tabla.Rows.Add(new object[] {0, 1, 10, "05/08/2015 00:00:00"});
+            tabla.Rows.Add(new object[] { 0, 1, 10, "05/08/2015 00:00:00" });
 
-            //ControladorGeneral.InsertarActualizarNotaDePedido(0, "0000001415456", fechahora, "", 0, 1, tabla);
+            ControladorGeneral.InsertarActualizarNotaDePedido(0, "0000001415456", fechahora, "", 0, 2, tabla);
 
             DateTime fechahora2 = DateTime.Now.AddDays(-1);
 
@@ -59,7 +59,7 @@ namespace BibliotecaSCF
             tabla2.Rows.Add(new object[] { 0, 6, 10, "12/08/2015 00:00:00" });
             tabla2.Rows.Add(new object[] { 0, 5, 10, "15/08/2015 00:00:00" });
 
-            ControladorGeneral.InsertarActualizarNotaDePedido(0, "004145646", fechahora2, "", 0, 1, tabla2);
+            ControladorGeneral.InsertarActualizarNotaDePedido(0, "004145646", fechahora2, "", 0, 3, tabla2);
 
             DateTime fechahora3 = DateTime.Now.AddDays(-1);
 
@@ -73,7 +73,7 @@ namespace BibliotecaSCF
             tabla3.Rows.Add(new object[] { 0, 9, 10, "20/08/2015 00:00:00" });
             tabla3.Rows.Add(new object[] { 0, 5, 10, "20/08/2015 00:00:00" });
 
-            ControladorGeneral.InsertarActualizarNotaDePedido(0, "0000087489", fechahora3, "", 0, 1, tabla3);
+            ControladorGeneral.InsertarActualizarNotaDePedido(0, "0000087489", fechahora3, "", 0, 4, tabla3);
 
             DateTime fechahora4 = DateTime.Now.AddDays(-1);
 
@@ -85,7 +85,7 @@ namespace BibliotecaSCF
 
             tabla4.Rows.Add(new object[] { 0, 10, 10, "07/08/2015 00:00:00" });
 
-            ControladorGeneral.InsertarActualizarNotaDePedido(0, "2313", fechahora4, "", 0, 1, tabla4);
+            ControladorGeneral.InsertarActualizarNotaDePedido(0, "2313", fechahora4, "", 0, 2, tabla4);
         }
     }
 }

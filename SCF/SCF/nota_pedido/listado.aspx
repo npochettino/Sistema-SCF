@@ -63,30 +63,41 @@
                             <div class="form-body" style="height: 600px">
                                 <!-- devexpress-->
 
-                                <dx:ASPxGridView ID="gvNotasPedido" runat="server" Width="100%" AutoGenerateColumns="False" KeyFieldName="codigoNotaDePedido" EnableTheming="True" Theme="Metropolis" OnCellEditorInitialize="gvNotasPedido_CellEditorInitialize" OnHtmlRowPrepared="gvNotasPedido_HtmlRowPrepared">
+                                <dx:ASPxGridView ID="gvNotasPedido" runat="server" Width="100%" AutoGenerateColumns="False" KeyFieldName="codigoNotaDePedido" EnableTheming="True" Theme="Metropolis" OnCellEditorInitialize="gvNotasPedido_CellEditorInitialize" OnHtmlRowPrepared="gvNotasPedido_HtmlRowPrepared" SettingsBehavior-AllowSort="true" SettingsBehavior-SortMode="Custom">
                                     <Columns>
                                         <dx:GridViewDataTextColumn FieldName="codigoNotaDePedido" ReadOnly="True" Visible="False" VisibleIndex="0">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="numeroInternoCliente" VisibleIndex="1" Visible="true" Caption="Nro interno cliente">
+                                            <Settings AllowSort ="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataDateColumn FieldName="fechaEmision" VisibleIndex="2" Caption="Fecha Emisión">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataDateColumn>
                                         <dx:GridViewDataTextColumn FieldName="codigoEstado" Visible="false" VisibleIndex="3">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="colorEstado" VisibleIndex="4" Visible="False">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="codigoContratoMarco" VisibleIndex="5" Visible="False">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="descripcionContratoMarco" VisibleIndex="6" Visible="true" Caption="Contrato marco">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="codigoCliente" VisibleIndex="9" Caption="false">
+                                        <dx:GridViewDataTextColumn FieldName="codigoCliente" VisibleIndex="9" Visible="false">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="10" Visible="true" Caption="Razón social">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="fechaHoraProximaEntrega" VisibleIndex="11" Visible="true" Caption="Próxima entrega">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="12" Visible="true" Caption="Observaciones">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />

@@ -13,10 +13,10 @@ namespace SCF.nota_pedido
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CargarComboClientes();
+            CargarGrillaArticulos();
             if (!IsPostBack)
             {
-                CargarComboClientes();
-                CargarGrillaArticulos();
                 if (Session["tablaNotaDePedido"] != null)
                 {
                     DataTable tablaNotaDePedido = (DataTable)Session["tablaNotaDePedido"];
@@ -34,8 +34,13 @@ namespace SCF.nota_pedido
                     txtNroInternoCliente.Text = numeroInternoCliente;
                     txtObservacion.InnerText = observaciones;
                     cbClientes.SelectedItem = cbClientes.Items.FindByValue(codigoCliente);
-                    CargarGrillaArticulosSeleccionados(codigoNotaDePedido);
                 }
+            }
+            
+            int codigoNotaDePedido2 = Session["tablaNotaDePedido"] == null ? 0 : Convert.ToInt32(((DataTable)Session["tablaNotaDePedido"]).Rows[0]["codigoNotaDePedido"]);
+            if (codigoNotaDePedido2 != 0)
+            {
+                CargarGrillaArticulosSeleccionados(codigoNotaDePedido2);
             }
         }
 
