@@ -70,7 +70,7 @@ namespace SCF.articulos
 
         protected void btnEditarPrecio_Click(object sender, EventArgs e)
         {
-            pcAddPrecio.ShowOnPageLoad = true;
+            //pcAddPrecio.ShowOnPageLoad = true;
         }
 
         protected void btnEliminarPrecio_Click(object sender, EventArgs e)

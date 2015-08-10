@@ -8,6 +8,7 @@ using BibliotecaSCF.Clases;
 using BibliotecaSCF.Controladores;
 using System.Data;
 using System.Drawing;
+using BibliotecaSCF.ClasesComplementarias;
 
 namespace SCF.nota_pedido
 {
@@ -85,46 +86,36 @@ namespace SCF.nota_pedido
 
         protected void gvNotasPedido_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewTableRowEventArgs e)
         {
-            string colorEstado = e.GetValue("colorEstado") == null ? string.Empty : e.GetValue("colorEstado").ToString();
-            if (!string.IsNullOrEmpty(colorEstado))
+            int codigoEstado = e.GetValue("codigoEstado") == null ? 0 : Convert.ToInt32(e.GetValue("codigoEstado"));
+            Color color;
+            
+            switch (codigoEstado)
             {
-                Color color;
-                switch (colorEstado)
-                {
-                    case "#00FF00":
-                        color = Color.LightGreen;
-                        break;
-                    case "#00FFFF":
-                        color = Color.LightCyan;
-                        break;
-                    case "#A4A4A4":
-                        color = Color.LightGray;
-                        break;
-                    case "#FFFF00":
-                        color = Color.Yellow;
-                        break;
-                    case "#FF0000":
-                        color = Color.OrangeRed;
-                        break;
-                    default:
-                        color = Color.White;
-                        break;
-                }
-
-                e.Row.BackColor = color;
+                case Constantes.EstadosNotaDePedido.VIGENTE:
+                    color = Color.LightGreen;
+                    break;
+                case Constantes.EstadosNotaDePedido.ENTREGADA:
+                    color = Color.LightCyan;
+                    break;
+                case Constantes.EstadosNotaDePedido.ANULADA:
+                    color = Color.LightGray;
+                    break;
+                case Constantes.EstadosNotaDePedido.PROXIMA_VENCER:
+                    color = Color.Yellow;
+                    break;
+                case Constantes.EstadosNotaDePedido.VENCIDA:
+                    color = Color.OrangeRed;
+                    break;
+                default:
+                    color = Color.White;
+                    break;
             }
-            //foreach (var c in e.Row.Cells)
-            //{
-            //    foreach (var t in c)
-            //    {
-            //        t.BackColor = color;
-            //    }
-            //}
+
+            e.Row.BackColor = color;
         }
 
         protected void gvNotasPedido_CellEditorInitialize(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewEditorEventArgs e)
         {
-            //e.bac
 
         }
 
@@ -132,7 +123,7 @@ namespace SCF.nota_pedido
         {
             pcShowObservacion.ShowOnPageLoad = true;
         }
-        
+
         protected void btnGuardarObservacion_Click(object sender, EventArgs e)
         {
 

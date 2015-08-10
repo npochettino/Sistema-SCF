@@ -595,7 +595,6 @@ namespace BibliotecaSCF.Controladores
                 tablaNotasDePedido.Columns.Add("numeroInternoCliente");
                 tablaNotasDePedido.Columns.Add("fechaEmision");
                 tablaNotasDePedido.Columns.Add("codigoEstado");
-                tablaNotasDePedido.Columns.Add("colorEstado");
                 tablaNotasDePedido.Columns.Add("codigoContratoMarco");
                 tablaNotasDePedido.Columns.Add("descripcionContratoMarco");
                 tablaNotasDePedido.Columns.Add("codigoCliente");
@@ -607,7 +606,7 @@ namespace BibliotecaSCF.Controladores
 
                 foreach (NotaDePedido notaPedido in listaNotasDePedido)
                 {
-                    string colorEstado = string.Empty;
+                    int codigoEstado = 0;
                     DateTime fechaHoraProximaEntrega = DateTime.MinValue;
 
                     if (notaPedido.ItemsNotaDePedido.Count > 0)
@@ -619,7 +618,7 @@ namespace BibliotecaSCF.Controladores
 
                                 if (listaItemsNotaDePedidoVencidos.Count > 0)
                                 {
-                                    colorEstado = Constantes.ColorEstadosNotaDePedido.VENCIDA;
+                                    codigoEstado = Constantes.EstadosNotaDePedido.VENCIDA;
                                     fechaHoraProximaEntrega = listaItemsNotaDePedidoVencidos.OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
                                 }
                                 else
@@ -627,32 +626,28 @@ namespace BibliotecaSCF.Controladores
                                     List<ItemNotaDePedido> listaItemsNotaDePedidoProximosAVencer = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now.AddDays(5) select n).ToList();
                                     if (listaItemsNotaDePedidoProximosAVencer.Count > 0)
                                     {
-                                        colorEstado = Constantes.ColorEstadosNotaDePedido.PROXIMA_VENCER;
+                                        codigoEstado = Constantes.EstadosNotaDePedido.PROXIMA_VENCER;
                                         fechaHoraProximaEntrega = listaItemsNotaDePedidoProximosAVencer.OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
                                     }
                                     else
                                     {
-                                        colorEstado = Constantes.ColorEstadosNotaDePedido.VIGENTE;
+                                        codigoEstado = Constantes.EstadosNotaDePedido.VIGENTE;
                                         fechaHoraProximaEntrega = notaPedido.ItemsNotaDePedido.OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
                                     }
                                 }
 
                                 break;
                             case Constantes.EstadosNotaDePedido.ANULADA:
-                                colorEstado = Constantes.ColorEstadosNotaDePedido.ANULADA;
+                                codigoEstado = Constantes.EstadosNotaDePedido.ANULADA;
                                 break;
 
                             case Constantes.EstadosNotaDePedido.ENTREGADA:
-                                colorEstado = Constantes.ColorEstadosNotaDePedido.ENTREGADA;
-                                break;
-
-                            default:
-                                colorEstado = "#FFFFFF";
+                                codigoEstado = Constantes.EstadosNotaDePedido.ENTREGADA;
                                 break;
                         }
                     }
 
-                    tablaNotasDePedido.Rows.Add(new object[] { notaPedido.Codigo, notaPedido.NumeroInternoCliente, notaPedido.FechaEmision, notaPedido.CodigoEstado, colorEstado, notaPedido.ContratoMarco != null ? notaPedido.ContratoMarco.Codigo : 0, 
+                    tablaNotasDePedido.Rows.Add(new object[] { notaPedido.Codigo, notaPedido.NumeroInternoCliente, notaPedido.FechaEmision, codigoEstado, notaPedido.ContratoMarco != null ? notaPedido.ContratoMarco.Codigo : 0, 
                         notaPedido.ContratoMarco != null ? notaPedido.ContratoMarco.Descripcion : "", notaPedido.Cliente.Codigo, notaPedido.Cliente.RazonSocial, fechaHoraProximaEntrega == DateTime.MinValue ? "" : fechaHoraProximaEntrega.ToString(), notaPedido.Observaciones});
                 }
 
