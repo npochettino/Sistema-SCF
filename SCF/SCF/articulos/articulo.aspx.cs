@@ -12,7 +12,6 @@ namespace SCF.articulos
     public partial class articulo : System.Web.UI.Page
     {
         Articulo oArticuloActual;
-        private int codigoOperacion;
 
         protected void Page_Load(object sender, EventArgs e)
         {

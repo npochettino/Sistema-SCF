@@ -15,7 +15,7 @@ namespace SCF
             {
                 Session.Clear();
                 Session.Abandon();
-                Response.Redirect("login.aspx");
+                Response.Redirect("~/login.aspx");
             }
             else
             {
@@ -27,7 +27,7 @@ namespace SCF
         {
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("login.aspx");
+            Response.Redirect("~/login.aspx");
         }
     }
 }

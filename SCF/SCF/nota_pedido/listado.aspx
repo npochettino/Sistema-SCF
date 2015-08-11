@@ -56,6 +56,7 @@
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarNotaPedido()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
+                                    <asp:Button type="button" ID="btnShowPopUpObservacion" runat="server" OnClick="btnShowPopUpObservacion_Click" UseSubmitBehavior="false" class="btn blue" Text="Observación" />
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleNotaPedido()" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
@@ -72,9 +73,9 @@
                                         <dx:GridViewDataDateColumn FieldName="fechaEmision" VisibleIndex="2" Caption="Fecha Emisión">
                                         </dx:GridViewDataDateColumn>
                                         <dx:GridViewDataTextColumn FieldName="codigoEstado" Visible="false" VisibleIndex="3">
-                                        </dx:GridViewDataTextColumn>                                        
+                                        </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="colorEstado" VisibleIndex="4" Visible="False">
-                                        </dx:GridViewDataTextColumn>                                    
+                                        </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="codigoContratoMarco" VisibleIndex="5" Visible="False">
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="descripcionContratoMarco" VisibleIndex="6" Visible="true" Caption="Contrato marco">
@@ -138,9 +139,54 @@
     </dx:ASPxPopupControl>
     <!--END POPUP-->
 
+    <!-- BEGIN POPUP OBSERVACION DE LA NOTA DE PEDIDO -->
+    <dx:ASPxPopupControl ID="pcShowObservacion" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowObservacion"
+        HeaderText="Observacion" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="400"
+        EnableViewState="False" Theme="Metropolis">
+        <ClientSideEvents PopUp="function(s, e) {  txtPrecio.Focus(); }" />
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel1" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent2" runat="server">
+                            <div>
+                                <!-- BEGIN FORM-->
+                                <form action="#" class="horizontal-form">
+                                    <div class="form-body">
+                                        <h3 class="form-section">Observación de la Nota de Pedido</h3>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <textarea type="text" id="txtObservacion" placeholder="Observación" runat="server" class="form-control" required rows="5"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="modal-footer">
+                                    <div class="btn-set pull-right">
+                                        <asp:Button type="button" ID="Button2" runat="server" UseSubmitBehavior="false" OnClientClick="pcShowObservacion.Hide();" class="btn default" Text="Cerrar" />
+                                        <asp:Button type="button" ID="btnGuardarObservacion" runat="server" OnClick="btnGuardarObservacion_Click" class="btn blue" Text="Aceptar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+    <!--END POPUP-->
+
+
     <script lang="javascript" type="text/javascript">
         function ShowConfirmarEliminarNotaPedido() {
             pcConfirmarEliminarNotaPedido.Show();
+        }
+        function ShowObservacion() {
+            pcShowObservacion();
         }
     </script>
 </asp:Content>

@@ -1,15 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="listado.aspx.cs" Inherits="SCF.articulos.listado" %>
 
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPanel" TagPrefix="dx" %>
-
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
-
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
-
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -22,7 +18,6 @@
                 <!-- END PAGE TITLE -->
             </div>
             <!-- END PAGE HEAD -->
-
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
@@ -51,12 +46,25 @@
                             <!-- BEGIN FORM-->
                             <div class="form-actions top">
                                 <div class="btn-set pull-left">
-                                    <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" Text="Nuevo" />
-                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" Text="Editar" />
+                                    <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />
+                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" Text="Editar" UseSubmitBehavior="false" />
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarArticulo()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
+                                    <asp:CheckBox runat="server" ID="chkBuscarPorNroCliente" Text="Buscar por Cliente" OnClick="chkBuscarPorNroCliente(this.checked)" />
                                 </div>
                                 <div class="btn-set pull-right">
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleArticulo()" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
+                                </div>
+                            </div>
+                            <div id="divBuscarPorNroCliente" style="display: none" class="form-actions top">
+                                <div class="col-md-6">
+                                    <label>Buscar por Código Cliente:</label>
+                                    <div class="input-group">
+                                        <input type="text" id="txtCodigoCliente" placeholder="Ingrese el Código del cliente" runat="server" class="form-control">
+                                        <span class="input-group-btn">
+                                            <%--<button class="btn blue" type="button" runat="server"><span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Buscar</button>--%>
+                                            <asp:Button class="btn blue" type="button" runat="server" ID="btnBuscarPorCodigoCliente" OnClick="btnBuscarPorCodigoCliente_Click" UseSubmitBehavior="false" Text="Buscar" />
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">
@@ -79,13 +87,11 @@
                                     <SettingsBehavior AllowFocusedRow="True" />
                                     <Settings ShowFilterRow="True" />
                                 </dx:ASPxGridView>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- END CONTENT -->
@@ -143,19 +149,19 @@
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
                                             <div class="form-body">
-                                                <h3 class="form-section">Info del Articulo</h3>
+                                                <label style="font-size:medium"><strong>Info del Artículo</strong></label>                                              
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Descripción Corta</label>
-                                                            <textarea type="text" id="txtDescripcionCorta" placeholder="Descripción Corta" runat="server" class="form-control" required rows="5"></textarea>
+                                                            <textarea type="text" id="txtDescripcionCorta" placeholder="Descripción Corta" runat="server" class="form-control" rows="3"></textarea>
                                                         </div>
                                                     </div>
-                                                
+
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Descripción Larga</label>
-                                                            <textarea type="text" id="txtDescripcionLarga" placeholder="Descripción Larga" runat="server" class="form-control" required rows="5"></textarea>
+                                                            <textarea type="text" id="txtDescripcionLarga" placeholder="Descripción Larga" runat="server" class="form-control" rows="3"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -167,12 +173,27 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Unidad de Medida</label>
+                                                            <input type="text" id="Text1" placeholder="Marca" runat="server" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>                                               
+                                                <div class="row">
+                                                    <div class="col-md-6">
                                                         <label>Precio:</label>
                                                         <div class="input-group">
                                                             <input type="text" id="txtPrecioActual" placeholder="Precio" runat="server" class="form-control">
                                                             <span class="input-group-btn">
-                                                    <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()"><span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
-                                                </span>
+                                                                <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()"><span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tipo de Cambio</label>
+                                                            <input type="text" id="Text2" placeholder="Marca" runat="server" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -181,14 +202,59 @@
                                         </form>
                                         <!-- END FORM-->
                                     </div>
+                                    
+                                    <!--INFO DEL CLIENTE-->
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                               <%-- <h3 class="form-section">Info de Cliente</h3>--%>
+                                                <label style="font-size:medium"><strong>Info del Cliente</strong></label>    
+                                                <div class="row">
+                                                    <div class="col-md-12 ">                                                       
+                                                        <div class="form-group">
+                                                            <dx:ASPxGridView runat="server" ID="ASPxGridView2" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                                <Columns>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="cuit" Caption="CUIT" VisibleIndex="2">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="cantidad" Caption="Cantidad" VisibleIndex="3">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="costo" Caption="Costo" VisibleIndex="3">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
+                                                            </dx:ASPxGridView>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--FIN INFO DEL CLIENTE-->
+
                                     <!--INFO DEL PROVEEDOR-->
                                     <div class="portlet-body form">
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
                                             <div class="form-body">
-                                                <h3 class="form-section">Info de Proveedores</h3>
+                                                <%--<h3 class="form-section">Info de Proveedores</h3>--%>
+                                                <label style="font-size:medium"><strong>Info del Proveedor</strong></label>    
                                                 <div class="row">
                                                     <div class="col-md-12 ">
+                                                        <div>
+                                                            <div class="btn-set pull-right" style="padding-bottom:3px">
+                                                                <%--<asp:Button type="button" ID="Button6" runat="server" OnClientClick="ShowHistoricoCosto()" class="btn blue" Text="Ver" />--%>
+                                                                <button class="btn blue" type="button" onclick="ShowHistoricoCosto()">Ver</button>
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group">
                                                             <dx:ASPxGridView runat="server" ID="gvArticuloProveedores" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
@@ -224,6 +290,117 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
+    <dx:ASPxPopupControl ID="pcHistoricoPrecio" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcHistoricoPrecio"
+        HeaderText="Historico Precio" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="450"
+        EnableViewState="False" Theme="Metropolis">
+        <%--<ClientSideEvents PopUp="function(s, e) {  pcHistoricoPrecio.Focus(); }" />--%>
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl3" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel1" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent3" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <label><strong>Historico de Precios</strong></label>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <dx:ASPxGridView ID="gvHistoricoPrecio" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                                <Columns>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="precio" Caption="Precio" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="fechaDesde" Caption="Fec. Desde" VisibleIndex="2">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="fechaHasta" Caption="Fec. Hasta" VisibleIndex="3">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
+                                                            </dx:ASPxGridView>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <%--<div class="modal-footer">
+                                        <div class="btn-set pull-right">
+                                            <button class="btn default" onclick="pcHistoricoPrecio.Hide();">Cerrar</button>
+                                        </div>
+                                    </div>--%>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ID="pcHistoricoCosto" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcHistoricoCosto"
+        HeaderText="Historico Costo" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="450"
+        EnableViewState="False" Theme="Metropolis">
+        <%--<ClientSideEvents PopUp="function(s, e) {  pcHistoricoCosto.Focus(); }" />--%>
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl4" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel2" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent4" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <label><strong>Historico de Costo</strong></label>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <dx:ASPxGridView ID="ASPxGridView1" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                                <Columns>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="precio" Caption="Precio" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="fechaDesde" Caption="Fec. Desde" VisibleIndex="2">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="fechaHasta" Caption="Fec. Hasta" VisibleIndex="3">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
+                                                            </dx:ASPxGridView>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <%--<div class="modal-footer">
+                                        <div class="btn-set pull-right">
+                                            <button class="btn default" onclick="pcHistoricoCosto.Hide();">Cerrar</button>
+                                        </div>
+                                    </div>--%>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
     <!--END POPUP-->
 
     <script lang="javascript" type="text/javascript">
@@ -232,6 +409,18 @@
         }
         function ShowDetalleArticulo() {
             pcShowDetalleArticulo.Show();
+        }
+        function ShowHistoricoPrecio() {
+            pcHistoricoPrecio.Show();
+        }
+        function ShowHistoricoCosto() {
+            pcHistoricoCosto.Show();
+        }
+        function chkBuscarPorNroCliente(isCheck) {
+            if (isCheck == true)
+                document.getElementById('divBuscarPorNroCliente').style.display = 'block';
+            else
+                document.getElementById('divBuscarPorNroCliente').style.display = 'none';
         }
     </script>
 </asp:Content>

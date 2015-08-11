@@ -128,5 +128,14 @@ namespace SCF.nota_pedido
 
         }
 
+        protected void btnShowPopUpObservacion_Click(object sender, EventArgs e)
+        {
+            pcShowObservacion.ShowOnPageLoad = true;
+        }
+        
+        protected void btnGuardarObservacion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

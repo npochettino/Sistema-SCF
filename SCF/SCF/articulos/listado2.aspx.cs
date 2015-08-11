@@ -9,7 +9,7 @@ using BibliotecaSCF.Controladores;
 
 namespace SCF.articulos
 {
-    public partial class listado : System.Web.UI.Page
+    public partial class listado2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -64,11 +64,5 @@ namespace SCF.articulos
             ControladorGeneral.EliminarArticulo(int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString()));
             gvArticulos.DataBind();
         }
-
-        protected void btnBuscarPorCodigoCliente_Click(object sender, EventArgs e)
-        {
-            string test = "llll";
-        }
-
     }
 }

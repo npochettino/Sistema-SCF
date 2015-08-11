@@ -52,8 +52,8 @@
                             <!-- BEGIN FORM-->
                             <div class="form-actions top">
                                 <div class="btn-set pull-left">
-                                    <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" Text="Nuevo" />
-                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" Text="Editar" />
+                                    <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" UseSubmitBehavior="false" Text="Nuevo" />
+                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" UseSubmitBehavior="false" Text="Editar" />
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarProveedor()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />                                    
                                     <asp:Button type="button" ID="btnInactivarProveedor" runat="server" OnClientClick="ShowInactivarProveedor()" UseSubmitBehavior="false" class="btn red-intense" Text="Inactivar" />                                   
                                     <asp:Button type="button" ID="btnActivarProveedor" runat="server" OnClick="btnActivarProveedor_Click" UseSubmitBehavior="false" class="btn green" Text="Activar" />
@@ -156,16 +156,19 @@
                     <PanelCollection>
                         <dx:PanelContent ID="PanelContent2" runat="server">
                             <div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="input-group">
-                                                ¿Decea inactivar el Proveedor seleccionado? Recuerde que el mismo no será eliminado del sistema.
+                                <form action="#" class="horizontal-form">
+                                    <div class="form-body">
+                                        <label>¿Decea inactivar el Proveedor seleccionado? Usted puede ingresar una observación.</label>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <textarea type="text" id="txtObservacion" placeholder="Observación" runat="server" class="form-control" required rows="5"></textarea>
+                                                </div>
                                             </div>
 
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
                                         <asp:Button type="button" ID="Button2" runat="server" UseSubmitBehavior="false" OnClientClick="pcShowInactivarProveedor.Hide();" class="btn default" Text="Cerrar" />
