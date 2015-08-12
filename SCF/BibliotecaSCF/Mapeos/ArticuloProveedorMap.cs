@@ -14,10 +14,9 @@ namespace BibliotecaSCF.Mapeos
         {
             Table("ArticulosProveedor");
             Id(x => x.Codigo).Column("codigoArticuloProveedor").GeneratedBy.Identity();
-            Map(x => x.CodigoInterno).Column("codigoInterno");
 
             References(x => x.Proveedor).Column("codigoProveedor").Cascade.None().Nullable().LazyLoad(Laziness.Proxy);
-            HasMany<HistorialPrecio>(x => x.HistorialPrecio).KeyColumn("codigoArticuloProveedor").Not.KeyNullable().Cascade.AllDeleteOrphan();
+            HasMany<HistorialCosto>(x => x.HistorialPrecio).KeyColumn("codigoArticuloProveedor").Not.KeyNullable().Cascade.AllDeleteOrphan();
         }
     }
 }

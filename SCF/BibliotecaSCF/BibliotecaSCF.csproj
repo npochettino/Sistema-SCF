@@ -68,7 +68,7 @@
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\ContratoMarco.cs" />
     <Compile Include="Clases\Entrega.cs" />
-    <Compile Include="Clases\HistorialPrecio.cs" />
+    <Compile Include="Clases\HistorialCosto.cs" />
     <Compile Include="Clases\ItemContratoMarco.cs" />
     <Compile Include="Clases\ItemEntrega.cs" />
     <Compile Include="Clases\ItemNotaDePedido.cs" />
@@ -81,7 +81,7 @@
     <Compile Include="Mapeos\ClienteMap.cs" />
     <Compile Include="Mapeos\ContratoMarcoMap.cs" />
     <Compile Include="Mapeos\EntregaMap.cs" />
-    <Compile Include="Mapeos\HistorialPrecioMap.cs" />
+    <Compile Include="Mapeos\HistorialCostoMap.cs" />
     <Compile Include="Mapeos\ItemContratoMarcoMap.cs" />
     <Compile Include="Mapeos\ItemEntregaMap.cs" />
     <Compile Include="Mapeos\ItemNotaDePedidoMap.cs" />

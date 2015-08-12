@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace BibliotecaSCF.Mapeos
 {
-    public class HistorialPrecioMap : ClassMap<HistorialPrecio>
+    public class HistorialCostoMap : ClassMap<HistorialCosto>
     {
-        public HistorialPrecioMap()
+        public HistorialCostoMap()
         {
-            Table("HistorialPreciosArticuloProveedor");
-            Id(x => x.Codigo).Column("codigoHistorialPrecioArticuloProveedor").GeneratedBy.Identity();
+            Table("HistorialCostosArticuloProveedor");
+            Id(x => x.Codigo).Column("codigoHistorialCostoArticuloProveedor").GeneratedBy.Identity();
             Map(x => x.FechaDesde).Column("fechaDesde");
             Map(x => x.FechaHasta).Column("fechaHasta");
-            Map(x => x.Precio).Column("precio");
+            Map(x => x.Costo).Column("costo");
             Map(x => x.IsDolar).Column("isDolar");
         }
     }
