@@ -15,7 +15,7 @@ namespace BibliotecaSCF.Controladores
     {
         #region Proveedores
 
-        public static void InsertarActualizarProveedor(int codigoProveedor, string razonSocial, string provincia, string localidad, string direccion, string telefono, string mail, string cuil)
+        public static void InsertarActualizarProveedor(int codigoProveedor, string razonSocial, string provincia, string localidad, string direccion, string telefono, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -39,6 +39,11 @@ namespace BibliotecaSCF.Controladores
                 proveedor.Telefono = telefono;
                 proveedor.Mail = mail;
                 proveedor.Cuil = cuil;
+                proveedor.PersonaContacto = personaContacto;
+                proveedor.NumeroCuenta = numeroCuenta;
+                proveedor.Banco = banco;
+                proveedor.Cbu = cbu;
+                proveedor.Observaciones = observaciones;
                 proveedor.IsInactivo = false;
 
                 CatalogoProveedor.InsertarActualizar(proveedor, nhSesion);
@@ -69,10 +74,19 @@ namespace BibliotecaSCF.Controladores
                 tablaProveedores.Columns.Add("telefono");
                 tablaProveedores.Columns.Add("mail");
                 tablaProveedores.Columns.Add("cuil");
+                tablaProveedores.Columns.Add("personaContacto");
+                tablaProveedores.Columns.Add("numeroCuenta");
+                tablaProveedores.Columns.Add("banco");
+                tablaProveedores.Columns.Add("cbu");
+                tablaProveedores.Columns.Add("observaciones");
 
                 List<Proveedor> listaProveedores = CatalogoProveedor.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
 
-                listaProveedores.Aggregate(tablaProveedores, (dt, r) => { dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil); return dt; });
+                listaProveedores.Aggregate(tablaProveedores, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil,
+                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones); return dt;
+                });
 
                 return tablaProveedores;
             }
@@ -242,7 +256,7 @@ namespace BibliotecaSCF.Controladores
 
         #region Cliente
 
-        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string direccion, string telefono, string mail, string cuil)
+        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string direccion, string telefono, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -266,6 +280,11 @@ namespace BibliotecaSCF.Controladores
                 cliente.Telefono = telefono;
                 cliente.Mail = mail;
                 cliente.Cuil = cuil;
+                cliente.PersonaContacto = personaContacto;
+                cliente.NumeroCuenta = numeroCuenta;
+                cliente.Banco = banco;
+                cliente.Cbu = cbu;
+                cliente.Observaciones = observaciones;
                 cliente.IsInactivo = false;
 
                 CatalogoCliente.InsertarActualizar(cliente, nhSesion);
@@ -296,10 +315,19 @@ namespace BibliotecaSCF.Controladores
                 tablaClientes.Columns.Add("telefono");
                 tablaClientes.Columns.Add("mail");
                 tablaClientes.Columns.Add("cuil");
+                tablaClientes.Columns.Add("personaContacto");
+                tablaClientes.Columns.Add("numeroCuenta");
+                tablaClientes.Columns.Add("banco");
+                tablaClientes.Columns.Add("cbu");
+                tablaClientes.Columns.Add("observaciones");
 
                 List<Cliente> listaClientes = CatalogoCliente.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
 
-                listaClientes.Aggregate(tablaClientes, (dt, r) => { dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil); return dt; });
+                listaClientes.Aggregate(tablaClientes, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil,
+                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones); return dt;
+                });
 
                 return tablaClientes;
             }
@@ -580,6 +608,36 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
+        public static object RecuperarArticulosEnNotaDePedido(int codigoNotaDePedido)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaArticulos = new DataTable();
+                tablaArticulos.Columns.Add("codigoArticulo");
+                tablaArticulos.Columns.Add("descripcionCorta");
+                tablaArticulos.Columns.Add("descripcionLarga");
+                tablaArticulos.Columns.Add("cantidad", typeof(int));
+                tablaArticulos.Columns.Add("fechaEntrega", typeof(DateTime));
+
+                NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
+
+                notaDePedido.ItemsNotaDePedido.Aggregate(tablaArticulos, (dt, r) => { dt.Rows.Add(r.Codigo, r.Articulo.DescripcionCorta, r.Articulo.DescripcionLarga, r.Cantidad, r.FechaEntrega); return dt; });
+
+                return tablaArticulos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
         #endregion
 
         #region NotaDePedido
@@ -818,35 +876,5 @@ namespace BibliotecaSCF.Controladores
         }
 
         #endregion
-
-        public static object RecuperarArticulosEnNotaDePedido(int codigoNotaDePedido)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaArticulos = new DataTable();
-                tablaArticulos.Columns.Add("codigoArticulo");
-                tablaArticulos.Columns.Add("descripcionCorta");
-                tablaArticulos.Columns.Add("descripcionLarga");
-                tablaArticulos.Columns.Add("cantidad", typeof(int));
-                tablaArticulos.Columns.Add("fechaEntrega", typeof(DateTime));
-
-                NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
-
-                notaDePedido.ItemsNotaDePedido.Aggregate(tablaArticulos, (dt, r) => { dt.Rows.Add(r.Codigo, r.Articulo.DescripcionCorta, r.Articulo.DescripcionLarga, r.Cantidad, r.FechaEntrega); return dt; });
-
-                return tablaArticulos;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
     }
 }
