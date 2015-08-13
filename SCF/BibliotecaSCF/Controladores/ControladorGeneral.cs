@@ -397,94 +397,6 @@ namespace BibliotecaSCF.Controladores
 
         #region Articulo
 
-        public static DataTable RecuperarTodosArticulos()
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaArticulos = new DataTable();
-                tablaArticulos.Columns.Add("codigoArticulo");
-                tablaArticulos.Columns.Add("descripcionCorta");
-                tablaArticulos.Columns.Add("descripcionLarga");
-                tablaArticulos.Columns.Add("marca");
-                tablaArticulos.Columns.Add("nombreImagen");
-
-                List<Articulo> listaArticulos = CatalogoArticulo.RecuperarTodos(nhSesion);
-
-                listaArticulos.Aggregate(tablaArticulos, (dt, r) => { dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca, r.NombreImagen); return dt; });
-
-                return tablaArticulos;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static DataTable RecuperarArticulosProveedoresPorArticulo(int codigoArticulo)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaArticulosProveedores = new DataTable();
-                tablaArticulosProveedores.Columns.Add("codigoArticuloProveedor");
-                tablaArticulosProveedores.Columns.Add("codigoProveedor");
-                tablaArticulosProveedores.Columns.Add("razonSocialProveedor");
-                tablaArticulosProveedores.Columns.Add("precioActual");
-
-                Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
-
-                articulo.ArticulosProveedor.Aggregate(tablaArticulosProveedores, (dt, r) => { dt.Rows.Add(r.Codigo, r.Proveedor.Codigo, r.Proveedor.RazonSocial, r.HistorialPrecio.Where(x => x.FechaHasta == null).Select(x => x.Costo).SingleOrDefault()); return dt; });
-
-                return tablaArticulosProveedores;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static DataTable RecuperarHistorialPreciosPorArticuloProveedor(int codigoArticuloProveedor)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaHistorialPrecio = new DataTable();
-                tablaHistorialPrecio.Columns.Add("codigoHistorialPrecio");
-                tablaHistorialPrecio.Columns.Add("fechaDesde");
-                tablaHistorialPrecio.Columns.Add("fechaHasta");
-                tablaHistorialPrecio.Columns.Add("precio");
-
-                ArticuloProveedor artProv = CatalogoArticuloProveedor.RecuperarPorCodigo(codigoArticuloProveedor, nhSesion);
-
-                artProv.HistorialPrecio.Aggregate(tablaHistorialPrecio, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Costo); return dt; });
-
-                return tablaHistorialPrecio;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
         public static void InsertarActualizarArticulo(int codigoArticulo, string descripcionCorta, string descripcionLarga, string marca, string nombreImagen)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
@@ -520,64 +432,27 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void InsertarActualizarArticuloProveedor(int codigoArticuloProveedor, int codigoArticulo, int codigoProveedor, double costo, bool isDolar)
+        public static DataTable RecuperarTodosArticulos()
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-            ITransaction transaccion = nhSesion.BeginTransaction();
 
             try
             {
-                Articulo articulo;
-                articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+                DataTable tablaArticulos = new DataTable();
+                tablaArticulos.Columns.Add("codigoArticulo");
+                tablaArticulos.Columns.Add("descripcionCorta");
+                tablaArticulos.Columns.Add("descripcionLarga");
+                tablaArticulos.Columns.Add("marca");
+                tablaArticulos.Columns.Add("nombreImagen");
 
-                ArticuloProveedor articuloProveedor;
+                List<Articulo> listaArticulos = CatalogoArticulo.RecuperarTodos(nhSesion);
 
-                if (codigoArticuloProveedor == 0)
-                {
-                    articuloProveedor = new ArticuloProveedor();
-                    articulo.ArticulosProveedor.Add(articuloProveedor);
-                }
-                else
-                {
-                    articuloProveedor = (from ap in articulo.ArticulosProveedor where ap.Codigo == codigoArticuloProveedor select ap).SingleOrDefault();
-                }
+                listaArticulos.Aggregate(tablaArticulos, (dt, r) => { dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca, r.NombreImagen); return dt; });
 
-                articuloProveedor.Proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
-
-                HistorialCosto histPrecio = (from h in articuloProveedor.HistorialPrecio where h.FechaHasta == null select h).SingleOrDefault();
-
-                if (histPrecio == null)
-                {
-                    histPrecio = new HistorialCosto();
-                    histPrecio.FechaDesde = DateTime.Now;
-                    histPrecio.FechaHasta = null;
-                    histPrecio.Costo = costo;
-                    histPrecio.IsDolar = isDolar;
-
-                    articuloProveedor.HistorialPrecio.Add(histPrecio);
-                }
-                else
-                {
-                    if (histPrecio.Costo != costo || histPrecio.IsDolar != isDolar)
-                    {
-                        histPrecio.FechaHasta = DateTime.Now.AddSeconds(-1);
-
-                        HistorialCosto histPrecioNuevo = new HistorialCosto();
-                        histPrecioNuevo.FechaDesde = DateTime.Now;
-                        histPrecioNuevo.FechaHasta = null;
-                        histPrecioNuevo.Costo = costo;
-                        histPrecio.IsDolar = isDolar;
-
-                        articuloProveedor.HistorialPrecio.Add(histPrecioNuevo);
-                    }
-                }
-
-                CatalogoArticulo.InsertarActualizar(articulo, nhSesion);
-                transaccion.Commit();
+                return tablaArticulos;
             }
             catch (Exception ex)
             {
-                transaccion.Rollback();
                 throw ex;
             }
             finally
@@ -608,7 +483,7 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static object RecuperarArticulosEnNotaDePedido(int codigoNotaDePedido)
+        public static DataTable RecuperarArticulosEnNotaDePedido(int codigoNotaDePedido)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -629,6 +504,266 @@ namespace BibliotecaSCF.Controladores
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region ArticuloProveedor
+
+        public static DataTable RecuperarArticulosProveedoresPorArticulo(int codigoArticulo)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaArticulosProveedores = new DataTable();
+                tablaArticulosProveedores.Columns.Add("codigoArticuloProveedor");
+                tablaArticulosProveedores.Columns.Add("codigoProveedor");
+                tablaArticulosProveedores.Columns.Add("razonSocialProveedor");
+                tablaArticulosProveedores.Columns.Add("costoActual");
+
+                Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+
+                articulo.ArticulosProveedor.Aggregate(tablaArticulosProveedores, (dt, r) => { dt.Rows.Add(r.Codigo, r.Proveedor.Codigo, r.Proveedor.RazonSocial, r.HistorialesCosto.Where(x => x.FechaHasta == null).Select(x => x.Costo).SingleOrDefault()); return dt; });
+
+                return tablaArticulosProveedores;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarHistorialCostosPorArticuloProveedor(int codigoArticuloProveedor)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaHistorialPrecio = new DataTable();
+                tablaHistorialPrecio.Columns.Add("codigoHistorialCosto");
+                tablaHistorialPrecio.Columns.Add("fechaDesde");
+                tablaHistorialPrecio.Columns.Add("fechaHasta");
+                tablaHistorialPrecio.Columns.Add("costo");
+
+                ArticuloProveedor artProv = CatalogoArticuloProveedor.RecuperarPorCodigo(codigoArticuloProveedor, nhSesion);
+
+                artProv.HistorialesCosto.Aggregate(tablaHistorialPrecio, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Costo); return dt; });
+
+                return tablaHistorialPrecio;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void InsertarActualizarArticuloProveedor(int codigoArticuloProveedor, int codigoArticulo, int codigoProveedor, double costo, int codigoMoneda)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            ITransaction transaccion = nhSesion.BeginTransaction();
+
+            try
+            {
+                Articulo articulo;
+                articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+
+                ArticuloProveedor articuloProveedor;
+
+                if (codigoArticuloProveedor == 0)
+                {
+                    articuloProveedor = new ArticuloProveedor();
+                    articulo.ArticulosProveedor.Add(articuloProveedor);
+                }
+                else
+                {
+                    articuloProveedor = (from ap in articulo.ArticulosProveedor where ap.Codigo == codigoArticuloProveedor select ap).SingleOrDefault();
+                }
+
+                articuloProveedor.Proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
+
+                HistorialCosto histPrecio = (from h in articuloProveedor.HistorialesCosto where h.FechaHasta == null select h).SingleOrDefault();
+
+                if (histPrecio == null)
+                {
+                    histPrecio = new HistorialCosto();
+                    histPrecio.FechaDesde = DateTime.Now;
+                    histPrecio.FechaHasta = null;
+                    histPrecio.Costo = costo;
+                    histPrecio.CodigoMoneda = codigoMoneda;
+
+                    articuloProveedor.HistorialesCosto.Add(histPrecio);
+                }
+                else
+                {
+                    if (histPrecio.Costo != costo || histPrecio.CodigoMoneda != codigoMoneda)
+                    {
+                        histPrecio.FechaHasta = DateTime.Now.AddSeconds(-1);
+
+                        HistorialCosto histPrecioNuevo = new HistorialCosto();
+                        histPrecioNuevo.FechaDesde = DateTime.Now;
+                        histPrecioNuevo.FechaHasta = null;
+                        histPrecioNuevo.Costo = costo;
+                        histPrecio.CodigoMoneda = codigoMoneda;
+
+                        articuloProveedor.HistorialesCosto.Add(histPrecioNuevo);
+                    }
+                }
+
+                CatalogoArticulo.InsertarActualizar(articulo, nhSesion);
+                transaccion.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaccion.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region ArticuloCliente
+
+        public static DataTable RecuperarArticulosClientesPorArticulo(int codigoArticulo)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaArticulosClientes = new DataTable();
+                tablaArticulosClientes.Columns.Add("codigoArticuloCliente");
+                tablaArticulosClientes.Columns.Add("codigoInterno");
+                tablaArticulosClientes.Columns.Add("codigoCliente");
+                tablaArticulosClientes.Columns.Add("razonSocialCliente");
+                tablaArticulosClientes.Columns.Add("precioActual");
+
+                Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+
+                articulo.ArticulosClientes.Aggregate(tablaArticulosClientes, (dt, r) => { dt.Rows.Add(r.Codigo, r.CodigoInterno, r.Cliente.Codigo, r.Cliente.RazonSocial, r.HistorialesPrecio.Where(x => x.FechaHasta == null).Select(x => x.Precio).SingleOrDefault()); return dt; });
+
+                return tablaArticulosClientes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarHistorialPreciosPorArticuloCliente(int codigoArticuloProveedor)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaHistorialPrecio = new DataTable();
+                tablaHistorialPrecio.Columns.Add("codigoHistorialPrecio");
+                tablaHistorialPrecio.Columns.Add("fechaDesde");
+                tablaHistorialPrecio.Columns.Add("fechaHasta");
+                tablaHistorialPrecio.Columns.Add("precio");
+
+                ArticuloCliente artCliente = CatalogoArticuloCliente.RecuperarPorCodigo(codigoArticuloProveedor, nhSesion);
+
+                artCliente.HistorialesPrecio.Aggregate(tablaHistorialPrecio, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Precio); return dt; });
+
+                return tablaHistorialPrecio;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void InsertarActualizarArticuloCliente(int codigoArticuloCliente, int codigoArticulo, string codigoInterno, int codigoCliente, double precio, int codigoMoneda)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            ITransaction transaccion = nhSesion.BeginTransaction();
+
+            try
+            {
+                Articulo articulo;
+                articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+
+                ArticuloCliente articuloCliente;
+
+                if (codigoArticuloCliente == 0)
+                {
+                    articuloCliente = new ArticuloCliente();
+                    articulo.ArticulosClientes.Add(articuloCliente);
+                }
+                else
+                {
+                    articuloCliente = (from ap in articulo.ArticulosClientes where ap.Codigo == codigoArticuloCliente select ap).SingleOrDefault();
+                }
+
+                articuloCliente.Cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+                articuloCliente.CodigoInterno = codigoInterno;
+
+                HistorialPrecio histPrecio = (from h in articuloCliente.HistorialesPrecio where h.FechaHasta == null select h).SingleOrDefault();
+
+                if (histPrecio == null)
+                {
+                    histPrecio = new HistorialPrecio();
+                    histPrecio.FechaDesde = DateTime.Now;
+                    histPrecio.FechaHasta = null;
+                    histPrecio.Precio = precio;
+                    histPrecio.CodigoMoneda = codigoMoneda;
+
+                    articuloCliente.HistorialesPrecio.Add(histPrecio);
+                }
+                else
+                {
+                    if (histPrecio.Precio != precio || histPrecio.CodigoMoneda != codigoMoneda)
+                    {
+                        histPrecio.FechaHasta = DateTime.Now.AddSeconds(-1);
+
+                        HistorialPrecio histPrecioNuevo = new HistorialPrecio();
+                        histPrecioNuevo.FechaDesde = DateTime.Now;
+                        histPrecioNuevo.FechaHasta = null;
+                        histPrecioNuevo.Precio = precio;
+                        histPrecio.CodigoMoneda = codigoMoneda;
+
+                        articuloCliente.HistorialesPrecio.Add(histPrecioNuevo);
+                    }
+                }
+
+                CatalogoArticulo.InsertarActualizar(articulo, nhSesion);
+                transaccion.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaccion.Rollback();
                 throw ex;
             }
             finally

@@ -20,6 +20,7 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.NombreImagen).Column("nombreImagen");
 
             HasMany<ArticuloProveedor>(x => x.ArticulosProveedor).KeyColumn("codigoArticulo").Not.KeyNullable().Cascade.AllDeleteOrphan();
+            HasMany<ArticuloCliente>(x => x.ArticulosClientes).KeyColumn("codigoArticulo").Not.KeyNullable().Cascade.AllDeleteOrphan();
         }
     }
 }

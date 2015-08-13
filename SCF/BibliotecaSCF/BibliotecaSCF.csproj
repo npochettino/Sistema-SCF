@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{11B15D78-A258-4C7B-A43B-7065677A1ADC}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BibliotecaSCF</RootNamespace>
     <AssemblyName>BibliotecaSCF</AssemblyName>
@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Catalogos\CatalogoArticulo.cs" />
+    <Compile Include="Catalogos\CatalogoArticuloCliente.cs" />
     <Compile Include="Catalogos\CatalogoArticuloProveedor.cs" />
     <Compile Include="Catalogos\CatalogoCliente.cs" />
     <Compile Include="Catalogos\CatalogoContratoMarco.cs" />
@@ -64,11 +65,13 @@
     <Compile Include="ClasesComplementarias\Constantes.cs" />
     <Compile Include="ClasesComplementarias\ManejoDeNHibernate.cs" />
     <Compile Include="Clases\Articulo.cs" />
+    <Compile Include="Clases\ArticuloCliente.cs" />
     <Compile Include="Clases\ArticuloProveedor.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\ContratoMarco.cs" />
     <Compile Include="Clases\Entrega.cs" />
     <Compile Include="Clases\HistorialCosto.cs" />
+    <Compile Include="Clases\HistorialPrecio.cs" />
     <Compile Include="Clases\ItemContratoMarco.cs" />
     <Compile Include="Clases\ItemEntrega.cs" />
     <Compile Include="Clases\ItemNotaDePedido.cs" />
@@ -76,12 +79,14 @@
     <Compile Include="Clases\Proveedor.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Controladores\ControladorGeneral.cs" />
+    <Compile Include="Mapeos\ArticuloClienteMap.cs" />
     <Compile Include="Mapeos\ArticuloMap.cs" />
     <Compile Include="Mapeos\ArticuloProveedorMap.cs" />
     <Compile Include="Mapeos\ClienteMap.cs" />
     <Compile Include="Mapeos\ContratoMarcoMap.cs" />
     <Compile Include="Mapeos\EntregaMap.cs" />
     <Compile Include="Mapeos\HistorialCostoMap.cs" />
+    <Compile Include="Mapeos\HistorialPrecioMap.cs" />
     <Compile Include="Mapeos\ItemContratoMarcoMap.cs" />
     <Compile Include="Mapeos\ItemEntregaMap.cs" />
     <Compile Include="Mapeos\ItemNotaDePedidoMap.cs" />

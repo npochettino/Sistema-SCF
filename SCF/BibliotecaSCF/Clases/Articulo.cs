@@ -20,5 +20,6 @@ namespace BibliotecaSCF.Clases
         public virtual string NombreImagen { get; set; }
 
         public virtual IList<ArticuloProveedor> ArticulosProveedor { get; set; }
+        public virtual IList<ArticuloCliente> ArticulosClientes { get; set; }
     }
 }

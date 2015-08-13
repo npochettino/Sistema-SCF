@@ -17,7 +17,7 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.FechaDesde).Column("fechaDesde");
             Map(x => x.FechaHasta).Column("fechaHasta");
             Map(x => x.Costo).Column("costo");
-            Map(x => x.IsDolar).Column("isDolar");
+            Map(x => x.CodigoMoneda).Column("codigoMoneda");
         }
     }
 }

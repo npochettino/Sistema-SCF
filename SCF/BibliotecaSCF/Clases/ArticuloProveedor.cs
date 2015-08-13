@@ -10,12 +10,12 @@ namespace BibliotecaSCF.Clases
     {
         public ArticuloProveedor()
         {
-            HistorialPrecio = new List<HistorialCosto>();
+            HistorialesCosto = new List<HistorialCosto>();
         }
 
         public virtual int Codigo { get; set; }
 
         public virtual Proveedor Proveedor { get; set; }
-        public virtual IList<HistorialCosto> HistorialPrecio { get; set; }
+        public virtual IList<HistorialCosto> HistorialesCosto { get; set; }
     }
 }
