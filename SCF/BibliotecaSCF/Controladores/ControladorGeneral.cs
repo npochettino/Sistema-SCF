@@ -474,11 +474,12 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulos.Columns.Add("descripcionCorta");
                 tablaArticulos.Columns.Add("descripcionLarga");
                 tablaArticulos.Columns.Add("marca");
+                tablaArticulos.Columns.Add("precio");
                 tablaArticulos.Columns.Add("nombreImagen");
 
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarTodos(nhSesion);
 
-                listaArticulos.Aggregate(tablaArticulos, (dt, r) => { dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca, r.NombreImagen); return dt; });
+                listaArticulos.Aggregate(tablaArticulos, (dt, r) => { dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca, r.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault(), r.NombreImagen); return dt; });
 
                 return tablaArticulos;
             }
@@ -945,6 +946,42 @@ namespace BibliotecaSCF.Controladores
             {
                 nhSesion.Close();
                 nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region ItemsNotaDePedido
+
+        public static DataTable RecuperarItemsNotaDePedido(int codigoNotaDePedido)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaItemsNotaDePedido = new DataTable();
+                tablaItemsNotaDePedido.Columns.Add("codigoItemNotaDePedido");
+                tablaItemsNotaDePedido.Columns.Add("codigoArticulo");
+                tablaItemsNotaDePedido.Columns.Add("descripcionCorta");
+                tablaItemsNotaDePedido.Columns.Add("descripcionLarga");
+                tablaItemsNotaDePedido.Columns.Add("marca");
+                tablaItemsNotaDePedido.Columns.Add("precio");
+                tablaItemsNotaDePedido.Columns.Add("cantidad");
+                tablaItemsNotaDePedido.Columns.Add("fechaEntrega");
+
+                NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
+
+                notaDePedido.ItemsNotaDePedido.Aggregate(tablaItemsNotaDePedido, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.Articulo.Codigo, r.Articulo.DescripcionCorta, r.Articulo.DescripcionLarga, r.Articulo.Marca,
+                    r.Articulo.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault(), r.Cantidad, r.FechaEntrega); return dt;
+                });
+
+                return tablaItemsNotaDePedido;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
