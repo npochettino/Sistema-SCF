@@ -397,9 +397,10 @@ namespace BibliotecaSCF.Controladores
 
         #region Articulo
 
-        public static void InsertarActualizarArticulo(int codigoArticulo, string descripcionCorta, string descripcionLarga, string marca, string nombreImagen)
+        public static void InsertarActualizarArticulo(int codigoArticulo, string descripcionCorta, string descripcionLarga, string marca, string nombreImagen, double precio, int codigoMoneda)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            ITransaction transaccion = nhSesion.BeginTransaction();
 
             try
             {
@@ -414,15 +415,45 @@ namespace BibliotecaSCF.Controladores
                     articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
                 }
 
+                HistorialPrecio histPrecio = (from h in articulo.HistorialesPrecio where h.FechaHasta == null select h).SingleOrDefault();
+
+                if (histPrecio == null)
+                {
+                    histPrecio = new HistorialPrecio();
+                    histPrecio.FechaDesde = DateTime.Now;
+                    histPrecio.FechaHasta = null;
+                    histPrecio.Precio = precio;
+                    histPrecio.CodigoMoneda = codigoMoneda;
+
+                    articulo.HistorialesPrecio.Add(histPrecio);
+                }
+                else
+                {
+                    if (histPrecio.Precio != precio || histPrecio.CodigoMoneda != codigoMoneda)
+                    {
+                        histPrecio.FechaHasta = DateTime.Now.AddSeconds(-1);
+
+                        HistorialPrecio histPrecioNuevo = new HistorialPrecio();
+                        histPrecioNuevo.FechaDesde = DateTime.Now;
+                        histPrecioNuevo.FechaHasta = null;
+                        histPrecioNuevo.Precio = precio;
+                        histPrecio.CodigoMoneda = codigoMoneda;
+
+                        articulo.HistorialesPrecio.Add(histPrecioNuevo);
+                    }
+                }
+
                 articulo.DescripcionCorta = descripcionCorta;
                 articulo.DescripcionLarga = descripcionLarga;
                 articulo.Marca = marca;
                 articulo.NombreImagen = nombreImagen;
 
                 CatalogoArticulo.InsertarActualizar(articulo, nhSesion);
+                transaccion.Commit();
             }
             catch (Exception ex)
             {
+                transaccion.Rollback();
                 throw ex;
             }
             finally
@@ -661,7 +692,7 @@ namespace BibliotecaSCF.Controladores
 
                 Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
 
-                articulo.ArticulosClientes.Aggregate(tablaArticulosClientes, (dt, r) => { dt.Rows.Add(r.Codigo, r.CodigoInterno, r.Cliente.Codigo, r.Cliente.RazonSocial, r.HistorialesPrecio.Where(x => x.FechaHasta == null).Select(x => x.Precio).SingleOrDefault()); return dt; });
+                articulo.ArticulosClientes.Aggregate(tablaArticulosClientes, (dt, r) => { dt.Rows.Add(r.Codigo, r.CodigoInterno, r.Cliente.Codigo, r.Cliente.RazonSocial, articulo.HistorialesPrecio.Where(x => x.FechaHasta == null).Select(x => x.Precio).SingleOrDefault()); return dt; });
 
                 return tablaArticulosClientes;
             }
@@ -676,7 +707,7 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static DataTable RecuperarHistorialPreciosPorArticuloCliente(int codigoArticuloProveedor)
+        public static DataTable RecuperarHistorialPreciosPorArticulo(int codigoArticulo)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -688,9 +719,9 @@ namespace BibliotecaSCF.Controladores
                 tablaHistorialPrecio.Columns.Add("fechaHasta");
                 tablaHistorialPrecio.Columns.Add("precio");
 
-                ArticuloCliente artCliente = CatalogoArticuloCliente.RecuperarPorCodigo(codigoArticuloProveedor, nhSesion);
+                Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
 
-                artCliente.HistorialesPrecio.Aggregate(tablaHistorialPrecio, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Precio); return dt; });
+                articulo.HistorialesPrecio.Aggregate(tablaHistorialPrecio, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Precio); return dt; });
 
                 return tablaHistorialPrecio;
             }
@@ -705,10 +736,9 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void InsertarActualizarArticuloCliente(int codigoArticuloCliente, int codigoArticulo, string codigoInterno, int codigoCliente, double precio, int codigoMoneda)
+        public static void InsertarActualizarArticuloCliente(int codigoArticuloCliente, int codigoArticulo, string codigoInterno, int codigoCliente)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-            ITransaction transaccion = nhSesion.BeginTransaction();
 
             try
             {
@@ -730,40 +760,10 @@ namespace BibliotecaSCF.Controladores
                 articuloCliente.Cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
                 articuloCliente.CodigoInterno = codigoInterno;
 
-                HistorialPrecio histPrecio = (from h in articuloCliente.HistorialesPrecio where h.FechaHasta == null select h).SingleOrDefault();
-
-                if (histPrecio == null)
-                {
-                    histPrecio = new HistorialPrecio();
-                    histPrecio.FechaDesde = DateTime.Now;
-                    histPrecio.FechaHasta = null;
-                    histPrecio.Precio = precio;
-                    histPrecio.CodigoMoneda = codigoMoneda;
-
-                    articuloCliente.HistorialesPrecio.Add(histPrecio);
-                }
-                else
-                {
-                    if (histPrecio.Precio != precio || histPrecio.CodigoMoneda != codigoMoneda)
-                    {
-                        histPrecio.FechaHasta = DateTime.Now.AddSeconds(-1);
-
-                        HistorialPrecio histPrecioNuevo = new HistorialPrecio();
-                        histPrecioNuevo.FechaDesde = DateTime.Now;
-                        histPrecioNuevo.FechaHasta = null;
-                        histPrecioNuevo.Precio = precio;
-                        histPrecio.CodigoMoneda = codigoMoneda;
-
-                        articuloCliente.HistorialesPrecio.Add(histPrecioNuevo);
-                    }
-                }
-
                 CatalogoArticulo.InsertarActualizar(articulo, nhSesion);
-                transaccion.Commit();
             }
             catch (Exception ex)
             {
-                transaccion.Rollback();
                 throw ex;
             }
             finally

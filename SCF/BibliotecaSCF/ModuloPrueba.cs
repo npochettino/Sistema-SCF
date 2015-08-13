@@ -14,7 +14,8 @@ namespace BibliotecaSCF
     {
         public static void Main()
         {
-            ControladorGeneral.InsertarActualizarArticuloCliente(0, 1, "00002313", 2, 4.50, 1);
+            ControladorGeneral.InsertarActualizarArticulo(0, "Articulo con precio", "", "Marca 3", "Articulo.jpg", 2.5, 3);
+            ControladorGeneral.InsertarActualizarArticuloCliente(0, 1, "00002313", 2);
         }
     }
 }

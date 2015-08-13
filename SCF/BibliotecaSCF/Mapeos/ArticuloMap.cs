@@ -21,6 +21,7 @@ namespace BibliotecaSCF.Mapeos
 
             HasMany<ArticuloProveedor>(x => x.ArticulosProveedor).KeyColumn("codigoArticulo").Not.KeyNullable().Cascade.AllDeleteOrphan();
             HasMany<ArticuloCliente>(x => x.ArticulosClientes).KeyColumn("codigoArticulo").Not.KeyNullable().Cascade.AllDeleteOrphan();
+            HasMany<HistorialPrecio>(x => x.HistorialesPrecio).KeyColumn("codigoArticulo").Not.KeyNullable().Cascade.AllDeleteOrphan();
         }
     }
 }

@@ -11,6 +11,8 @@ namespace BibliotecaSCF.Clases
         public Articulo()
         {
             ArticulosProveedor = new List<ArticuloProveedor>();
+            ArticulosClientes = new List<ArticuloCliente>();
+            HistorialesPrecio = new List<HistorialPrecio>();
         }
 
         public virtual int Codigo { get; set; }
@@ -21,5 +23,6 @@ namespace BibliotecaSCF.Clases
 
         public virtual IList<ArticuloProveedor> ArticulosProveedor { get; set; }
         public virtual IList<ArticuloCliente> ArticulosClientes { get; set; }
+        public virtual IList<HistorialPrecio> HistorialesPrecio { get; set; }
     }
 }

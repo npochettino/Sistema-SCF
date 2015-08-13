@@ -12,8 +12,8 @@ namespace BibliotecaSCF.Mapeos
     {
         public HistorialPrecioMap()
         {
-            Table("HistorialPreciosArticuloCliente");
-            Id(x => x.Codigo).Column("codigoHistorialPrecioArticuloCliente").GeneratedBy.Identity();
+            Table("HistorialPreciosArticulo");
+            Id(x => x.Codigo).Column("codigoHistorialPrecioArticulo").GeneratedBy.Identity();
             Map(x => x.FechaDesde).Column("fechaDesde");
             Map(x => x.FechaHasta).Column("fechaHasta");
             Map(x => x.Precio).Column("precio");
