@@ -13,20 +13,12 @@ namespace SCF.nota_pedido
 {
     public partial class nota_pedido : System.Web.UI.Page
     {
-        private DataTable mArticulosSeleccionados = new DataTable();
+
 
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            mArticulosSeleccionados.Columns.Add("codigoArticulo");
-            mArticulosSeleccionados.Columns.Add("descripcionCorta");
-            mArticulosSeleccionados.Columns.Add("descripcionLarga");
-            mArticulosSeleccionados.Columns.Add("marca");
-            mArticulosSeleccionados.Columns.Add("cantidad", typeof(int));
-            mArticulosSeleccionados.Columns.Add("fechaEntrega", typeof(DateTime));
-            mArticulosSeleccionados.Columns.Add("codigoItemNotaDePedido", typeof(int));
-            mArticulosSeleccionados.Columns.Add("precio", typeof(float));
 
 
             CargarComboClientes();
@@ -34,6 +26,10 @@ namespace SCF.nota_pedido
 
             if (!IsPostBack)
             {
+
+                txtFechaEmision.Value = DateTime.Now;
+
+
                 if (Session["tablaNotaDePedido"] != null)
                 {
                     DataTable tablaNotaDePedido = (DataTable)Session["tablaNotaDePedido"];
@@ -59,6 +55,12 @@ namespace SCF.nota_pedido
             {
                 CargarGrillaArticulosSeleccionados(codigoNotaDePedido2);
             }
+            else
+            {
+                Cargar();
+            }
+
+
         }
 
         private void CargarGrillaArticulosSeleccionados(int codigoNotaDePedido)
@@ -82,14 +84,9 @@ namespace SCF.nota_pedido
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             int codigoNotaDePedido = Session["tablaNotaDePedido"] == null ? 0 : Convert.ToInt32(((DataTable)Session["tablaNotaDePedido"]).Rows[0]["codigoNotaDePedido"]);
-            string numeroInterno = txtCodigoInterno.Text;
-            DateTime fechaEmision = Convert.ToDateTime(txtFechaEmision.Value);
-            string numeroInternoCliente = txtNroInternoCliente.Text;
-            string observaciones = txtObservacion.InnerText;
-            int codigoCliente = Convert.ToInt32(cbClientes.Value);
-            DataTable tablaItems = (DataTable)gvArticulosSeleccionados.DataSource;
 
-            ControladorGeneral.InsertarActualizarNotaDePedido(codigoNotaDePedido, numeroInternoCliente, fechaEmision, observaciones, 0, codigoCliente, tablaItems);
+            guardarNotaDePedido();
+
 
             Response.Redirect("listado.aspx");
         }
@@ -100,16 +97,33 @@ namespace SCF.nota_pedido
 
         protected void btnSeleccionarArticulos_Click(object sender, EventArgs e)
         {
+            Cargar();
+        }
+
+        private void Cargar()
+        {
+            DataTable mArticulosSeleccionados = new DataTable();
+
+            mArticulosSeleccionados.Columns.Add("codigoArticulo");
+            mArticulosSeleccionados.Columns.Add("descripcionCorta");
+            mArticulosSeleccionados.Columns.Add("descripcionLarga");
+            mArticulosSeleccionados.Columns.Add("marca");
+            mArticulosSeleccionados.Columns.Add("cantidad", typeof(int));
+            mArticulosSeleccionados.Columns.Add("fechaEntrega", typeof(DateTime));
+            mArticulosSeleccionados.Columns.Add("codigoItemNotaDePedido", typeof(int));
+            mArticulosSeleccionados.Columns.Add("precio", typeof(float));
+
             for (int i = 0; i < gvArticulos.VisibleRowCount; i++)
             {
                 if (gvArticulos.Selection.IsRowSelected(i))
                 {
                     DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
-                    mArticulosSeleccionados.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, 0);
+                    mArticulosSeleccionados.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, 0, mRow.Row.ItemArray[4]);
                 }
             }
 
             gvArticulosSeleccionados.DataSource = mArticulosSeleccionados;
+
             gvArticulosSeleccionados.DataBind();
         }
 
@@ -120,26 +134,21 @@ namespace SCF.nota_pedido
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            int a = 1;
-
-
-            for (int i = 0; i < gvArticulosSeleccionados.VisibleRowCount; i++)
-            {
-                ASPxSpinEdit spin = (ASPxSpinEdit)gvArticulosSeleccionados.FindRowCellTemplateControl(i, null, "txtTitle");
-                double cantidad = Convert.ToDouble(spin.Value);
-
-                ASPxDateEdit date = (ASPxDateEdit)gvArticulosSeleccionados.FindRowCellTemplateControl(i, null, "fecha");
-                DateTime fecha = DateTime.Parse(date.Value.ToString());
-
-
-                DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
-                mArticulosSeleccionados.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], cantidad, fecha, 0);
-
-               
-
-            }
-            ControladorGeneral.InsertarActualizarNotaDePedido(0, txtNroInternoCliente.Text.ToString(), DateTime.Parse(txtFechaEmision.Value.ToString()), txtObservacion.InnerText.ToString(), 0, (int)cbClientes.SelectedItem.Value, mArticulosSeleccionados);
+            guardarNotaDePedido();
         }
-        
+
+
+
+        private void guardarNotaDePedido()
+        {
+            DataTable m = (DataTable)gvArticulosSeleccionados.DataSource;
+            ControladorGeneral.InsertarActualizarNotaDePedido(0, txtNroInternoCliente.Text.ToString(), DateTime.Parse(txtFechaEmision.Value.ToString()), txtObservacion.InnerText.ToString(), 0, (int)cbClientes.SelectedItem.Value, m);
+        }
+
+        protected void fecha_Init(object sender, EventArgs e)
+        {
+            ((ASPxDateEdit)sender).Date = DateTime.Now.Date;
+        }
+
     }
 }

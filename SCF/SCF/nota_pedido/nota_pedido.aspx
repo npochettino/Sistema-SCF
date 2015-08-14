@@ -154,7 +154,7 @@
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
 
-                                                                <dx:GridViewDataTextColumn Caption="precio"  VisibleIndex="8" FieldName="precio">
+                                                                <dx:GridViewDataTextColumn Caption="precio" VisibleIndex="8" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
 
@@ -218,25 +218,25 @@
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
 
                                                                     <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" MinValue="1" MaxValue="100">
+                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
                                                                         </dx:ASPxSpinEdit>
                                                                     </DataItemTemplate>
 
 
                                                                 </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataDateColumn Caption="fechaEntrega" VisibleIndex="5" FieldName="fechaEntrega">
+                                                                <dx:GridViewDataDateColumn Caption="fechaEntrega" VisibleIndex="5"  FieldName="fechaEntrega">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
 
                                                                     <DataItemTemplate>
-                                                                        <dx:ASPxDateEdit ID="fecha" runat="server" Width="100px" />
+                                                                        <dx:ASPxDateEdit  ID="fecha" runat="server" Width="100px" OnInit="fecha_Init" />
                                                                     </DataItemTemplate>
                                                                 </dx:GridViewDataDateColumn>
 
-                                                               <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" VisibleIndex="6" FieldName="codigoItemNotaDePedido">
+                                                                <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" VisibleIndex="6" FieldName="codigoItemNotaDePedido">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
 
-                                                                <dx:GridViewDataTextColumn Caption="precio"  VisibleIndex="7" FieldName="precio">
+                                                                <dx:GridViewDataTextColumn Caption="precio" VisibleIndex="7" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <%--<dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="3" FieldName="cantidad" UnboundType="Integer">
@@ -263,7 +263,6 @@
                                                                 <asp:Button type="button" class="btn red" runat="server" ID="btnEliminar" OnClick="btnEliminar_Click" Text="Eliminar" />
                                                             </div>
                                                             <div class="btn-set pull-right">
-                                                                <asp:Button type="button" class="btn blue" runat="server" ID="btnAceptar" OnClick="btnAceptar_Click" Text="Aceptar" />
                                                             </div>
                                                         </div>
 
