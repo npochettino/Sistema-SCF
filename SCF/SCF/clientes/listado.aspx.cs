@@ -15,11 +15,11 @@ namespace SCF.clientes
         {
             if (!IsPostBack)
             {
-                
-            }            
+
+            }
 
             loadGridClientes();
-            
+
             Session["clienteActual"] = null;
             Session["codigoOperacion"] = null;
         }
@@ -59,6 +59,13 @@ namespace SCF.clientes
             clienteActual.Provincia = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "provincia").ToString();
             clienteActual.RazonSocial = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "razonSocial").ToString();
             clienteActual.Telefono = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "telefono").ToString();
+            clienteActual.Banco = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "banco").ToString();
+            clienteActual.Cbu = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "cbu").ToString();
+            clienteActual.PersonaContacto = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "personaContacto").ToString();
+            clienteActual.NumeroCuenta = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "numeroCuenta").ToString();
+            clienteActual.Observaciones = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "observaciones").ToString();
+
+
 
             Session.Add("clienteActual", clienteActual);
 
@@ -68,10 +75,11 @@ namespace SCF.clientes
         protected void btnAceptarEliminarCliente_Click(object sender, EventArgs e)
         {
             ControladorGeneral.EliminarCliente(int.Parse(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente").ToString()));
+            
             Response.Redirect("listado.aspx");
         }
 
-        
+
         protected void rbActivoSi_CheckedChanged(object sender, EventArgs e)
         {
             if (rbActivoSi.Checked == true)
@@ -86,7 +94,7 @@ namespace SCF.clientes
                 LoadGrillaClientesInactivos();
             else
                 LoadGrillaClientesActivos();
-        }              
+        }
 
         private void LoadGrillaClientesInactivos()
         {

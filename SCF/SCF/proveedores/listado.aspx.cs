@@ -15,12 +15,9 @@ namespace SCF.proveedores
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                
-            }
+
             loadGridProveedores();
-            
+
             Session["proveedorActual"] = null;
             Session["codigoOperacion"] = null;
         }
@@ -60,6 +57,11 @@ namespace SCF.proveedores
             proveedorActual.Provincia = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "provincia").ToString();
             proveedorActual.RazonSocial = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "razonSocial").ToString();
             proveedorActual.Telefono = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "telefono").ToString();
+            proveedorActual.Banco = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "banco").ToString();
+            proveedorActual.Cbu = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "cbu").ToString();
+            proveedorActual.PersonaContacto = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "personaContacto").ToString();
+            proveedorActual.NumeroCuenta = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "numeroCuenta").ToString();
+            proveedorActual.Observaciones = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "observaciones").ToString();
 
             Session.Add("proveedorActual", proveedorActual);
 

@@ -38,6 +38,11 @@ namespace SCF.proveedores
             txtMail.Value = oProveedorActual.Mail;
             txtProvincia.Value = oProveedorActual.Provincia;
             txtTelefono.Value = oProveedorActual.Telefono;
+            txtPersonaContacto.Value = oProveedorActual.PersonaContacto;
+            txtBanco.Value = oProveedorActual.Banco;
+            txtCBU.Value = oProveedorActual.Cbu;
+            txtNroCuentaBancaria.Value = oProveedorActual.NumeroCuenta;
+            txtObservacion.Value = oProveedorActual.Observaciones;
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -46,12 +51,12 @@ namespace SCF.proveedores
             if (Session["codigoOperacion"] == null)
             {
                 oProveedorActual = (Proveedor)Session["proveedorActual"];
-                ControladorGeneral.InsertarActualizarProveedor(oProveedorActual.Codigo, txtRazonSocial.Value,txtProvincia.Value,txtCiudad.Value,txtDireccion.Value,txtTelefono.Value,txtMail.Value,txtCUIL.Value);
+                ControladorGeneral.InsertarActualizarProveedor(oProveedorActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value);
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                ControladorGeneral.InsertarActualizarProveedor(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtCUIL.Value);
+                ControladorGeneral.InsertarActualizarProveedor(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value);
             }
             Response.Redirect("listado.aspx");
         }

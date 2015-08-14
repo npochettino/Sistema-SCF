@@ -474,12 +474,14 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulos.Columns.Add("descripcionCorta");
                 tablaArticulos.Columns.Add("descripcionLarga");
                 tablaArticulos.Columns.Add("marca");
+
                 tablaArticulos.Columns.Add("precio");
                 tablaArticulos.Columns.Add("nombreImagen");
 
+
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarTodos(nhSesion);
 
-                listaArticulos.Aggregate(tablaArticulos, (dt, r) => { dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca, r.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault(), r.NombreImagen); return dt; });
+                listaArticulos.Aggregate(tablaArticulos, (dt, r) => { dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca, r.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault() != null ? r.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault().Precio.ToString() : "", r.NombreImagen); return dt; });
 
                 return tablaArticulos;
             }

@@ -42,12 +42,12 @@ namespace SCF.articulos
             if (Session["codigoOperacion"] == null)
             {
                 oArticuloActual = (Articulo)Session["articuloActual"];
-                ControladorGeneral.InsertarActualizarArticulo(oArticuloActual.Codigo, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value);
+                //ControladorGeneral.InsertarActualizarArticulo(oArticuloActual.Codigo, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value);
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                ControladorGeneral.InsertarActualizarArticulo(0, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value);
+                //ControladorGeneral.InsertarActualizarArticulo(0, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value);
             }
             Response.Redirect("articulo.aspx");
         }

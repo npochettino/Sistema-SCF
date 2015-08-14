@@ -38,6 +38,11 @@ namespace SCF.clientes
             txtMail.Value = oClienteActual.Mail;
             txtProvincia.Value = oClienteActual.Provincia;
             txtTelefono.Value = oClienteActual.Telefono;
+            txtPersonaContacto.Value = oClienteActual.PersonaContacto;
+            txtBanco.Value = oClienteActual.Banco;
+            txtCBU.Value = oClienteActual.Cbu;
+            txtNroCuentaBancaria.Value = oClienteActual.NumeroCuenta;
+            txtObservacion.Value = oClienteActual.Observaciones;
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -46,12 +51,12 @@ namespace SCF.clientes
             if (Session["codigoOperacion"] == null)
             {
                 oClienteActual = (Cliente)Session["clienteActual"];
-                ControladorGeneral.InsertarActualizarCliente(oClienteActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtCUIL.Value);
+                ControladorGeneral.InsertarActualizarCliente(oClienteActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value);
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                ControladorGeneral.InsertarActualizarCliente(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtCUIL.Value);
+                ControladorGeneral.InsertarActualizarCliente(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value);
             }
             Response.Redirect("listado.aspx");
         }

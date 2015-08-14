@@ -80,7 +80,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Cliente</label>
-                                                
+
                                                 <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
                                                     ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
                                                     <Columns>
@@ -136,12 +136,29 @@
                                                                 <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="descripcionLarga" VisibleIndex="3">
+                                                                <dx:GridViewDataTextColumn Visible="false" FieldName="descripcionLarga" VisibleIndex="3">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="4">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
+
+                                                                <dx:GridViewDataTextColumn Caption="cantidad" Visible="false" VisibleIndex="5" FieldName="cantidad">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn Caption="fechaEntrega" Visible="false" VisibleIndex="6" FieldName="fechaEntrega">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+
+                                                                <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" VisibleIndex="7" FieldName="codigoItemNotaDePedido">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+
+                                                                <dx:GridViewDataTextColumn Caption="precio"  VisibleIndex="8" FieldName="precio">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+
+
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
                                                             <Settings ShowFilterRow="True" />
@@ -152,7 +169,7 @@
                                                                 <asp:Button type="button" class="btn green" runat="server" ID="btnSeleccionarArticulos" OnClick="btnSeleccionarArticulos_Click" Text="Seleccionar" />
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                                 <!-- END CHART PORTLET-->
@@ -181,20 +198,45 @@
                                                         <dx:ASPxGridView ID="gvArticulosSeleccionados" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoArticulo"
                                                             Width="100%">
                                                             <Columns>
-                                                                <dx:GridViewDataTextColumn Caption="Codigo" VisibleIndex="0" FieldName="codigoArticulo"
+                                                                <dx:GridViewDataTextColumn Caption="codigoArticulo" VisibleIndex="0" FieldName="codigoArticulo"
                                                                     Visible="false">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Desc. Corta" VisibleIndex="1" FieldName="descripcionCorta">
+                                                                <dx:GridViewDataTextColumn Caption="descripcionCorta" VisibleIndex="1" FieldName="descripcionCorta">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Desc. Larga" VisibleIndex="2" FieldName="descripcionLarga">
+                                                                <dx:GridViewDataTextColumn Caption="descripcionLarga" Visible="false" VisibleIndex="2" FieldName="descripcionLarga">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Cantidad" VisibleIndex="3" FieldName="cantidad">
+                                                                <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="3">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Fecha de entrega" VisibleIndex="4" FieldName="fechaEntrega">
+
+                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="4" FieldName="cantidad">
+                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+
+                                                                    <DataItemTemplate>
+                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" MinValue="1" MaxValue="100">
+                                                                        </dx:ASPxSpinEdit>
+                                                                    </DataItemTemplate>
+
+
+                                                                </dx:GridViewDataSpinEditColumn>
+                                                                <dx:GridViewDataDateColumn Caption="fechaEntrega" VisibleIndex="5" FieldName="fechaEntrega">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+
+                                                                    <DataItemTemplate>
+                                                                        <dx:ASPxDateEdit ID="fecha" runat="server" Width="100px" />
+                                                                    </DataItemTemplate>
+                                                                </dx:GridViewDataDateColumn>
+
+                                                               <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" VisibleIndex="6" FieldName="codigoItemNotaDePedido">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+
+                                                                <dx:GridViewDataTextColumn Caption="precio"  VisibleIndex="7" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <%--<dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="3" FieldName="cantidad" UnboundType="Integer">
@@ -213,8 +255,6 @@
                                                                 </dx:GridViewDataDateColumn>--%>
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
-
-                                                            <Settings ShowFilterRow="True" />
 
                                                         </dx:ASPxGridView>
                                                         <br />
@@ -238,7 +278,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="control-label">Observación</label>
-                                                    <textarea id="txtObservacion" placeholder="Observación" runat="server" rows="3" class="form-control"></textarea>
+                                                <textarea id="txtObservacion" placeholder="Observación" runat="server" rows="3" class="form-control"></textarea>
                                             </div>
                                         </div>
                                     </div>

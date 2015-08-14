@@ -6,15 +6,32 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BibliotecaSCF.Clases;
+using DevExpress.Web.ASPxEditors;
 
 namespace SCF.nota_pedido
 {
     public partial class nota_pedido : System.Web.UI.Page
     {
+        private DataTable mArticulosSeleccionados = new DataTable();
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            mArticulosSeleccionados.Columns.Add("codigoArticulo");
+            mArticulosSeleccionados.Columns.Add("descripcionCorta");
+            mArticulosSeleccionados.Columns.Add("descripcionLarga");
+            mArticulosSeleccionados.Columns.Add("marca");
+            mArticulosSeleccionados.Columns.Add("cantidad", typeof(int));
+            mArticulosSeleccionados.Columns.Add("fechaEntrega", typeof(DateTime));
+            mArticulosSeleccionados.Columns.Add("codigoItemNotaDePedido", typeof(int));
+            mArticulosSeleccionados.Columns.Add("precio", typeof(float));
+
+
             CargarComboClientes();
             CargarGrillaArticulos();
+
             if (!IsPostBack)
             {
                 if (Session["tablaNotaDePedido"] != null)
@@ -36,7 +53,7 @@ namespace SCF.nota_pedido
                     cbClientes.SelectedItem = cbClientes.Items.FindByValue(codigoCliente);
                 }
             }
-            
+
             int codigoNotaDePedido2 = Session["tablaNotaDePedido"] == null ? 0 : Convert.ToInt32(((DataTable)Session["tablaNotaDePedido"]).Rows[0]["codigoNotaDePedido"]);
             if (codigoNotaDePedido2 != 0)
             {
@@ -83,7 +100,17 @@ namespace SCF.nota_pedido
 
         protected void btnSeleccionarArticulos_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < gvArticulos.VisibleRowCount; i++)
+            {
+                if (gvArticulos.Selection.IsRowSelected(i))
+                {
+                    DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
+                    mArticulosSeleccionados.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, 0);
+                }
+            }
 
+            gvArticulosSeleccionados.DataSource = mArticulosSeleccionados;
+            gvArticulosSeleccionados.DataBind();
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
@@ -94,7 +121,25 @@ namespace SCF.nota_pedido
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             int a = 1;
-        }
 
+
+            for (int i = 0; i < gvArticulosSeleccionados.VisibleRowCount; i++)
+            {
+                ASPxSpinEdit spin = (ASPxSpinEdit)gvArticulosSeleccionados.FindRowCellTemplateControl(i, null, "txtTitle");
+                double cantidad = Convert.ToDouble(spin.Value);
+
+                ASPxDateEdit date = (ASPxDateEdit)gvArticulosSeleccionados.FindRowCellTemplateControl(i, null, "fecha");
+                DateTime fecha = DateTime.Parse(date.Value.ToString());
+
+
+                DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
+                mArticulosSeleccionados.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], cantidad, fecha, 0);
+
+               
+
+            }
+            ControladorGeneral.InsertarActualizarNotaDePedido(0, txtNroInternoCliente.Text.ToString(), DateTime.Parse(txtFechaEmision.Value.ToString()), txtObservacion.InnerText.ToString(), 0, (int)cbClientes.SelectedItem.Value, mArticulosSeleccionados);
+        }
+        
     }
 }

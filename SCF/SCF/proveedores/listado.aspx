@@ -54,7 +54,7 @@
                                 <div class="btn-set pull-left">
                                     <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" UseSubmitBehavior="false" Text="Nuevo" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" UseSubmitBehavior="false" Text="Editar" />
-                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarProveedor()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />                                    
+                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarProveedor()" UseSubmitBehavior="false" class="btn red" Text="Eliminar"  />                                    
                                     <asp:Button type="button" ID="btnInactivarProveedor" runat="server" OnClientClick="ShowInactivarProveedor()" UseSubmitBehavior="false" class="btn red-intense" Text="Inactivar" />                                   
                                     <asp:Button type="button" ID="btnActivarProveedor" runat="server" OnClick="btnActivarProveedor_Click" UseSubmitBehavior="false" class="btn green" Text="Activar" />
                                 </div>
@@ -112,7 +112,7 @@
     <!-- BEGIN POPUP ELIMINAR ARTICULO -->
     <dx:ASPxPopupControl ID="pcConfirmarEliminarProveedor" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarProveedor"
-        HeaderText="Eliminar Proveedor" HeaderStyle-BackColor="Red" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        HeaderText="Eliminar Proveedor"  AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
         <ClientSideEvents PopUp="function(s, e) {  txtPrecio.Focus(); }" />
         <ContentCollection>
