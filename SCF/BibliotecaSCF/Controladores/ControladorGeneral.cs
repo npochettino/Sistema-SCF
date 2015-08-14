@@ -15,7 +15,7 @@ namespace BibliotecaSCF.Controladores
     {
         #region Proveedores
 
-        public static void InsertarActualizarProveedor(int codigoProveedor, string razonSocial, string provincia, string localidad, string direccion, string telefono, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones)
+        public static void InsertarActualizarProveedor(int codigoProveedor, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -42,6 +42,7 @@ namespace BibliotecaSCF.Controladores
                 proveedor.PersonaContacto = personaContacto;
                 proveedor.NumeroCuenta = numeroCuenta;
                 proveedor.Banco = banco;
+                proveedor.Fax = fax;
                 proveedor.Cbu = cbu;
                 proveedor.Observaciones = observaciones;
                 proveedor.IsInactivo = false;
@@ -256,7 +257,7 @@ namespace BibliotecaSCF.Controladores
 
         #region Cliente
 
-        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string direccion, string telefono, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones)
+        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -278,6 +279,7 @@ namespace BibliotecaSCF.Controladores
                 cliente.Localidad = localidad;
                 cliente.Direccion = direccion;
                 cliente.Telefono = telefono;
+                cliente.Fax = fax;
                 cliente.Mail = mail;
                 cliente.Cuil = cuil;
                 cliente.PersonaContacto = personaContacto;
@@ -390,6 +392,40 @@ namespace BibliotecaSCF.Controladores
             {
                 nhSesion.Close();
                 nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarClientePorContratoMarco(int codigoContratoMarco)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            try
+            {
+                DataTable tablaCliente = new DataTable();
+                tablaCliente.Columns.Add("codigoCliente");
+                tablaCliente.Columns.Add("razonSocial");
+                tablaCliente.Columns.Add("provincia");
+                tablaCliente.Columns.Add("localidad");
+                tablaCliente.Columns.Add("direccion");
+                tablaCliente.Columns.Add("telefono");
+                tablaCliente.Columns.Add("mail");
+                tablaCliente.Columns.Add("cuil");
+                tablaCliente.Columns.Add("personaContacto");
+                tablaCliente.Columns.Add("numeroCuenta");
+                tablaCliente.Columns.Add("banco");
+                tablaCliente.Columns.Add("cbu");
+                tablaCliente.Columns.Add("observaciones");
+
+                ContratoMarco contratoMarco = CatalogoContratoMarco.RecuperarPorCodigo(codigoContratoMarco, nhSesion);
+
+                tablaCliente.Rows.Add(new object[] { contratoMarco.Cliente.Codigo, contratoMarco.Cliente.RazonSocial, contratoMarco.Cliente.Provincia, contratoMarco.Cliente.Localidad,
+                contratoMarco.Cliente.Direccion, contratoMarco.Cliente.Telefono, contratoMarco.Cliente.Mail, contratoMarco.Cliente.Cuil, contratoMarco.Cliente.PersonaContacto,
+                contratoMarco.Cliente.NumeroCuenta, contratoMarco.Cliente.Banco, contratoMarco.Cliente.Cbu, contratoMarco.Cliente.Observaciones});
+
+                return tablaCliente;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -847,7 +883,10 @@ namespace BibliotecaSCF.Controladores
                         notaPedido.ContratoMarco != null ? notaPedido.ContratoMarco.Descripcion : "", notaPedido.Cliente.Codigo, notaPedido.Cliente.RazonSocial, fechaHoraProximaEntrega == DateTime.MinValue ? "" : fechaHoraProximaEntrega.ToString(), notaPedido.Observaciones});
                 }
 
-                return tablaNotasDePedido;
+                DataView dv = tablaNotasDePedido.DefaultView;
+                dv.Sort = "codigoEstado desc";
+
+                return dv.ToTable();
             }
             catch (Exception ex)
             {
@@ -1046,6 +1085,65 @@ namespace BibliotecaSCF.Controladores
             {
                 nhSesion.Close();
                 nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarTodosContratosMarcos(bool vigentes)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaContratosMarco = new DataTable();
+                tablaContratosMarco.Columns.Add("codigoContratoMarco");
+                tablaContratosMarco.Columns.Add("descripcion");
+                tablaContratosMarco.Columns.Add("fechaInicio");
+                tablaContratosMarco.Columns.Add("fechaFin");
+                tablaContratosMarco.Columns.Add("codigoCliente");
+                tablaContratosMarco.Columns.Add("razonSocialCliente");
+
+                List<ContratoMarco> listaContratosMarco = new List<ContratoMarco>();
+
+                if (vigentes)
+                {
+                    listaContratosMarco = CatalogoContratoMarco.RecuperarLista(x => x.FechaFin >= DateTime.Now, nhSesion);
+                }
+                else
+                {
+                    listaContratosMarco = CatalogoContratoMarco.RecuperarLista(x => x.FechaFin <= DateTime.Now, nhSesion);
+                }
+
+                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.FechaInicio, r.FechaFin, r.Cliente.Codigo, r.Cliente.RazonSocial); return dt; });
+
+                return tablaContratosMarco;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable RecuperarTodosItemsContratoMarco(int codigoContratoMarco)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaItemsContratoMarco = new DataTable();
+                tablaItemsContratoMarco.Columns.Add("codigoItemContratoMarco");
+                tablaItemsContratoMarco.Columns.Add("codigoArticulo");
+                tablaItemsContratoMarco.Columns.Add("descripcioncorta");
+                tablaItemsContratoMarco.Columns.Add("precio");
+
+                ContratoMarco contratoMarco = CatalogoContratoMarco.RecuperarPorCodigo(codigoContratoMarco, nhSesion);
+
+                contratoMarco.ItemsContratoMarco.Aggregate(tablaItemsContratoMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.Articulo.Codigo, r.Articulo.DescripcionCorta, r.Precio); return dt; });
+
+                return tablaItemsContratoMarco;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

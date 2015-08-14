@@ -73,12 +73,12 @@
                                         </dx:GridViewDataDateColumn>
                                         <dx:GridViewDataDateColumn FieldName="fechaFin" VisibleIndex="3">
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataTextColumn FieldName="razonSocial" VisibleIndex="4">
+                                        <dx:GridViewDataTextColumn FieldName="codigoCliente" VisibleIndex="4">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="cuil" VisibleIndex="5">
+                                        <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="5">
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
-                                    <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
+                                    <SettingsBehavior ColumnResizeMode="Control" AllowSort="true" />
                                     <SettingsBehavior AllowFocusedRow="True" />
                                     <Settings ShowFilterRow="True" />
                                 </dx:ASPxGridView>
@@ -128,7 +128,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
     <!--END POPUP-->
-    
+
     <script lang="javascript" type="text/javascript">
         function ShowConfirmarEliminarContratoMarco() {
             pcConfirmarEliminarContratoMarco.Show();

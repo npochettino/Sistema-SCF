@@ -14,6 +14,7 @@ namespace BibliotecaSCF.Clases
         public virtual string Localidad { get; set; }
         public virtual string Direccion { get; set; }
         public virtual string Telefono { get; set; }
+        public virtual string Fax { get; set; }
         public virtual string Mail { get; set; }
         public virtual string Cuil { get; set; }
         public virtual string PersonaContacto { get; set; }

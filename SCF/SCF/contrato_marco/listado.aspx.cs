@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BibliotecaSCF.Controladores;
 
 namespace SCF.contrato_marco
 {
@@ -11,7 +12,13 @@ namespace SCF.contrato_marco
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack)
+            {
 
+            }
+
+            gvContratosMarco.DataSource = ControladorGeneral.RecuperarTodosContratosMarcos(true);
+            gvContratosMarco.DataBind();
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
