@@ -19,7 +19,7 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.Localidad).Column("localidad");
             Map(x => x.Direccion).Column("direccion");
             Map(x => x.Telefono).Column("telefono");
-            Map(x => x.Telefono).Column("fax");
+            Map(x => x.Fax).Column("fax");
             Map(x => x.Mail).Column("mail");
             Map(x => x.Cuil).Column("cuil");
             Map(x => x.PersonaContacto).Column("personaContacto");
