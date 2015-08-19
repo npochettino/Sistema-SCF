@@ -125,7 +125,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="input-group">
-                                                ¿Decea eliminar el Proveedor seleccionado?
+                                                ¿Desea eliminar el Proveedor seleccionado?
                                             </div>
 
                                         </div>
@@ -158,7 +158,7 @@
                             <div>
                                 <form action="#" class="horizontal-form">
                                     <div class="form-body">
-                                        <label>¿Decea inactivar el Proveedor seleccionado? Usted puede ingresar una observación.</label>
+                                        <label>¿Desea inactivar el Proveedor seleccionado? Usted puede ingresar una observación.</label>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">

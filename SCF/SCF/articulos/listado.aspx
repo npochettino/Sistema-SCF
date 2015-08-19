@@ -61,7 +61,6 @@
                                     <div class="input-group">
                                         <input type="text" id="txtCodigoCliente" placeholder="Ingrese el Código del cliente" runat="server" class="form-control">
                                         <span class="input-group-btn">
-                                            <%--<button class="btn blue" type="button" runat="server"><span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Buscar</button>--%>
                                             <asp:Button class="btn blue" type="button" runat="server" ID="btnBuscarPorCodigoCliente" OnClick="btnBuscarPorCodigoCliente_Click" UseSubmitBehavior="false" Text="Buscar" />
                                         </span>
                                     </div>
@@ -112,7 +111,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="input-group">
-                                                ¿Decea eliminar el artículo seleccionado?
+                                                ¿Desea eliminar el artículo seleccionado?
                                             </div>
 
                                         </div>
@@ -175,7 +174,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Unidad de Medida</label>
-                                                            <input type="text" id="Text1" placeholder="Marca" runat="server" class="form-control">
+                                                            <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
                                                         </div>
                                                     </div>
                                                     
@@ -193,7 +192,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Tipo de Cambio</label>
-                                                            <input type="text" id="Text2" placeholder="Marca" runat="server" class="form-control">
+                                                            <input type="text" id="txtTipoDeCambio" placeholder="Tipo de Cambio" runat="server" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -208,12 +207,11 @@
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
                                             <div class="form-body">
-                                               <%-- <h3 class="form-section">Info de Cliente</h3>--%>
                                                 <label style="font-size:medium"><strong>Info del Cliente</strong></label>    
                                                 <div class="row">
                                                     <div class="col-md-12 ">                                                       
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView runat="server" ID="ASPxGridView2" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                            <dx:ASPxGridView runat="server" ID="gvCliente" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
                                                                     <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
@@ -245,13 +243,11 @@
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
                                             <div class="form-body">
-                                                <%--<h3 class="form-section">Info de Proveedores</h3>--%>
                                                 <label style="font-size:medium"><strong>Info del Proveedor</strong></label>    
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div>
                                                             <div class="btn-set pull-right" style="padding-bottom:3px">
-                                                                <%--<asp:Button type="button" ID="Button6" runat="server" OnClientClick="ShowHistoricoCosto()" class="btn blue" Text="Ver" />--%>
                                                                 <button class="btn blue" type="button" onclick="ShowHistoricoCosto()">Ver</button>
                                                             </div>
                                                         </div>
@@ -294,7 +290,6 @@
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcHistoricoPrecio"
         HeaderText="Historico Precio" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="450"
         EnableViewState="False" Theme="Metropolis">
-        <%--<ClientSideEvents PopUp="function(s, e) {  pcHistoricoPrecio.Focus(); }" />--%>
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl3" runat="server">
                 <dx:ASPxPanel ID="ASPxPanel1" runat="server" DefaultButton="">
@@ -332,11 +327,6 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <%--<div class="modal-footer">
-                                        <div class="btn-set pull-right">
-                                            <button class="btn default" onclick="pcHistoricoPrecio.Hide();">Cerrar</button>
-                                        </div>
-                                    </div>--%>
                                 </div>
                             </div>
                         </dx:PanelContent>
@@ -350,7 +340,6 @@
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcHistoricoCosto"
         HeaderText="Historico Costo" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="450"
         EnableViewState="False" Theme="Metropolis">
-        <%--<ClientSideEvents PopUp="function(s, e) {  pcHistoricoCosto.Focus(); }" />--%>
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl4" runat="server">
                 <dx:ASPxPanel ID="ASPxPanel2" runat="server" DefaultButton="">
@@ -366,7 +355,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView ID="ASPxGridView1" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                            <dx:ASPxGridView ID="gvHistoricoCosto" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
                                                                     <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
@@ -388,11 +377,6 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <%--<div class="modal-footer">
-                                        <div class="btn-set pull-right">
-                                            <button class="btn default" onclick="pcHistoricoCosto.Hide();">Cerrar</button>
-                                        </div>
-                                    </div>--%>
                                 </div>
                             </div>
                         </dx:PanelContent>

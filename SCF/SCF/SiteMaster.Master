@@ -113,8 +113,8 @@ License: SempaIT - Todos los derechos reservados.
                                     <i class="icon-share"></i>Nuevo Articulo </a>
                             </li>
                             <li>
-                                <a href="../entregas/entrega.aspx">
-                                    <i class="icon-flag"></i>Nueva Entrega
+                                <a href="../remitos/remito.aspx">
+                                    <i class="icon-flag"></i>Nuevo Remito
                                 </a>
                             </li>                            
                         </ul>
@@ -247,15 +247,15 @@ License: SempaIT - Todos los derechos reservados.
                         <li>
                             <a href="javascript:;">
                                 <i class="icon-check"></i>
-                                <span class="title">Entregas</span>
+                                <span class="title">Remitos</span>
                                 <span class="arrow "></span>
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="../entregas/listado.aspx">Listado</a>
+                                    <a href="../remitos/listado.aspx">Listado</a>
                                 </li>
                                 <li>
-                                    <a href="../entregas/entrega.aspx">Nuevo</a>
+                                    <a href="../remitos/remito.aspx">Nuevo</a>
                                 </li>
                             </ul>
                         </li>
@@ -276,21 +276,6 @@ License: SempaIT - Todos los derechos reservados.
                             </ul>
                         </li>
 
-                        <li>
-                            <a href="javascript:;">
-                                <i class="icon-docs"></i>
-                                <span class="title">Remito</span>
-                                <span class="arrow "></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="../remitos/listado.aspx">Listado</a>
-                                </li>
-                                <li>
-                                    <a href="../remitos/remito.aspx">Nuevo</a>
-                                </li>
-                            </ul>
-                        </li>
 
                         <li>
                             <a href="javascript:;">

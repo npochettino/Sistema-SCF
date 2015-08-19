@@ -20,10 +20,8 @@
                     <h1>Artículo <small>editar/nuevo Artículo</small></h1>
                 </div>
                 <!-- END PAGE TITLE -->
-
             </div>
             <!-- END PAGE HEAD -->
-
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
@@ -65,7 +63,7 @@
                                         <div class="col-md-12 ">
                                             <div class="form-group">
                                                 <label>Descripción Larga</label>
-                                                <textarea type="text" id="txtDescripcionLarga" style="resize:none" placeholder="Descripción Larga" runat="server" class="form-control" required rows="5"></textarea>
+                                                <textarea type="text" id="txtDescripcionLarga" style="resize:none" placeholder="Descripción Larga" runat="server" class="form-control" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -86,15 +84,6 @@
                                                 </asp:DropDownList> 
                                             </div>
                                         </div>
-                                        <%--<div class="col-md-6 ">
-                                            <label>Precio:</label>
-                                            <div class="input-group">
-                                                <input type="text" id="txtPrecioActual" placeholder="Precio" runat="server" class="form-control">
-                                                <span class="input-group-btn">
-                                                    <button class="btn blue" type="button" onclick="ShowAddPrecio()"><span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>+</button>
-                                                </span>
-                                            </div>
-                                        </div>--%>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 ">
@@ -226,11 +215,9 @@
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxPanel>
-
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
-
     
     
     <dx:ASPxPopupControl ID="pcAddCosto" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
@@ -328,7 +315,6 @@
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarArticuloProveedor"
         HeaderText="Eliminar Articulo Proveedor" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
-        <ClientSideEvents PopUp="function(s, e) {  txtPrecio.Focus(); }" />
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl3" runat="server">
                 <dx:ASPxPanel ID="ASPxPanel2" runat="server" DefaultButton="">
@@ -339,7 +325,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="input-group">
-                                                ¿Decea eliminar el proveedor seleccionado?
+                                                ¿Desea eliminar el proveedor seleccionado?
                                             </div>
 
                                         </div>

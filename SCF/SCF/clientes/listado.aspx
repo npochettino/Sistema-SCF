@@ -125,7 +125,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="input-group">
-                                                ¿Decea eliminar el Cliente seleccionado?
+                                                ¿Desea eliminar el Cliente seleccionado?
                                             </div>
 
                                         </div>
@@ -158,7 +158,7 @@
                             <div>
                                 <form action="#" class="horizontal-form">
                                     <div class="form-body">
-                                        <label>¿Decea inactivar el Cliente seleccionado? Usted puede ingresar una observación.</label>
+                                        <label>¿Desea inactivar el Cliente seleccionado? Usted puede ingresar una observación.</label>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">

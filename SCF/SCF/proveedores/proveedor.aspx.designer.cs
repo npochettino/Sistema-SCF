@@ -40,13 +40,13 @@ namespace SCF.proveedores {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtRazonSocial;
         
         /// <summary>
-        /// Control txtTelefono.
+        /// Control txtPersonaContacto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTelefono;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPersonaContacto;
         
         /// <summary>
         /// Control txtDireccion.
@@ -85,13 +85,22 @@ namespace SCF.proveedores {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtCiudad;
         
         /// <summary>
-        /// Control txtPersonaContacto.
+        /// Control txtTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPersonaContacto;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTelefono;
+        
+        /// <summary>
+        /// Control txtFax.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFax;
         
         /// <summary>
         /// Control txtBanco.

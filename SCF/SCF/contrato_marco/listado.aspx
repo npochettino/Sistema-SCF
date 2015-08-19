@@ -108,7 +108,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="input-group">
-                                                ¿Decea eliminar el Contrato Marco seleccionado?
+                                                ¿Desea eliminar el Contrato Marco seleccionado?
                                             </div>
 
                                         </div>

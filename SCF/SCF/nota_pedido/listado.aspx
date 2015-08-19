@@ -51,12 +51,12 @@
                             <!-- BEGIN FORM-->
                             <div class="form-actions top">
                                 <div class="btn-set pull-left">
-                                    <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" Text="Nuevo" />
-                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" Text="Editar" />
+                                    <asp:Button type="button" ID="btnNuevo" runat="server" onclick="location.href='nota_pedido.aspx'" class="btn blue" Text="Nuevo" />
+                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarNotaPedido()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnShowPopUpObservacion" runat="server" OnClick="btnShowPopUpObservacion_Click" UseSubmitBehavior="false" class="btn blue" Text="Observación" />
+                                    <asp:Button type="button" ID="btnShowPopUpObservacion" runat="server" OnClick="btnShowPopUpObservacion_Click" UseSubmitBehavior="false" class="btn red" Text="Anular" />
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleNotaPedido()" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="input-group">
-                                                ¿Decea eliminar la Nota de Pedido seleccionada?
+                                                ¿Desea eliminar la Nota de Pedido seleccionada?
                                             </div>
 
                                         </div>

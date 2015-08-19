@@ -57,8 +57,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Nro. Interno Nota Pedido del Cliente</label>
-                                                <dx:ASPxTextBox ID="txtNroInternoCliente" runat="server" CssClass="form-control" placeholder="Nro. Interno Nota Pedido Cliente" ClientInstanceName="txtNroInternoCliente"></dx:ASPxTextBox>
-                                                <%--<input type="text" id="txtNroInternoCliente" runat="server" class="form-control" placeholder="Nro. Interno Nota Pedido Cliente" required>--%>
+                                                <dx:ASPxTextBox ID="txtNroInternoCliente" runat="server" CssClass="form-control"  Width="100%" placeholder="Nro. Interno Nota Pedido Cliente"></dx:ASPxTextBox>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -108,7 +107,7 @@
                                         <div class="col-md-6">
                                             <!-- BEGIN CHART PORTLET-->
                                             <div class="portlet light">
-                                                <div class="portlet-title">
+                                                 <div class="portlet-title">
                                                     <div class="caption">
                                                         <i class="icon-bar-chart font-green-haze"></i>
                                                         <span class="caption-subject bold uppercase font-green-haze">Seleccione los Artículos</span>
@@ -122,7 +121,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
-                                                    <div id="chart_8" class="chart" style="height: 400px;">
+                                                    <div id="chart_8" class="chart" style="height:auto">
                                                         <!-- GRID VIEW ARTICULOS-->
                                                         <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis" Width="100%">
                                                             <Columns>
@@ -157,10 +156,10 @@
                                                                 <dx:GridViewDataTextColumn Caption="precio" VisibleIndex="8" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-
-
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
+                                                            <SettingsPager PageSize="10">
+                                                            </SettingsPager>
                                                             <Settings ShowFilterRow="True" />
                                                         </dx:ASPxGridView>
                                                         <br />
@@ -193,7 +192,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
-                                                    <div id="chart_9" class="chart" style="height: 400px;">
+                                                    <div id="chart_9" class="chart" style="height:auto">
                                                         <!-- GRID VIEW ITEMS SELECCIONADOS-->
                                                         <dx:ASPxGridView ID="gvArticulosSeleccionados" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoArticulo"
                                                             Width="100%">
@@ -255,7 +254,8 @@
                                                                 </dx:GridViewDataDateColumn>--%>
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
-
+                                                            
+                                                            <Settings ShowFilterRow="True" />
                                                         </dx:ASPxGridView>
                                                         <br />
                                                         <div>

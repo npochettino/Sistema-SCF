@@ -202,13 +202,13 @@ namespace SCF.articulos {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtMarca;
         
         /// <summary>
-        /// Control Text1.
+        /// Control txtUnidadDeMedida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtUnidadDeMedida;
         
         /// <summary>
         /// Control txtPrecioActual.
@@ -220,22 +220,22 @@ namespace SCF.articulos {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtPrecioActual;
         
         /// <summary>
-        /// Control Text2.
+        /// Control txtTipoDeCambio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTipoDeCambio;
         
         /// <summary>
-        /// Control ASPxGridView2.
+        /// Control gvCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView ASPxGridView2;
+        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvCliente;
         
         /// <summary>
         /// Control gvArticuloProveedores.
@@ -328,12 +328,12 @@ namespace SCF.articulos {
         protected global::DevExpress.Web.ASPxPanel.PanelContent PanelContent4;
         
         /// <summary>
-        /// Control ASPxGridView1.
+        /// Control gvHistoricoCosto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView ASPxGridView1;
+        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvHistoricoCosto;
     }
 }

@@ -13,5 +13,25 @@ namespace SCF.remitos
         {
 
         }
+
+        protected void btnNuevo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnVerDetalle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAceptarEliminarRemito_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

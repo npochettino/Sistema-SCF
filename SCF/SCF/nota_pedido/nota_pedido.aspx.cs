@@ -20,7 +20,7 @@ namespace SCF.nota_pedido
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
+            txtFechaEmision.Value = DateTime.Now;
             CargarComboClientes();
             CargarGrillaArticulos();
 

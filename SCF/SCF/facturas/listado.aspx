@@ -50,8 +50,8 @@
                             <!-- BEGIN FORM-->
                             <div class="form-actions top">
                                 <div class="btn-set pull-left">
-                                    <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" Text="Nuevo" />
-                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" Text="Editar" />
+                                    <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
+                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" UseSubmitBehavior="false" Text="Editar" />
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarFactura()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
@@ -100,7 +100,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="input-group">
-                                                ¿Decea eliminar la factura seleccionada?
+                                                ¿Desea eliminar la factura seleccionada?
                                             </div>
 
                                         </div>

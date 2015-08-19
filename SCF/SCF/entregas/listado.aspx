@@ -110,7 +110,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="input-group">
-                                                ¿Decea eliminar la entrega seleccionado?
+                                                ¿Desea eliminar la entrega seleccionado?
                                             </div>
 
                                         </div>
