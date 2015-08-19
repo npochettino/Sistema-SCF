@@ -24,5 +24,10 @@ namespace BibliotecaSCF.Clases
         public virtual IList<ArticuloProveedor> ArticulosProveedor { get; set; }
         public virtual IList<ArticuloCliente> ArticulosClientes { get; set; }
         public virtual IList<HistorialPrecio> HistorialesPrecio { get; set; }
+
+        public virtual double RecuperarPrecioActual()
+        {
+            return this.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault() != null ? this.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault().Precio : 0.0;
+        }
     }
 }

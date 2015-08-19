@@ -510,14 +510,17 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulos.Columns.Add("descripcionCorta");
                 tablaArticulos.Columns.Add("descripcionLarga");
                 tablaArticulos.Columns.Add("marca");
-
                 tablaArticulos.Columns.Add("precio");
                 tablaArticulos.Columns.Add("nombreImagen");
 
 
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarTodos(nhSesion);
 
-                listaArticulos.Aggregate(tablaArticulos, (dt, r) => { dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca, r.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault() != null ? r.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault().Precio.ToString() : "", r.NombreImagen); return dt; });
+                listaArticulos.Aggregate(tablaArticulos, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
+                        r.RecuperarPrecioActual(), r.NombreImagen); return dt;
+                });
 
                 return tablaArticulos;
             }
@@ -563,14 +566,56 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulos.Columns.Add("codigoArticulo");
                 tablaArticulos.Columns.Add("descripcionCorta");
                 tablaArticulos.Columns.Add("descripcionLarga");
+                tablaArticulos.Columns.Add("marca");
+                tablaArticulos.Columns.Add("precio");
+                tablaArticulos.Columns.Add("nombreImagen");
                 tablaArticulos.Columns.Add("cantidad", typeof(int));
                 tablaArticulos.Columns.Add("fechaEntrega", typeof(DateTime));
 
                 NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
 
-                notaDePedido.ItemsNotaDePedido.Aggregate(tablaArticulos, (dt, r) => { dt.Rows.Add(r.Codigo, r.Articulo.DescripcionCorta, r.Articulo.DescripcionLarga, r.Cantidad, r.FechaEntrega); return dt; });
+                notaDePedido.ItemsNotaDePedido.Aggregate(tablaArticulos, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.Articulo.DescripcionCorta, r.Articulo.DescripcionLarga,
+                        r.Articulo.Marca, r.Articulo.RecuperarPrecioActual(), r.Articulo.NombreImagen, r.Cantidad, r.FechaEntrega); return dt;
+                });
 
                 return tablaArticulos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarArticuloPorCodigoInternoCliente(string codigoInternoCliente)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaArticulo = new DataTable();
+                tablaArticulo.Columns.Add("codigoArticulo");
+                tablaArticulo.Columns.Add("descripcionCorta");
+                tablaArticulo.Columns.Add("descripcionLarga");
+                tablaArticulo.Columns.Add("marca");
+                tablaArticulo.Columns.Add("precio");
+                tablaArticulo.Columns.Add("nombreImagen");
+
+                List<Articulo> listaArticulos = CatalogoArticulo.RecuperarPorCodigoInternoCliente(codigoInternoCliente, nhSesion);
+
+                listaArticulos.Aggregate(tablaArticulo, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
+                        r.RecuperarPrecioActual(), r.NombreImagen); return dt;
+                });
+
+                return tablaArticulo;
             }
             catch (Exception ex)
             {

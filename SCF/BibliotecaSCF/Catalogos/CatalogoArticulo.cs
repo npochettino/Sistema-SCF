@@ -9,5 +9,17 @@ namespace BibliotecaSCF.Catalogos
 {
     public class CatalogoArticulo : CatalogoGenerico<Articulo>
     {
+        public static List<Articulo> RecuperarPorCodigoInternoCliente(string codigoInternoCliente, NHibernate.ISession nhSesion)
+        {
+            try
+            {
+                List<Articulo> listaArticulos = nhSesion.QueryOver<Articulo>().Where(x => x.ArticulosClientes.Any(ac => ac.CodigoInterno.Contains(codigoInternoCliente))).List().ToList();
+                return listaArticulos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
