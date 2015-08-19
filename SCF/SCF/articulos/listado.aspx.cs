@@ -67,7 +67,27 @@ namespace SCF.articulos
 
         protected void btnBuscarPorCodigoCliente_Click(object sender, EventArgs e)
         {
-            string test = "llll";
+
+        }
+
+        protected void btnRelacionArticuloCliente_Click(object sender, EventArgs e)
+        {
+            pcRelacionArticuloCliente.ShowOnPageLoad = true;
+        }
+
+        protected void btnEliminarRelacionArticuloCliente_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnNuevaRelacionArticuloCliente_Click(object sender, EventArgs e)
+        {
+            pcNuevaRelacionArticuloCliente.ShowOnPageLoad = true;
+        }
+
+        protected void btnGuardarRelacionArticuloCliente_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

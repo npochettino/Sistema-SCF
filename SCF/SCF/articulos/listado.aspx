@@ -52,6 +52,7 @@
                                     <asp:CheckBox runat="server" ID="chkBuscarPorNroCliente" Text="Buscar por Cliente" OnClick="chkBuscarPorNroCliente(this.checked)" />
                                 </div>
                                 <div class="btn-set pull-right">
+                                    <asp:Button type="button" ID="btnRelacionArticuloCliente" runat="server" OnClick="btnRelacionArticuloCliente_Click" class="btn red" Text="Relación Cliente" />
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleArticulo()" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
@@ -148,7 +149,7 @@
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
                                             <div class="form-body">
-                                                <label style="font-size:medium"><strong>Info del Artículo</strong></label>                                              
+                                                <label style="font-size: medium"><strong>Info del Artículo</strong></label>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -177,8 +178,8 @@
                                                             <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
                                                         </div>
                                                     </div>
-                                                    
-                                                </div>                                               
+
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Precio:</label>
@@ -201,15 +202,15 @@
                                         </form>
                                         <!-- END FORM-->
                                     </div>
-                                    
+
                                     <!--INFO DEL CLIENTE-->
                                     <div class="portlet-body form">
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
                                             <div class="form-body">
-                                                <label style="font-size:medium"><strong>Info del Cliente</strong></label>    
+                                                <label style="font-size: medium"><strong>Info del Cliente</strong></label>
                                                 <div class="row">
-                                                    <div class="col-md-12 ">                                                       
+                                                    <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <dx:ASPxGridView runat="server" ID="gvCliente" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
@@ -243,11 +244,11 @@
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
                                             <div class="form-body">
-                                                <label style="font-size:medium"><strong>Info del Proveedor</strong></label>    
+                                                <label style="font-size: medium"><strong>Info del Proveedor</strong></label>
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div>
-                                                            <div class="btn-set pull-right" style="padding-bottom:3px">
+                                                            <div class="btn-set pull-right" style="padding-bottom: 3px">
                                                                 <button class="btn blue" type="button" onclick="ShowHistoricoCosto()">Ver</button>
                                                             </div>
                                                         </div>
@@ -385,6 +386,116 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ID="pcRelacionArticuloCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcRelacionArticuloCliente"
+        HeaderText="Relacion Articulo Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
+        EnableViewState="False" Theme="Metropolis">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl5" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel3" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent5" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="btn-set pull-left" style="padding-bottom: 5px">
+                                                            <asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />
+                                                            <asp:Button type="button" ID="btnEliminarRelacionArticuloCliente" runat="server" OnClick="btnEliminarRelacionArticuloCliente_Click" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <dx:ASPxGridView ID="gvArticuloCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                                <Columns>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoInterno" Caption="Codigo Interno" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoCliente" Caption="Codigo Cliente" VisibleIndex="1" Visible="false">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialCliente" Caption="Razon Social Cliente" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
+                                                            </dx:ASPxGridView>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ID="pcNuevaRelacionArticuloCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcNuevaRelacionArticuloCliente"
+        HeaderText="Nueva Relacion" AllowDragging="True" EnableViewState="False" Width="400px"
+        PopupAnimationType="Fade" Theme="Metropolis">
+        <ClientSideEvents PopUp="function(s, e) {  pcNuevaRelacionArticuloCliente.Focus(); }" />
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl6" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel4" runat="server" DefaultButton="btnGuardarAticuloProveedor">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent6" runat="server">
+                            <div data-width="760">
+                                <div class="modal-body">
+
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <div class="form-group">
+                                                            <label>Codigo Cliente</label>
+                                                            <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                                ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
+                                                                <Columns>
+                                                                    <dx:ListBoxColumn FieldName="codigoCliente" Width="100px" Visible="false" />
+                                                                    <dx:ListBoxColumn FieldName="cuil" Width="100px" />
+                                                                    <dx:ListBoxColumn FieldName="razonSocial" Width="300px" />
+                                                                </Columns>
+                                                            </dx:ASPxComboBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <div class="form-group">
+                                                            <label>Codigo Articulo</label>
+                                                            <input type="text" id="Text1" placeholder="Codigo Articulo" runat="server" class="form-control" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="btn-set pull-right">
+                                        <asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" runat="server" OnClick="btnGuardarRelacionArticuloCliente_Click" class="btn blue" Text="Aceptar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
     <!--END POPUP-->
 
     <script lang="javascript" type="text/javascript">
@@ -405,6 +516,9 @@
                 document.getElementById('divBuscarPorNroCliente').style.display = 'block';
             else
                 document.getElementById('divBuscarPorNroCliente').style.display = 'none';
+        }
+        function ShowNuevaRelacionArticuloCliente() {
+            pcNuevaRelacionArticuloCliente.Show();
         }
     </script>
 </asp:Content>

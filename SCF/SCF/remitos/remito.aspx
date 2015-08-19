@@ -152,7 +152,7 @@
                                                         <br />
                                                         <div>
                                                             <div class="btn-set pull-right">
-                                                                <asp:Button type="button" class="btn green" runat="server" ID="btnSeleccionarArticulos" Text="Seleccionar" />
+                                                                <asp:Button type="button" class="btn green" runat="server" ID="btnSeleccionarArticulos" OnClick="btnSeleccionarArticulos_Click" Text="Seleccionar" />
                                                             </div>
                                                         </div>
 
@@ -231,7 +231,7 @@
                                                         <br />
                                                         <div>
                                                             <div class="btn-set pull-left">
-                                                                <asp:Button type="button" class="btn red" runat="server" ID="btnEliminar" Text="Eliminar" />
+                                                                <asp:Button type="button" class="btn red" runat="server" ID="btnEliminar" Text="Eliminar" OnClick="btnEliminar_Click" />
                                                             </div>
                                                             <div class="btn-set pull-right">
                                                             </div>
@@ -255,7 +255,7 @@
 
                                     <div class="form-actions right">
                                         <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
-                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" Text="Guardar" />
+                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" Text="Guardar" OnClick="btnGuardar_Click" />
                                     </div>
                                 </div>
                             </form>
