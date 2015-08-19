@@ -16,7 +16,7 @@ namespace SCF.remitos
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("remito.aspx");
         }
 
         protected void btnVerDetalle_Click(object sender, EventArgs e)

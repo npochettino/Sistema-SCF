@@ -13,5 +13,21 @@ namespace SCF.remitos
         {
 
         }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSeleccionarArticulos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
