@@ -556,43 +556,6 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static DataTable RecuperarArticulosEnNotaDePedido(int codigoNotaDePedido)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaArticulos = new DataTable();
-                tablaArticulos.Columns.Add("codigoArticulo");
-                tablaArticulos.Columns.Add("descripcionCorta");
-                tablaArticulos.Columns.Add("descripcionLarga");
-                tablaArticulos.Columns.Add("marca");
-                tablaArticulos.Columns.Add("precio");
-                tablaArticulos.Columns.Add("nombreImagen");
-                tablaArticulos.Columns.Add("cantidad", typeof(int));
-                tablaArticulos.Columns.Add("fechaEntrega", typeof(DateTime));
-
-                NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
-
-                notaDePedido.ItemsNotaDePedido.Aggregate(tablaArticulos, (dt, r) =>
-                {
-                    dt.Rows.Add(r.Codigo, r.Articulo.DescripcionCorta, r.Articulo.DescripcionLarga,
-                        r.Articulo.Marca, r.Articulo.RecuperarPrecioActual(), r.Articulo.NombreImagen, r.Cantidad, r.FechaEntrega); return dt;
-                });
-
-                return tablaArticulos;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
         public static DataTable RecuperarArticuloPorCodigoInternoCliente(string codigoInternoCliente)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
@@ -772,11 +735,10 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulosClientes.Columns.Add("codigoInterno");
                 tablaArticulosClientes.Columns.Add("codigoCliente");
                 tablaArticulosClientes.Columns.Add("razonSocialCliente");
-                tablaArticulosClientes.Columns.Add("precioActual");
 
                 Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
 
-                articulo.ArticulosClientes.Aggregate(tablaArticulosClientes, (dt, r) => { dt.Rows.Add(r.Codigo, r.CodigoInterno, r.Cliente.Codigo, r.Cliente.RazonSocial, articulo.HistorialesPrecio.Where(x => x.FechaHasta == null).Select(x => x.Precio).SingleOrDefault()); return dt; });
+                articulo.ArticulosClientes.Aggregate(tablaArticulosClientes, (dt, r) => { dt.Rows.Add(r.Codigo, r.CodigoInterno, r.Cliente.Codigo, r.Cliente.RazonSocial); return dt; });
 
                 return tablaArticulosClientes;
             }
@@ -1189,6 +1151,43 @@ namespace BibliotecaSCF.Controladores
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        #endregion
+
+        #region Entregas
+
+        public static DataTable RecuperarUltimaEntrega()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaEntrega = new DataTable();
+                tablaEntrega.Columns.Add("codigoEntrega");
+                tablaEntrega.Columns.Add("fechaEmision");
+                tablaEntrega.Columns.Add("numeroRemito");
+                tablaEntrega.Columns.Add("codigoEstado");
+                tablaEntrega.Columns.Add("observaciones");
+
+                Entrega entrega = CatalogoEntrega.RecuperarUltima(nhSesion);
+
+                if (entrega != null)
+                {
+                    tablaEntrega.Rows.Add(new object[] { entrega.Codigo, entrega.FechaEmision, entrega.NumeroRemito, entrega.CodigoEstado, entrega.Observaciones });
+                }
+
+                return tablaEntrega;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 

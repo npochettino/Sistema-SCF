@@ -58,6 +58,7 @@
     <Compile Include="Catalogos\CatalogoArticuloProveedor.cs" />
     <Compile Include="Catalogos\CatalogoCliente.cs" />
     <Compile Include="Catalogos\CatalogoContratoMarco.cs" />
+    <Compile Include="Catalogos\CatalogoEntrega.cs" />
     <Compile Include="Catalogos\CatalogoGenerico.cs" />
     <Compile Include="Catalogos\CatalogoNotaDePedido.cs" />
     <Compile Include="Catalogos\CatalogoProveedor.cs" />

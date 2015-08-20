@@ -40,13 +40,13 @@ namespace SCF.remitos {
         protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtCodigoRemito;
         
         /// <summary>
-        /// Control gvArticulos.
+        /// Control gvItemsNotaDePedido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvArticulos;
+        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvItemsNotaDePedido;
         
         /// <summary>
         /// Control btnSeleccionarArticulos.

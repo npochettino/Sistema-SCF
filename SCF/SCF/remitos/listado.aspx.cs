@@ -26,7 +26,8 @@ namespace SCF.remitos
 
         protected void btnEditar_Click(object sender, EventArgs e)
         {
-
+            int codigoNotaDePedido = int.Parse(gvRemitos.GetRowValues(gvRemitos.FocusedRowIndex, "codigoNotaDePedido").ToString());
+            Response.Redirect("remito.aspx");
         }
 
         protected void btnAceptarEliminarRemito_Click(object sender, EventArgs e)

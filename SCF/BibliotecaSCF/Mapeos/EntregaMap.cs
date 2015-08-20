@@ -14,7 +14,7 @@ namespace BibliotecaSCF.Mapeos
         {
             Table("Entregas");
             Id(x => x.Codigo).Column("codigoEntrega").GeneratedBy.Identity();
-            Map(x => x.FechaRealizacion).Column("fechaEntregaRealizada");
+            Map(x => x.FechaEmision).Column("fechaEmision");
             Map(x => x.NumeroRemito).Column("numeroRemito");
             Map(x => x.CodigoEstado).Column("codigoEstado");
             Map(x => x.Observaciones).Column("observaciones");

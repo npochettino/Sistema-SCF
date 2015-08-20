@@ -65,7 +65,7 @@ namespace SCF.nota_pedido
 
         private void CargarGrillaArticulosSeleccionados(int codigoNotaDePedido)
         {
-            gvArticulosSeleccionados.DataSource = ControladorGeneral.RecuperarArticulosEnNotaDePedido(codigoNotaDePedido);
+            gvArticulosSeleccionados.DataSource = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
             gvArticulosSeleccionados.DataBind();
         }
 

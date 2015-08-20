@@ -14,7 +14,7 @@ namespace BibliotecaSCF.Clases
         }
 
         public virtual int Codigo { get; set; }
-        public virtual DateTime FechaRealizacion { get; set; }
+        public virtual DateTime FechaEmision { get; set; }
         public virtual int NumeroRemito { get; set; }
         public virtual int CodigoEstado { get; set; }
         public virtual string Observaciones { get; set; }

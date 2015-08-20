@@ -62,12 +62,12 @@
                             <div class="form-body" style="height: 600px">
                                 <!-- devexpress-->
 
-                                <dx:ASPxGridView ID="gvRemitos" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoRemito" Theme="Metropolis">
+                                <dx:ASPxGridView ID="gvRemitos" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoEntrega" Theme="Metropolis">
                                     <Columns>
                                         <dx:GridViewDataTextColumn FieldName="codigoEntrega" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataDateColumn FieldName="notaDePedido" VisibleIndex="1" Caption="Nota de pedido">
+                                        <dx:GridViewDataDateColumn FieldName="codigoNotaDePedido" VisibleIndex="1" Caption="Nota de pedido">
                                         </dx:GridViewDataDateColumn>
                                         <dx:GridViewDataDateColumn FieldName="fechaEntregaRealizada" VisibleIndex="2" Caption="Fecha de la entrega">
                                         </dx:GridViewDataDateColumn>
