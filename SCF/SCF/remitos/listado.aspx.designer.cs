@@ -49,13 +49,13 @@ namespace SCF.remitos {
         protected global::System.Web.UI.WebControls.Button btnVerDetalle;
         
         /// <summary>
-        /// Control gvRemitos.
+        /// Control gvEntregas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvRemitos;
+        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvEntregas;
         
         /// <summary>
         /// Control pcConfirmarEliminarRemito.

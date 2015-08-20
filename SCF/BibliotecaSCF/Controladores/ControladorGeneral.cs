@@ -1158,6 +1158,39 @@ namespace BibliotecaSCF.Controladores
 
         #region Entregas
 
+        public static DataTable RecuperarTodasEntregas()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaEntrega = new DataTable();
+                tablaEntrega.Columns.Add("codigoEntrega");
+                tablaEntrega.Columns.Add("codigoNotaDePedido");
+                tablaEntrega.Columns.Add("codigoCliente");
+                tablaEntrega.Columns.Add("razonSocialCliente");
+                tablaEntrega.Columns.Add("fechaEmision");
+                tablaEntrega.Columns.Add("numeroRemito");
+                tablaEntrega.Columns.Add("codigoEstado");
+                tablaEntrega.Columns.Add("observaciones");
+
+                List<Entrega> listaEntregas = CatalogoEntrega.RecuperarTodos(nhSesion);
+
+                listaEntregas.Aggregate(tablaEntrega, (dt, r) => { dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo, r.NotaDePedido.Cliente.RazonSocial, r.FechaEmision, r.NumeroRemito, r.CodigoEstado, r.Observaciones); return dt; });
+
+                return tablaEntrega;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
         public static DataTable RecuperarUltimaEntrega()
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
@@ -1192,5 +1225,42 @@ namespace BibliotecaSCF.Controladores
         }
 
         #endregion
+
+        public static DataTable RecuperaritemsEntrega(int codigoEntrega)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaItemsEntrega = new DataTable();
+                tablaItemsEntrega.Columns.Add("codigoItemEntrega");
+                tablaItemsEntrega.Columns.Add("codigoArticulo");
+                tablaItemsEntrega.Columns.Add("descripcionCortaArticulo");
+                tablaItemsEntrega.Columns.Add("cantidad");
+                tablaItemsEntrega.Columns.Add("codigoProveedor");
+                tablaItemsEntrega.Columns.Add("razonSocialProveedor");
+
+                Entrega entrega = CatalogoEntrega.RecuperarPorCodigo(codigoEntrega, nhSesion);
+
+                if (entrega != null)
+                {
+                    entrega.ItemsEntrega.Aggregate(tablaItemsEntrega, (dt, r) =>
+                    {
+                        dt.Rows.Add(r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.Cantidad, r.ArticuloProveedor.Proveedor.Codigo, r.ArticuloProveedor.Proveedor.RazonSocial); return dt;
+                    });
+                }
+
+                return tablaItemsEntrega;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
     }
 }

@@ -68,15 +68,19 @@
                                         <dx:GridViewDataTextColumn FieldName="codigoEntrega" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataDateColumn FieldName="notaDePedido" VisibleIndex="1" Caption="Nota de pedido">
+                                        <dx:GridViewDataDateColumn FieldName="codigoNotaDePedido" VisibleIndex="1" Visible="false">
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="fechaEntregaRealizada" VisibleIndex="2" Caption="Fecha de la entrega">
+                                        <dx:GridViewDataDateColumn FieldName="codigoCliente" VisibleIndex="2" Visible="false">
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataTextColumn FieldName="numeroRemito" VisibleIndex="3" Caption="Numero remito">
+                                        <dx:GridViewDataDateColumn FieldName="razonSocialCliente" VisibleIndex="3" Caption="Cliente">
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="fechaEmision" VisibleIndex="4" Caption="Fecha Emision">
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataTextColumn FieldName="numeroRemito" VisibleIndex="5" Caption="Numero Remito">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="codigoEstado" VisibleIndex="4" Visible="false">
+                                        <dx:GridViewDataTextColumn FieldName="codigoEstado" VisibleIndex="6" Visible="false">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="5" Caption="Observaciones">
+                                        <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="7" Caption="Observaciones">
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />

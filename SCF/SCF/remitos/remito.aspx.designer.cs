@@ -58,13 +58,13 @@ namespace SCF.remitos {
         protected global::System.Web.UI.WebControls.Button btnSeleccionarArticulos;
         
         /// <summary>
-        /// Control gvArticulosSeleccionados.
+        /// Control gvItemsEntrega.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvArticulosSeleccionados;
+        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvItemsEntrega;
         
         /// <summary>
         /// Control btnEliminar.

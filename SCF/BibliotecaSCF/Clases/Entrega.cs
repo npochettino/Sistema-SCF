@@ -19,6 +19,7 @@ namespace BibliotecaSCF.Clases
         public virtual int CodigoEstado { get; set; }
         public virtual string Observaciones { get; set; }
 
+        public virtual NotaDePedido NotaDePedido { get; set; }
         public virtual List<ItemEntrega> ItemsEntrega { get; set; }
     }
 }

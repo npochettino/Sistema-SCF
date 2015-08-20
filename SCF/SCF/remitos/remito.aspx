@@ -8,7 +8,9 @@
 
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<script src="remito.js" type="text/javascript"></script>
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -112,8 +114,7 @@
                                                         <!-- GRID VIEW ARTICULOS-->
                                                         <dx:ASPxGridView ID="gvItemsNotaDePedido" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoItemNotaDePedido" Theme="Metropolis" Width="100%">
                                                             <Columns>
-                                                                <dx:GridViewCommandColumn ShowSelectCheckbox="True"
-                                                                    VisibleIndex="0" Caption="Seleccionar">
+                                                                <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Caption="Seleccionar">
                                                                 </dx:GridViewCommandColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="codigoItemNotaDePedido" ReadOnly="True" Visible="False" VisibleIndex="0">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
@@ -179,51 +180,31 @@
                                                 <div class="portlet-body">
                                                     <div id="chart_9" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ITEMS SELECCIONADOS-->
-                                                        <dx:ASPxGridView ID="gvArticulosSeleccionados" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoArticulo"
-                                                            Width="100%">
+                                                        <dx:ASPxGridView ID="gvItemsEntrega" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoItemEntrega" Width="100%" ClientInstanceName="gvItemsEntrega"
+                                                            OnRowUpdating="gvItemsEntrega_RowUpdating">
                                                             <Columns>
-                                                                <dx:GridViewDataTextColumn Caption="codigoArticulo" VisibleIndex="0" FieldName="codigoArticulo"
-                                                                    Visible="false">
+                                                                <dx:GridViewDataTextColumn VisibleIndex="0" FieldName="codigoItemEntrega" Visible="false">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="descripcionCorta" VisibleIndex="1" FieldName="descripcionCorta">
+                                                                <dx:GridViewDataTextColumn VisibleIndex="1" FieldName="codigoArticulo" Visible="false">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="descripcionLarga" Visible="false" VisibleIndex="2" FieldName="descripcionLarga">
+                                                                <dx:GridViewDataTextColumn Caption="Descripcion Corta Articulo" VisibleIndex="2" FieldName="descripcionCorta" Visible="true">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="3">
+                                                                <dx:GridViewDataTextColumn Visible="false" VisibleIndex="3" FieldName="codigoProveedor">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-
-                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="4" FieldName="cantidad">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-
-
-                                                                </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataDateColumn Caption="fechaEntrega" VisibleIndex="5" FieldName="fechaEntrega">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-
-                                                                </dx:GridViewDataDateColumn>
-
-                                                                <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" VisibleIndex="6" FieldName="codigoItemNotaDePedido">
+                                                                <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" VisibleIndex="4" Caption="Proveedor">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-
-                                                                <dx:GridViewDataTextColumn Caption="precio" VisibleIndex="7" FieldName="precio">
+                                                                <dx:GridViewDataTextColumn Caption="Cantidad" FieldName="cantidad" VisibleIndex="5">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-
+                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="6">
+                                                                </dx:GridViewCommandColumn>
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
-
                                                             <Settings ShowFilterRow="True" />
                                                         </dx:ASPxGridView>
                                                         <br />
@@ -253,7 +234,7 @@
 
                                     <div class="form-actions right">
                                         <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
-                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" Text="Guardar" OnClick="btnGuardar_Click" />
+                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" Text="Guardar" OnClick="btnGuardar_Click" /><%--OnClientClick="btnGuardar_Click(); return false;"--%>
                                     </div>
                                 </div>
                             </form>
