@@ -191,15 +191,22 @@
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="Descripcion Corta Articulo" VisibleIndex="2" FieldName="descripcionCorta" Visible="true">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Visible="false" VisibleIndex="3" FieldName="codigoProveedor">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" VisibleIndex="4" Caption="Proveedor">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="Cantidad" FieldName="cantidad" VisibleIndex="5">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn VisibleIndex="5" FieldName="codigoItemNotaDePedido" Visible="false">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn VisibleIndex="6" FieldName="isEliminada" Visible="false">
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="6">
                                                                 </dx:GridViewCommandColumn>

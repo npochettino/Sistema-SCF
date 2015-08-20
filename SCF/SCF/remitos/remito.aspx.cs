@@ -14,33 +14,40 @@ namespace SCF.remitos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido();
+            cbNotaDePedido.DataBind();
+            CargarGrillaItemsEntrega();
+
             if (!IsPostBack)
             {
                 if (Session["tablaEntrega"] != null)
                 {
                     DataTable tablaUltimaEntrega = ControladorGeneral.RecuperarUltimaEntrega();
                     txtCodigoRemito.Text = tablaUltimaEntrega.Rows.Count > 0 ? tablaUltimaEntrega.Rows[0]["codigoEntrega"].ToString() : string.Empty;
+
+                    DataTable tablaEntrega = (DataTable)Session["tablaEntrega"];
+                    txtCodigoRemito.Text = tablaEntrega.Rows[0]["numeroRemito"].ToString(); ;
+                    txtFechaEmision.Value = Convert.ToDateTime(tablaEntrega.Rows[0]["fechaEmision"]);
+                    txtObservacion.InnerText = tablaEntrega.Rows[0]["observaciones"].ToString();
+                    cbNotaDePedido.SelectedItem = cbNotaDePedido.Items.FindByValue(Convert.ToInt32(tablaEntrega.Rows[0]["codigoNotaDePedido"]));
+
+                    int codigoNotaDePedido = Convert.ToInt32(tablaEntrega.Rows[0]["codigoNotaDePedido"]);
+                    gvItemsNotaDePedido.DataSource = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
+                    gvItemsNotaDePedido.DataBind();
+
+                    int codigoEntrega = Convert.ToInt32(tablaEntrega.Rows[0]["codigoEntrega"]);
+                    DataTable tablaItemsEntrega = ControladorGeneral.RecuperarItemsEntrega(codigoEntrega);
+                    tablaItemsEntrega.Columns.Add("isEliminar");
+                    tablaItemsEntrega.Columns["isEliminar"].DefaultValue = false;
+                    gvItemsEntrega.DataSource = tablaItemsEntrega;
+                    gvItemsEntrega.DataBind();
+
+                    Session["tablaItemsEntrega"] = tablaItemsEntrega;
                 }
             }
 
-            cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido();
-            cbNotaDePedido.DataBind();
-            CargarGrillaItemsEntrega();
-
             if (Session["tablaEntrega"] != null)
             {
-                DataTable tablaEntrega = (DataTable)Session["tablaEntrega"];
-                txtCodigoRemito.Text = tablaEntrega.Rows[0]["numeroRemito"].ToString(); ;
-                txtFechaEmision.Value = Convert.ToDateTime(tablaEntrega.Rows[0]["fechaEmision"]);
-                txtObservacion.InnerText = tablaEntrega.Rows[0]["observaciones"].ToString();
-
-                int codigoNotaDePedido = Convert.ToInt32(tablaEntrega.Rows[0]["codigoNotaDePedido"]);
-                gvItemsNotaDePedido.DataSource = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
-                gvItemsNotaDePedido.DataBind();
-
-                int codigoEntrega = Convert.ToInt32(tablaEntrega.Rows[0]["codigoEntrega"]);
-                gvItemsEntrega.DataSource = ControladorGeneral.RecuperaritemsEntrega(codigoEntrega);
-                gvItemsEntrega.DataBind();
             }
         }
 
@@ -68,13 +75,25 @@ namespace SCF.remitos
                 tablaItemsEntrega.Columns.Add("cantidad");
                 tablaItemsEntrega.Columns.Add("codigoProveedor");
                 tablaItemsEntrega.Columns.Add("razonSocialProveedor");
+                tablaItemsEntrega.Columns.Add("codigoItemNotaDePedido");
+                tablaItemsEntrega.Columns.Add("isEliminada");
+
+                if (Session["tablaEntrega"] != null)
+                {
+                    int codigoEntrega = Convert.ToInt32(((DataTable)Session["tablaEntrega"]).Rows[0]["codigoEntrega"]);
+                    DataTable tablaItemsEntregaActual = ControladorGeneral.RecuperarItemsEntrega(codigoEntrega);
+                    tablaItemsEntregaActual.Columns.Add("isEliminada");
+                    tablaItemsEntregaActual.Columns["isEliminada"].DefaultValue = false;
+
+                    tablaItemsEntrega = tablaItemsEntregaActual.Copy();
+                }
 
                 for (int i = 0; i < gvItemsNotaDePedido.VisibleRowCount; i++)
                 {
                     if (gvItemsNotaDePedido.Selection.IsRowSelected(i))
                     {
                         DataRowView mRow = (DataRowView)gvItemsNotaDePedido.GetRow(i);
-                        tablaItemsEntrega.Rows.Add(-i, mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], 1, 0, string.Empty);
+                        tablaItemsEntrega.Rows.Add(-i, mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], 1, 0, string.Empty, mRow.Row.ItemArray[0], false);
                     }
                 }
 
@@ -91,7 +110,18 @@ namespace SCF.remitos
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            DataTable tablaItemsEntrega = (DataTable)Session["tablaItemsEntrega"];
+            int codigoEntrega = 0;
 
+            if (Session["tablaEntrega"] != null)
+            {
+                DataTable tablaEntrega = (DataTable)Session["tablaEntrega"];
+                codigoEntrega = Convert.ToInt32(tablaEntrega.Rows[0]["codigoEntrega"]);
+            }
+
+            ControladorGeneral.InsertarActualizarEntrega(codigoEntrega, Convert.ToDateTime(txtFechaEmision.Value), Convert.ToInt32(cbNotaDePedido.Value), Convert.ToInt32(txtCodigoRemito.Text), txtObservacion.InnerText, tablaItemsEntrega);
+
+            Response.Redirect("listado.aspx");
         }
 
         protected void cbNotaDePedido_SelectedIndexChanged(object sender, EventArgs e)
@@ -122,11 +152,5 @@ namespace SCF.remitos
             e.Cancel = true;
             gvItemsEntrega.CancelEdit();
         }
-
-        //[WebMethod]
-        //public static void GuardarGrilla(string[] s)
-        //{
-        //    int a = 0;
-        //}
     }
 }

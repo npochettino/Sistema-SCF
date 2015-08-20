@@ -1224,9 +1224,66 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
+        public static void InsertarActualizarEntrega(int codigoEntrega, DateTime fechaEmision, int codigoNotaPedido, int numeroRemito, string observaciones, DataTable tablaItemsEntrega)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Entrega entrega;
+                if (codigoEntrega == 0)
+                {
+                    entrega = new Entrega();
+                }
+                else
+                {
+                    entrega = CatalogoEntrega.RecuperarPorCodigo(codigoEntrega, nhSesion);
+                }
+
+                NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaPedido, nhSesion);
+
+                entrega.CodigoEstado = Constantes.EstadosNotaDePedido.VIGENTE;
+                entrega.FechaEmision = fechaEmision;
+                entrega.NotaDePedido = notaDePedido;
+                entrega.NumeroRemito = numeroRemito;
+                entrega.Observaciones = observaciones;
+
+                foreach (DataRow filaItem in tablaItemsEntrega.Rows)
+                {
+                    int codigoItemEntrega = Convert.ToInt32(filaItem["codigoItemEntrega"]);
+                    ItemEntrega item;
+
+                    if (codigoItemEntrega < 1)
+                    {
+                        item = new ItemEntrega();
+                        entrega.ItemsEntrega.Add(item);
+                    }
+                    else
+                    {
+                        item = (from i in entrega.ItemsEntrega where i.Codigo == codigoItemEntrega select i).SingleOrDefault();
+                    }
+
+                    item.Cantidad = Convert.ToInt32(filaItem["cantidad"]);
+                    item.ArticuloProveedor = null;
+                    item.ItemNotaDePedido = (from i in notaDePedido.ItemsNotaDePedido where i.Codigo == Convert.ToInt32(filaItem["codigoItemNotaDePedido"]) select i).SingleOrDefault();
+                }
+
+                CatalogoEntrega.InsertarActualizar(entrega, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
         #endregion
 
-        public static DataTable RecuperaritemsEntrega(int codigoEntrega)
+        public static DataTable RecuperarItemsEntrega(int codigoEntrega)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -1235,10 +1292,11 @@ namespace BibliotecaSCF.Controladores
                 DataTable tablaItemsEntrega = new DataTable();
                 tablaItemsEntrega.Columns.Add("codigoItemEntrega");
                 tablaItemsEntrega.Columns.Add("codigoArticulo");
-                tablaItemsEntrega.Columns.Add("descripcionCortaArticulo");
+                tablaItemsEntrega.Columns.Add("descripcionCorta");
                 tablaItemsEntrega.Columns.Add("cantidad");
                 tablaItemsEntrega.Columns.Add("codigoProveedor");
                 tablaItemsEntrega.Columns.Add("razonSocialProveedor");
+                tablaItemsEntrega.Columns.Add("codigoItemNotaDePedido");
 
                 Entrega entrega = CatalogoEntrega.RecuperarPorCodigo(codigoEntrega, nhSesion);
 
@@ -1246,7 +1304,7 @@ namespace BibliotecaSCF.Controladores
                 {
                     entrega.ItemsEntrega.Aggregate(tablaItemsEntrega, (dt, r) =>
                     {
-                        dt.Rows.Add(r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.Cantidad, r.ArticuloProveedor.Proveedor.Codigo, r.ArticuloProveedor.Proveedor.RazonSocial); return dt;
+                        dt.Rows.Add(r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.Cantidad, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo); return dt;
                     });
                 }
 
