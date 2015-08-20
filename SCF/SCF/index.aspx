@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="SCF.index" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server" >
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,8 +64,10 @@
                         <div class="dashboard-stat2">
                             <div class="display">
                                 <div class="number">
-                                    <h3 class="font-green-sharp">7800<small class="font-green-sharp"></small></h3>
-                                    <small>NOTAS DE PEDIDO</small>
+                                    <h3 class="font-green-sharp">
+                                        <dx:ASPxLabel ID="lblEntregasEnTiempo" runat="server" Text=""></dx:ASPxLabel>
+                                        <small class="font-green-sharp"></small></h3>
+                                    <small>ENTREGAS EN TIEMPO</small>
                                 </div>
                                 <div class="icon">
                                     <i class="icon-docs"></i>
@@ -76,8 +80,8 @@
                         <div class="dashboard-stat2">
                             <div class="display">
                                 <div class="number">
-                                    <h3 class="font-red-haze">1349</h3>
-                                    <small>ENTREGAS</small>
+                                    <h3 class="font-red-haze"><dx:ASPxLabel ID="lblEntregasPorVencer" runat="server" Text=""></dx:ASPxLabel></h3>
+                                    <small>ENTREGAS POR VENCER</small>
                                 </div>
                                 <div class="icon">
                                     <i class="icon-like"></i>
@@ -90,8 +94,8 @@
                         <div class="dashboard-stat2">
                             <div class="display">
                                 <div class="number">
-                                    <h3 class="font-blue-sharp">567</h3>
-                                    <small>CLIENTES</small>
+                                    <h3 class="font-blue-sharp"><dx:ASPxLabel ID="lblEntregasVencidas" runat="server" Text=""></dx:ASPxLabel></h3>
+                                    <small>ENTREGAS VENCIDAS</small>
                                 </div>
                                 <div class="icon">
                                     <i class="icon-users"></i>
@@ -104,8 +108,8 @@
                         <div class="dashboard-stat2">
                             <div class="display">
                                 <div class="number">
-                                    <h3 class="font-purple-soft">276</h3>
-                                    <small>PROVEEDORES</small>
+                                    <h3 class="font-purple-soft"><dx:ASPxLabel ID="lblCobrosPendientes" runat="server" Text=""></dx:ASPxLabel></h3>
+                                    <small>COBROS PENDIENTES</small>
                                 </div>
                                 <div class="icon">
                                     <i class="icon-users"></i>

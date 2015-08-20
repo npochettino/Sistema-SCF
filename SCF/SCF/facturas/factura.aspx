@@ -1,3 +1,250 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="factura.aspx.cs" Inherits="SCF.facturas.factura" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPanel" TagPrefix="dx" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!-- BEGIN PAGE HEAD -->
+            <div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="page-title">
+                    <h1>Factura <small>editar/nuevo Factura</small></h1>
+                </div>
+                <!-- END PAGE TITLE -->
+
+            </div>
+            <!-- END PAGE HEAD -->
+
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a href="../index.aspx">Inicio</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <a href="factura.aspx">Factura</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <!-- END PAGE HEADER-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box green">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa icon-note"></i>Factura
+                            </div>
+                            <div class="tools">
+                                <a href="javascript:;" class="fullscreen"></a>
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+
+                            <!-- BEGIN FORM-->
+                            <form action="#" class="horizontal-form">
+                                <div class="form-body">
+                                    <h3 class="form-section">Detalle de la Factura</h3>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Nro. Factura</label>
+                                                <dx:ASPxTextBox ID="txtNroFactura" runat="server" CssClass="form-control" Width="100%" placeholder="Nro Factura"></dx:ASPxTextBox>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Tipo de Factura</label>
+                                                <dx:ASPxComboBox ID="cbTipoFactura" runat="server" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
+                                                    <Items>
+                                                        <dx:ListEditItem Text="Tipo A" Value="1" />
+                                                        <dx:ListEditItem Text="Tipo C" Value="2" />
+                                                    </Items>
+                                                </dx:ASPxComboBox>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Fecha Facturación</label>
+                                                <dx:ASPxDateEdit ID="txtFechaFacturacion" runat="server" CssClass="form-control" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
+                                                    <TimeSectionProperties Visible="True">
+                                                    </TimeSectionProperties>
+
+                                                </dx:ASPxDateEdit>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Remito</label>
+                                                <dx:ASPxComboBox ID="cbRemito" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                    ValueField="codigoRemito" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis" OnSelectedIndexChanged="cbRemito_SelectedIndexChanged" AutoPostBack="True">
+                                                    <Columns>
+                                                        <dx:ListBoxColumn FieldName="numeroRemito" Caption="Nro Remito" Width="30%" />
+                                                        <dx:ListBoxColumn FieldName="razonSocialCliente" Caption="Cliente" />
+                                                        <dx:ListBoxColumn FieldName="cuil" Caption="CUIL" />
+                                                    </Columns>
+                                                </dx:ASPxComboBox>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Tipo de Moneda</label>
+                                                <dx:ASPxComboBox ID="ASPxComboBox1" runat="server" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
+                                                    <Items>
+                                                        <dx:ListEditItem Text="Peso" Value="1" />
+                                                        <dx:ListEditItem Text="Dolar" Value="2" />
+                                                        <dx:ListEditItem Text="Euro" Value="2" />
+                                                    </Items>
+                                                </dx:ASPxComboBox>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+
+                                    <!-- BEGIN ROW -->
+                                    <h3 class="form-section">Items de la Factura</h3>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- BEGIN CHART PORTLET-->
+                                            <div class="portlet light">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-bar-chart font-green-haze"></i>
+                                                        <span class="caption-subject bold uppercase font-green-haze">Artículos</span>
+                                                    </div>
+                                                    <div class="tools">
+                                                        <a href="javascript:;" class="collapse"></a>
+                                                        <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                                                        <a href="javascript:;" class="reload"></a>
+                                                        <a href="javascript:;" class="fullscreen"></a>
+                                                        <a href="javascript:;" class="remove"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div id="chart_8" class="chart" style="height: auto">
+                                                        <!-- GRID VIEW ARTICULOS-->
+                                                        <dx:ASPxGridView ID="gvItemsFactura" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoItemNotaDePedido" Theme="Metropolis" Width="100%">
+                                                            <Columns>
+                                                                <dx:GridViewCommandColumn ShowSelectCheckbox="True"
+                                                                    VisibleIndex="0" Caption="Seleccionar">
+                                                                </dx:GridViewCommandColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="False" VisibleIndex="1">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="cuil" VisibleIndex="2" Visible="true" Caption="CUIL">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="razonSocial" VisibleIndex="2" Visible="true" Caption="Razon Social">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Descripción Corta">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="4" FieldName="cantidad">
+                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+
+                                                                    <DataItemTemplate>
+                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
+                                                                        </dx:ASPxSpinEdit>
+                                                                    </DataItemTemplate>
+
+
+                                                                </dx:GridViewDataSpinEditColumn>
+                                                                <dx:GridViewDataSpinEditColumn Caption="Precio" VisibleIndex="4" FieldName="precio">
+                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+
+                                                                    <DataItemTemplate>
+                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
+                                                                        </dx:ASPxSpinEdit>
+                                                                    </DataItemTemplate>
+
+
+                                                                </dx:GridViewDataSpinEditColumn>
+                                                                <dx:GridViewDataSpinEditColumn Caption="Importe" VisibleIndex="4" FieldName="precio">
+                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+
+                                                                    <DataItemTemplate>
+                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
+                                                                        </dx:ASPxSpinEdit>
+                                                                    </DataItemTemplate>
+
+
+                                                                </dx:GridViewDataSpinEditColumn>
+                                                            </Columns>
+                                                            <SettingsBehavior AllowFocusedRow="True" />
+                                                            <SettingsPager PageSize="10">
+                                                            </SettingsPager>
+                                                            <Settings ShowFilterRow="True" />
+                                                        </dx:ASPxGridView>
+
+                                                    </div>
+                                                </div>
+                                                <!-- END CHART PORTLET-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END ROW -->
+                                    <div class="portlet box green">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-dollar"></i>Total
+                                            </div>
+                                            <div class="tools">
+                                                <a href="javascript:;" class="collapse"></a>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <h3 style="text-align:right">SUBTOTAL <small><dx:ASPxLabel ID="lblSubtotal" runat="server" Text="123123"></dx:ASPxLabel></small></h3>
+                                            <h3 style="text-align:right">IVA <small><asp:TextBox ID="txtIVA" runat="server" Text="21" Width="40px" OnTextChanged="txtIVA_TextChanged"></asp:TextBox></small></h3>
+                                            <h3 style="text-align:right">TOTAL <small><dx:ASPxLabel ID="lblTotal" runat="server" Text="123123"></dx:ASPxLabel></small></h3>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions right">
+                                        <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
+                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" Text="Guardar" OnClick="btnGuardar_Click" />
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- END CONTENT -->
+    <!-- COMIENZO DE POP UP-->
+
+    <script type="text/javascript">
+        function ShowEditarItemsNotaDePedido() {
+            pcEditarItemsNotaDePedido.Show();
+        }
+    </script>
+
+
 </asp:Content>
+

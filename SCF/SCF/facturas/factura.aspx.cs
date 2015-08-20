@@ -13,5 +13,20 @@ namespace SCF.facturas
         {
 
         }
+
+        protected void cbRemito_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtIVA_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
