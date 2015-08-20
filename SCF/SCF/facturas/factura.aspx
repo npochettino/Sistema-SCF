@@ -139,9 +139,6 @@
                                                         <!-- GRID VIEW ARTICULOS-->
                                                         <dx:ASPxGridView ID="gvItemsFactura" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoItemNotaDePedido" Theme="Metropolis" Width="100%">
                                                             <Columns>
-                                                                <dx:GridViewCommandColumn ShowSelectCheckbox="True"
-                                                                    VisibleIndex="0" Caption="Seleccionar">
-                                                                </dx:GridViewCommandColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="False" VisibleIndex="1">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
@@ -157,39 +154,27 @@
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="4" FieldName="cantidad">
                                                                     <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
-
                                                                     <DataItemTemplate>
                                                                         <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
                                                                         </dx:ASPxSpinEdit>
                                                                     </DataItemTemplate>
-
-
                                                                 </dx:GridViewDataSpinEditColumn>
                                                                 <dx:GridViewDataSpinEditColumn Caption="Precio" VisibleIndex="4" FieldName="precio">
                                                                     <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
-
                                                                     <DataItemTemplate>
                                                                         <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
                                                                         </dx:ASPxSpinEdit>
                                                                     </DataItemTemplate>
-
-
                                                                 </dx:GridViewDataSpinEditColumn>
                                                                 <dx:GridViewDataSpinEditColumn Caption="Importe" VisibleIndex="4" FieldName="precio">
                                                                     <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
-
                                                                     <DataItemTemplate>
                                                                         <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
                                                                         </dx:ASPxSpinEdit>
                                                                     </DataItemTemplate>
-
-
                                                                 </dx:GridViewDataSpinEditColumn>
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
@@ -215,10 +200,15 @@
                                             </div>
                                         </div>
                                         <div class="portlet-body">
-                                            <h3 style="text-align:right">SUBTOTAL <small><dx:ASPxLabel ID="lblSubtotal" runat="server" Text="123123"></dx:ASPxLabel></small></h3>
-                                            <h3 style="text-align:right">IVA <small><asp:TextBox ID="txtIVA" runat="server" Text="21" Width="40px" OnTextChanged="txtIVA_TextChanged"></asp:TextBox></small></h3>
-                                            <h3 style="text-align:right">TOTAL <small><dx:ASPxLabel ID="lblTotal" runat="server" Text="123123"></dx:ASPxLabel></small></h3>
-                                            
+                                            <h3 style="text-align: right">SUBTOTAL <small>
+                                                <dx:ASPxLabel ID="lblSubtotal" runat="server" Text="123123"></dx:ASPxLabel>
+                                            </small></h3>
+                                            <h3 style="text-align: right">IVA <small>
+                                                <asp:TextBox ID="txtIVA" runat="server" Text="21" Width="40px" OnTextChanged="txtIVA_TextChanged"></asp:TextBox></small></h3>
+                                            <h3 style="text-align: right">TOTAL <small>
+                                                <dx:ASPxLabel ID="lblTotal" runat="server" Text="123123"></dx:ASPxLabel>
+                                            </small></h3>
+
                                         </div>
                                     </div>
 
@@ -238,13 +228,5 @@
     </div>
     <!-- END CONTENT -->
     <!-- COMIENZO DE POP UP-->
-
-    <script type="text/javascript">
-        function ShowEditarItemsNotaDePedido() {
-            pcEditarItemsNotaDePedido.Show();
-        }
-    </script>
-
-
 </asp:Content>
 

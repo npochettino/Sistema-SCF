@@ -65,14 +65,29 @@
                                         <dx:GridViewDataTextColumn FieldName="idFactura" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataDateColumn FieldName="fechaFactura" VisibleIndex="1">
+                                        <dx:GridViewDataDateColumn FieldName="numeroFactura" VisibleIndex="1" Caption="Numero Factura">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="fechaFactura" VisibleIndex="1" Caption="Fecha Facturación">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="cuil" VisibleIndex="1" Caption="CUIL">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="razonSocialCliente" VisibleIndex="1" Caption="Razon Social">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="importeFactura" VisibleIndex="1" Caption="Importe">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />
                                     <Settings ShowFilterRow="True" />
+                                    <SettingsPager PageSize="10">
+                                    </SettingsPager>
                                 </dx:ASPxGridView>
-                                
+
                             </div>
 
                         </div>
@@ -89,8 +104,8 @@
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarFactura"
         HeaderText="Eliminar Factura" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
-        <clientsideevents popup="function(s, e) {  txtPrecio.Focus(); }" />
-        <contentcollection>
+        <ClientSideEvents PopUp="function(s, e) {  txtPrecio.Focus(); }" />
+        <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
                 <dx:ASPxPanel ID="Panel2" runat="server" DefaultButton="">
                     <PanelCollection>
@@ -117,7 +132,7 @@
                     </PanelCollection>
                 </dx:ASPxPanel>
             </dx:PopupControlContentControl>
-        </contentcollection>
+        </ContentCollection>
     </dx:ASPxPopupControl>
     <!--END POPUP-->
 

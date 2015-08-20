@@ -16,7 +16,7 @@ namespace SCF.facturas
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("factura.aspx");
         }
 
         protected void btnEditar_Click(object sender, EventArgs e)
