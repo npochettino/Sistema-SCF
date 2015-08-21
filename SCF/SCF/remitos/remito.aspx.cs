@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BibliotecaSCF.Controladores;
 using System.Web.Services;
+using System.Drawing;
 
 namespace SCF.remitos
 {
@@ -16,10 +17,11 @@ namespace SCF.remitos
         {
             cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido();
             cbNotaDePedido.DataBind();
-            CargarGrillaItemsEntrega();
 
             if (!IsPostBack)
             {
+                CargarGrillaItemsEntrega(false);
+
                 if (Session["tablaEntrega"] != null)
                 {
                     DataTable tablaUltimaEntrega = ControladorGeneral.RecuperarUltimaEntrega();
@@ -37,8 +39,7 @@ namespace SCF.remitos
 
                     int codigoEntrega = Convert.ToInt32(tablaEntrega.Rows[0]["codigoEntrega"]);
                     DataTable tablaItemsEntrega = ControladorGeneral.RecuperarItemsEntrega(codigoEntrega);
-                    tablaItemsEntrega.Columns.Add("isEliminar");
-                    tablaItemsEntrega.Columns["isEliminar"].DefaultValue = false;
+                    tablaItemsEntrega.Columns.Add("isEliminada");
                     gvItemsEntrega.DataSource = tablaItemsEntrega;
                     gvItemsEntrega.DataBind();
 
@@ -53,16 +54,39 @@ namespace SCF.remitos
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
+            DataTable tablaItemsEntrega = (DataTable)Session["tablaItemsEntrega"];
+            int codigoItemEntregaEliminado = Convert.ToInt32(gvItemsEntrega.GetRowValues(gvItemsEntrega.FocusedRowIndex, "codigoItemEntrega"));
 
+            DataRow filaEliminada = (from t in tablaItemsEntrega.AsEnumerable() where Convert.ToInt32(t["codigoItemEntrega"]) == codigoItemEntregaEliminado select t).SingleOrDefault();
+
+            if (codigoItemEntregaEliminado < 1)
+            {
+                tablaItemsEntrega.Rows.Remove(filaEliminada);
+            }
+            else
+            {
+                bool isEliminada = Convert.IsDBNull(filaEliminada["isEliminada"]) ? false : Convert.ToBoolean(filaEliminada["isEliminada"]);
+                if (isEliminada)
+                {
+                    filaEliminada["isEliminada"] = false;
+                }
+                else
+                {
+                    filaEliminada["isEliminada"] = true;
+                }
+            }
+
+            Session["tablaItemsEntrega"] = tablaItemsEntrega;
+            CargarGrillaItemsEntrega(false);
         }
 
         protected void btnSeleccionarArticulos_Click(object sender, EventArgs e)
         {
-            Session["tablaItemsEntrega"] = null;
-            CargarGrillaItemsEntrega();
+            DataTable tablaItemsEntrega = (DataTable)Session["tablaItemsEntrega"];
+            CargarGrillaItemsEntrega(true);
         }
 
-        private void CargarGrillaItemsEntrega()
+        private void CargarGrillaItemsEntrega(bool isSeleccionar)
         {
             CargarGrillaItemsNotaDePedido();
             DataTable tablaItemsEntrega = new DataTable();
@@ -83,7 +107,6 @@ namespace SCF.remitos
                     int codigoEntrega = Convert.ToInt32(((DataTable)Session["tablaEntrega"]).Rows[0]["codigoEntrega"]);
                     DataTable tablaItemsEntregaActual = ControladorGeneral.RecuperarItemsEntrega(codigoEntrega);
                     tablaItemsEntregaActual.Columns.Add("isEliminada");
-                    tablaItemsEntregaActual.Columns["isEliminada"].DefaultValue = false;
 
                     tablaItemsEntrega = tablaItemsEntregaActual.Copy();
                 }
@@ -102,6 +125,24 @@ namespace SCF.remitos
             else
             {
                 tablaItemsEntrega = (DataTable)Session["tablaItemsEntrega"];
+
+                if (isSeleccionar)
+                {
+                    for (int i = 0; i < gvItemsNotaDePedido.VisibleRowCount; i++)
+                    {
+                        if (gvItemsNotaDePedido.Selection.IsRowSelected(i))
+                        {
+                            DataRowView mRow = (DataRowView)gvItemsNotaDePedido.GetRow(i);
+                            int codigoItemNotaDePedido = Convert.ToInt32(mRow.Row.ItemArray[0]);
+                            DataRow filaRepetida = (from t in tablaItemsEntrega.AsEnumerable() where Convert.ToInt32(t["codigoItemNotaDePedido"]) == codigoItemNotaDePedido select t).SingleOrDefault();
+
+                            if (filaRepetida == null)
+                            {
+                                tablaItemsEntrega.Rows.Add(-i, mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], 1, 0, string.Empty, mRow.Row.ItemArray[0], false);
+                            }
+                        }
+                    }
+                }
             }
 
             gvItemsEntrega.DataSource = tablaItemsEntrega;
@@ -151,6 +192,16 @@ namespace SCF.remitos
             Session["tablaItemsEntrega"] = tablaItemsEntrega;
             e.Cancel = true;
             gvItemsEntrega.CancelEdit();
+            CargarGrillaItemsEntrega(false);
+        }
+
+        protected void gvItemsEntrega_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewTableRowEventArgs e)
+        {
+            bool isEliminada = Convert.IsDBNull(e.GetValue("isEliminada")) ? false : Convert.ToBoolean(e.GetValue("isEliminada"));
+            if (isEliminada)
+            {
+                e.Row.BackColor = Color.Red;
+            }
         }
     }
 }

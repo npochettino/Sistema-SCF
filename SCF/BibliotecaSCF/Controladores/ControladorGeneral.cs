@@ -1261,6 +1261,10 @@ namespace BibliotecaSCF.Controladores
                     else
                     {
                         item = (from i in entrega.ItemsEntrega where i.Codigo == codigoItemEntrega select i).SingleOrDefault();
+                        if(!Convert.IsDBNull(filaItem["isEliminada"]) && Convert.ToBoolean(filaItem["isEliminada"]))
+                        {
+                            entrega.ItemsEntrega.Remove(item);
+                        }
                     }
 
                     item.Cantidad = Convert.ToInt32(filaItem["cantidad"]);
