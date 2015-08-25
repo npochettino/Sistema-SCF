@@ -15,11 +15,11 @@ namespace SCF.articulos
         {
             if (!IsPostBack)
             {
-                
+
             }
 
             loadGridArticulos();
-            
+
             Session["articuloActual"] = null;
             Session["codigoOperacion"] = null;
         }
@@ -47,18 +47,23 @@ namespace SCF.articulos
 
         private void EditarArticulo()
         {
+            cargarArticuloEnVariableSession();
+
+            Response.Redirect("articulo.aspx");
+        }
+
+        private void cargarArticuloEnVariableSession()
+        {
             Articulo articuloActual = new Articulo();
 
             articuloActual.Codigo = int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString());
             articuloActual.DescripcionCorta = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionCorta").ToString();
             articuloActual.DescripcionLarga = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionLarga").ToString();
             articuloActual.Marca = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "marca").ToString();
-            
-            Session.Add("articuloActual", articuloActual);
 
-            Response.Redirect("articulo.aspx");
+            Session.Add("articuloActual", articuloActual);
         }
-        
+
         protected void btnAceptarEliminarArticulo_Click(object sender, EventArgs e)
         {
             ControladorGeneral.EliminarArticulo(int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString()));
@@ -83,10 +88,34 @@ namespace SCF.articulos
         protected void btnNuevaRelacionArticuloCliente_Click(object sender, EventArgs e)
         {
             pcNuevaRelacionArticuloCliente.ShowOnPageLoad = true;
+            cargarArticuloEnVariableSession();
         }
 
         protected void btnGuardarRelacionArticuloCliente_Click(object sender, EventArgs e)
         {
+            Articulo mArticulo = (Articulo)Session["articuloActual"];
+            if (!txtCodigoClienteArticulo.Value.Equals(""))
+                ControladorGeneral.InsertarActualizarArticuloCliente(0, mArticulo.Codigo, txtCodigoClienteArticulo.Value.ToString(), (int)cbClientes.SelectedItem.Value);
+        }
+
+        protected void pcRelacionArticuloCliente_Unload(object sender, EventArgs e)
+        {
+            if (gvArticulos.FocusedRowIndex != -1)
+            {
+                Articulo mArticulo = (Articulo)Session["articuloActual"];
+
+                gvArticuloCliente.DataSource = ControladorGeneral.RecuperarArticulosClientesPorArticulo(mArticulo.Codigo);
+                gvArticuloCliente.DataBind();
+            }
+
+        }
+
+        protected void pcNuevaRelacionArticuloCliente_Unload(object sender, EventArgs e)
+        {
+
+            cbClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
+            cbClientes.DataBind();
+
 
         }
 

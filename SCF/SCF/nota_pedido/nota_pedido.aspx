@@ -9,7 +9,7 @@
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!-- BEGIN CONTENT -->
+    &nbsp;&nbsp;&nbsp;    <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
             <!-- BEGIN PAGE HEAD -->
@@ -81,7 +81,7 @@
                                                 <label class="control-label">Cliente</label>
 
                                                 <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
-                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
+                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%"  EnableTheming="True" Theme="Metropolis">
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoCliente" Width="100px" Visible="false" />
                                                         <dx:ListBoxColumn FieldName="cuil" Width="100px" />
@@ -195,63 +195,44 @@
                                                     <div id="chart_9" class="chart" style="height:auto">
                                                         <!-- GRID VIEW ITEMS SELECCIONADOS-->
                                                         <dx:ASPxGridView ID="gvArticulosSeleccionados" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoArticulo"
-                                                            Width="100%">
+                                                            Width="100%" OnRowUpdating="gvItemsEntrega_RowUpdating" OnHtmlRowPrepared="gvItemsEntrega_HtmlRowPrepared" ClientInstanceName="gvItemsNotaDePedido">
                                                             <Columns>
                                                                 <dx:GridViewDataTextColumn Caption="codigoArticulo" VisibleIndex="0" FieldName="codigoArticulo"
                                                                     Visible="false">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <Settings AllowSort="True" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="descripcionCorta" VisibleIndex="1" FieldName="descripcionCorta">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <Settings AllowSort="True"  />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="descripcionLarga" Visible="false" VisibleIndex="2" FieldName="descripcionLarga">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <Settings AllowSort="True"  />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="3">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <Settings AllowSort="True"  />
                                                                 </dx:GridViewDataTextColumn>
 
-                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="4" FieldName="cantidad">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-
+                                                              <dx:GridViewDataTextColumn Caption="Cantidad" FieldName="cantidad" Width="40px" VisibleIndex="4">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
 
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-
-
-                                                                </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataDateColumn Caption="fechaEntrega" VisibleIndex="5"  FieldName="fechaEntrega">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataDateColumn Caption="fechaEntrega" VisibleIndex="5" >
+                                                                    <Settings AllowSort="True"  />
 
                                                                     <DataItemTemplate>
-                                                                        <dx:ASPxDateEdit  ID="fecha" runat="server" Width="100px" OnInit="fecha_Init" />
+                                                                        <dx:ASPxDateEdit  ID="fecha" runat="server" Width="100px" FieldName="fechaEntrega" OnInit="fecha_Init" />
                                                                     </DataItemTemplate>
                                                                 </dx:GridViewDataDateColumn>
 
                                                                 <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" VisibleIndex="6" FieldName="codigoItemNotaDePedido">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <Settings AllowSort="True" />
                                                                 </dx:GridViewDataTextColumn>
 
                                                                 <dx:GridViewDataTextColumn Caption="precio" VisibleIndex="7" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <%--<dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="3" FieldName="cantidad" UnboundType="Integer">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g" AllowUserInput="false">
-                                                                    </PropertiesSpinEdit>
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit ID="cantidad" runat="server" Width="100px" MinValue="1" MaxValue="10000"> 
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-                                                                </dx:GridViewDataSpinEditColumn>--%>
-                                                                <%--<dx:GridViewDataDateColumn Caption="Fecha Entrega" VisibleIndex="3" FieldName="fechaEntrega">
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxDateEdit ID="txtFechaEntrega" runat="server" Width="100px">
-                                                                        </dx:ASPxDateEdit>
-                                                                    </DataItemTemplate>
-                                                                </dx:GridViewDataDateColumn>--%>
+                                                                 <dx:GridViewDataTextColumn VisibleIndex="8" FieldName="isEliminada" Visible="false"/>
+                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="8"/>
+                                                              
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
                                                             
@@ -322,7 +303,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <dx:ASPxButton ID="btnGuardarItemsNotaDePedido" runat="server" Text="Guardar" OnClick="btnGuardarItemsNotaDePedido_Click" AutoPostBack="False" class="btn blue">
+                                    <dx:ASPxButton ID="btnGuardarItemsNotaDePedido" runat="server" Text="Guardar" AutoPostBack="False" class="btn blue">
                                         <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) pcEditarItemsNotaDePedido.Hide(); }" />
                                     </dx:ASPxButton>
                                     <dx:ASPxButton ID="btnCancelarItemsNotaDePedido" runat="server" Text="Cancelar" AutoPostBack="False" class="btn btn-default">

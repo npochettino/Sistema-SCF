@@ -53,7 +53,7 @@
                                 <div class="btn-set pull-left">
                                     <asp:Button type="button" ID="btnNuevo" runat="server" onclick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
-                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarNotaPedido()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
+                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarNotaPedido()" UseSubmitBehavior="false" class="btn red" Text="Eliminar"  />
                                 </div>
                                 <div class="btn-set pull-right">
                                     <asp:Button type="button" ID="btnShowPopUpObservacion" runat="server" OnClick="btnShowPopUpObservacion_Click" UseSubmitBehavior="false" class="btn red" Text="Anular" />

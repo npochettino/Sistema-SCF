@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BibliotecaSCF.Clases;
 using DevExpress.Web.ASPxEditors;
+using System.Drawing;
 
 namespace SCF.nota_pedido
 {
@@ -15,7 +16,7 @@ namespace SCF.nota_pedido
     {
 
 
-
+        int indice = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,10 +25,13 @@ namespace SCF.nota_pedido
             CargarComboClientes();
             CargarGrillaArticulos();
 
+
             if (!IsPostBack)
             {
 
                 txtFechaEmision.Value = DateTime.Now;
+
+                CargarGrillaItemsNotaDePedido(false);
 
 
                 if (Session["tablaNotaDePedido"] != null)
@@ -46,28 +50,98 @@ namespace SCF.nota_pedido
                     txtFechaEmision.Value = fechaEmision.ToString();
                     txtNroInternoCliente.Text = numeroInternoCliente;
                     txtObservacion.InnerText = observaciones;
-                    cbClientes.SelectedItem = cbClientes.Items.FindByValue(codigoCliente);
+                    cbClientes.SelectedItem = cbClientes.Items.FindByValue(Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoCliente"]));
+
+                    DataTable tablaItemsEntrega = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
+                    Session["tablaItemsNotaDePedido"] = tablaItemsEntrega;
+                    tablaItemsEntrega.Columns.Add("isEliminada");
+                    gvArticulosSeleccionados.DataSource = tablaItemsEntrega;
+                    gvArticulosSeleccionados.DataBind();
+
                 }
             }
 
-            int codigoNotaDePedido2 = Session["tablaNotaDePedido"] == null ? 0 : Convert.ToInt32(((DataTable)Session["tablaNotaDePedido"]).Rows[0]["codigoNotaDePedido"]);
-            if (codigoNotaDePedido2 != 0)
+
+        }
+
+        private void CargarGrillaItemsNotaDePedido(bool isSeleccionar)
+        {
+            //CargarGrillaArticulosPorCliente();
+
+            DataTable tablaItemsNotaDePedido = new DataTable();
+
+            if (Session["tablaItemsNotaDePedido"] == null)
             {
-                CargarGrillaArticulosSeleccionados(codigoNotaDePedido2);
+                tablaItemsNotaDePedido.Columns.Add("codigoArticulo");
+                tablaItemsNotaDePedido.Columns.Add("descripcionCorta");
+                tablaItemsNotaDePedido.Columns.Add("descripcionLarga");
+                tablaItemsNotaDePedido.Columns.Add("marca");
+                tablaItemsNotaDePedido.Columns.Add("cantidad", typeof(int));
+                tablaItemsNotaDePedido.Columns.Add("fechaEntrega", typeof(DateTime));
+                tablaItemsNotaDePedido.Columns.Add("codigoItemNotaDePedido", typeof(int));
+                tablaItemsNotaDePedido.Columns.Add("precio", typeof(float));
+                tablaItemsNotaDePedido.Columns.Add("isEliminada");
+
+                if (Session["tablaNotaDePedido"] != null)
+                {
+                    int codigoNotaDePedido = Convert.ToInt32(((DataTable)Session["tablaNotaDePedido"]).Rows[0]["codigoNotaDePedido"]);
+                    DataTable tablaItemsNotaDePedidoActual = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
+                    tablaItemsNotaDePedidoActual.Columns.Add("isEliminada");
+
+                    tablaItemsNotaDePedido = tablaItemsNotaDePedidoActual.Copy();
+                }
+
+                for (int i = 0; i < gvArticulos.VisibleRowCount; i++)
+                {
+                    if (gvArticulos.Selection.IsRowSelected(i))
+                    {
+                        DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
+                        tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, 0, mRow.Row.ItemArray[4], false);
+                    }
+                }
+
+                Session["tablaItemsNotaDePedido"] = tablaItemsNotaDePedido;
             }
             else
             {
-                Cargar();
+                tablaItemsNotaDePedido = (DataTable)Session["tablaItemsNotaDePedido"];
+
+                if (isSeleccionar)
+                {
+                    for (int i = 0; i < gvArticulos.VisibleRowCount; i++)
+                    {
+                        if (gvArticulos.Selection.IsRowSelected(i))
+                        {
+                            DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
+                            int codigoItemNotaDePedido = Convert.ToInt32(mRow.Row.ItemArray[0]);
+                            DataRow filaRepetida = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoItemNotaDePedido"]) == codigoItemNotaDePedido select t).SingleOrDefault();
+
+                            if (filaRepetida == null)
+                            {
+                                tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, 0, mRow.Row.ItemArray[4], false);
+                            }
+                        }
+                    }
+                }
             }
 
-
-        }
-
-        private void CargarGrillaArticulosSeleccionados(int codigoNotaDePedido)
-        {
-            gvArticulosSeleccionados.DataSource = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
+            gvArticulosSeleccionados.DataSource = tablaItemsNotaDePedido;
             gvArticulosSeleccionados.DataBind();
         }
+
+        private void CargarGrillaArticulosPorCliente()
+        {
+            if (cbClientes.SelectedItem != null)
+            {
+                //int codigoCliente = Convert.ToInt32(cbClientes.SelectedItem.Value);
+                //DataTable tablaItemsNotaDePedido = ControladorGeneral.
+
+                //gvArticulos.DataSource = tablaItemsNotaDePedido;
+                //gvArticulos.DataBind();
+            }
+        }
+
+
 
         private void CargarGrillaArticulos()
         {
@@ -83,71 +157,96 @@ namespace SCF.nota_pedido
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            int codigoNotaDePedido = Session["tablaNotaDePedido"] == null ? 0 : Convert.ToInt32(((DataTable)Session["tablaNotaDePedido"]).Rows[0]["codigoNotaDePedido"]);
+            DataTable tablaItemsNotaDePedido = (DataTable)Session["tablaItemsNotaDePedido"];
+            int codigoNotaDePedido = 0;
 
-            guardarNotaDePedido();
+            if (Session["tablaNotaDePedido"] != null)
+            {
+                DataTable tablaNotaDePedido = (DataTable)Session["tablaNotaDePedido"];
+                codigoNotaDePedido = Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoNotaDePedido"]);
+            }
 
+            ControladorGeneral.InsertarActualizarNotaDePedido(codigoNotaDePedido, txtNroInternoCliente.Text.ToString(), DateTime.Parse(txtFechaEmision.Value.ToString()), txtObservacion.InnerText.ToString(), 0, (int)cbClientes.SelectedItem.Value, tablaItemsNotaDePedido);
 
             Response.Redirect("listado.aspx");
         }
 
-        protected void btnGuardarItemsNotaDePedido_Click(object sender, EventArgs e)
-        {
-        }
+
 
         protected void btnSeleccionarArticulos_Click(object sender, EventArgs e)
         {
-            Cargar();
+            DataTable tablaItemsNotaDePedido = (DataTable)Session["tablaItemsNotaDePedido"];
+            CargarGrillaItemsNotaDePedido(true);
         }
 
-        private void Cargar()
-        {
-            DataTable mArticulosSeleccionados = new DataTable();
 
-            mArticulosSeleccionados.Columns.Add("codigoArticulo");
-            mArticulosSeleccionados.Columns.Add("descripcionCorta");
-            mArticulosSeleccionados.Columns.Add("descripcionLarga");
-            mArticulosSeleccionados.Columns.Add("marca");
-            mArticulosSeleccionados.Columns.Add("cantidad", typeof(int));
-            mArticulosSeleccionados.Columns.Add("fechaEntrega", typeof(DateTime));
-            mArticulosSeleccionados.Columns.Add("codigoItemNotaDePedido", typeof(int));
-            mArticulosSeleccionados.Columns.Add("precio", typeof(float));
-
-            for (int i = 0; i < gvArticulos.VisibleRowCount; i++)
-            {
-                if (gvArticulos.Selection.IsRowSelected(i))
-                {
-                    DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
-                    mArticulosSeleccionados.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, 0, mRow.Row.ItemArray[4]);
-                }
-            }
-
-            gvArticulosSeleccionados.DataSource = mArticulosSeleccionados;
-
-            gvArticulosSeleccionados.DataBind();
-        }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
+            DataTable tablaItemsNotaDePedido = (DataTable)Session["tablaItemsNotaDePedido"];
+            int codigoItemNotaDePedidoEliminado = Convert.ToInt32(gvArticulosSeleccionados.GetRowValues(gvArticulosSeleccionados.FocusedRowIndex, "codigoItemNotaDePedido"));
 
+            DataRow filaEliminada = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoItemNotaDePedido"]) == codigoItemNotaDePedidoEliminado select t).SingleOrDefault();
+
+            if (codigoItemNotaDePedidoEliminado < 1)
+            {
+                tablaItemsNotaDePedido.Rows.Remove(filaEliminada);
+            }
+            else
+            {
+                bool isEliminada = Convert.IsDBNull(filaEliminada["isEliminada"]) ? false : Convert.ToBoolean(filaEliminada["isEliminada"]);
+                if (isEliminada)
+                {
+                    filaEliminada["isEliminada"] = false;
+                }
+                else
+                {
+                    filaEliminada["isEliminada"] = true;
+                }
+            }
+
+            Session["tablaItemNotaDePedido"] = tablaItemsNotaDePedido;
+            CargarGrillaItemsNotaDePedido(false);
         }
 
-        protected void btnAceptar_Click(object sender, EventArgs e)
-        {
-            guardarNotaDePedido();
-        }
 
-
-
-        private void guardarNotaDePedido()
-        {
-            DataTable m = (DataTable)gvArticulosSeleccionados.DataSource;
-            ControladorGeneral.InsertarActualizarNotaDePedido(0, txtNroInternoCliente.Text.ToString(), DateTime.Parse(txtFechaEmision.Value.ToString()), txtObservacion.InnerText.ToString(), 0, (int)cbClientes.SelectedItem.Value, m);
-        }
 
         protected void fecha_Init(object sender, EventArgs e)
         {
-            ((ASPxDateEdit)sender).Date = DateTime.Now.Date;
+            //if (!IsPostBack)
+            //{
+            //    DataTable tablaitemNotaPedido = ControladorGeneral.RecuperarItemsNotaDePedido(Convert.ToInt32(((DataTable)Session["tablaNotaDePedido"]).Rows[0]["codigoNotaDePedido"]));
+
+            //    if (Session["tablaNotaDePedido"] != null)
+            //        ((ASPxDateEdit)sender).Date = Convert.ToDateTime(tablaitemNotaPedido.Rows[indice]["fechaEntrega"]);
+            //    else
+            //        ((ASPxDateEdit)sender).Date = DateTime.Now.Date;
+
+            //    indice++;
+            //}
+        }
+
+
+        protected void gvItemsEntrega_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
+        {
+            DataTable tablaItemsNotaDePedido = (DataTable)Session["tablaItemNotaDePedido"];
+            int codigoItemEntregaEditado = Convert.ToInt32(e.Keys["codigoItemNotaDePedido"]);
+            DataRow fila = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoItemNotaDePedido"]) == codigoItemEntregaEditado select t).SingleOrDefault();
+            int cantidad = Convert.ToInt32(e.NewValues["cantidad"]);
+            fila["cantidad"] = cantidad;
+            Session["tablaItemsEntrega"] = tablaItemsNotaDePedido;
+            e.Cancel = true;
+            gvArticulosSeleccionados.CancelEdit();
+            CargarGrillaItemsNotaDePedido(false);
+        }
+
+        protected void gvItemsEntrega_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewTableRowEventArgs e)
+        {
+            bool isEliminada = Convert.IsDBNull(e.GetValue("isEliminada")) ? false : Convert.ToBoolean(e.GetValue("isEliminada"));
+            if (isEliminada)
+            {
+                e.Row.BackColor = Color.Red;
+            }
         }
 
     }

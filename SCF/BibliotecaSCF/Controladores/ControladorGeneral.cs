@@ -523,7 +523,9 @@ namespace BibliotecaSCF.Controladores
                 listaArticulos.Aggregate(tablaArticulos, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
+
                         r.RecuperarPrecioActual(), r.NombreImagen, string.Empty, string.Empty, string.Empty); return dt;
+
                 });
 
                 return tablaArticulos;
@@ -1128,11 +1130,13 @@ namespace BibliotecaSCF.Controladores
 
                 foreach (ItemNotaDePedido item in notaDePedido.ItemsNotaDePedido)
                 {
+
                     int cantidadEntregada = (from e in listaEntregas select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == item.Codigo select i.CantidadAEntregar).SingleOrDefault()).Sum();
 
                     tablaItemsNotaDePedido.Rows.Add(item.Codigo, item.Articulo.Codigo, item.Articulo.DescripcionCorta, item.Articulo.DescripcionLarga, item.Articulo.Marca,
                     item.Articulo.RecuperarPrecioActual(), item.CantidadPedida, item.FechaEntrega, cantidadEntregada);
                 }
+
 
                 return tablaItemsNotaDePedido;
             }

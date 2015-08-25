@@ -436,13 +436,13 @@ namespace SCF.articulos {
         protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbClientes;
         
         /// <summary>
-        /// Control Text1.
+        /// Control txtCodigoClienteArticulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCodigoClienteArticulo;
         
         /// <summary>
         /// Control btnGuardarRelacionArticuloCliente.

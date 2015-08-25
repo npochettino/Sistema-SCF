@@ -207,10 +207,10 @@
                                                                 <dx:GridViewDataTextColumn VisibleIndex="5" FieldName="codigoItemNotaDePedido" Visible="false">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn VisibleIndex="6" FieldName="isEliminada" Visible="false">
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="6">
-                                                                </dx:GridViewCommandColumn>
+                                                                <dx:GridViewDataTextColumn VisibleIndex="6" FieldName="isEliminada" Visible="false"/>
+                                                                
+                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="6"/>
+                                                                
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
                                                             <Settings ShowFilterRow="True" />
