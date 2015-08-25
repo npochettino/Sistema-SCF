@@ -1107,6 +1107,7 @@ namespace BibliotecaSCF.Controladores
                 tablaContratosMarco.Columns.Add("fechaInicio");
                 tablaContratosMarco.Columns.Add("fechaFin");
                 tablaContratosMarco.Columns.Add("codigoCliente");
+                tablaContratosMarco.Columns.Add("cuilCliente");
                 tablaContratosMarco.Columns.Add("razonSocialCliente");
 
                 List<ContratoMarco> listaContratosMarco = new List<ContratoMarco>();
@@ -1120,7 +1121,7 @@ namespace BibliotecaSCF.Controladores
                     listaContratosMarco = CatalogoContratoMarco.RecuperarLista(x => x.FechaFin <= DateTime.Now, nhSesion);
                 }
 
-                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.FechaInicio, r.FechaFin, r.Cliente.Codigo, r.Cliente.RazonSocial); return dt; });
+                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.FechaInicio, r.FechaFin, r.Cliente.Codigo, r.Cliente.Cuil, r.Cliente.RazonSocial); return dt; });
 
                 return tablaContratosMarco;
             }

@@ -23,20 +23,20 @@ namespace SCF.contrato_marco
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("contrato.aspx");
         }
 
         protected void btnEditar_Click(object sender, EventArgs e)
         {
 
         }
-        
-        protected void btnVer_Click(object sender, EventArgs e)
+
+        protected void btnAceptarEliminarContratoMarco_Click(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnAceptarEliminarContratoMarco_Click(object sender, EventArgs e)
+        protected void btnDetalle_Click(object sender, EventArgs e)
         {
 
         }

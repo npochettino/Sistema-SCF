@@ -52,12 +52,12 @@
                             <!-- BEGIN FORM-->
                             <div class="form-actions top">
                                 <div class="btn-set pull-left">
-                                    <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" Text="Nuevo" />
-                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" Text="Editar" />
+                                    <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
+                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarContratoMarco()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnVer" runat="server" OnClick="btnVer_Click" class="btn blue" Text="Ver" />
+                                    <asp:Button type="button" ID="btnDetalle" runat="server" OnClick="btnDetalle_Click" class="btn blue" Text="Detalle" UseSubmitBehavior="false" />
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">
@@ -67,15 +67,22 @@
                                         <dx:GridViewDataTextColumn FieldName="codigoContratoMarco" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="descripcion" VisibleIndex="1">
+                                        <dx:GridViewDataTextColumn FieldName="descripcion" VisibleIndex="1" Caption="Descripción">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataDateColumn FieldName="fechaInicio" VisibleIndex="2">
+                                        <dx:GridViewDataDateColumn FieldName="fechaInicio" VisibleIndex="2" Caption="Fecha Inicio">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="fechaFin" VisibleIndex="3">
+                                        <dx:GridViewDataDateColumn FieldName="fechaFin" VisibleIndex="3" Caption="Fecha Fin">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataTextColumn FieldName="codigoCliente" VisibleIndex="4">
+                                        <dx:GridViewDataTextColumn FieldName="codigoCliente" Visible="false" VisibleIndex="4" Caption="codigoCliente">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="5">
+                                        <dx:GridViewDataTextColumn FieldName="cuilCliente" VisibleIndex="4" Caption="CUIL">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="5" Caption="Razon Social">
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="true" />
