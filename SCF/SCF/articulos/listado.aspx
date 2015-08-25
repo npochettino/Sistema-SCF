@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="btn-set pull-right">
                                     <asp:Button type="button" ID="btnRelacionArticuloCliente" runat="server" OnClick="btnRelacionArticuloCliente_Click" class="btn red" Text="Relación Cliente" />
-                                    <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleArticulo()" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
+                                    <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClick="btnVerDetalle_Click" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
                             <div id="divBuscarPorNroCliente" style="display: none" class="form-actions top">
@@ -134,7 +134,7 @@
 
     <dx:ASPxPopupControl ID="pcShowDetalleArticulo" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleArticulo"
-        HeaderText="Detalle del Artículo" AllowDragging="True" EnableViewState="False" Width="600px"
+        HeaderText="Detalle del Artículo" AllowDragging="True" EnableViewState="False" Width="800px"
         PopupAnimationType="Fade" Theme="Metropolis">
         <ClientSideEvents PopUp="function(s, e) {  txtCodigoInterno.Focus(); }" />
         <ContentCollection>
@@ -153,47 +153,58 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Descripción Corta</label>
-                                                            <textarea type="text" id="txtDescripcionCorta" placeholder="Descripción Corta" runat="server" class="form-control" rows="3"></textarea>
+                                                            <label class="control-label col-md-3">Desc. Corta</label>
+                                                            <div class="col-md-9">
+                                                                <textarea type="text" id="txtDescripcionCorta" placeholder="Descripción Corta" runat="server" class="form-control" rows="2"></textarea>
+                                                            </div>
                                                         </div>
                                                     </div>
-
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Descripción Larga</label>
-                                                            <textarea type="text" id="txtDescripcionLarga" placeholder="Descripción Larga" runat="server" class="form-control" rows="3"></textarea>
+                                                            <label class="control-label col-md-3">Desc. Larga</label>
+                                                            <div class="col-md-9">
+                                                                <textarea type="text" id="txtDescripcionLarga" placeholder="Descripción Larga" runat="server" class="form-control" rows="2"></textarea>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Marca</label>
-                                                            <input type="text" id="txtMarca" placeholder="Marca" runat="server" class="form-control">
+                                                            <label class="control-label col-md-3">Marca</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" id="txtMarca" placeholder="Marca" runat="server" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Unidad de Medida</label>
-                                                            <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
+                                                            <label class="control-label col-md-3">Unidad</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <label>Precio:</label>
-                                                        <div class="input-group">
+                                                        <label class="control-label col-md-3">Precio:</label>
+                                                        <div class="col-md-9"><div class="input-group">
                                                             <input type="text" id="txtPrecioActual" placeholder="Precio" runat="server" class="form-control">
-                                                            <span class="input-group-btn">
-                                                                <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()"><span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
-                                                            </span>
+                                                            
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Tipo de Cambio</label>
-                                                            <input type="text" id="txtTipoDeCambio" placeholder="Tipo de Cambio" runat="server" class="form-control">
+                                                            <label class="control-label col-md-3">Moneda</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" id="txtTipoDeCambio" placeholder="Tipo de Cambio" runat="server" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -405,7 +416,8 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="btn-set pull-left" style="padding-bottom: 5px">
-                                                            <asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />
+                                                            <%--<asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />--%>
+                                                            <button type="button" onclick="ShowNuevaRelacionArticuloCliente()" class="btn blue">Nuevo</button>
                                                             <asp:Button type="button" ID="btnEliminarRelacionArticuloCliente" runat="server" OnClick="btnEliminarRelacionArticuloCliente_Click" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                                         </div>
                                                         <div class="form-group">

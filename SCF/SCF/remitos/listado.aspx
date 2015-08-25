@@ -134,6 +134,119 @@
     </dx:ASPxPopupControl>
     <!--END POPUP-->
 
+    <dx:ASPxPopupControl ID="pcShowDetalleRemito" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleRemito"
+        HeaderText="Detalle de Remito" AllowDragging="True" EnableViewState="False" Width="800px"
+        PopupAnimationType="Fade" Theme="Metropolis">
+        <ClientSideEvents PopUp="function(s, e) {  txtCodigoInterno.Focus(); }" />
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
+                <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btnGuardarAticuloProveedor">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent2" runat="server">
+                            <div data-width="760">
+                                <div class="modal-body">
+                                    <!--INFO DEL ARTICULO-->
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <label style="font-size: medium"><strong>Info del Remito</strong></label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Nota de Pedido</label>
+                                                            <dx:ASPxTextBox ID="txtNotaDePedido" runat="server" CssClass="form-control" Width="100%" placeholder="Nota de Pedido"></dx:ASPxTextBox>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Fecha Remito</label>
+                                                            <dx:ASPxDateEdit ID="txtFechaRemito" runat="server" CssClass="form-control" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
+                                                                <TimeSectionProperties Visible="True">
+                                                                </TimeSectionProperties>
+
+                                                            </dx:ASPxDateEdit>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Código</label>
+                                                            <dx:ASPxTextBox ID="txtCodigo" runat="server" CssClass="form-control" Width="100%" placeholder="Código"></dx:ASPxTextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/row-->
+                                            </div>
+                                        </form>
+                                        <!-- END FORM-->
+                                    </div>
+
+                                    <!--INFO DEL CLIENTE-->
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <label style="font-size: medium"><strong>Items</strong></label>
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <div class="form-group">
+                                                            <dx:ASPxGridView runat="server" ID="gvItemsRemito" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                                <Columns>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoItemRemito" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="descripcionCorta" Caption="Desc. Corta" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="proveedor" Caption="Proveedor" VisibleIndex="2">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="precio" Caption="Precio" VisibleIndex="3">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="cantidad" Caption="Cantidad" VisibleIndex="3">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="importe" Caption="Importe" VisibleIndex="3">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
+                                                            </dx:ASPxGridView>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--FIN INFO DEL CLIENTE-->
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Observación</label>
+                                                            <textarea id="txtObservacion" placeholder="Observación" runat="server" rows="3" class="form-control"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
     <script lang="javascript" type="text/javascript">
         function ShowConfirmarEliminarRemito() {
             pcConfirmarEliminarRemito.Show();

@@ -90,5 +90,10 @@ namespace SCF.articulos
 
         }
 
+        protected void btnVerDetalle_Click(object sender, EventArgs e)
+        {
+            pcShowDetalleArticulo.ShowOnPageLoad = true;
+        }
+
     }
 }

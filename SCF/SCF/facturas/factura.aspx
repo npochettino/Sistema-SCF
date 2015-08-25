@@ -66,6 +66,7 @@
                                                 <label class="control-label">Tipo de Factura</label>
                                                 <dx:ASPxComboBox ID="cbTipoFactura" runat="server" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
                                                     <Items>
+                                                        <dx:ListEditItem Selected="true" Text="Seleccione un tipo de factura" Value="0" />
                                                         <dx:ListEditItem Text="Tipo A" Value="1" />
                                                         <dx:ListEditItem Text="Tipo C" Value="2" />
                                                     </Items>
@@ -104,6 +105,7 @@
                                                 <label class="control-label">Tipo de Moneda</label>
                                                 <dx:ASPxComboBox ID="ASPxComboBox1" runat="server" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
                                                     <Items>
+                                                        <dx:ListEditItem Selected="true" Text="Seleccione un tipo de moneda" Value="0" />
                                                         <dx:ListEditItem Text="Peso" Value="1" />
                                                         <dx:ListEditItem Text="Dolar" Value="2" />
                                                         <dx:ListEditItem Text="Euro" Value="2" />
@@ -143,16 +145,16 @@
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="cuil" VisibleIndex="2" Visible="true" Caption="CUIL">
+                                                                <dx:GridViewDataTextColumn FieldName="cuil" VisibleIndex="2" Width="100px" Visible="true" Caption="CUIL">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="razonSocial" VisibleIndex="2" Visible="true" Caption="Razon Social">
+                                                                <dx:GridViewDataTextColumn FieldName="razonSocial" VisibleIndex="2" Width="150px" Visible="true" Caption="Razon Social">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Descripción Corta">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" VisibleIndex="4" FieldName="cantidad">
+                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" Width="60px" VisibleIndex="4" FieldName="cantidad">
                                                                     <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <DataItemTemplate>
@@ -160,7 +162,7 @@
                                                                         </dx:ASPxSpinEdit>
                                                                     </DataItemTemplate>
                                                                 </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Precio" VisibleIndex="4" FieldName="precio">
+                                                                <dx:GridViewDataSpinEditColumn Caption="Precio" Width="100px" VisibleIndex="4" FieldName="precio">
                                                                     <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <DataItemTemplate>
@@ -168,7 +170,7 @@
                                                                         </dx:ASPxSpinEdit>
                                                                     </DataItemTemplate>
                                                                 </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Importe" VisibleIndex="4" FieldName="precio">
+                                                                <dx:GridViewDataSpinEditColumn Caption="Importe" Width="100px" VisibleIndex="4" FieldName="precio">
                                                                     <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <DataItemTemplate>
@@ -190,25 +192,25 @@
                                         </div>
                                     </div>
                                     <!-- END ROW -->
-                                    <div class="portlet box green">
+                                    <div class="portlet light">
                                         <div class="portlet-title">
                                             <div class="caption">
-                                                <i class="fa fa-dollar"></i>Total
+                                                <i class="icon-calculator font-green-haze"></i>
+                                                <span class="caption-subject bold uppercase font-green-haze">Total</span>
                                             </div>
                                             <div class="tools">
                                                 <a href="javascript:;" class="collapse"></a>
                                             </div>
                                         </div>
                                         <div class="portlet-body">
-                                            <h3 style="text-align: right">SUBTOTAL <small>
+                                            <h3 style="text-align: right">SUBTOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <dx:ASPxLabel ID="lblSubtotal" runat="server" Text="123123"></dx:ASPxLabel>
-                                            </small></h3>
-                                            <h3 style="text-align: right">IVA <small>
-                                                <asp:TextBox ID="txtIVA" runat="server" Text="21" Width="40px" OnTextChanged="txtIVA_TextChanged"></asp:TextBox></small></h3>
-                                            <h3 style="text-align: right">TOTAL <small>
+                                            </h3>
+                                            <h3 style="text-align: right">IVA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="txtIVA" runat="server" Text="21" Width="40px" OnTextChanged="txtIVA_TextChanged"></asp:TextBox></h3>
+                                            <h3 style="text-align: right">TOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <dx:ASPxLabel ID="lblTotal" runat="server" Text="123123"></dx:ASPxLabel>
-                                            </small></h3>
-
+                                            </h3>
                                         </div>
                                     </div>
 

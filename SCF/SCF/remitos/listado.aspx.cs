@@ -30,7 +30,7 @@ namespace SCF.remitos
 
         protected void btnVerDetalle_Click(object sender, EventArgs e)
         {
-
+            pcShowDetalleRemito.ShowOnPageLoad = true;
         }
 
         protected void btnEditar_Click(object sender, EventArgs e)
