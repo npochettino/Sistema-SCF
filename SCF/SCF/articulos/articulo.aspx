@@ -55,7 +55,7 @@
                                         <div class="col-md-12 ">
                                             <div class="form-group">
                                                 <label>Descripción Corta</label>
-                                                <textarea type="text" id="txtDescripcionCorta" style="resize:none" placeholder="Descripción Corta" runat="server" class="form-control" required rows="2"></textarea>
+                                                <textarea type="text" id="txtDescripcionCorta" style="resize: none" placeholder="Descripción Corta" runat="server" class="form-control" required rows="2"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -63,7 +63,7 @@
                                         <div class="col-md-12 ">
                                             <div class="form-group">
                                                 <label>Descripción Larga</label>
-                                                <textarea type="text" id="txtDescripcionLarga" style="resize:none" placeholder="Descripción Larga" runat="server" class="form-control" rows="5"></textarea>
+                                                <textarea type="text" id="txtDescripcionLarga" style="resize: none" placeholder="Descripción Larga" runat="server" class="form-control" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -81,7 +81,7 @@
                                                     <asp:ListItem Value="0" Text="Elija una Opcion"></asp:ListItem>
                                                     <asp:ListItem Value="1" Text="KG"></asp:ListItem>
                                                     <asp:ListItem Value="2" Text="Metro"></asp:ListItem>
-                                                </asp:DropDownList> 
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
                                     </div>
@@ -89,18 +89,18 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <label>Precio</label>
-                                                <input type="text" id="Text2" placeholder="Precio" runat="server" class="form-control">
+                                                <input type="text" id="txtPrecio" placeholder="Precio" runat="server" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6 ">
                                             <div class="form-group">
-                                                <label>Tipo de Cambio</label>
-                                                <asp:DropDownList CssClass="form-control" ID="DropDownList1" runat="server">
-                                                    <asp:ListItem Value="0" Text="Elija una Opcion"></asp:ListItem>
+                                                <label>Tipo de Moneda</label>
+                                                <asp:DropDownList CssClass="form-control" ID="ddlTipoMonedaPrecio" runat="server">
+                                                    <asp:ListItem Value="" Text="Elija una Opcion"></asp:ListItem>
                                                     <asp:ListItem Value="1" Text="Peso"></asp:ListItem>
                                                     <asp:ListItem Value="2" Text="Dolar"></asp:ListItem>
                                                     <asp:ListItem Value="3" Text="Euro"></asp:ListItem>
-                                                </asp:DropDownList> 
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
                                     </div>
@@ -133,8 +133,9 @@
                             <form action="#" class="horizontal-form">
                                 <div class="form-actions top">
                                     <div class="btn-set pull-left">
-                                        <button class="btn blue" type="button" onclick="ShowArticuloProveedor()">Nuevo</button>
-                                        <asp:Button type="button" ID="btnEditarArticuloProveedor" runat="server" OnClick="btnEditarArticuloProveedor_Click" class="btn yellow" Text="Editar" />
+                                        <%--<button class="btn blue" type="button" onclick="ShowArticuloProveedor()">Nuevo</button>--%>
+                                        <asp:Button type="button" ID="btnNuevoArticuloProveedor" OnClick="btnNuevoArticuloProveedor_Click" runat="server" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
+                                        <asp:Button type="button" ID="btnEditarArticuloProveedor" runat="server" OnClick="btnEditarArticuloProveedor_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
                                         <button class="btn red" type="button" onclick="ShowConfirmarEliminarArticuloProveedor()">Eliminar</button>
                                     </div>
                                 </div>
@@ -175,29 +176,48 @@
                                     <div class="portlet-body form">
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
-                                            <div class="form-body">                                                
+                                            <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <label>Proveedor</label>
-                                                            <asp:DropDownList ID="Textarea2" placeholder="Seleccione un proveedor" runat="server" class="form-control">
-                                                            </asp:DropDownList>
+                                                            <dx:ASPxComboBox ID="cbProveedores" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                                ValueField="codigoProveedor" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
+                                                                <Columns>
+                                                                    <dx:ListBoxColumn FieldName="codigoProveedor" Width="100px" Visible="false" />
+                                                                    <dx:ListBoxColumn FieldName="cuil" Width="100px" />
+                                                                    <dx:ListBoxColumn FieldName="razonSocial" Width="300px" />
+                                                                </Columns>
+                                                            </dx:ASPxComboBox>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-12 ">                                                        
+                                                    <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <label>Costo:</label>
-                                                            <input type="text" id="Text1" placeholder="Costo" runat="server" class="form-control" required />
+                                                            <input type="text" id="txtCosto" placeholder="Costo" runat="server" class="form-control" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row hidden">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Cantidad</label>
+                                                            <input type="text" id="txtCantidad" placeholder="Cantidad" runat="server" class="form-control" required />
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label>Cantidad</label>
-                                                            <input type="text" id="Text3" placeholder="Cantidad" runat="server" class="form-control" required />
+                                                            <label>Tipo de Moneda</label>
+                                                            <asp:DropDownList CssClass="form-control" ID="ddlTipoMonedaCosto" runat="server">
+                                                                <asp:ListItem Value="" Text="Elija una Opcion"></asp:ListItem>
+                                                                <asp:ListItem Value="1" Text="Peso"></asp:ListItem>
+                                                                <asp:ListItem Value="2" Text="Dolar"></asp:ListItem>
+                                                                <asp:ListItem Value="3" Text="Euro"></asp:ListItem>
+                                                            </asp:DropDownList>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -207,100 +227,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <button class="btn default" type="button" onclick="pcArticuloProveedor.Hide()">Cerrar</button>
-                                        <asp:Button type="button" ID="btnCancelarArticuloProveedor" runat="server" OnClick="btnGuardarArticuloProveedor_Click" class="btn blue" Text="Aceptar" />
-                                    </div>
-                                </div>
-                            </div>
-                        </dx:PanelContent>
-                    </PanelCollection>
-                </dx:ASPxPanel>
-            </dx:PopupControlContentControl>
-        </ContentCollection>
-    </dx:ASPxPopupControl>
-    
-    
-    <dx:ASPxPopupControl ID="pcAddCosto" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
-        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcAddCosto"
-        HeaderText="Nuevo Costo" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="450"
-        EnableViewState="False" Theme="Metropolis">
-        <ClientSideEvents PopUp="function(s, e) {  txtCosto.Focus(); }" />
-        <ContentCollection>
-            <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
-                <dx:ASPxPanel ID="ASPxPanel1" runat="server" DefaultButton="">
-                    <PanelCollection>
-                        <dx:PanelContent ID="PanelContent2" runat="server">
-                            <div>
-                                <div class="modal-body">
-                                    <div class="portlet-body form">
-                                        <!-- BEGIN FORM-->
-                                        <form action="#" class="horizontal-form">
-                                            <div class="form-body">
-                                                <label><strong>Agregar Costo</strong></label>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Costo:</label>
-                                                            <input type="text" id="Text4" placeholder="Precio" runat="server" class="form-control" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Fecha Desde:</label>
-                                                            <dx:ASPxDateEdit ID="ASPxDateEdit2" CssClass="form-control" runat="server"></dx:ASPxDateEdit>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Tipo de Cambio:</label>
-                                                            <div class="radio-list">
-                                                                <label class="radio-inline">
-                                                                    <span class="checked">
-                                                                        <input type="radio" name="optionsRadios" id="Radio3" value="option1" checked=""></span>
-                                                                    Peso
-                                                                </label>
-                                                                <label class="radio-inline">
-                                                                    <span class="">
-                                                                        <input type="radio" name="optionsRadios" id="Radio4" value="option2"></span>
-                                                                    Dolar
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <label><strong>Historico de Costo</strong></label>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <dx:ASPxGridView ID="gvHistoricoCosto" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
-                                                                <Columns>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
-                                                                        <EditFormSettings Visible="False" />
-                                                                    </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="costo" Caption="Costo" VisibleIndex="1">
-                                                                        <Settings AutoFilterCondition="Contains" />
-                                                                    </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="fechaDesde" Caption="Fec. Desde" VisibleIndex="2">
-                                                                        <Settings AutoFilterCondition="Contains" />
-                                                                    </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="fechaHasta" Caption="Fec. Hasta" VisibleIndex="3">
-                                                                        <Settings AutoFilterCondition="Contains" />
-                                                                    </dx:GridViewDataTextColumn>
-                                                                </Columns>
-                                                            </dx:ASPxGridView>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <div class="btn-set pull-right">
-                                            <button class="btn default" onclick="pcAddCosto.Hide();">Cerrar</button>
-                                            <asp:Button type="button" ID="btnGuardarAddCosto" runat="server" OnClick="btnGuardarAddCosto_Click" class="btn blue" Text="Aceptar" />
-                                        </div>
+                                        <asp:Button type="button" ID="btnGuardarArticuloProveedor" runat="server" OnClick="btnGuardarArticuloProveedor_Click" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
                             </div>

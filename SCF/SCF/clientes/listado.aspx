@@ -9,107 +9,111 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <!-- BEGIN CONTENT -->
-        <div class="page-content-wrapper">
-            <div class="page-content">
-                <!-- BEGIN PAGE HEAD -->
-                <div class="page-head">
-                    <!-- BEGIN PAGE TITLE -->
-                    <div class="page-title">
-                        <h1>Clientes <small>listado de clientes</small></h1>
-                    </div>
-                    <!-- END PAGE TITLE -->
-
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!-- BEGIN PAGE HEAD -->
+            <div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="page-title">
+                    <h1>Clientes <small>listado de clientes</small></h1>
                 </div>
-                <!-- END PAGE HEAD -->
+                <!-- END PAGE TITLE -->
 
-                <!-- BEGIN PAGE BREADCRUMB -->
-                <ul class="page-breadcrumb breadcrumb">
-                    <li>
-                        <a href="../index.aspx">Inicio</a>
-                        <i class="fa fa-circle"></i>
-                    </li>
-                    <li>
-                        <a href="listado.aspx">Listado Clientes</a>
-                        <i class="fa fa-circle"></i>
-                    </li>
-                </ul>
-                <!-- END PAGE BREADCRUMB -->
-                <!-- END PAGE HEADER-->
+            </div>
+            <!-- END PAGE HEAD -->
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="portlet box green">
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <i class="fa fa-users"></i>Listado de Clientes
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a href="../index.aspx">Inicio</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <a href="listado.aspx">Listado Clientes</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <!-- END PAGE HEADER-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box green">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-users"></i>Listado de Clientes
+                            </div>
+                            <div class="tools">
+                                <a href="javascript:;" class="fullscreen"></a>
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            <!-- BEGIN FORM-->
+                            <div class="form-actions top">
+                                <div class="btn-set pull-left">
+                                    <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
+                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
+                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarCliente()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
+
                                 </div>
-                                <div class="tools">
-                                    <a href="javascript:;" class="fullscreen"></a>
+                                <div class="btn-set pull-right">
+                                    <asp:Button type="button" ID="btnInactivarCliente" runat="server" OnClientClick="ShowInactivarCliente()" UseSubmitBehavior="false" class="btn red-intense" Text="Inactivar" />
+                                    <asp:Button type="button" ID="btnActivarCliente" runat="server" OnClick="btnActivarCliente_Click" UseSubmitBehavior="false" class="btn blue" Text="Activar" />
+                                    <asp:Button type="button" ID="btnVerDetalleCliente" runat="server" OnClick="btnVerDetalleCliente_Click" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
-                            <div class="portlet-body form">
-                                <!-- BEGIN FORM-->
-                                <div class="form-actions top">
-                                    <div class="btn-set pull-left">
-                                        <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
-                                        <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
-                                        <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarCliente()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
-                                        <asp:Button type="button" ID="btnInactivarCliente" runat="server" OnClientClick="ShowInactivarCliente()" UseSubmitBehavior="false" class="btn red-intense" Text="Inactivar" />
-                                        <asp:Button type="button" ID="btnActivarCliente" runat="server" OnClick="btnActivarCliente_Click" UseSubmitBehavior="false" class="btn green" Text="Activar" />
-                                    </div>
-                                    <div class="btn-set pull-right">
-                                        <asp:RadioButton type="radio" Text="Activo" id="rbActivoSi" GroupName="EstadoCliente" runat="server" Checked="true" AutoPostBack="true" OnCheckedChanged="rbActivoSi_CheckedChanged" />
-                                        <asp:RadioButton type="radio" Text="Inactivo" id="rbActivoNo" GroupName="EstadoCliente" runat="server" AutoPostBack="true" OnCheckedChanged="rbActivoNo_CheckedChanged" />    
-                                    </div>
+                            <div class="form-body" style="height: 600px">
+                                <!-- devexpress-->
+                                <div class="btn-set pull-right">
+                                    <asp:RadioButton type="radio" Text="Activo" ID="rbActivoSi" GroupName="EstadoCliente" runat="server" Checked="true" AutoPostBack="true" OnCheckedChanged="rbActivoSi_CheckedChanged" />
+                                    <asp:RadioButton type="radio" Text="Inactivo" ID="rbActivoNo" GroupName="EstadoCliente" runat="server" AutoPostBack="true" OnCheckedChanged="rbActivoNo_CheckedChanged" />
                                 </div>
-                                <div class="form-body" style="height: 600px">
-                                    <!-- devexpress-->
-                                    
-                                    <dx:ASPxGridView ID="gvClientes" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoCliente" Theme="Metropolis">
-                                        <Columns>
-                                            <dx:GridViewDataTextColumn FieldName="codigoCliente" ReadOnly="True" Visible="false" VisibleIndex="0">
-                                                <EditFormSettings Visible="False" />
-                                            </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="1">
-                                                <Settings AutoFilterCondition="Contains" />
-                                            </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="provincia" Caption="Provincia" VisibleIndex="2">
-                                                <Settings AutoFilterCondition="Contains" />
-                                            </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="localidad" Caption="Localidad" VisibleIndex="3">
-                                                <Settings AutoFilterCondition="Contains" />
-                                            </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="direccion" Caption="Dirección" VisibleIndex="4">
-                                                <Settings AutoFilterCondition="Contains" />
-                                            </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="telefono" Caption="Teléfono" VisibleIndex="5">
-                                                <Settings AutoFilterCondition="Contains" />
-                                            </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="mail" Caption="Mail" VisibleIndex="6">
-                                                <Settings AutoFilterCondition="Contains" />
-                                            </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="cuil" Caption="CUIL" VisibleIndex="2">
-                                                <Settings AutoFilterCondition="Contains" />
-                                            </dx:GridViewDataTextColumn>
-                                        </Columns>
-                                        <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
-                                        <SettingsBehavior AllowFocusedRow="True" />
-                                        <Settings ShowFilterRow="True" />
-                                    </dx:ASPxGridView>
-                                    
-                                </div>
+                                <dx:ASPxGridView ID="gvClientes" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoCliente" Theme="Metropolis">
+                                    <Columns>
+                                        <dx:GridViewDataTextColumn FieldName="codigoCliente" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                            <EditFormSettings Visible="False" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="cuil" Caption="CUIL" VisibleIndex="1">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="2">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="provincia" Caption="Provincia" VisibleIndex="3">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="localidad" Caption="Localidad" VisibleIndex="4">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="direccion" Caption="Dirección" VisibleIndex="5">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="telefono" Caption="Teléfono" VisibleIndex="6">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="mail" Caption="Mail" VisibleIndex="7">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        
+                                    </Columns>
+                                    <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
+                                    <SettingsBehavior AllowFocusedRow="True" />
+                                    <Settings ShowFilterRow="True" />
+                                </dx:ASPxGridView>
 
                             </div>
+
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
-        <!-- END CONTENT -->
-        
-   <!-- BEGIN POPUP ELIMINAR ARTICULO -->
+    </div>
+    <!-- END CONTENT -->
+
+    <!-- BEGIN POPUP ELIMINAR ARTICULO -->
     <dx:ASPxPopupControl ID="pcConfirmarEliminarCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarCliente"
         HeaderText="Eliminar Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
@@ -183,7 +187,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
     <!--END POPUP-->
-    
+
     <script lang="javascript" type="text/javascript">
         function ShowConfirmarEliminarCliente() {
             pcConfirmarEliminarCliente.Show();

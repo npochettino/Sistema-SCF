@@ -49,22 +49,22 @@ namespace SCF.articulos {
         protected global::System.Web.UI.WebControls.DropDownList ddlUnidadDeMedida;
         
         /// <summary>
-        /// Control Text2.
+        /// Control txtPrecio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPrecio;
         
         /// <summary>
-        /// Control DropDownList1.
+        /// Control ddlTipoMonedaPrecio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoMonedaPrecio;
         
         /// <summary>
         /// Control btnGuardar.
@@ -83,6 +83,15 @@ namespace SCF.articulos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProveedores;
+        
+        /// <summary>
+        /// Control btnNuevoArticuloProveedor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNuevoArticuloProveedor;
         
         /// <summary>
         /// Control btnEditarArticuloProveedor.
@@ -139,112 +148,49 @@ namespace SCF.articulos {
         protected global::DevExpress.Web.ASPxPanel.ASPxPanel Panel1;
         
         /// <summary>
-        /// Control Textarea2.
+        /// Control cbProveedores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Textarea2;
+        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbProveedores;
         
         /// <summary>
-        /// Control Text1.
+        /// Control txtCosto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCosto;
         
         /// <summary>
-        /// Control Text3.
+        /// Control txtCantidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text3;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCantidad;
         
         /// <summary>
-        /// Control btnCancelarArticuloProveedor.
+        /// Control ddlTipoMonedaCosto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelarArticuloProveedor;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoMonedaCosto;
         
         /// <summary>
-        /// Control pcAddCosto.
+        /// Control btnGuardarArticuloProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxPopupControl.ASPxPopupControl pcAddCosto;
-        
-        /// <summary>
-        /// Control PopupControlContentControl2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxPopupControl.PopupControlContentControl PopupControlContentControl2;
-        
-        /// <summary>
-        /// Control ASPxPanel1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxPanel.ASPxPanel ASPxPanel1;
-        
-        /// <summary>
-        /// Control PanelContent2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxPanel.PanelContent PanelContent2;
-        
-        /// <summary>
-        /// Control Text4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text4;
-        
-        /// <summary>
-        /// Control ASPxDateEdit2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxDateEdit ASPxDateEdit2;
-        
-        /// <summary>
-        /// Control gvHistoricoCosto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvHistoricoCosto;
-        
-        /// <summary>
-        /// Control btnGuardarAddCosto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarAddCosto;
+        protected global::System.Web.UI.WebControls.Button btnGuardarArticuloProveedor;
         
         /// <summary>
         /// Control pcConfirmarEliminarArticuloProveedor.

@@ -97,5 +97,18 @@ namespace SCF.articulos
         {
 
         }
+
+        protected void btnNuevoArticuloProveedor_Click(object sender, EventArgs e)
+        {
+            CargarComboProveedores();
+            pcArticuloProveedor.ShowOnPageLoad = true;
+
+        }
+
+        private void CargarComboProveedores()
+        {
+            cbProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(false);
+            cbProveedores.DataBind();
+        }
     }
 }

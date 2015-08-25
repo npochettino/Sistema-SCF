@@ -58,6 +58,15 @@ namespace SCF.clientes {
         protected global::System.Web.UI.WebControls.Button btnActivarCliente;
         
         /// <summary>
+        /// Control btnVerDetalleCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerDetalleCliente;
+        
+        /// <summary>
         /// Control rbActivoSi.
         /// </summary>
         /// <remarks>

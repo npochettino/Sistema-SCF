@@ -55,41 +55,44 @@
                                     <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" UseSubmitBehavior="false" Text="Nuevo" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" UseSubmitBehavior="false" Text="Editar" />
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarProveedor()" UseSubmitBehavior="false" class="btn red" Text="Eliminar"  />                                    
-                                    <asp:Button type="button" ID="btnInactivarProveedor" runat="server" OnClientClick="ShowInactivarProveedor()" UseSubmitBehavior="false" class="btn red-intense" Text="Inactivar" />                                   
-                                    <asp:Button type="button" ID="btnActivarProveedor" runat="server" OnClick="btnActivarProveedor_Click" UseSubmitBehavior="false" class="btn green" Text="Activar" />
+                                    
                                 </div>
                                 <div class="btn-set pull-right">
-                                    <asp:RadioButton type="radio" Text="Activo" ID="rbActivoSi" GroupName="EstadoProveedor" Checked="true" runat="server" AutoPostBack="true" OnCheckedChanged="rbActivoSi_CheckedChanged" />
-                                    <asp:RadioButton type="radio" Text="Inactivo" ID="rbActivoNo" GroupName="EstadoProveedor" runat="server" AutoPostBack="true" OnCheckedChanged="rbActivoNo_CheckedChanged" />
+                                    <asp:Button type="button" ID="btnInactivarProveedor" runat="server" OnClientClick="ShowInactivarProveedor()" UseSubmitBehavior="false" class="btn red-intense" Text="Inactivar" />                                   
+                                    <asp:Button type="button" ID="btnActivarProveedor" runat="server" OnClick="btnActivarProveedor_Click" UseSubmitBehavior="false" class="btn blue" Text="Activar" />
+                                    <asp:Button type="button" ID="btnVerDetalleProveedor" runat="server" OnClick="btnVerDetalleProveedor_Click" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">
                                 <!-- devexpress-->
-
+                                <div class="btn-set pull-right">
+                                    <asp:RadioButton type="radio" Text="Activo" ID="rbActivoSi" GroupName="EstadoProveedor" Checked="true" runat="server" AutoPostBack="true" OnCheckedChanged="rbActivoSi_CheckedChanged" />
+                                    <asp:RadioButton type="radio" Text="Inactivo" ID="rbActivoNo" GroupName="EstadoProveedor" runat="server" AutoPostBack="true" OnCheckedChanged="rbActivoNo_CheckedChanged" />
+                                </div>
                                 <dx:ASPxGridView ID="gvProveedores" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoProveedor" Theme="Metropolis">
                                     <Columns>
                                         <dx:GridViewDataTextColumn FieldName="codigoProveedor" ReadOnly="True" Visible="false" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="1">
+                                        <dx:GridViewDataTextColumn FieldName="cuil" Caption="CUIL" VisibleIndex="1">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="provincia" Caption="Provincia" VisibleIndex="2">
+                                        <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="2">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="localidad" Caption="Localidad" VisibleIndex="3">
+                                        <dx:GridViewDataTextColumn FieldName="provincia" Caption="Provincia" VisibleIndex="3">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="direccion" Caption="Dirección" VisibleIndex="4">
+                                        <dx:GridViewDataTextColumn FieldName="localidad" Caption="Localidad" VisibleIndex="4">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="telefono" Caption="Tel." VisibleIndex="5">
+                                        <dx:GridViewDataTextColumn FieldName="direccion" Caption="Dirección" VisibleIndex="5">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="mail" Caption="Mail" VisibleIndex="6">
+                                        <dx:GridViewDataTextColumn FieldName="telefono" Caption="Teléfono" VisibleIndex="6">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="cuil" Caption="CUIL" VisibleIndex="7">
+                                        <dx:GridViewDataTextColumn FieldName="mail" Caption="Mail" VisibleIndex="7">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
                                     </Columns>

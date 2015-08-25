@@ -55,7 +55,7 @@
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarFactura()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnVer" runat="server" OnClick="btnVer_Click" class="btn blue" Text="Ver" />
+                                    <asp:Button type="button" ID="btnVer" runat="server" OnClick="btnVer_Click" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">

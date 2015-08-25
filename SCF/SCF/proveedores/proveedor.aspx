@@ -41,12 +41,12 @@
                             <!-- BEGIN FORM-->
                             <form action="#" class="horizontal-form">
                                 <div class="form-body">
-                                    <h3 class="form-section">Info del Cliente</h3>
+                                    <h3 class="form-section">Info del Proveedor</h3>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Nro. Cliente</label>
-                                                <input type="text" id="txtNroInternoCliente" placeholder="Nro. Cliente" runat="server" class="form-control" required>
+                                                <label>Nro. Proveedor</label>
+                                                <input type="text" id="txtNroInternoCliente" placeholder="Nro. Proveedor" runat="server" class="form-control" required>
                                             </div>
                                         </div>
                                         <!--/span-->

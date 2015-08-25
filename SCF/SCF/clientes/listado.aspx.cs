@@ -130,5 +130,10 @@ namespace SCF.clientes
             ActivarInactivarCliente();
             LoadGrillaClientesActivos();
         }
+
+        protected void btnVerDetalleCliente_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

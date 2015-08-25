@@ -57,7 +57,7 @@
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarContratoMarco()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnDetalle" runat="server" OnClick="btnDetalle_Click" class="btn blue" Text="Detalle" UseSubmitBehavior="false" />
+                                    <asp:Button type="button" ID="btnDetalle" runat="server" OnClick="btnDetalle_Click" class="btn green" Text="Detalle" UseSubmitBehavior="false" />
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">

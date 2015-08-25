@@ -382,15 +382,6 @@ namespace SCF.articulos {
         protected global::DevExpress.Web.ASPxPanel.PanelContent PanelContent5;
         
         /// <summary>
-        /// Control btnEliminarRelacionArticuloCliente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminarRelacionArticuloCliente;
-        
-        /// <summary>
         /// Control gvArticuloCliente.
         /// </summary>
         /// <remarks>
@@ -461,5 +452,50 @@ namespace SCF.articulos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardarRelacionArticuloCliente;
+        
+        /// <summary>
+        /// Control pcConfirmarEliminarRelacionArticuloCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPopupControl.ASPxPopupControl pcConfirmarEliminarRelacionArticuloCliente;
+        
+        /// <summary>
+        /// Control PopupControlContentControl7.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPopupControl.PopupControlContentControl PopupControlContentControl7;
+        
+        /// <summary>
+        /// Control ASPxPanel5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPanel.ASPxPanel ASPxPanel5;
+        
+        /// <summary>
+        /// Control PanelContent7.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPanel.PanelContent PanelContent7;
+        
+        /// <summary>
+        /// Control btnConfirmarEliminarRelacionArticuloCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmarEliminarRelacionArticuloCliente;
     }
 }

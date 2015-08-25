@@ -43,17 +43,36 @@
                                 <!-- BEGIN FORM-->
                                 <form action="#" class="horizontal-form">
                                     <div class="form-body">
-                                        <h3 class="form-section">Cotización</h3>
-                                        
+                                        <h3 class="form-section">Cotización Dolar</h3>                                        
                                         <div class="row">
-                                            <div class="col-md-12 ">
+                                            <div class="col-md-6 ">
                                                 <div class="form-group">
-                                                    <label>Cotización</label>
-                                                    <input type="text" id="txtCotizacion" placeholder="Cotizacion Actual" runat="server" class="form-control" required>
+                                                    <label>Compra</label>
+                                                    <input type="text" id="txtCompraDolar" placeholder="Cotizacion Actual" runat="server" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 ">
+                                                <div class="form-group">
+                                                    <label>Venta</label>
+                                                    <input type="text" id="txtVentaDolar" placeholder="Cotizacion Actual" runat="server" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
-                                       
+                                       <h3 class="form-section">Cotización Euro</h3>                                        
+                                        <div class="row">
+                                            <div class="col-md-6 ">
+                                                <div class="form-group">
+                                                    <label>Compra</label>
+                                                    <input type="text" id="txtCompraEuro" placeholder="Cotizacion Actual" runat="server" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 ">
+                                                <div class="form-group">
+                                                    <label>Venta</label>
+                                                    <input type="text" id="txtVentaEuro" placeholder="Cotizacion Actual" runat="server" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
                                         
                                     </div>
                                     <div class="form-actions right">

@@ -95,5 +95,10 @@ namespace SCF.articulos
             pcShowDetalleArticulo.ShowOnPageLoad = true;
         }
 
+        protected void btnConfirmarEliminarRelacionArticuloCliente_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

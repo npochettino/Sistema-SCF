@@ -82,6 +82,9 @@
                                         <dx:GridViewDataTextColumn FieldName="marca" Caption="Marca" VisibleIndex="3">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="precio" Caption="Precio" VisibleIndex="4">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />
@@ -418,7 +421,7 @@
                                                         <div class="btn-set pull-left" style="padding-bottom: 5px">
                                                             <%--<asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />--%>
                                                             <button type="button" onclick="ShowNuevaRelacionArticuloCliente()" class="btn blue">Nuevo</button>
-                                                            <asp:Button type="button" ID="btnEliminarRelacionArticuloCliente" runat="server" OnClick="btnEliminarRelacionArticuloCliente_Click" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
+                                                            <button type="button" onclick="ShowEliminarRelacionArticuloCliente()" class="btn red">Eliminar</button>
                                                         </div>
                                                         <div class="form-group">
                                                             <dx:ASPxGridView ID="gvArticuloCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
@@ -508,6 +511,42 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
+    
+    <dx:ASPxPopupControl ID="pcConfirmarEliminarRelacionArticuloCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarRelacionArticuloCliente"
+        HeaderText="Eliminar Relacion Artículo Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        EnableViewState="False" Theme="Metropolis">
+        <ClientSideEvents PopUp="function(s, e) {  pcConfirmarEliminarRelacionArticuloCliente.Focus(); }" />
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl7" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel5" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent7" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                ¿Desea eliminar la relación del articulo seleccionado?
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="btn-set pull-right">
+                                        <button type="button" onclick="pcConfirmarEliminarRelacionArticuloCliente.Hide();" class="btn default">Cerrar</button>
+                                        <asp:Button type="button" ID="btnConfirmarEliminarRelacionArticuloCliente" runat="server" OnClick="btnConfirmarEliminarRelacionArticuloCliente_Click" UseSubmitBehavior="false" class="btn blue" Text="Aceptar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
     <!--END POPUP-->
 
     <script lang="javascript" type="text/javascript">
@@ -531,6 +570,9 @@
         }
         function ShowNuevaRelacionArticuloCliente() {
             pcNuevaRelacionArticuloCliente.Show();
+        }
+        function ShowEliminarRelacionArticuloCliente() {
+            pcConfirmarEliminarRelacionArticuloCliente.Show();
         }
     </script>
 </asp:Content>

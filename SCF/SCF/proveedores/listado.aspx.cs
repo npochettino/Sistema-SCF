@@ -120,6 +120,11 @@ namespace SCF.proveedores
             LoadGrillaProveedoresActivos();
         }
 
+        protected void btnVerDetalleProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

@@ -49,7 +49,7 @@ namespace SCF.usuarios
             Usuario usuariosActual = new Usuario();
 
             usuariosActual.Codigo = int.Parse(gvUsuarios.GetRowValues(gvUsuarios.FocusedRowIndex, "codigoUsuario").ToString());
-            usuariosActual.NombreUsuario = gvUsuarios.GetRowValues(gvUsuarios.FocusedRowIndex, "usuario").ToString();
+            usuariosActual.NombreUsuario = gvUsuarios.GetRowValues(gvUsuarios.FocusedRowIndex, "nombreUsuario").ToString();
             usuariosActual.Contraseña = gvUsuarios.GetRowValues(gvUsuarios.FocusedRowIndex, "contraseña").ToString();
             
             Session.Add("usuariosActual", usuariosActual);

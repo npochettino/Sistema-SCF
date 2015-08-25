@@ -31,6 +31,15 @@ namespace SCF.config {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtCUIL;
         
         /// <summary>
+        /// Control txtEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEmail;
+        
+        /// <summary>
         /// Control txtDireccion.
         /// </summary>
         /// <remarks>
@@ -49,13 +58,13 @@ namespace SCF.config {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtTelefono;
         
         /// <summary>
-        /// Control txtMail.
+        /// Control txtFax.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtMail;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFax;
         
         /// <summary>
         /// Control txtProvincia.
@@ -74,6 +83,33 @@ namespace SCF.config {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtCiudad;
+        
+        /// <summary>
+        /// Control txtBanco.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtBanco;
+        
+        /// <summary>
+        /// Control txtCBU.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCBU;
+        
+        /// <summary>
+        /// Control txtNroCuentaBancaria.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNroCuentaBancaria;
         
         /// <summary>
         /// Control btnGuardar.

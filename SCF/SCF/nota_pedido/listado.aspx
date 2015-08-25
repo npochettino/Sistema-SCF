@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="Button1" runat="server" UseSubmitBehavior="false" OnClientClick="pcConfirmarEliminarNotaPedido.Hide();" class="btn default" Text="Cerrar" />
+                                        <button type="button" onclick="pcConfirmarEliminarNotaPedido.Hide();" class="btn default">Cerrar</button>
                                         <asp:Button type="button" ID="btnAceptarEliminarNotaPedido" runat="server" OnClick="btnAceptarEliminarNotaPedido_Click" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
