@@ -10,7 +10,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<script src="remito.js" type="text/javascript"></script>
+
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -134,10 +134,13 @@
                                                                 <dx:GridViewDataTextColumn Caption="Precio" Visible="true" Width="40px" VisibleIndex="5" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Cantidad" Visible="true" Width="50px" VisibleIndex="6" FieldName="cantidad">
+                                                                <dx:GridViewDataTextColumn Caption="Cantidad a entregar" Visible="true" Width="50px" VisibleIndex="6" FieldName="cantidad">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Fecha Entrega" Visible="true" VisibleIndex="7" FieldName="fechaEntrega">
+                                                                <dx:GridViewDataTextColumn Caption="Cantidad entregada" Visible="true" Width="50px" VisibleIndex="7" FieldName="cantidadEntregada">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn Caption="Fecha Entrega" Visible="true" VisibleIndex="8" FieldName="fechaEntrega">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                             </Columns>
@@ -239,7 +242,7 @@
 
                                     <div class="form-actions right">
                                         <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
-                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" Text="Guardar" OnClick="btnGuardar_Click" /><%--OnClientClick="btnGuardar_Click(); return false;"--%>
+                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" Text="Guardar" OnClick="btnGuardar_Click" />
                                     </div>
                                 </div>
                             </form>

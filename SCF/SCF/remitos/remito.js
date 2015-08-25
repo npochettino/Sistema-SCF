@@ -1,19 +1,18 @@
-﻿function s() {
-    var a = 0;
-}
-
-function btnGuardar_Click(s, e) {
-    gvItemsEntrega.GetPageRowValues("codigoItemEntrega;codigoArticulo;codigoProveedor;spinCantidad", OnCallBack);
+﻿function focus(s, e) {
+    gvEntregas.GetRowValues(gvEntregas.GetFocusedRowIndex(), "codigoEstado", OnCallBack);
 }
 
 function OnCallBack(s, e) {
-    PageMethods.GuardarGrilla(s, OnCallBackExito, OnCallBackFallo);
-}
-
-function OnCallBackExito() {
-    alert("Guardó correctamente");
-}
-
-function OnCallBackFallo() {
-    alert("Error");
+    if (s == 1) {
+        document.getElementById("ContentPlaceHolder1_btnAnulada").value = "Anular";
+        document.getElementById("ContentPlaceHolder1_btnEntregada").value = "Entregada";
+    }
+    else if (s == 2) {
+        document.getElementById("ContentPlaceHolder1_btnAnulada").value = "Anular";
+        document.getElementById("ContentPlaceHolder1_btnEntregada").value = "Pendiente";
+    }
+    else if (s == 3) {
+        document.getElementById("ContentPlaceHolder1_btnAnulada").value = "Deshacer";
+        document.getElementById("ContentPlaceHolder1_btnEntregada").value = "Entregada";
+    }
 }

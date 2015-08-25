@@ -15,17 +15,14 @@ namespace SCF.remitos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido();
-            cbNotaDePedido.DataBind();
-
             if (!IsPostBack)
             {
                 CargarGrillaItemsEntrega(false);
 
                 if (Session["tablaEntrega"] != null)
                 {
-                    DataTable tablaUltimaEntrega = ControladorGeneral.RecuperarUltimaEntrega();
-                    txtCodigoRemito.Text = tablaUltimaEntrega.Rows.Count > 0 ? tablaUltimaEntrega.Rows[0]["codigoEntrega"].ToString() : string.Empty;
+                    cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(false);
+                    cbNotaDePedido.DataBind();
 
                     DataTable tablaEntrega = (DataTable)Session["tablaEntrega"];
                     txtCodigoRemito.Text = tablaEntrega.Rows[0]["numeroRemito"].ToString(); ;
@@ -45,10 +42,19 @@ namespace SCF.remitos
 
                     Session["tablaItemsEntrega"] = tablaItemsEntrega;
                 }
-            }
+                else
+                {
+                    cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(true);
+                    cbNotaDePedido.DataBind();
 
-            if (Session["tablaEntrega"] != null)
+                    DataTable tablaUltimaEntrega = ControladorGeneral.RecuperarUltimaEntrega();
+                    txtCodigoRemito.Text = tablaUltimaEntrega.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaEntrega.Rows[0]["numeroRemito"]) + 1).ToString() : string.Empty;
+                }
+            }
+            else
             {
+                cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(true);
+                cbNotaDePedido.DataBind();
             }
         }
 

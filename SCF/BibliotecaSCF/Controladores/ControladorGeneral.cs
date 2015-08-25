@@ -823,7 +823,7 @@ namespace BibliotecaSCF.Controladores
 
         #region NotaDePedido
 
-        public static DataTable RecuperarTodasNotasDePedido()
+        public static DataTable RecuperarTodasNotasDePedido(bool soloVigentes)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -841,7 +841,15 @@ namespace BibliotecaSCF.Controladores
                 tablaNotasDePedido.Columns.Add("fechaHoraProximaEntrega");
                 tablaNotasDePedido.Columns.Add("observaciones");
 
-                List<NotaDePedido> listaNotasDePedido = CatalogoNotaDePedido.RecuperarTodos(nhSesion);
+                List<NotaDePedido> listaNotasDePedido;
+                if (soloVigentes)
+                {
+                    listaNotasDePedido = CatalogoNotaDePedido.RecuperarLista(x => x.CodigoEstado == Constantes.Estados.VIGENTE, nhSesion);
+                }
+                else
+                {
+                    listaNotasDePedido = CatalogoNotaDePedido.RecuperarTodos(nhSesion);
+                }
 
                 foreach (NotaDePedido notaPedido in listaNotasDePedido)
                 {
@@ -850,38 +858,83 @@ namespace BibliotecaSCF.Controladores
 
                     if (notaPedido.ItemsNotaDePedido.Count > 0)
                     {
+                        List<Entrega> listaEntregas = CatalogoEntrega.RecuperarLista(x => x.NotaDePedido.Codigo == notaPedido.Codigo, nhSesion);
+
                         switch (notaPedido.CodigoEstado)
                         {
-                            case Constantes.EstadosNotaDePedido.VIGENTE:
+                            case Constantes.Estados.VIGENTE:
                                 List<ItemNotaDePedido> listaItemsNotaDePedidoVencidos = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now select n).ToList();
+
+                                if (listaEntregas.Count > 0) //valido que no haya alguna entrega que cumpla el item nota de pedido
+                                {
+                                    List<ItemNotaDePedido> listaBorrar = new List<ItemNotaDePedido>();
+
+                                    foreach (ItemNotaDePedido itemNP in listaItemsNotaDePedidoVencidos)
+                                    {
+                                        List<ItemEntrega> listaItemsEntrega = (from e in listaEntregas where (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault() != null select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault()).ToList();
+                                        int cantidadAEntregarTotal = (from e in listaItemsEntrega select e.CantidadAEntregar).Sum();
+
+                                        if (cantidadAEntregarTotal >= itemNP.CantidadPedida)
+                                        {
+                                            listaBorrar.Add(itemNP);
+                                        }
+                                    }
+
+                                    foreach (ItemNotaDePedido itemBorrar in listaBorrar)
+                                    {
+                                        listaItemsNotaDePedidoVencidos.Remove(itemBorrar);
+                                    }
+                                }
 
                                 if (listaItemsNotaDePedidoVencidos.Count > 0)
                                 {
-                                    codigoEstado = Constantes.EstadosNotaDePedido.VENCIDA;
+                                    codigoEstado = Constantes.Estados.VENCIDA;
                                     fechaHoraProximaEntrega = listaItemsNotaDePedidoVencidos.OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
                                 }
                                 else
                                 {
                                     List<ItemNotaDePedido> listaItemsNotaDePedidoProximosAVencer = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now.AddDays(5) select n).ToList();
+
+                                    if (listaEntregas.Count > 0) //valido que no haya alguna entrega que cumpla el item nota de pedido
+                                    {
+                                        List<ItemNotaDePedido> listaBorrar = new List<ItemNotaDePedido>();
+
+                                        foreach (ItemNotaDePedido itemNP in listaItemsNotaDePedidoProximosAVencer)
+                                        {
+                                            List<ItemEntrega> listaItemsEntrega = (from e in listaEntregas where (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault() != null select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault()).ToList();
+                                            int cantidadAEntregarTotal = (from e in listaItemsEntrega select e.CantidadAEntregar).Sum();
+
+                                            if (cantidadAEntregarTotal >= itemNP.CantidadPedida)
+                                            {
+                                                listaBorrar.Add(itemNP);
+                                            }
+                                        }
+
+                                        foreach (ItemNotaDePedido itemBorrar in listaBorrar)
+                                        {
+                                            listaItemsNotaDePedidoProximosAVencer.Remove(itemBorrar);
+                                        }
+                                    }
+
                                     if (listaItemsNotaDePedidoProximosAVencer.Count > 0)
                                     {
-                                        codigoEstado = Constantes.EstadosNotaDePedido.PROXIMA_VENCER;
+                                        codigoEstado = Constantes.Estados.PROXIMA_VENCER;
                                         fechaHoraProximaEntrega = listaItemsNotaDePedidoProximosAVencer.OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
                                     }
                                     else
                                     {
-                                        codigoEstado = Constantes.EstadosNotaDePedido.VIGENTE;
+                                        codigoEstado = Constantes.Estados.VIGENTE;
                                         fechaHoraProximaEntrega = notaPedido.ItemsNotaDePedido.OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
                                     }
                                 }
 
                                 break;
-                            case Constantes.EstadosNotaDePedido.ANULADA:
-                                codigoEstado = Constantes.EstadosNotaDePedido.ANULADA;
+                            case Constantes.Estados.ANULADA:
+                                codigoEstado = Constantes.Estados.ANULADA;
                                 break;
 
-                            case Constantes.EstadosNotaDePedido.ENTREGADA:
-                                codigoEstado = Constantes.EstadosNotaDePedido.ENTREGADA;
+                            case Constantes.Estados.ENTREGADA:
+                                codigoEstado = Constantes.Estados.ENTREGADA;
                                 break;
                         }
                     }
@@ -921,7 +974,7 @@ namespace BibliotecaSCF.Controladores
                 if (codigoNotaDePedido == 0)
                 {
                     notaDePedido = new NotaDePedido();
-                    notaDePedido.CodigoEstado = Constantes.EstadosNotaDePedido.VIGENTE;
+                    notaDePedido.CodigoEstado = Constantes.Estados.VIGENTE;
                 }
                 else
                 {
@@ -946,7 +999,7 @@ namespace BibliotecaSCF.Controladores
                     }
 
                     item.Articulo = CatalogoArticulo.RecuperarPorCodigo(Convert.ToInt32(filaItemNotaDePedido["codigoArticulo"]), nhSesion);
-                    item.Cantidad = Convert.ToInt32(filaItemNotaDePedido["cantidad"]);
+                    item.CantidadPedida = Convert.ToInt32(filaItemNotaDePedido["cantidad"]);
                     item.FechaEntrega = Convert.ToDateTime(filaItemNotaDePedido["fechaEntrega"]);
                 }
 
@@ -973,13 +1026,13 @@ namespace BibliotecaSCF.Controladores
             {
                 NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
 
-                if (notaDePedido.CodigoEstado == Constantes.EstadosNotaDePedido.ANULADA)
+                if (notaDePedido.CodigoEstado == Constantes.Estados.ANULADA)
                 {
-                    notaDePedido.CodigoEstado = Constantes.EstadosNotaDePedido.VIGENTE;
+                    notaDePedido.CodigoEstado = Constantes.Estados.VIGENTE;
                 }
                 else
                 {
-                    notaDePedido.CodigoEstado = Constantes.EstadosNotaDePedido.ANULADA;
+                    notaDePedido.CodigoEstado = Constantes.Estados.ANULADA;
                 }
 
                 notaDePedido.Observaciones = observaciones;
@@ -999,7 +1052,7 @@ namespace BibliotecaSCF.Controladores
 
         #endregion
 
-        #region ItemsNotaDePedido
+        #region ItemNotaDePedido
 
         public static DataTable RecuperarItemsNotaDePedido(int codigoNotaDePedido)
         {
@@ -1016,14 +1069,19 @@ namespace BibliotecaSCF.Controladores
                 tablaItemsNotaDePedido.Columns.Add("precio");
                 tablaItemsNotaDePedido.Columns.Add("cantidad");
                 tablaItemsNotaDePedido.Columns.Add("fechaEntrega");
+                tablaItemsNotaDePedido.Columns.Add("cantidadEntregada");
 
                 NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
 
-                notaDePedido.ItemsNotaDePedido.Aggregate(tablaItemsNotaDePedido, (dt, r) =>
+                List<Entrega> listaEntregas = CatalogoEntrega.RecuperarLista(x => x.NotaDePedido.Codigo == codigoNotaDePedido, nhSesion);
+
+                foreach (ItemNotaDePedido item in notaDePedido.ItemsNotaDePedido)
                 {
-                    dt.Rows.Add(r.Codigo, r.Articulo.Codigo, r.Articulo.DescripcionCorta, r.Articulo.DescripcionLarga, r.Articulo.Marca,
-                    r.Articulo.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault(), r.Cantidad, r.FechaEntrega); return dt;
-                });
+                    int cantidadEntregada = (from e in listaEntregas select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == item.Codigo select i.CantidadAEntregar).SingleOrDefault()).Sum();
+
+                    tablaItemsNotaDePedido.Rows.Add(item.Codigo, item.Articulo.Codigo, item.Articulo.DescripcionCorta, item.Articulo.DescripcionLarga, item.Articulo.Marca,
+                    item.Articulo.RecuperarPrecioActual(), item.CantidadPedida, item.FechaEntrega, cantidadEntregada);
+                }
 
                 return tablaItemsNotaDePedido;
             }
@@ -1171,13 +1229,14 @@ namespace BibliotecaSCF.Controladores
                 tablaEntrega.Columns.Add("codigoCliente");
                 tablaEntrega.Columns.Add("razonSocialCliente");
                 tablaEntrega.Columns.Add("fechaEmision");
+                tablaEntrega.Columns.Add("numeroNotaDePedido");
                 tablaEntrega.Columns.Add("numeroRemito");
                 tablaEntrega.Columns.Add("codigoEstado");
                 tablaEntrega.Columns.Add("observaciones");
 
                 List<Entrega> listaEntregas = CatalogoEntrega.RecuperarTodos(nhSesion);
 
-                listaEntregas.Aggregate(tablaEntrega, (dt, r) => { dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo, r.NotaDePedido.Cliente.RazonSocial, r.FechaEmision, r.NumeroRemito, r.CodigoEstado, r.Observaciones); return dt; });
+                listaEntregas.Aggregate(tablaEntrega, (dt, r) => { dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo, r.NotaDePedido.Cliente.RazonSocial, r.FechaEmision, r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito, r.CodigoEstado, r.Observaciones); return dt; });
 
                 return tablaEntrega;
             }
@@ -1228,6 +1287,7 @@ namespace BibliotecaSCF.Controladores
         public static void InsertarActualizarEntrega(int codigoEntrega, DateTime fechaEmision, int codigoNotaPedido, int numeroRemito, string observaciones, DataTable tablaItemsEntrega)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            ITransaction tran = nhSesion.BeginTransaction();
 
             try
             {
@@ -1243,7 +1303,7 @@ namespace BibliotecaSCF.Controladores
 
                 NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaPedido, nhSesion);
 
-                entrega.CodigoEstado = Constantes.EstadosNotaDePedido.VIGENTE;
+                entrega.CodigoEstado = Constantes.Estados.VIGENTE;
                 entrega.FechaEmision = fechaEmision;
                 entrega.NotaDePedido = notaDePedido;
                 entrega.NumeroRemito = numeroRemito;
@@ -1262,16 +1322,128 @@ namespace BibliotecaSCF.Controladores
                     else
                     {
                         item = (from i in entrega.ItemsEntrega where i.Codigo == codigoItemEntrega select i).SingleOrDefault();
-                        if(!Convert.IsDBNull(filaItem["isEliminada"]) && Convert.ToBoolean(filaItem["isEliminada"]))
+                        if (!Convert.IsDBNull(filaItem["isEliminada"]) && Convert.ToBoolean(filaItem["isEliminada"]))
                         {
                             entrega.ItemsEntrega.Remove(item);
                         }
                     }
 
-                    item.Cantidad = Convert.ToInt32(filaItem["cantidad"]);
+                    item.CantidadAEntregar = Convert.ToInt32(filaItem["cantidad"]);
                     item.ArticuloProveedor = null;
                     item.ItemNotaDePedido = (from i in notaDePedido.ItemsNotaDePedido where i.Codigo == Convert.ToInt32(filaItem["codigoItemNotaDePedido"]) select i).SingleOrDefault();
                 }
+
+                CatalogoEntrega.InsertarActualizar(entrega, nhSesion);
+                ValidarNotaDePedido(notaDePedido, nhSesion);
+
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        private static void ValidarNotaDePedido(NotaDePedido notaDePedido, ISession nhSesion)
+        {
+            try
+            {
+                int cantidadCumplidas = 0;
+                List<Entrega> listaEntregas = CatalogoEntrega.RecuperarLista(x => x.NotaDePedido.Codigo == notaDePedido.Codigo && x.CodigoEstado != Constantes.Estados.ANULADA, nhSesion);
+                if (listaEntregas.Count > 0) //calido que no haya alguna entrega que cumpla el item nota de pedido
+                {
+                    List<ItemNotaDePedido> listaBorrar = new List<ItemNotaDePedido>();
+
+                    foreach (ItemNotaDePedido itemNP in notaDePedido.ItemsNotaDePedido)
+                    {
+                        List<ItemEntrega> listaItemsEntrega = (from e in listaEntregas where (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault() != null select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault()).ToList();
+                        int cantidadAEntregarTotal = (from e in listaItemsEntrega select e.CantidadAEntregar).Sum();
+
+                        if (cantidadAEntregarTotal >= itemNP.CantidadPedida)
+                        {
+                            cantidadCumplidas++;
+                        }
+                    }
+                }
+
+                if (cantidadCumplidas == notaDePedido.ItemsNotaDePedido.Count)
+                {
+                    notaDePedido.CodigoEstado = Constantes.Estados.ENTREGADA;
+                    CatalogoNotaDePedido.InsertarActualizar(notaDePedido, nhSesion);
+                }
+                else if (notaDePedido.CodigoEstado == Constantes.Estados.ENTREGADA)
+                {
+                    notaDePedido.CodigoEstado = Constantes.Estados.VIGENTE;
+                    CatalogoNotaDePedido.InsertarActualizar(notaDePedido, nhSesion);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void ActivarAnularEntrega(int codigoEntrega, string observaciones)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            ITransaction tran = nhSesion.BeginTransaction();
+
+            try
+            {
+                Entrega entrega = CatalogoEntrega.RecuperarPorCodigo(codigoEntrega, nhSesion);
+
+                if (entrega.CodigoEstado == Constantes.Estados.ANULADA)
+                {
+                    entrega.CodigoEstado = Constantes.Estados.VIGENTE;
+                }
+                else
+                {
+                    entrega.CodigoEstado = Constantes.Estados.ANULADA;
+                }
+
+                entrega.Observaciones = observaciones;
+
+                CatalogoEntrega.InsertarActualizar(entrega, nhSesion);
+                ValidarNotaDePedido(entrega.NotaDePedido, nhSesion);
+
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void EntregadaPendienteEntrega(int codigoEntrega, string observaciones)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Entrega entrega = CatalogoEntrega.RecuperarPorCodigo(codigoEntrega, nhSesion);
+
+                if (entrega.CodigoEstado == Constantes.Estados.ENTREGADA)
+                {
+                    entrega.CodigoEstado = Constantes.Estados.VIGENTE;
+                }
+                else
+                {
+                    entrega.CodigoEstado = Constantes.Estados.ENTREGADA;
+                }
+
+                entrega.Observaciones = observaciones;
 
                 CatalogoEntrega.InsertarActualizar(entrega, nhSesion);
             }
@@ -1287,6 +1459,8 @@ namespace BibliotecaSCF.Controladores
         }
 
         #endregion
+
+        #region ItemEntrega
 
         public static DataTable RecuperarItemsEntrega(int codigoEntrega)
         {
@@ -1309,7 +1483,7 @@ namespace BibliotecaSCF.Controladores
                 {
                     entrega.ItemsEntrega.Aggregate(tablaItemsEntrega, (dt, r) =>
                     {
-                        dt.Rows.Add(r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.Cantidad, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo); return dt;
+                        dt.Rows.Add(r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.CantidadAEntregar, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo); return dt;
                     });
                 }
 
@@ -1325,5 +1499,7 @@ namespace BibliotecaSCF.Controladores
                 nhSesion.Dispose();
             }
         }
+
+        #endregion
     }
 }

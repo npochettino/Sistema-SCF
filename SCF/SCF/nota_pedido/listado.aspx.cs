@@ -25,7 +25,7 @@ namespace SCF.nota_pedido
 
         private void loadGridNotaPedidos()
         {
-            gvNotasPedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido();
+            gvNotasPedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(false);
             gvNotasPedido.DataBind();
         }
 
@@ -88,22 +88,22 @@ namespace SCF.nota_pedido
         {
             int codigoEstado = e.GetValue("codigoEstado") == null ? 0 : Convert.ToInt32(e.GetValue("codigoEstado"));
             Color color;
-            
+
             switch (codigoEstado)
             {
-                case Constantes.EstadosNotaDePedido.VIGENTE:
+                case Constantes.Estados.VIGENTE:
                     color = Color.LightGreen;
                     break;
-                case Constantes.EstadosNotaDePedido.ENTREGADA:
-                    color = Color.LightCyan;
+                case Constantes.Estados.ENTREGADA:
+                    color = Color.Cyan;
                     break;
-                case Constantes.EstadosNotaDePedido.ANULADA:
+                case Constantes.Estados.ANULADA:
                     color = Color.LightGray;
                     break;
-                case Constantes.EstadosNotaDePedido.PROXIMA_VENCER:
+                case Constantes.Estados.PROXIMA_VENCER:
                     color = Color.Yellow;
                     break;
-                case Constantes.EstadosNotaDePedido.VENCIDA:
+                case Constantes.Estados.VENCIDA:
                     color = Color.OrangeRed;
                     break;
                 default:

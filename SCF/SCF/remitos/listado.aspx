@@ -9,6 +9,7 @@
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script src="remito.js" type="text/javascript"></script>
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -57,13 +58,15 @@
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarRemito()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
+                                    <asp:Button type="button" ID="btnEntregada" runat="server" OnClick="btnEntregada_Click" class="btn green" Text="Entregada" CommandName="bb"/>
+                                    <asp:Button type="button" ID="btnAnulada" runat="server" OnClick="btnAnulada_Click" class="btn red" Text="Anular" />
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClick="btnVerDetalle_Click" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">
                                 <!-- devexpress-->
 
-                                <dx:ASPxGridView ID="gvEntregas" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoEntrega" Theme="Metropolis">
+                                <dx:ASPxGridView ID="gvEntregas" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoEntrega" Theme="Metropolis" OnHtmlRowPrepared="gvEntregas_HtmlRowPrepared" ClientInstanceName="gvEntregas">
                                     <Columns>
                                         <dx:GridViewDataTextColumn FieldName="codigoEntrega" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
@@ -76,16 +79,19 @@
                                         </dx:GridViewDataDateColumn>
                                         <dx:GridViewDataDateColumn FieldName="fechaEmision" VisibleIndex="4" Caption="Fecha Emision">
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataTextColumn FieldName="numeroRemito" VisibleIndex="5" Caption="Numero Remito">
+                                        <dx:GridViewDataTextColumn FieldName="numeroNotaDePedido" VisibleIndex="5" Caption="Nota de pedido">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="codigoEstado" VisibleIndex="6" Visible="false">
+                                        <dx:GridViewDataTextColumn FieldName="numeroRemito" VisibleIndex="6" Caption="Numero Remito">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="7" Caption="Observaciones">
+                                        <dx:GridViewDataTextColumn FieldName="codigoEstado" VisibleIndex="7" Visible="false">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="8" Caption="Observaciones">
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />
                                     <Settings ShowFilterRow="True" />
+                                    <ClientSideEvents FocusedRowChanged="focus" />
                                 </dx:ASPxGridView>
                             </div>
 
@@ -134,11 +140,39 @@
     </dx:ASPxPopupControl>
     <!--END POPUP-->
 
+    <!-- BEGIN POPUP ELIMINAR ARTICULO -->
+    <dx:ASPxPopupControl ID="pcError" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcError"
+        HeaderText="Error" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        EnableViewState="False" Theme="Metropolis">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl3" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel1" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent3" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                No se permite entregar un remito que esta anulado.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+    <!--END POPUP-->
+
     <dx:ASPxPopupControl ID="pcShowDetalleRemito" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleRemito"
         HeaderText="Detalle de Remito" AllowDragging="True" EnableViewState="False" Width="800px"
         PopupAnimationType="Fade" Theme="Metropolis">
-        <ClientSideEvents PopUp="function(s, e) {  txtCodigoInterno.Focus(); }" />
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
                 <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btnGuardarAticuloProveedor">
@@ -166,7 +200,6 @@
                                                             <dx:ASPxDateEdit ID="txtFechaRemito" runat="server" CssClass="form-control" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
                                                                 <TimeSectionProperties Visible="True">
                                                                 </TimeSectionProperties>
-
                                                             </dx:ASPxDateEdit>
                                                         </div>
                                                     </div>
@@ -195,22 +228,25 @@
                                                         <div class="form-group">
                                                             <dx:ASPxGridView runat="server" ID="gvItemsRemito" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigoItemRemito" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoItemEntrega" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="descripcionCorta" Caption="Desc. Corta" VisibleIndex="1">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticulo" VisibleIndex="1">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="proveedor" Caption="Proveedor" VisibleIndex="2">
-                                                                        <Settings AutoFilterCondition="Contains" />
-                                                                    </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="precio" Caption="Precio" VisibleIndex="3">
+                                                                    <dx:GridViewDataTextColumn FieldName="descripcionCorta" Caption="Desc. Corta" VisibleIndex="2">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="cantidad" Caption="Cantidad" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="importe" Caption="Importe" VisibleIndex="3">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoProveedor" Visible="false" VisibleIndex="3">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" Caption="Proveedor" VisibleIndex="3">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoItemNotaDePedido" Visible="false" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                 </Columns>
@@ -230,7 +266,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="control-label">Observación</label>
-                                                            <textarea id="txtObservacion" placeholder="Observación" runat="server" rows="3" class="form-control"></textarea>
+                                                            <textarea id="txtObservacion" runat="server" rows="3" class="form-control" readonly="readonly" style="resize: none;"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>

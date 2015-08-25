@@ -8,7 +8,7 @@ namespace BibliotecaSCF.ClasesComplementarias
 {
     public class Constantes
     {
-        public class EstadosNotaDePedido
+        public class Estados
         {
             public const int VIGENTE = 1;
             public const int ENTREGADA = 2;
