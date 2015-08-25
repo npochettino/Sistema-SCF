@@ -512,14 +512,16 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulos.Columns.Add("marca");
                 tablaArticulos.Columns.Add("precio");
                 tablaArticulos.Columns.Add("nombreImagen");
-
+                tablaArticulos.Columns.Add("codigoArticuloCliente");
+                tablaArticulos.Columns.Add("codigoCliente");
+                tablaArticulos.Columns.Add("razonSocialCliente");
 
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarTodos(nhSesion);
 
                 listaArticulos.Aggregate(tablaArticulos, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
-                        r.RecuperarPrecioActual(), r.NombreImagen); return dt;
+                        r.RecuperarPrecioActual(), r.NombreImagen, string.Empty, string.Empty, string.Empty); return dt;
                 });
 
                 return tablaArticulos;
@@ -569,13 +571,60 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulo.Columns.Add("marca");
                 tablaArticulo.Columns.Add("precio");
                 tablaArticulo.Columns.Add("nombreImagen");
+                tablaArticulo.Columns.Add("codigoArticuloCliente");
+                tablaArticulo.Columns.Add("codigoCliente");
+                tablaArticulo.Columns.Add("razonSocialCliente");
 
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarPorCodigoInternoCliente(codigoInternoCliente, nhSesion);
 
                 listaArticulos.Aggregate(tablaArticulo, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
-                        r.RecuperarPrecioActual(), r.NombreImagen); return dt;
+                        r.RecuperarPrecioActual(), r.NombreImagen,
+                        (from ac in r.ArticulosClientes where ac.CodigoInterno == codigoInternoCliente select ac).SingleOrDefault().CodigoInterno,
+                        (from ac in r.ArticulosClientes where ac.CodigoInterno == codigoInternoCliente select ac.Cliente).SingleOrDefault().Codigo,
+                        (from ac in r.ArticulosClientes where ac.CodigoInterno == codigoInternoCliente select ac.Cliente).SingleOrDefault().RazonSocial); return dt;
+                });
+
+                return tablaArticulo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarArticulosPorCodigoCliente(int codigoCliente)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaArticulo = new DataTable();
+                tablaArticulo.Columns.Add("codigoArticulo");
+                tablaArticulo.Columns.Add("descripcionCorta");
+                tablaArticulo.Columns.Add("descripcionLarga");
+                tablaArticulo.Columns.Add("marca");
+                tablaArticulo.Columns.Add("precio");
+                tablaArticulo.Columns.Add("nombreImagen");
+                tablaArticulo.Columns.Add("codigoArticuloCliente");
+                tablaArticulo.Columns.Add("codigoCliente");
+                tablaArticulo.Columns.Add("razonSocialCliente");
+
+                List<Articulo> listaArticulos = CatalogoArticulo.RecuperarPorCodigoCliente(codigoCliente, nhSesion);
+                Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+
+                listaArticulos.Aggregate(tablaArticulo, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
+                        r.RecuperarPrecioActual(), r.NombreImagen,
+                        (from ac in r.ArticulosClientes where ac.Cliente.Codigo == codigoCliente select ac).SingleOrDefault().CodigoInterno,
+                        cliente.Codigo, cliente.RazonSocial); return dt;
                 });
 
                 return tablaArticulo;

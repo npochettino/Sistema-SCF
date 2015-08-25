@@ -58,6 +58,15 @@ namespace SCF.contrato_marco {
         protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvArticulos;
         
         /// <summary>
+        /// Control ucExcel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxUploadControl.ASPxUploadControl ucExcel;
+        
+        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>

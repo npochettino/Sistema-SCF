@@ -8,7 +8,10 @@
 
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxUploadControl" TagPrefix="dx" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script src="contrato_marco.js" type="text/javascript"></script>
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -157,8 +160,11 @@
                                         </div>
                                     </div>
                                     <!-- END ROW -->
-                                    
+
                                     <div class="form-actions right">
+                                        <dx:ASPxUploadControl ID="ucExcel" runat="server" OnFileUploadComplete="ucExcel_FileUploadComplete" OnFilesUploadComplete="ucExcel_FilesUploadComplete" ShowProgressPanel="True" UploadMode="Auto" Width="280px">
+                                            <ClientSideEvents FileUploadComplete="s" FileUploadStart="e" />
+                                        </dx:ASPxUploadControl>
                                         <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
                                         <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" OnClick="btnGuardar_Click" Text="Guardar" />
                                     </div>
