@@ -82,7 +82,7 @@
                                                 <label class="control-label">Cliente</label>
 
                                                 <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
-                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
+                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis" OnSelectedIndexChanged="cbClientes_SelectedIndexChanged" AutoPostBack="True">
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoCliente" Width="100px" Visible="false" />
                                                         <dx:ListBoxColumn FieldName="cuil" Width="100px" />
@@ -151,6 +151,10 @@
                                                                 <dx:GridViewDataTextColumn Caption="Precio" VisibleIndex="8" FieldName="precio" Width="40">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
+
+                                                                <dx:GridViewDataTextColumn Caption="Codigo articulo cliente" VisibleIndex="9" FieldName="codigoArticuloCliente">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
                                                             </Columns>
                                                             <SettingsBehavior ColumnResizeMode="NextColumn" />
                                                             <SettingsBehavior AllowFocusedRow="True" />
@@ -215,7 +219,7 @@
                                                                     VisibleIndex="5" FieldName="fechaEntrega" Width="100px">
                                                                     <Settings AllowSort="True" />
                                                                     <PropertiesDateEdit DisplayFormatString="d/MM/yyyy" />
-                                                                    
+
                                                                 </dx:GridViewDataDateColumn>
 
                                                                 <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" VisibleIndex="6" FieldName="codigoItemNotaDePedido">

@@ -1050,7 +1050,7 @@ namespace BibliotecaSCF.Controladores
                     int codigoItemNotaDePedido = Convert.ToInt32(filaItemNotaDePedido["codigoItemNotaDePedido"]);
                     ItemNotaDePedido item = new ItemNotaDePedido();
 
-                    if (codigoItemNotaDePedido == 0)
+                    if (codigoItemNotaDePedido < 1)
                     {
                         item = new ItemNotaDePedido();
                         notaDePedido.ItemsNotaDePedido.Add(item);

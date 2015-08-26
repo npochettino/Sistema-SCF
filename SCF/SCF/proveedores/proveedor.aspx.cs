@@ -43,6 +43,9 @@ namespace SCF.proveedores
             txtCBU.Value = oProveedorActual.Cbu;
             txtNroCuentaBancaria.Value = oProveedorActual.NumeroCuenta;
             txtObservacion.Value = oProveedorActual.Observaciones;
+            txtFax.Value = oProveedorActual.Fax;
+            //txtNroInternoCliente.Value = oProveedorActual.NumeroInterno.ToString();
+
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)

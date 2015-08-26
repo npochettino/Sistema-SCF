@@ -21,10 +21,7 @@ namespace SCF.nota_pedido
 
             CargarComboClientes();
             CargarGrillaArticulos();
-
             txtFechaEmision.Value = DateTime.Now;
-
-
 
             if (!IsPostBack)
             {
@@ -61,6 +58,8 @@ namespace SCF.nota_pedido
 
 
                 }
+
+
             }
 
 
@@ -99,7 +98,7 @@ namespace SCF.nota_pedido
                     if (gvArticulos.Selection.IsRowSelected(i))
                     {
                         DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
-                        tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, 0, mRow.Row.ItemArray[4], false);
+                        tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false);
                     }
                 }
 
@@ -116,12 +115,12 @@ namespace SCF.nota_pedido
                         if (gvArticulos.Selection.IsRowSelected(i))
                         {
                             DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
-                            int codigoItemNotaDePedido = Convert.ToInt32(mRow.Row.ItemArray[0]);
-                            DataRow filaRepetida = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoItemNotaDePedido"]) == codigoItemNotaDePedido select t).SingleOrDefault();
+                            int codigoArticulo = Convert.ToInt32(mRow.Row.ItemArray[0]);
+                            DataRow filaRepetida = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoArticulo"]) == codigoArticulo select t).SingleOrDefault();
 
                             if (filaRepetida == null)
                             {
-                                tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, 0, mRow.Row.ItemArray[4], false);
+                                tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false);
                             }
                         }
                     }
@@ -129,7 +128,6 @@ namespace SCF.nota_pedido
             }
 
 
-            Session["tablaItemsNotaDePedido"] = tablaItemsNotaDePedido;
             gvArticulosSeleccionados.DataSource = tablaItemsNotaDePedido;
             gvArticulosSeleccionados.DataBind();
 
@@ -140,11 +138,10 @@ namespace SCF.nota_pedido
         {
             if (cbClientes.SelectedItem != null)
             {
-                //int codigoCliente = Convert.ToInt32(cbClientes.SelectedItem.Value);
-                //DataTable tablaItemsNotaDePedido = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(
-
-                //gvArticulos.DataSource = tablaItemsNotaDePedido;
-                //gvArticulos.DataBind();
+                int codigoCliente = Convert.ToInt32(cbClientes.SelectedItem.Value);
+                DataTable tablaItemsNotaDePedido = ControladorGeneral.RecuperarArticulosPorCodigoCliente(codigoCliente);
+                gvArticulos.DataSource = tablaItemsNotaDePedido;
+                gvArticulos.DataBind();
             }
         }
 
@@ -233,6 +230,11 @@ namespace SCF.nota_pedido
             {
                 e.Row.BackColor = Color.Red;
             }
+        }
+
+        protected void cbClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //CargarGrillaArticulosPorCliente();
         }
 
     }

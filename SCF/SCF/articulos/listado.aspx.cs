@@ -88,9 +88,11 @@ namespace SCF.articulos
         {
             gvArticulos.DataSource = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(txtCodigoCliente.Value);
             gvArticulos.DataBind();
+
             gvArticulos.Columns["codigoCliente"].Visible = true;
             gvArticulos.Columns["razonSocialCliente"].Visible = true;
             gvArticulos.Columns["codigoArticuloCliente"].Visible = true;
+
         }
 
         protected void btnRelacionArticuloCliente_Click(object sender, EventArgs e)
@@ -138,6 +140,7 @@ namespace SCF.articulos
         {
             pcShowDetalleArticulo.ShowOnPageLoad = true;
 
+
             int codigoArticulo = int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString());
             txtDescripcionCorta.InnerText = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionCorta").ToString();
             txtDescripcionLarga.InnerText = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionLarga").ToString();
@@ -149,6 +152,7 @@ namespace SCF.articulos
             gvArticuloProveedores.DataSource = ControladorGeneral.RecuperarArticulosProveedoresPorArticulo(codigoArticulo);
             gvArticuloProveedores.DataBind();
         }
+
 
         protected void btnConfirmarEliminarRelacionArticuloCliente_Click(object sender, EventArgs e)
         {

@@ -43,6 +43,8 @@ namespace SCF.clientes
             txtCBU.Value = oClienteActual.Cbu;
             txtNroCuentaBancaria.Value = oClienteActual.NumeroCuenta;
             txtObservacion.Value = oClienteActual.Observaciones;
+            txtFax.Value = oClienteActual.Fax;
+            //txtNroInternoCliente.Value = oClienteActual.NumeroInterno.ToString();
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
