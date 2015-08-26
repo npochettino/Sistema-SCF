@@ -4573,6 +4573,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
+    <Folder Include="contrato_marco\contratos\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BibliotecaSCF\BibliotecaSCF.csproj">

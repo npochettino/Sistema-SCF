@@ -159,11 +159,16 @@
                                         </div>
                                     </div>
                                     <!-- END ROW -->
-                                    <asp:FileUpload ID="fuExcel" runat="server" AllowMultiple="false"/>
-                                    <div class="form-actions right">
-                                        <asp:Button type="button" class="btn green" runat="server" ID="btnCargarGrilla" OnClick="btnCargarGrilla_Click" Text="Cargar grilla" />
-                                        <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
-                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" OnClick="btnGuardar_Click" Text="Guardar" />
+                                    <asp:FileUpload ID="fuExcel" CssClass="form-control" runat="server" AllowMultiple="false" />
+                                    <br />
+                                    <div class="form-actions top">
+                                        <div class="btn-set pull-left">
+                                            <asp:Button type="button" class="btn green" runat="server" ID="btnCargarGrilla" OnClick="btnCargarGrilla_Click" Text="Cargar grilla" />
+                                        </div>
+                                        <div class="btn-set pull-right">
+                                            <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
+                                            <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" OnClick="btnGuardar_Click" Text="Guardar" />
+                                        </div>
                                     </div>
                                 </div>
                             </form>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -26,8 +27,10 @@ namespace SCF.contrato_marco
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            DataTable tabla = OpenExcelFile("C:\\Eze\\SCF.xls");
+            //DataTable tabla = OpenExcelFile("C:\\Eze\\SCF.xls");
+            DataTable tabla = OpenExcelFile(Session["rutaExcel"].ToString());
             ControladorGeneral.InsertarActualizarContratoMarco(0, "CM 1", 2, DateTime.Now.AddYears(-1), DateTime.Now.AddYears(2), tabla);
+            Session["rutaExcel"] = null;
         }
 
         protected DataTable OpenExcelFile(string fileName)
@@ -42,9 +45,19 @@ namespace SCF.contrato_marco
 
         protected void btnCargarGrilla_Click(object sender, EventArgs e)
         {
-            DataTable tabla = OpenExcelFile("C:\\Eze\\SCF.xls");
-            gvArticulos.DataSource = tabla;
-            gvArticulos.DataBind();
+            if (fuExcel.HasFile)
+            {
+                string path = Server.MapPath(".") + "\\contratos\\" + fuExcel.FileName;
+                fuExcel.PostedFile.SaveAs(path);
+                StreamReader reader = new StreamReader(fuExcel.FileContent);
+                string text = reader.ReadToEnd();
+                Session.Add("rutaExcel", path);
+
+                //DataTable tabla = OpenExcelFile("C:\\Eze\\SCF.xls");
+                DataTable tabla = OpenExcelFile(path);
+                gvArticulos.DataSource = tabla;
+                gvArticulos.DataBind();
+            }
         }
     }
 }
