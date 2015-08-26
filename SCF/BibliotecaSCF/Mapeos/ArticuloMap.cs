@@ -18,6 +18,7 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.DescripcionLarga).Column("descripcionLarga");
             Map(x => x.Marca).Column("marca");
             Map(x => x.NombreImagen).Column("nombreImagen");
+            Map(x => x.UnidadMedida).Column("unidadMedida");
 
             HasMany<ArticuloProveedor>(x => x.ArticulosProveedor).KeyColumn("codigoArticulo").Not.KeyNullable().Cascade.AllDeleteOrphan();
             HasMany<ArticuloCliente>(x => x.ArticulosClientes).KeyColumn("codigoArticulo").Not.KeyNullable().Cascade.AllDeleteOrphan();

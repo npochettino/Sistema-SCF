@@ -14,6 +14,7 @@ namespace BibliotecaSCF.Mapeos
         {
             Table("Proveedores");
             Id(x => x.Codigo).Column("codigoProveedor").GeneratedBy.Identity();
+            Map(x => x.NumeroInterno).Column("numeroInterno");
             Map(x => x.RazonSocial).Column("razonSocial");
             Map(x => x.Provincia).Column("provincia");
             Map(x => x.Localidad).Column("localidad");

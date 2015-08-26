@@ -9,6 +9,7 @@ namespace BibliotecaSCF.Clases
     public class Cliente
     {
         public virtual int Codigo { get; set; }
+        public virtual int NumeroInterno { get; set; }
         public virtual string RazonSocial { get; set; }
         public virtual string Provincia { get; set; }
         public virtual string Localidad { get; set; }

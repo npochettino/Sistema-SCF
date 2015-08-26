@@ -15,7 +15,7 @@ namespace BibliotecaSCF.Controladores
     {
         #region Proveedores
 
-        public static void InsertarActualizarProveedor(int codigoProveedor, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones)
+        public static void InsertarActualizarProveedor(int codigoProveedor, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -46,6 +46,7 @@ namespace BibliotecaSCF.Controladores
                 proveedor.Cbu = cbu;
                 proveedor.Observaciones = observaciones;
                 proveedor.IsInactivo = false;
+                proveedor.NumeroInterno = numeroInterno;
 
                 CatalogoProveedor.InsertarActualizar(proveedor, nhSesion);
             }
@@ -257,7 +258,7 @@ namespace BibliotecaSCF.Controladores
 
         #region Cliente
 
-        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones)
+        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -288,6 +289,7 @@ namespace BibliotecaSCF.Controladores
                 cliente.Cbu = cbu;
                 cliente.Observaciones = observaciones;
                 cliente.IsInactivo = false;
+                cliente.NumeroInterno = numeroInterno;
 
                 CatalogoCliente.InsertarActualizar(cliente, nhSesion);
             }
@@ -1143,6 +1145,107 @@ namespace BibliotecaSCF.Controladores
         #endregion
 
         #region ContratoMarco
+
+        public static void InsertarActualizarContratoMarco(int codigoContratoMarco, string descripcion, int codigoCliente, DateTime fechaHoraDesde, DateTime fechaHoraHasta, DataTable tablaItemsContratoMarco)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            ITransaction trans = nhSesion.BeginTransaction();
+
+            try
+            {
+                ContratoMarco cm = new ContratoMarco();
+                Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+                cm.Cliente = cliente;
+                cm.Descripcion = descripcion;
+                cm.FechaFin = fechaHoraHasta;
+                cm.FechaInicio = fechaHoraDesde;
+
+                foreach (DataRow fila in tablaItemsContratoMarco.Rows)
+                {
+                    string descripcionCorta = fila["texto breve"].ToString();
+
+                    Articulo articulo = CatalogoArticulo.RecuperarPor(x => x.DescripcionCorta == descripcionCorta, nhSesion);
+
+                    if (articulo == null)
+                    {
+                        articulo = new Articulo();
+                        articulo.DescripcionCorta = descripcionCorta;
+                        articulo.DescripcionLarga = string.Empty;
+                        articulo.Marca = string.Empty;
+                        articulo.NombreImagen = string.Empty;
+                        articulo.UnidadMedida = fila["unidad de medida"].ToString();
+                    }
+
+                    ArticuloCliente artCl = (from a in articulo.ArticulosClientes where a.CodigoInterno == fila["cod planta"].ToString() && a.Cliente.Codigo == codigoCliente select a).SingleOrDefault();
+
+                    if (artCl == null)
+                    {
+                        artCl = new ArticuloCliente();
+                        artCl.CodigoInterno = fila["cod planta"].ToString();
+                        artCl.Cliente = cliente;
+                        articulo.ArticulosClientes.Add(artCl);
+                    }
+
+                    //HistorialPrecio histPrecio = (from h in articulo.HistorialesPrecio where h.FechaHasta == null select h).SingleOrDefault();
+                    //if (histPrecio == null)
+                    //{
+                    //    histPrecio = new HistorialPrecio();
+                    //    histPrecio.CodigoMoneda = RecuperarCodigoMoneda(fila["moneda"].ToString());
+                    //    histPrecio.FechaDesde = fechaHoraDesde;
+                    //    histPrecio.FechaHasta = null;
+                    //    histPrecio.Precio = Convert.ToDouble(fila["precio base"]);
+                    //}
+                    //else
+                    //{
+                    //    if (histPrecio.Precio != Convert.ToDouble(fila["precio base"]) || histPrecio.CodigoMoneda != RecuperarCodigoMoneda(fila["moneda"].ToString()))
+                    //    {
+                    //        histPrecio.FechaHasta = fechaHoraDesde.AddSeconds(-1);
+                    //        HistorialPrecio histPrecioNuevo = new HistorialPrecio();
+                    //        histPrecio.CodigoMoneda = RecuperarCodigoMoneda(fila["moneda"].ToString());
+                    //        histPrecio.FechaDesde = fechaHoraDesde;
+                    //        histPrecio.FechaHasta = null;
+                    //        histPrecio.Precio = Convert.ToDouble(fila["precio base"]);
+                    //    }
+                    //}
+
+                    ItemContratoMarco itemCM = new ItemContratoMarco();
+                    itemCM.Articulo = articulo;
+                    itemCM.Precio = Convert.ToDouble(fila["precio base"]);
+                    itemCM.Posicion = Convert.ToInt32(fila["pos"]);
+
+                    cm.ItemsContratoMarco.Add(itemCM);
+                }
+
+                CatalogoContratoMarco.InsertarActualizar(cm, nhSesion);
+                trans.Commit();
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        private static int RecuperarCodigoMoneda(string moneda)
+        {
+            switch (moneda)
+            {
+                case "USD":
+                    return Constantes.Moneda.DOLAR;
+                case "ARS":
+                    return Constantes.Moneda.PESO;
+                case "EUR":
+                    return Constantes.Moneda.EURO;
+                default:
+                    return 1;
+                    break;
+            }
+        }
 
         public static DataTable RecuperarContratosMarcoVigentePorCliente(int codigoCliente)
         {

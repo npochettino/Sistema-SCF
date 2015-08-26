@@ -131,20 +131,19 @@
                                                         <!-- GRID VIEW ARTICULOS-->
                                                         <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis" Width="100%">
                                                             <Columns>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="False" VisibleIndex="1">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Caption="Desc. Corta">
+                                                                <dx:GridViewDataTextColumn FieldName="COD PLANTA" VisibleIndex="0" Caption="Codigo articulo cliente">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Visible="true" FieldName="descripcionLarga" VisibleIndex="3" Caption="Desc. Larga">
+                                                                <dx:GridViewDataTextColumn FieldName="Texto breve" VisibleIndex="1" Caption="Desc. Corta">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="4" Caption="Marca">
+                                                                <dx:GridViewDataTextColumn FieldName="PRECIO BASE" Caption="Precio" VisibleIndex="2">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Precio" VisibleIndex="8" FieldName="precio">
+                                                                <dx:GridViewDataTextColumn FieldName="UNIDAD DE MEDIDA" Caption="Unidad de medida" VisibleIndex="2">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="MONEDA" Caption="Moneda" VisibleIndex="2">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                             </Columns>
@@ -160,11 +159,9 @@
                                         </div>
                                     </div>
                                     <!-- END ROW -->
-
+                                    <asp:FileUpload ID="fuExcel" runat="server" AllowMultiple="false"/>
                                     <div class="form-actions right">
-                                        <dx:ASPxUploadControl ID="ucExcel" runat="server" OnFileUploadComplete="ucExcel_FileUploadComplete" OnFilesUploadComplete="ucExcel_FilesUploadComplete" ShowProgressPanel="True" UploadMode="Auto" Width="280px">
-                                            <ClientSideEvents FileUploadComplete="s" FileUploadStart="e" />
-                                        </dx:ASPxUploadControl>
+                                        <asp:Button type="button" class="btn green" runat="server" ID="btnCargarGrilla" OnClick="btnCargarGrilla_Click" Text="Cargar grilla" />
                                         <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
                                         <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" OnClick="btnGuardar_Click" Text="Guardar" />
                                     </div>

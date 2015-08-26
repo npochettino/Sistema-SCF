@@ -10,6 +10,7 @@ namespace BibliotecaSCF.Clases
     {
         public virtual int Codigo { get; set; }
         public virtual double Precio { get; set; }
+        public virtual int Posicion { get; set; }
 
         public virtual Articulo Articulo { get; set; }
     }
