@@ -133,7 +133,7 @@ namespace SCF.clientes
 
         protected void btnVerDetalleCliente_Click(object sender, EventArgs e)
         {
-
+            pcShowDetalleCliente.ShowOnPageLoad = true;
         }
     }
 }

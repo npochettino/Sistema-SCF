@@ -122,7 +122,7 @@ namespace SCF.proveedores
 
         protected void btnVerDetalleProveedor_Click(object sender, EventArgs e)
         {
-
+            pcShowDetalleProveedor.ShowOnPageLoad = true;
         }
 
 
