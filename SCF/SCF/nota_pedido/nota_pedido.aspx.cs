@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using BibliotecaSCF.Clases;
 using DevExpress.Web.ASPxEditors;
 using System.Drawing;
+using System.Globalization;
 
 namespace SCF.nota_pedido
 {
@@ -21,9 +22,12 @@ namespace SCF.nota_pedido
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            txtFechaEmision.Value = DateTime.Now;
+
             CargarComboClientes();
             CargarGrillaArticulos();
+
+            txtFechaEmision.Value = DateTime.Now;
+
 
 
             if (!IsPostBack)
@@ -52,11 +56,13 @@ namespace SCF.nota_pedido
                     txtObservacion.InnerText = observaciones;
                     cbClientes.SelectedItem = cbClientes.Items.FindByValue(Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoCliente"]));
 
-                    DataTable tablaItemsEntrega = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
-                    Session["tablaItemsNotaDePedido"] = tablaItemsEntrega;
-                    tablaItemsEntrega.Columns.Add("isEliminada");
-                    gvArticulosSeleccionados.DataSource = tablaItemsEntrega;
+                    DataTable tablaItemsNotaDePedido = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
+                    tablaItemsNotaDePedido.Columns.Add("isEliminada");
+                    gvArticulosSeleccionados.DataSource = tablaItemsNotaDePedido;
                     gvArticulosSeleccionados.DataBind();
+
+                    Session["tablaItemsNotaDePedido"] = tablaItemsNotaDePedido;
+
 
                 }
             }
@@ -85,6 +91,7 @@ namespace SCF.nota_pedido
                 if (Session["tablaNotaDePedido"] != null)
                 {
                     int codigoNotaDePedido = Convert.ToInt32(((DataTable)Session["tablaNotaDePedido"]).Rows[0]["codigoNotaDePedido"]);
+
                     DataTable tablaItemsNotaDePedidoActual = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
                     tablaItemsNotaDePedidoActual.Columns.Add("isEliminada");
 
@@ -125,8 +132,12 @@ namespace SCF.nota_pedido
                 }
             }
 
+
+            Session["tablaItemsNotaDePedido"] = tablaItemsNotaDePedido;
             gvArticulosSeleccionados.DataSource = tablaItemsNotaDePedido;
             gvArticulosSeleccionados.DataBind();
+
+
         }
 
         private void CargarGrillaArticulosPorCliente()
@@ -134,7 +145,7 @@ namespace SCF.nota_pedido
             if (cbClientes.SelectedItem != null)
             {
                 //int codigoCliente = Convert.ToInt32(cbClientes.SelectedItem.Value);
-                //DataTable tablaItemsNotaDePedido = ControladorGeneral.
+                //DataTable tablaItemsNotaDePedido = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(
 
                 //gvArticulos.DataSource = tablaItemsNotaDePedido;
                 //gvArticulos.DataBind();
@@ -210,31 +221,17 @@ namespace SCF.nota_pedido
         }
 
 
-
-        protected void fecha_Init(object sender, EventArgs e)
-        {
-            //if (!IsPostBack)
-            //{
-            //    DataTable tablaitemNotaPedido = ControladorGeneral.RecuperarItemsNotaDePedido(Convert.ToInt32(((DataTable)Session["tablaNotaDePedido"]).Rows[0]["codigoNotaDePedido"]));
-
-            //    if (Session["tablaNotaDePedido"] != null)
-            //        ((ASPxDateEdit)sender).Date = Convert.ToDateTime(tablaitemNotaPedido.Rows[indice]["fechaEntrega"]);
-            //    else
-            //        ((ASPxDateEdit)sender).Date = DateTime.Now.Date;
-
-            //    indice++;
-            //}
-        }
-
-
         protected void gvItemsEntrega_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
         {
-            DataTable tablaItemsNotaDePedido = (DataTable)Session["tablaItemNotaDePedido"];
-            int codigoItemEntregaEditado = Convert.ToInt32(e.Keys["codigoItemNotaDePedido"]);
-            DataRow fila = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoItemNotaDePedido"]) == codigoItemEntregaEditado select t).SingleOrDefault();
-            int cantidad = Convert.ToInt32(e.NewValues["cantidad"]);
-            fila["cantidad"] = cantidad;
-            Session["tablaItemsEntrega"] = tablaItemsNotaDePedido;
+            DataTable tablaItemsNotaDePedido = (DataTable)Session["tablaItemsNotaDePedido"];
+            int codigoItemNotaDePedido = Convert.ToInt32(e.Keys["codigoItemNotaDePedido"]);
+            DataRow fila = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoItemNotaDePedido"]) == codigoItemNotaDePedido select t).SingleOrDefault();
+
+            fila["cantidad"] = Convert.ToInt32(e.NewValues["cantidad"]);
+            DateTime fechaEntrega = Convert.ToDateTime(e.NewValues["fechaEntrega"]).ToLocalTime();
+
+            fila["fechaEntrega"] = fechaEntrega;
+            Session["tablaItemsNotaDePedido"] = tablaItemsNotaDePedido;
             e.Cancel = true;
             gvArticulosSeleccionados.CancelEdit();
             CargarGrillaItemsNotaDePedido(false);

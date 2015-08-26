@@ -9,7 +9,8 @@
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    &nbsp;&nbsp;&nbsp;    <!-- BEGIN CONTENT -->
+    &nbsp;&nbsp;&nbsp;   
+    <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
             <!-- BEGIN PAGE HEAD -->
@@ -57,7 +58,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Nro. Interno Nota Pedido del Cliente</label>
-                                                <dx:ASPxTextBox ID="txtNroInternoCliente" runat="server" CssClass="form-control"  Width="100%" placeholder="Nro. Interno Nota Pedido Cliente"></dx:ASPxTextBox>
+                                                <dx:ASPxTextBox ID="txtNroInternoCliente" runat="server" CssClass="form-control" Width="100%" placeholder="Nro. Interno Nota Pedido Cliente"></dx:ASPxTextBox>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -81,7 +82,7 @@
                                                 <label class="control-label">Cliente</label>
 
                                                 <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
-                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%"  EnableTheming="True" Theme="Metropolis">
+                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoCliente" Width="100px" Visible="false" />
                                                         <dx:ListBoxColumn FieldName="cuil" Width="100px" />
@@ -107,7 +108,7 @@
                                         <div class="col-md-6">
                                             <!-- BEGIN CHART PORTLET-->
                                             <div class="portlet light">
-                                                 <div class="portlet-title">
+                                                <div class="portlet-title">
                                                     <div class="caption">
                                                         <i class="icon-bar-chart font-green-haze"></i>
                                                         <span class="caption-subject bold uppercase font-green-haze">Seleccione los Artículos</span>
@@ -121,7 +122,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
-                                                    <div id="chart_8" class="chart" style="height:auto">
+                                                    <div id="chart_8" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ARTICULOS-->
                                                         <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis" Width="100%">
                                                             <Columns>
@@ -192,35 +193,36 @@
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
-                                                    <div id="chart_9" class="chart" style="height:auto">
+                                                    <div id="chart_9" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ITEMS SELECCIONADOS-->
-                                                        <dx:ASPxGridView ID="gvArticulosSeleccionados" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoArticulo"
-                                                            Width="100%" OnRowUpdating="gvItemsEntrega_RowUpdating" OnHtmlRowPrepared="gvItemsEntrega_HtmlRowPrepared" ClientInstanceName="gvItemsNotaDePedido">
+                                                        <dx:ASPxGridView ID="gvArticulosSeleccionados" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoItemNotaDePedido"
+                                                            Width="100%" OnRowUpdating="gvItemsEntrega_RowUpdating" OnHtmlRowPrepared="gvItemsEntrega_HtmlRowPrepared" ClientInstanceName="gvArticulosSeleccionados">
                                                             <Columns>
                                                                 <dx:GridViewDataTextColumn Caption="codigoArticulo" VisibleIndex="0" FieldName="codigoArticulo"
                                                                     Visible="false">
                                                                     <Settings AllowSort="True" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="descripcionCorta" VisibleIndex="1" FieldName="descripcionCorta">
-                                                                    <Settings AllowSort="True"  />
+                                                                    <Settings AllowSort="True" />
+                                                                    <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="descripcionLarga" Visible="false" VisibleIndex="2" FieldName="descripcionLarga">
-                                                                    <Settings AllowSort="True"  />
+                                                                    <Settings AllowSort="True" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="3">
-                                                                    <Settings AllowSort="True"  />
+                                                                    <Settings AllowSort="True" />
+                                                                    <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
 
-                                                              <dx:GridViewDataTextColumn Caption="Cantidad" FieldName="cantidad" Width="40px" VisibleIndex="4">
+                                                                <dx:GridViewDataTextColumn Caption="Cantidad" FieldName="cantidad" Width="40px" VisibleIndex="4">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
 
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataDateColumn Caption="fechaEntrega" VisibleIndex="5" >
-                                                                    <Settings AllowSort="True"  />
 
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxDateEdit  ID="fecha" runat="server" Width="100px" FieldName="fechaEntrega" OnInit="fecha_Init" />
-                                                                    </DataItemTemplate>
+                                                                <dx:GridViewDataDateColumn Caption="fechaEntrega" PropertiesDateEdit-DisplayFormatString="d/MM/yyyy" VisibleIndex="5" FieldName="fechaEntrega" Width="100px">
+                                                                    <Settings AllowSort="True" />
+                                                                    <PropertiesDateEdit DisplayFormatString="d/MM/yyyy" />
+                                                                    
                                                                 </dx:GridViewDataDateColumn>
 
                                                                 <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" VisibleIndex="6" FieldName="codigoItemNotaDePedido">
@@ -229,13 +231,14 @@
 
                                                                 <dx:GridViewDataTextColumn Caption="precio" VisibleIndex="7" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                 <dx:GridViewDataTextColumn VisibleIndex="8" FieldName="isEliminada" Visible="false"/>
-                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="8"/>
-                                                              
+                                                                <dx:GridViewDataTextColumn VisibleIndex="8" FieldName="isEliminada" Visible="false" />
+                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="8" />
+
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
-                                                            
+
                                                             <Settings ShowFilterRow="True" />
                                                         </dx:ASPxGridView>
                                                         <br />
