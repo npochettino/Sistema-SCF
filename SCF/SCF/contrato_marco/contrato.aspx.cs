@@ -16,21 +16,42 @@ namespace SCF.contrato_marco
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CargarClientes();
+            //CargarClientes();
+
+            if (Session["tablaItemsContratoMarco"] != null)
+            {
+                gvArticulos.DataSource = (DataTable)Session["tablaItemsContratoMarco"];
+                gvArticulos.DataBind();
+            }
         }
 
         private void CargarClientes()
         {
-            cbCliente.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
-            cbCliente.DataBind();
+            //cbCliente.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
+            //cbCliente.DataBind();
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            //DataTable tabla = OpenExcelFile("C:\\Eze\\SCF.xls");
-            DataTable tabla = OpenExcelFile(Session["rutaExcel"].ToString());
-            ControladorGeneral.InsertarActualizarContratoMarco(0, "CM 1", 2, DateTime.Now.AddYears(-1), DateTime.Now.AddYears(2), tabla);
-            Session["rutaExcel"] = null;
+            if (Session["rutaExcel"] == null)
+            {
+                pcError.ShowOnPageLoad = true;
+                lblError.Text = "Debe cargar la grilla";
+            }
+            else
+            {
+
+                DataTable tabla = OpenExcelFile(Session["rutaExcel"].ToString());
+                string rta = ControladorGeneral.InsertarContratosMarcosPorTabla(tabla);
+
+                if (rta != "ok")
+                {
+                    pcError.ShowOnPageLoad = true;
+                    lblError.Text = rta;
+                }
+
+                Session["rutaExcel"] = null;
+            }
         }
 
         protected DataTable OpenExcelFile(string fileName)
@@ -53,10 +74,11 @@ namespace SCF.contrato_marco
                 string text = reader.ReadToEnd();
                 Session.Add("rutaExcel", path);
 
-                //DataTable tabla = OpenExcelFile("C:\\Eze\\SCF.xls");
                 DataTable tabla = OpenExcelFile(path);
                 gvArticulos.DataSource = tabla;
                 gvArticulos.DataBind();
+
+                Session["tablaItemsContratoMarco"] = tabla;
             }
         }
     }

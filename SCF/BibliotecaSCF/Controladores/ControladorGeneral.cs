@@ -1152,22 +1152,41 @@ namespace BibliotecaSCF.Controladores
 
         #region ContratoMarco
 
-        public static void InsertarActualizarContratoMarco(int codigoContratoMarco, string descripcion, int codigoCliente, DateTime fechaHoraDesde, DateTime fechaHoraHasta, DataTable tablaItemsContratoMarco)
+        public static string InsertarContratosMarcosPorTabla(DataTable tablaItemsContratoMarco)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
             ITransaction trans = nhSesion.BeginTransaction();
 
             try
             {
-                ContratoMarco cm = new ContratoMarco();
-                Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
-                cm.Cliente = cliente;
-                cm.Descripcion = descripcion;
-                cm.FechaFin = fechaHoraHasta;
-                cm.FechaInicio = fechaHoraDesde;
+                List<ContratoMarco> listaContratosMarco = new List<ContratoMarco>();
 
                 foreach (DataRow fila in tablaItemsContratoMarco.Rows)
                 {
+                    string descripcionCM = fila["CM"].ToString();
+
+                    ContratoMarco cm = (from c in listaContratosMarco where c.Descripcion == descripcionCM select c).SingleOrDefault();
+
+                    if (cm == null)
+                    {
+                        cm = new ContratoMarco();
+                        cm.Descripcion = descripcionCM;
+                        cm.FechaInicio = Convert.ToDateTime(fila["INICIO"]);
+                        cm.FechaFin = Convert.ToDateTime(fila["FIN"]);
+                        cm.Comprador = fila["COMPRADOR"].ToString();
+
+                        Cliente cliente = CatalogoCliente.RecuperarPorRazonSocial(fila["Cliente"].ToString(), nhSesion);
+
+                        if (cliente == null)
+                        {
+                            return "Cliente inexistente: " + fila["Cliente"].ToString();
+                        }
+
+                        cm.Cliente = cliente;
+
+                        listaContratosMarco.Add(cm);
+                    }
+
                     string descripcionCorta = fila["texto breve"].ToString();
 
                     Articulo articulo = CatalogoArticulo.RecuperarPor(x => x.DescripcionCorta == descripcionCorta, nhSesion);
@@ -1182,13 +1201,13 @@ namespace BibliotecaSCF.Controladores
                         articulo.UnidadMedida = fila["unidad de medida"].ToString();
                     }
 
-                    ArticuloCliente artCl = (from a in articulo.ArticulosClientes where a.CodigoInterno == fila["cod planta"].ToString() && a.Cliente.Codigo == codigoCliente select a).SingleOrDefault();
+                    ArticuloCliente artCl = (from a in articulo.ArticulosClientes where a.CodigoInterno == fila["cod planta"].ToString() && a.Cliente.Codigo == cm.Cliente.Codigo select a).SingleOrDefault();
 
                     if (artCl == null)
                     {
                         artCl = new ArticuloCliente();
                         artCl.CodigoInterno = fila["cod planta"].ToString();
-                        artCl.Cliente = cliente;
+                        artCl.Cliente = cm.Cliente;
                         articulo.ArticulosClientes.Add(artCl);
                     }
 
@@ -1222,8 +1241,13 @@ namespace BibliotecaSCF.Controladores
                     cm.ItemsContratoMarco.Add(itemCM);
                 }
 
-                CatalogoContratoMarco.InsertarActualizar(cm, nhSesion);
+                foreach (ContratoMarco cm in listaContratosMarco)
+                {
+                    CatalogoContratoMarco.InsertarActualizar(cm, nhSesion);
+                }
+
                 trans.Commit();
+                return "ok";
             }
             catch (Exception ex)
             {

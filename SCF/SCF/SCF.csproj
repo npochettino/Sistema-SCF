@@ -4038,7 +4038,6 @@
     <Content Include="assets\sweetalert-dev.js" />
     <Content Include="assets\sweetalert.css" />
     <Content Include="assets\sweetalert.min.js" />
-    <Content Include="contrato_marco\contrato_marco.js" />
     <Content Include="remitos\remito.js" />
     <Content Include="template\blank.aspx" />
     <Content Include="template\charts_amcharts.html" />

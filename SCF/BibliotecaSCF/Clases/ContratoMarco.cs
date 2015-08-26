@@ -17,6 +17,7 @@ namespace BibliotecaSCF.Clases
         public virtual string Descripcion { get; set; }
         public virtual DateTime FechaInicio { get; set; }
         public virtual DateTime FechaFin { get; set; }
+        public virtual string Comprador { get; set; }
 
         public virtual Cliente Cliente { get; set; }
         public virtual IList<ItemContratoMarco> ItemsContratoMarco { get; set; }
