@@ -72,7 +72,8 @@ namespace SCF.articulos
 
         protected void btnBuscarPorCodigoCliente_Click(object sender, EventArgs e)
         {
-
+            gvArticulos.DataSource = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(txtCodigoCliente.Value);
+            gvArticulos.DataBind();
         }
 
         protected void btnRelacionArticuloCliente_Click(object sender, EventArgs e)

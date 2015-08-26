@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BibliotecaSCF.Clases;
 using NHibernate;
+using NHibernate.Linq;
 
 namespace BibliotecaSCF.Catalogos
 {
@@ -14,7 +15,7 @@ namespace BibliotecaSCF.Catalogos
         {
             try
             {
-                List<Articulo> listaArticulos = nhSesion.QueryOver<Articulo>().Where(x => x.ArticulosClientes.Any(ac => ac.CodigoInterno.Contains(codigoInternoCliente))).List().ToList();
+                List<Articulo> listaArticulos = nhSesion.Query<Articulo>().Where(x => x.ArticulosClientes.Any(ac => ac.CodigoInterno.Contains(codigoInternoCliente))).ToList();
                 return listaArticulos;
             }
             catch (Exception ex)
@@ -27,7 +28,7 @@ namespace BibliotecaSCF.Catalogos
         {
             try
             {
-                List<Articulo> listaArticulos = nhSesion.QueryOver<Articulo>().Where(x => x.ArticulosClientes.Any(ac => ac.Cliente.Codigo == codigoCliente)).List().ToList();
+                List<Articulo> listaArticulos = nhSesion.Query<Articulo>().Where(x => x.ArticulosClientes.Any(ac => ac.Cliente.Codigo == codigoCliente)).ToList();
                 return listaArticulos;
             }
             catch (Exception ex)

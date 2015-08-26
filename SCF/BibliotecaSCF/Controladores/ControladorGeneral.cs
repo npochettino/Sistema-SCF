@@ -623,6 +623,8 @@ namespace BibliotecaSCF.Controladores
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarPorCodigoCliente(codigoCliente, nhSesion);
                 Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
 
+                List<Articulo> a = (from b in listaArticulos where b.ArticulosClientes.Count > 1 select b).ToList();
+
                 listaArticulos.Aggregate(tablaArticulo, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
