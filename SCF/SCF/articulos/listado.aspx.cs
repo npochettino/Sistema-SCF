@@ -134,6 +134,17 @@ namespace SCF.articulos
         protected void btnVerDetalle_Click(object sender, EventArgs e)
         {
             pcShowDetalleArticulo.ShowOnPageLoad = true;
+
+            int codigoArticulo = int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString());
+            txtDescripcionCorta.InnerText = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionCorta").ToString();
+            txtDescripcionLarga.InnerText = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionLarga").ToString();
+            txtMarca.Value = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "marca").ToString();
+            //txtUnidadDeMedida.Value = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "unidadDeMedida").ToString();
+            txtPrecioActual.Value = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "precio").ToString();
+            gvCliente.DataSource = ControladorGeneral.RecuperarArticulosClientesPorArticulo(codigoArticulo);
+            gvCliente.DataBind();
+            gvArticuloProveedores.DataSource = ControladorGeneral.RecuperarArticulosProveedoresPorArticulo(codigoArticulo);
+            gvArticuloProveedores.DataBind();
         }
 
         protected void btnConfirmarEliminarRelacionArticuloCliente_Click(object sender, EventArgs e)

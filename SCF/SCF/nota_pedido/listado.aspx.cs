@@ -37,6 +37,7 @@ namespace SCF.nota_pedido
         private void NuevaNotaPedido()
         {
             Session["tablaNotaDePedido"] = null;
+            Session["tablaItemsNotaDePedido"] = null;
             Response.Redirect("nota_pedido.aspx");
         }
 
@@ -51,11 +52,8 @@ namespace SCF.nota_pedido
             int numeroInternoCliente = int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "numeroInternoCliente").ToString());
             DateTime fechaEmision = Convert.ToDateTime(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "fechaEmision").ToString());
             int codigoEstado = int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "codigoEstado").ToString());
-            //string colorEstado = int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "colorEstado").ToString());
             int codigoContratoMarco = int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "codigoContratoMarco").ToString());
-            //string descripcionContratoMarco = int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "descripcionContratoMarco").ToString());
             int codigoCliente = int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "codigoCliente").ToString());
-            //int razonSocialCliente = int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "razonSocialCliente").ToString());
             DateTime fechaHoraProximaEntrega = Convert.ToDateTime(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "fechaHoraProximaEntrega").ToString());
             string observaciones = gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "observaciones").ToString();
 
@@ -64,11 +62,8 @@ namespace SCF.nota_pedido
             tablaNotasDePedido.Columns.Add("numeroInternoCliente");
             tablaNotasDePedido.Columns.Add("fechaEmision");
             tablaNotasDePedido.Columns.Add("codigoEstado");
-            //tablaNotasDePedido.Columns.Add("colorEstado");
             tablaNotasDePedido.Columns.Add("codigoContratoMarco");
-            //tablaNotasDePedido.Columns.Add("descripcionContratoMarco");
             tablaNotasDePedido.Columns.Add("codigoCliente");
-            //tablaNotasDePedido.Columns.Add("razonSocialCliente");
             tablaNotasDePedido.Columns.Add("fechaHoraProximaEntrega");
             tablaNotasDePedido.Columns.Add("observaciones");
 
@@ -126,7 +121,9 @@ namespace SCF.nota_pedido
 
         protected void btnGuardarObservacion_Click(object sender, EventArgs e)
         {
-
+            int codigoNotaDePedido = int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "codigoNotaDePedido").ToString());
+            ControladorGeneral.ActivarAnularNotaDePedido(codigoNotaDePedido, txtObservacion.InnerText);
+            loadGridNotaPedidos();
         }
     }
 }

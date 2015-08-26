@@ -42,20 +42,21 @@ namespace SCF.articulos
             if (Session["codigoOperacion"] == null)
             {
                 oArticuloActual = (Articulo)Session["articuloActual"];
-                //ControladorGeneral.InsertarActualizarArticulo(oArticuloActual.Codigo, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value);
+                ControladorGeneral.InsertarActualizarArticulo(oArticuloActual.Codigo, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value, "", Convert.ToDouble(txtPrecio.Value), 1);
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                //ControladorGeneral.InsertarActualizarArticulo(0, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value);
+                ControladorGeneral.InsertarActualizarArticulo(0, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value, "", Convert.ToDouble(txtPrecio.Value), 1);
             }
-            Response.Redirect("articulo.aspx");
+
+            Response.Redirect("listado.aspx");
         }
 
         protected void btnEditarArticuloProveedor_Click(object sender, EventArgs e)
         {
             pcArticuloProveedor.ShowOnPageLoad = true;
-            
+
         }
 
         protected void btnEliminarArticuloProveedor_Click(object sender, EventArgs e)

@@ -245,23 +245,23 @@
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView runat="server" ID="gvCliente" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                            <dx:ASPxGridView runat="server" ID="gvCliente" KeyFieldName="codigoArticuloCliente" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticuloCliente" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="1">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoInterno" Caption="Codigo Interno" VisibleIndex="1">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="cuit" Caption="CUIT" VisibleIndex="2">
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialCliente" Caption="Razon Social" VisibleIndex="2">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="cantidad" Caption="Cantidad" VisibleIndex="3">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoCliente" Visible="false" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="costo" Caption="Costo" VisibleIndex="3">
+                                                                    <%--<dx:GridViewDataTextColumn FieldName="costo" Caption="Costo" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
-                                                                    </dx:GridViewDataTextColumn>
+                                                                    </dx:GridViewDataTextColumn>--%>
                                                                 </Columns>
                                                             </dx:ASPxGridView>
                                                         </div>
@@ -286,20 +286,20 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView runat="server" ID="gvArticuloProveedores" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                            <dx:ASPxGridView runat="server" ID="gvArticuloProveedores" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticuloProveedor">
                                                                 <Columns>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticuloProveedor" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="1">
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" Caption="Razon Social" VisibleIndex="1">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="cuit" Caption="CUIT" VisibleIndex="2">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoProveedor" Visible="false" VisibleIndex="2">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="cantidad" Caption="Cantidad" VisibleIndex="3">
+                                                                    <%--<dx:GridViewDataTextColumn FieldName="cantidad" Caption="Cantidad" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
-                                                                    </dx:GridViewDataTextColumn>
+                                                                    </dx:GridViewDataTextColumn>--%>
                                                                     <dx:GridViewDataTextColumn FieldName="costo" Caption="Costo" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>

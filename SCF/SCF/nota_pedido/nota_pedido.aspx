@@ -195,7 +195,7 @@
                                                 <div class="portlet-body">
                                                     <div id="chart_9" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ITEMS SELECCIONADOS-->
-                                                        <dx:ASPxGridView ID="gvArticulosSeleccionados" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoItemNotaDePedido"
+                                                        <dx:ASPxGridView ID="gvArticulosSeleccionados" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoArticulo"
                                                             Width="100%" OnRowUpdating="gvItemsEntrega_RowUpdating" OnHtmlRowPrepared="gvItemsEntrega_HtmlRowPrepared" ClientInstanceName="gvArticulosSeleccionados">
                                                             <Columns>
                                                                 <dx:GridViewDataTextColumn Caption="codigoArticulo" VisibleIndex="0" FieldName="codigoArticulo"
@@ -238,7 +238,6 @@
 
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
-
                                                             <Settings ShowFilterRow="True" />
                                                         </dx:ASPxGridView>
                                                         <br />

@@ -913,7 +913,7 @@ namespace BibliotecaSCF.Controladores
 
                     if (notaPedido.ItemsNotaDePedido.Count > 0)
                     {
-                        List<Entrega> listaEntregas = CatalogoEntrega.RecuperarLista(x => x.NotaDePedido.Codigo == notaPedido.Codigo, nhSesion);
+                        List<Entrega> listaEntregas = CatalogoEntrega.RecuperarLista(x => x.NotaDePedido.Codigo == notaPedido.Codigo && x.CodigoEstado != Constantes.Estados.ANULADA, nhSesion);
 
                         switch (notaPedido.CodigoEstado)
                         {
@@ -979,7 +979,10 @@ namespace BibliotecaSCF.Controladores
                                     else
                                     {
                                         codigoEstado = Constantes.Estados.VIGENTE;
-                                        fechaHoraProximaEntrega = notaPedido.ItemsNotaDePedido.OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
+                                        List<ItemNotaDePedido> listaEntregadas = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now.AddDays(5) select n).ToList();
+                                        listaEntregadas.AddRange((from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now select n).ToList());
+
+                                        fechaHoraProximaEntrega = notaPedido.ItemsNotaDePedido.Where(x => !listaEntregadas.Select(c => c.Codigo).ToList().Contains(x.Codigo)).OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
                                     }
                                 }
 

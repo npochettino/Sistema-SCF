@@ -15,10 +15,6 @@ namespace SCF.nota_pedido
 {
     public partial class nota_pedido : System.Web.UI.Page
     {
-
-
-        int indice = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -152,8 +148,6 @@ namespace SCF.nota_pedido
             }
         }
 
-
-
         private void CargarGrillaArticulos()
         {
             gvArticulos.DataSource = ControladorGeneral.RecuperarTodosArticulos();
@@ -182,15 +176,11 @@ namespace SCF.nota_pedido
             Response.Redirect("listado.aspx");
         }
 
-
-
         protected void btnSeleccionarArticulos_Click(object sender, EventArgs e)
         {
             DataTable tablaItemsNotaDePedido = (DataTable)Session["tablaItemsNotaDePedido"];
             CargarGrillaItemsNotaDePedido(true);
         }
-
-
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -220,15 +210,14 @@ namespace SCF.nota_pedido
             CargarGrillaItemsNotaDePedido(false);
         }
 
-
         protected void gvItemsEntrega_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
         {
             DataTable tablaItemsNotaDePedido = (DataTable)Session["tablaItemsNotaDePedido"];
-            int codigoItemNotaDePedido = Convert.ToInt32(e.Keys["codigoItemNotaDePedido"]);
-            DataRow fila = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoItemNotaDePedido"]) == codigoItemNotaDePedido select t).SingleOrDefault();
+            int codigoArticulo = Convert.ToInt32(e.Keys["codigoArticulo"]);
+            DataRow fila = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoArticulo"]) == codigoArticulo select t).SingleOrDefault();
 
             fila["cantidad"] = Convert.ToInt32(e.NewValues["cantidad"]);
-            DateTime fechaEntrega = Convert.ToDateTime(e.NewValues["fechaEntrega"]).ToLocalTime();
+            DateTime fechaEntrega = Convert.ToDateTime(e.NewValues["fechaEntrega"]);
 
             fila["fechaEntrega"] = fechaEntrega;
             Session["tablaItemsNotaDePedido"] = tablaItemsNotaDePedido;
