@@ -18,7 +18,18 @@ namespace SCF.articulos
 
             }
 
-            loadGridArticulos();
+            if (string.IsNullOrEmpty(txtCodigoCliente.Value))
+            {
+                loadGridArticulos();
+            }
+            else
+            {
+                gvArticulos.DataSource = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(txtCodigoCliente.Value);
+                gvArticulos.DataBind();
+                gvArticulos.Columns["codigoCliente"].Visible = true;
+                gvArticulos.Columns["razonSocialCliente"].Visible = true;
+                gvArticulos.Columns["codigoArticuloCliente"].Visible = true;
+            }
 
             Session["articuloActual"] = null;
             Session["codigoOperacion"] = null;
@@ -74,6 +85,9 @@ namespace SCF.articulos
         {
             gvArticulos.DataSource = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(txtCodigoCliente.Value);
             gvArticulos.DataBind();
+            gvArticulos.Columns["codigoCliente"].Visible = true;
+            gvArticulos.Columns["razonSocialCliente"].Visible = true;
+            gvArticulos.Columns["codigoArticuloCliente"].Visible = true;
         }
 
         protected void btnRelacionArticuloCliente_Click(object sender, EventArgs e)
@@ -113,11 +127,8 @@ namespace SCF.articulos
 
         protected void pcNuevaRelacionArticuloCliente_Unload(object sender, EventArgs e)
         {
-
             cbClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
             cbClientes.DataBind();
-
-
         }
 
         protected void btnVerDetalle_Click(object sender, EventArgs e)
@@ -128,6 +139,14 @@ namespace SCF.articulos
         protected void btnConfirmarEliminarRelacionArticuloCliente_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnBorrar_Click(object sender, EventArgs e)
+        {
+            loadGridArticulos();
+            gvArticulos.Columns["codigoCliente"].Visible = false;
+            gvArticulos.Columns["razonSocialCliente"].Visible = false;
+            gvArticulos.Columns["codigoArticuloCliente"].Visible = false;
         }
 
     }

@@ -49,20 +49,21 @@
                                     <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" Text="Editar" UseSubmitBehavior="false" />
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarArticulo()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
-                                    <asp:CheckBox runat="server" ID="chkBuscarPorNroCliente" Text="Buscar por Cliente" OnClick="chkBuscarPorNroCliente(this.checked)" />
+                                    <%--<asp:CheckBox runat="server" ID="chkBuscarPorNroCliente" Text="Buscar por Cliente" OnClick="chkBuscarPorNroCliente(this.checked)" />--%>
                                 </div>
                                 <div class="btn-set pull-right">
                                     <asp:Button type="button" ID="btnRelacionArticuloCliente" runat="server" OnClick="btnRelacionArticuloCliente_Click" class="btn red" Text="Relación Cliente" />
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClick="btnVerDetalle_Click" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
-                            <div id="divBuscarPorNroCliente" style="display: none" class="form-actions top">
+                            <div id="divBuscarPorNroCliente" class="form-actions top">
                                 <div class="col-md-6">
                                     <label>Buscar por Código Cliente:</label>
                                     <div class="input-group">
                                         <input type="text" id="txtCodigoCliente" placeholder="Ingrese el Código del cliente" runat="server" class="form-control">
                                         <span class="input-group-btn">
                                             <asp:Button class="btn blue" type="button" runat="server" ID="btnBuscarPorCodigoCliente" OnClick="btnBuscarPorCodigoCliente_Click" UseSubmitBehavior="false" Text="Buscar" />
+                                            <asp:Button class="btn red" type="button" runat="server" ID="btnBorrar" OnClick="btnBorrar_Click" UseSubmitBehavior="false" Text="Borrar" />
                                         </span>
                                     </div>
                                 </div>
@@ -73,16 +74,25 @@
                                         <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="false" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="descripcionCorta" Caption="Desc. Corta" VisibleIndex="1">
+                                        <dx:GridViewDataTextColumn FieldName="codigoArticuloCliente" Visible="false" Caption="Codigo interno" VisibleIndex="1">
+                                            <EditFormSettings Visible="False" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="descripcionCorta" Caption="Desc. Corta" VisibleIndex="2">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="descripcionLarga" Visible="false" Caption="Desc. Larga" VisibleIndex="2">
+                                        <dx:GridViewDataTextColumn FieldName="descripcionLarga" Visible="false" Caption="Desc. Larga" VisibleIndex="3">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="marca" Caption="Marca" VisibleIndex="3">
+                                        <dx:GridViewDataTextColumn FieldName="marca" Caption="Marca" VisibleIndex="4">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="precio" Caption="Precio" VisibleIndex="4">
+                                        <dx:GridViewDataTextColumn FieldName="precio" Caption="Precio" VisibleIndex="5">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="codigoCliente" Visible="false" VisibleIndex="6">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="razonSocialCliente" Caption="Cliente" VisibleIndex="7" Visible="false">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
@@ -571,12 +581,12 @@
         function ShowHistoricoCosto() {
             pcHistoricoCosto.Show();
         }
-        function chkBuscarPorNroCliente(isCheck) {
-            if (isCheck == true)
-                document.getElementById('divBuscarPorNroCliente').style.display = 'block';
-            else
-                document.getElementById('divBuscarPorNroCliente').style.display = 'none';
-        }
+        //function chkBuscarPorNroCliente(isCheck) {
+        //    if (isCheck == true)
+        //        document.getElementById('divBuscarPorNroCliente').style.display = 'block';
+        //    else
+        //        document.getElementById('divBuscarPorNroCliente').style.display = 'none';
+        //}
         function ShowNuevaRelacionArticuloCliente() {
             pcNuevaRelacionArticuloCliente.Show();
         }

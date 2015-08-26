@@ -585,9 +585,9 @@ namespace BibliotecaSCF.Controladores
                 {
                     dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
                         r.RecuperarPrecioActual(), r.NombreImagen,
-                        (from ac in r.ArticulosClientes where ac.CodigoInterno == codigoInternoCliente select ac).SingleOrDefault().CodigoInterno,
-                        (from ac in r.ArticulosClientes where ac.CodigoInterno == codigoInternoCliente select ac.Cliente).SingleOrDefault().Codigo,
-                        (from ac in r.ArticulosClientes where ac.CodigoInterno == codigoInternoCliente select ac.Cliente).SingleOrDefault().RazonSocial); return dt;
+                        (from ac in r.ArticulosClientes where ac.CodigoInterno.Contains(codigoInternoCliente) select ac).FirstOrDefault().CodigoInterno,
+                        (from ac in r.ArticulosClientes where ac.CodigoInterno.Contains(codigoInternoCliente) select ac.Cliente).FirstOrDefault().Codigo,
+                        (from ac in r.ArticulosClientes where ac.CodigoInterno.Contains(codigoInternoCliente) select ac.Cliente).FirstOrDefault().RazonSocial); return dt; //VER, como resolver que haya mas de uno que contenga el codigointernocliente
                 });
 
                 return tablaArticulo;
