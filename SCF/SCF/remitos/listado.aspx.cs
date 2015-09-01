@@ -86,8 +86,11 @@ namespace SCF.remitos
 
         protected void btnAceptarEliminarRemito_Click(object sender, EventArgs e)
         {
-            int codigoEntrega = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoEntrega"));
-
+            if (gvEntregas.FocusedRowIndex != -1)
+            {
+                int codigoEntrega = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoEntrega"));
+                
+            }
         }
 
         protected void btnEntregada_Click(object sender, EventArgs e)
@@ -106,6 +109,7 @@ namespace SCF.remitos
             }
         }
 
+        /*Se elimina la siguiente llamada al boton y se agrega la opcion que levanta el popup para devolver items del remito..*/
         protected void btnAnulada_Click(object sender, EventArgs e)
         {
             int codigoEntrega = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoEntrega"));
@@ -136,6 +140,42 @@ namespace SCF.remitos
             }
 
             e.Row.BackColor = color;
+        }
+
+        protected void btnDevolucion_Click(object sender, EventArgs e)
+        {
+            pcDevolucionItemsRemito.ShowOnPageLoad = true;
+            CargarItemsRemitoEnVariblaSession();
+        }
+
+        private void CargarItemsRemitoEnVariblaSession()
+        {
+
+        }
+
+        protected void btnSeleccionarArticulos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEliminarArticulos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvItemsEntrega_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
+        {
+
+        }
+
+        protected void gvItemsEntrega_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewTableRowEventArgs e)
+        {
+
         }
     }
 }

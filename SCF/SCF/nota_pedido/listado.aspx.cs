@@ -76,7 +76,10 @@ namespace SCF.nota_pedido
 
         protected void btnAceptarEliminarNotaPedido_Click(object sender, EventArgs e)
         {
-
+            if (gvNotasPedido.FocusedRowIndex != -1)
+            {
+                //ControladorGeneral.EliminarRemito(int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "codigoEntrega").ToString()));
+            }
         }
 
         protected void gvNotasPedido_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewTableRowEventArgs e)
@@ -116,7 +119,7 @@ namespace SCF.nota_pedido
 
         protected void btnShowPopUpObservacion_Click(object sender, EventArgs e)
         {
-            pcShowObservacion.ShowOnPageLoad = true;
+            txtObservacion.Value = Convert.ToString(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "observaciones").ToString());
         }
 
         protected void btnGuardarObservacion_Click(object sender, EventArgs e)
@@ -124,6 +127,11 @@ namespace SCF.nota_pedido
             int codigoNotaDePedido = int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "codigoNotaDePedido").ToString());
             ControladorGeneral.ActivarAnularNotaDePedido(codigoNotaDePedido, txtObservacion.InnerText);
             loadGridNotaPedidos();
+        }
+
+        protected void pcShowObservacion_Load(object sender, EventArgs e)
+        {
+            txtObservacion.Value = Convert.ToString(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "observaciones").ToString());
         }
     }
 }

@@ -101,10 +101,7 @@
                                                     </div>
                                                     <div class="tools">
                                                         <a href="javascript:;" class="collapse"></a>
-                                                        <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                                        <a href="javascript:;" class="reload"></a>
                                                         <a href="javascript:;" class="fullscreen"></a>
-                                                        <a href="javascript:;" class="remove"></a>
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
@@ -112,7 +109,7 @@
                                                         <!-- GRID VIEW ARTICULOS-->
                                                         <dx:ASPxGridView ID="gvItemsNotaDePedido" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoItemNotaDePedido" Theme="Metropolis" Width="100%">
                                                             <Columns>
-                                                                <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Caption="Seleccionar">
+                                                                <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Caption=" ">
                                                                 </dx:GridViewCommandColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="codigoItemNotaDePedido" ReadOnly="True" Visible="False" VisibleIndex="0">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
@@ -122,26 +119,27 @@
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Descripción Corta">
+                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Desc. Corta" Width="150">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Visible="false" FieldName="descripcionLarga" VisibleIndex="3">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="marca" Visible="true" Width="55px" VisibleIndex="4" Caption="Marca">
+                                                                <dx:GridViewDataTextColumn FieldName="marca" Visible="false" Width="55px" VisibleIndex="4" Caption="Marca">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="Precio" Visible="true" Width="40px" VisibleIndex="5" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Cantidad a entregar" Visible="true" Width="50px" VisibleIndex="6" FieldName="cantidad">
+                                                                <dx:GridViewDataTextColumn Caption="Total Entregar" Visible="true" Width="50" VisibleIndex="6" FieldName="cantidad">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Cantidad entregada" Visible="true" Width="50px" VisibleIndex="7" FieldName="cantidadEntregada">
+                                                                <dx:GridViewDataTextColumn Caption="Entregada" Visible="true" Width="50" VisibleIndex="7" FieldName="cantidadEntregada">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Fecha Entrega" Visible="true" VisibleIndex="8" FieldName="fechaEntrega">
+                                                                <dx:GridViewDataTextColumn Caption="Fecha Entrega" Visible="true" VisibleIndex="8" FieldName="fechaEntrega" PropertiesTextEdit-DisplayFormatString="d/MM/yyyy" >
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <PropertiesTextEdit DisplayFormatString="d/MM/yyyy" />
                                                                 </dx:GridViewDataTextColumn>
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
@@ -172,10 +170,7 @@
                                                     </div>
                                                     <div class="tools">
                                                         <a href="javascript:;" class="collapse"></a>
-                                                        <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                                        <a href="javascript:;" class="reload"></a>
                                                         <a href="javascript:;" class="fullscreen"></a>
-                                                        <a href="javascript:;" class="remove"></a>
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">

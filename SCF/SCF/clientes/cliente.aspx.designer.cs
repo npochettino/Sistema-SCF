@@ -13,24 +13,6 @@ namespace SCF.clientes {
     public partial class cliente {
         
         /// <summary>
-        /// Control txtNroInternoCliente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNroInternoCliente;
-        
-        /// <summary>
-        /// Control txtCUIL.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCUIL;
-        
-        /// <summary>
         /// Control txtRazonSocial.
         /// </summary>
         /// <remarks>
@@ -40,13 +22,13 @@ namespace SCF.clientes {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtRazonSocial;
         
         /// <summary>
-        /// Control txtPersonaContacto.
+        /// Control txtCUIL.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPersonaContacto;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCUIL;
         
         /// <summary>
         /// Control txtDireccion.
@@ -101,6 +83,15 @@ namespace SCF.clientes {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtFax;
+        
+        /// <summary>
+        /// Control txtPersonaContacto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPersonaContacto;
         
         /// <summary>
         /// Control txtBanco.

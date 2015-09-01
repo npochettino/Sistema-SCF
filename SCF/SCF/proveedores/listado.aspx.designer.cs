@@ -247,24 +247,6 @@ namespace SCF.proveedores {
         protected global::DevExpress.Web.ASPxPanel.PanelContent PanelContent3;
         
         /// <summary>
-        /// Control txtNroProveedor.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNroProveedor;
-        
-        /// <summary>
-        /// Control txtCUIL.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCUIL;
-        
-        /// <summary>
         /// Control txtRazonSocial.
         /// </summary>
         /// <remarks>
@@ -274,13 +256,13 @@ namespace SCF.proveedores {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtRazonSocial;
         
         /// <summary>
-        /// Control txtPersonaCantacto.
+        /// Control txtCUIL.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPersonaCantacto;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCUIL;
         
         /// <summary>
         /// Control txtEmail.
@@ -299,6 +281,15 @@ namespace SCF.proveedores {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtTelFax;
+        
+        /// <summary>
+        /// Control txtPersonaCantacto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPersonaCantacto;
         
         /// <summary>
         /// Control txtBanco.

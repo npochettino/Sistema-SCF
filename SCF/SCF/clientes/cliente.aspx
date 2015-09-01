@@ -11,10 +11,8 @@
                     <h1>Cliente <small>editar/nuevo Cliente</small></h1>
                 </div>
                 <!-- END PAGE TITLE -->
-
             </div>
             <!-- END PAGE HEAD -->
-
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
@@ -47,8 +45,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Nro. Cliente</label>
-                                                <input type="text" id="txtNroInternoCliente" placeholder="Nro. Cliente" runat="server" class="form-control" required>
+                                                <label class="control-label">Razón Social</label>
+                                                <input type="text" id="txtRazonSocial" runat="server" class="form-control" placeholder="Razón Social" >
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -59,23 +57,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Razón Social</label>
-                                                <input type="text" id="txtRazonSocial" runat="server" class="form-control" placeholder="Razón Social" >
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Persona de Contacto</label>
-                                                <input type="text" id="txtPersonaContacto" runat="server" class="form-control" placeholder="Persona de Contacto" >
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                    </div>
-                                    <!--/row-->
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -122,6 +103,17 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">                                        
+                                        <!--/span-->
+                                         <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Persona de Contacto</label>
+                                                <input type="text" id="txtPersonaContacto" runat="server" class="form-control" placeholder="Persona de Contacto" >
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->                  
                                     <h3 class="form-section">Datos Bancarios</h3>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -165,67 +157,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- END CONTENT -->
-    <script lang="javascript" type="text/javascript">
-
-        function validate() {
-            var emailExp
-            emailExp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([com\co\.\in])+$/; // to validate email id
-
-            if (document.getElementById("<%=txtRazonSocial.ClientID%>").value == "") {
-                //alert("El campo Nombre es requerido");
-                swal({ title: "<small>Razon Social incompleto</small>!", text: "Complete el campo <span style=color:#F8BB86><span> razon social.", html: true });
-                document.getElementById("<%=txtRazonSocial.ClientID%>").focus();
-                    return false;
-                }
-                if (document.getElementById("<%=txtCUIL.ClientID%>").value == "") {
-                //alert("El campo Nombre es requerido");
-                swal({ title: "<small>CUIL incompleto</small>!", text: "Complete el campo <span style=color:#F8BB86><span> cuil.", html: true });
-                document.getElementById("<%=txtCUIL.ClientID%>").focus();
-                    return false;
-                }
-
-
-
-                if ((document.getElementById("<%=txtDireccion.ClientID%>").value == "")) {
-                swal({ title: "<small>Dirección</small>!", text: "El campo <span style=color:#F8BB86><span> direccion no puede estar vacio.", html: true });
-                document.getElementById("<%=txtDireccion.ClientID%>").focus();
-                    return false;
-                }
-
-
-                if ((document.getElementById("<%=txtTelefono.ClientID%>").value == "")) {
-                swal({ title: "<smallTeléfono</small>!", text: "El campo <span style=color:#F8BB86><span> telefono no puede estar vacio.", html: true });
-                document.getElementById("<%=txtTelefono.ClientID%>").focus();
-                    return false;
-                }
-
-                if (document.getElementById("<%=txtMail.ClientID%>").value == "") {
-                //alert("El campo Nombre es requerido");
-                if (!document.getElementById("<%=txtMail.ClientID%>").value.match(emailExp)) {
-                        swal({ title: "<small>Email incompleto</small>!", text: "Complete el campo <span style=color:#F8BB86><span> email.", html: true });
-                        document.getElementById("<%=txtMail.ClientID%>").focus();
-                        return false;
-                    }
-                }
-
-                if (document.getElementById("<%=txtProvincia.ClientID%>").value == "") {
-                //alert("El campo Nombre es requerido");
-                swal({ title: "<small>Provincia incompleto</small>!", text: "Complete el campo <span style=color:#F8BB86><span> provincia.", html: true });
-                document.getElementById("<%=txtProvincia.ClientID%>").focus();
-                    return false;
-                }
-
-                if (document.getElementById("<%=txtCiudad.ClientID%>").value == "") {
-                //alert("El campo Nombre es requerido");
-                swal({ title: "<small>Ciudad incompleto</small>!", text: "Complete el campo <span style=color:#F8BB86><span> ciudad.", html: true });
-                document.getElementById("<%=txtCiudad.ClientID%>").focus();
-                    return false;
-                }
-            }
-    </script>
-
 </asp:Content>

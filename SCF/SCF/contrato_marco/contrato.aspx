@@ -21,10 +21,8 @@
                     <h1>Contrato Marco <small>editar/nueva Contrato Marco</small></h1>
                 </div>
                 <!-- END PAGE TITLE -->
-
             </div>
             <!-- END PAGE HEAD -->
-
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
@@ -78,9 +76,9 @@
                                         </div>
                                         <!--/span-->
                                     </div>--%>
-                                    <!--/row-->
+                                <!--/row-->
 
-<%--                                    <div class="row">
+                                <%--                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Fecha Desde</label>
@@ -104,101 +102,98 @@
                                         </div>
                                         <!--/span-->
                                     </div>--%>
-                                    <!--/row-->
+                                <!--/row-->
 
-                                    <!-- BEGIN ROW -->
-                                    <h3 class="form-section">Items del Contrato Marco</h3>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <!-- BEGIN CHART PORTLET-->
-                                            <div class="portlet light">
-                                                <div class="portlet-title">
-                                                    <div class="caption">
-                                                        <i class="icon-bar-chart font-green-haze"></i>
-                                                        <span class="caption-subject bold uppercase font-green-haze">Ingrese los Artículos</span>
-                                                    </div>
-                                                    <div class="tools">
-                                                        <a href="javascript:;" class="collapse"></a>
-                                                        <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                                        <a href="javascript:;" class="reload"></a>
-                                                        <a href="javascript:;" class="fullscreen"></a>
-                                                        <a href="javascript:;" class="remove"></a>
-                                                    </div>
+                                <!-- BEGIN ROW -->
+                                <h3 class="form-section">Items del Contrato Marco</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- BEGIN CHART PORTLET-->
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="icon-bar-chart font-green-haze"></i>
+                                                    <span class="caption-subject bold uppercase font-green-haze">Ingrese los Artículos</span>
                                                 </div>
-                                                <div class="portlet-body">
-                                                    <div id="chart_8" class="chart" style="height: auto">
-                                                        <!-- GRID VIEW ARTICULOS-->
-                                                        <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis" Width="100%">
-                                                            <Columns>
-                                                                <dx:GridViewDataTextColumn FieldName="CM" VisibleIndex="1" Caption="Contrato Marco">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="POS" VisibleIndex="2" Caption="Posición">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="Cliente" VisibleIndex="3" Caption="Cliente">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="COMPRADOR" VisibleIndex="4" Caption="Comprador">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="INICIO" VisibleIndex="5" Caption="Fecha inicio">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="FIN" VisibleIndex="6" Caption="Fecha fin">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="COD PLANTA" VisibleIndex="7" Caption="Codigo articulo cliente">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="Texto breve" VisibleIndex="8" Caption="Desc. Corta">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="PRECIO BASE" Caption="Precio" VisibleIndex="9">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="UNIDAD DE MEDIDA" Caption="Unidad de medida" VisibleIndex="10">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="MONEDA" Caption="Moneda" VisibleIndex="11">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                            </Columns>
-                                                            <SettingsBehavior AllowFocusedRow="True" />
-                                                            <SettingsPager PageSize="10">
-                                                            </SettingsPager>
-                                                            <Settings ShowFilterRow="True" />
-                                                        </dx:ASPxGridView>
-                                                    </div>
+                                                <div class="tools">
+                                                    <a href="javascript:;" class="collapse"></a>
+                                                    <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                                                    <a href="javascript:;" class="reload"></a>
+                                                    <a href="javascript:;" class="fullscreen"></a>
+                                                    <a href="javascript:;" class="remove"></a>
                                                 </div>
-                                                <!-- END CHART PORTLET-->
                                             </div>
-                                        </div>
-                                    </div>
-                                    <!-- END ROW -->
-                                    <asp:FileUpload ID="fuExcel" CssClass="form-control" runat="server" AllowMultiple="false" />
-                                    <br />
-                                    <div class="form-actions top">
-                                        <div class="btn-set pull-left">
-                                            <asp:Button type="button" class="btn green" runat="server" ID="btnCargarGrilla" OnClick="btnCargarGrilla_Click" Text="Cargar grilla" />
-                                        </div>
-                                        <div class="btn-set pull-right">
-                                            <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
-                                            <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" OnClick="btnGuardar_Click" Text="Guardar" />
+                                            <div class="portlet-body">
+                                                <div id="chart_8" class="chart" style="height: auto">
+                                                    <!-- GRID VIEW ARTICULOS-->
+                                                    <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis" Width="100%">
+                                                        <Columns>
+                                                            <dx:GridViewDataTextColumn FieldName="CM" VisibleIndex="1" Caption="Contrato Marco">
+                                                                <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="POS" VisibleIndex="2" Caption="Posición">
+                                                                <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="Cliente" VisibleIndex="3" Caption="Cliente">
+                                                                <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="COMPRADOR" VisibleIndex="4" Caption="Comprador">
+                                                                <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="INICIO" VisibleIndex="5" Caption="Fecha inicio">
+                                                                <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="FIN" VisibleIndex="6" Caption="Fecha fin">
+                                                                <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="COD PLANTA" VisibleIndex="7" Caption="Codigo articulo cliente">
+                                                                <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="Texto breve" VisibleIndex="8" Caption="Desc. Corta">
+                                                                <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="PRECIO BASE" Caption="Precio" VisibleIndex="9">
+                                                                <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="UNIDAD DE MEDIDA" Caption="Unidad de medida" VisibleIndex="10">
+                                                                <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="MONEDA" Caption="Moneda" VisibleIndex="11">
+                                                                <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                            </dx:GridViewDataTextColumn>
+                                                        </Columns>
+                                                        <SettingsBehavior AllowFocusedRow="True" />
+                                                        <SettingsPager PageSize="10">
+                                                        </SettingsPager>
+                                                        <Settings ShowFilterRow="True" />
+                                                    </dx:ASPxGridView>
+                                                </div>
+                                            </div>
+                                            <!-- END CHART PORTLET-->
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                            <!-- END FORM-->
+                                <!-- END ROW -->
+                                <asp:FileUpload ID="fuExcel" CssClass="form-control" runat="server" AllowMultiple="false" />
+                                <br />
+                                <div class="form-actions top">
+                                    <div class="btn-set pull-left">
+                                        <asp:Button type="button" class="btn green" runat="server" ID="btnCargarGrilla" OnClick="btnCargarGrilla_Click" Text="Cargar grilla" />
+                                    </div>
+                                    <div class="btn-set pull-right">
+                                        <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
+                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" OnClick="btnGuardar_Click" Text="Guardar" />
+                                    </div>
+                                </div>
                         </div>
+                        </form>
+                            <!-- END FORM-->
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- END CONTENT -->
-
     <!-- BEGIN POPUP ELIMINAR ARTICULO -->
     <dx:ASPxPopupControl ID="pcError" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcError"
@@ -215,7 +210,6 @@
                                         <div class="col-md-12">
                                             <div class="input-group">
                                                 <dx:ASPxLabel ID="lblError" Text="Hola" runat="server">
-
                                                 </dx:ASPxLabel>
                                             </div>
                                         </div>

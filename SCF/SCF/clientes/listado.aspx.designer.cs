@@ -247,24 +247,6 @@ namespace SCF.clientes {
         protected global::DevExpress.Web.ASPxPanel.PanelContent PanelContent3;
         
         /// <summary>
-        /// Control txtNroCliente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNroCliente;
-        
-        /// <summary>
-        /// Control txtCUIL.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCUIL;
-        
-        /// <summary>
         /// Control txtRazonSocial.
         /// </summary>
         /// <remarks>
@@ -274,13 +256,13 @@ namespace SCF.clientes {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtRazonSocial;
         
         /// <summary>
-        /// Control txtPersonaCantacto.
+        /// Control txtCUIL.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPersonaCantacto;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCUIL;
         
         /// <summary>
         /// Control txtEmail.
@@ -299,6 +281,15 @@ namespace SCF.clientes {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtTelFax;
+        
+        /// <summary>
+        /// Control txtPersonaCantacto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPersonaCantacto;
         
         /// <summary>
         /// Control txtBanco.
@@ -326,14 +317,5 @@ namespace SCF.clientes {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtNroCuenta;
-        
-        /// <summary>
-        /// Control Text1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
     }
 }

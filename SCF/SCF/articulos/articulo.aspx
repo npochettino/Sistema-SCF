@@ -63,7 +63,7 @@
                                         <div class="col-md-12 ">
                                             <div class="form-group">
                                                 <label>Descripción Larga</label>
-                                                <textarea type="text" id="txtDescripcionLarga" style="resize: none" placeholder="Descripción Larga" runat="server" class="form-control" rows="5"></textarea>
+                                                <textarea type="text" id="txtDescripcionLarga" style="resize: none" placeholder="Descripción Larga" runat="server" class="form-control" rows="2"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -137,7 +137,7 @@
                                         <asp:Button type="button" ID="btnNuevoArticuloProveedor" OnClick="btnNuevoArticuloProveedor_Click" runat="server" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
                                         <asp:Button type="button" ID="btnEditarArticuloProveedor" runat="server" OnClick="btnEditarArticuloProveedor_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
                                         <button class="btn red" type="button" onclick="ShowConfirmarEliminarArticuloProveedor()">Eliminar</button>
-                                    </div>
+                                    </div>      
                                 </div>
                                 <div class="form-body">
                                     <h3 class="form-section">Info del Proveedores</h3>
@@ -145,7 +145,7 @@
                                     </dx:ASPxGridView>
                                 </div>
                                 <div class="form-actions right">
-                                    <asp:Button type="button" class="btn blue" runat="server" ID="btnGurdarAticuloProveedor" OnClick="btnGurdarAticuloProveedor_Click" Text="Guardar" />
+                                    <asp:Button type="button" class="btn blue" runat="server" ID="btnGurdarAticuloProveedor" UseSubmitBehavior="false" OnClick="btnGurdarAticuloProveedor_Click" Text="Guardar" />
                                 </div>
                             </form>
                             <!-- END FORM-->
@@ -227,7 +227,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="btnGuardarArticuloProveedor" runat="server" OnClick="btnGuardarArticuloProveedor_Click" class="btn blue" Text="Aceptar" />
+                                        <asp:Button type="button" ID="btnGuardarArticuloProveedor" runat="server" OnClick="btnGuardarArticuloProveedor_Click" UseSubmitBehavior="false" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +261,7 @@
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
                                         <button class="btn default" onclick="pcConfirmarEliminarArticuloProveedor.Hide();">Cerrar</button>
-                                        <asp:Button type="button" ID="btnAceptarEliminarArticuloProveedor" runat="server" OnClick="btnAceptarEliminarArticuloProveedor_Click" class="btn blue" Text="Aceptar" />
+                                        <asp:Button type="button" UseSubmitBehavior="false" ID="btnAceptarEliminarArticuloProveedor" runat="server" OnClick="btnAceptarEliminarArticuloProveedor_Click" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
                             </div>

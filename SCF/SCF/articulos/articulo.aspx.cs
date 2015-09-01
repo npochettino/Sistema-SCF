@@ -56,7 +56,6 @@ namespace SCF.articulos
         protected void btnEditarArticuloProveedor_Click(object sender, EventArgs e)
         {
             pcArticuloProveedor.ShowOnPageLoad = true;
-
         }
 
         protected void btnEliminarArticuloProveedor_Click(object sender, EventArgs e)
@@ -103,7 +102,6 @@ namespace SCF.articulos
         {
             CargarComboProveedores();
             pcArticuloProveedor.ShowOnPageLoad = true;
-
         }
 
         private void CargarComboProveedores()

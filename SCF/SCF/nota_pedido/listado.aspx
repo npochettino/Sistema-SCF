@@ -1,10 +1,8 @@
-﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="listado.aspx.cs" Inherits="SCF.nota_pedido.listado" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="listado.aspx.cs" Inherits="SCF.nota_pedido.listado" %>
 
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPanel" TagPrefix="dx" %>
-
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
-
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -18,10 +16,8 @@
                     <h1>Notas de Pedido <small>listado de Notas de Pedido</small></h1>
                 </div>
                 <!-- END PAGE TITLE -->
-
             </div>
             <!-- END PAGE HEAD -->
-
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
@@ -53,11 +49,11 @@
                                 <div class="btn-set pull-left">
                                     <asp:Button type="button" ID="btnNuevo" runat="server" onclick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
-                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarNotaPedido()" UseSubmitBehavior="false" class="btn red" Text="Eliminar"  />
+                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarNotaPedido()" class="btn red" Text="Eliminar"  />
                                 </div>
                                 <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnShowPopUpObservacion" runat="server" OnClick="btnShowPopUpObservacion_Click" UseSubmitBehavior="false" class="btn red" Text="Anular" />
-                                    <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleNotaPedido()" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
+                                    <asp:Button type="button" ID="btnShowPopUpObservacion" runat="server" OnClientClick="ShowObservacion()" class="btn red" Text="Anular" />
+                                    <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleNotaPedido()" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">
@@ -138,7 +134,7 @@
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
                                         <button type="button" onclick="pcConfirmarEliminarNotaPedido.Hide();" class="btn default">Cerrar</button>
-                                        <asp:Button type="button" ID="btnAceptarEliminarNotaPedido" runat="server" OnClick="btnAceptarEliminarNotaPedido_Click" class="btn blue" Text="Aceptar" />
+                                        <asp:Button type="button" ID="btnAceptarEliminarNotaPedido" UseSubmitBehavior="false" runat="server" OnClick="btnAceptarEliminarNotaPedido_Click" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +150,7 @@
     <dx:ASPxPopupControl ID="pcShowObservacion" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowObservacion"
         HeaderText="Observacion" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="400"
-        EnableViewState="False" Theme="Metropolis">
+        EnableViewState="False" Theme="Metropolis" OnLoad="pcShowObservacion_Load">
         <ClientSideEvents PopUp="function(s, e) {  txtPrecio.Focus(); }" />
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
@@ -172,14 +168,13 @@
                                                     <textarea type="text" id="txtObservacion" placeholder="Observación" runat="server" class="form-control" required rows="5"></textarea>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </form>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="Button2" runat="server" UseSubmitBehavior="false" OnClientClick="pcShowObservacion.Hide();" class="btn default" Text="Cerrar" />
-                                        <asp:Button type="button" ID="btnGuardarObservacion" runat="server" OnClick="btnGuardarObservacion_Click" class="btn blue" Text="Aceptar" />
+                                        <asp:Button type="button" ID="Button2" runat="server" OnClientClick="pcShowObservacion.Hide();" class="btn default" Text="Cerrar" />
+                                        <asp:Button type="button" ID="btnGuardarObservacion" UseSubmitBehavior="false" runat="server" OnClick="btnGuardarObservacion_Click" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
                             </div>
@@ -197,7 +192,7 @@
             pcConfirmarEliminarNotaPedido.Show();
         }
         function ShowObservacion() {
-            pcShowObservacion();
+            pcShowObservacion.Show();
         }
     </script>
 </asp:Content>

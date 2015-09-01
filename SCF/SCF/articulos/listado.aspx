@@ -52,7 +52,7 @@
                                     <%--<asp:CheckBox runat="server" ID="chkBuscarPorNroCliente" Text="Buscar por Cliente" OnClick="chkBuscarPorNroCliente(this.checked)" />--%>
                                 </div>
                                 <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnRelacionArticuloCliente" runat="server" OnClick="btnRelacionArticuloCliente_Click" class="btn red" Text="Relación Cliente" />
+                                    <asp:Button type="button" ID="btnRelacionArticuloCliente" runat="server" OnClick="btnRelacionArticuloCliente_Click" UseSubmitBehavior="false" class="btn red" Text="Relación Cliente" />
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClick="btnVerDetalle_Click" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
@@ -133,8 +133,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="Button1" runat="server" UseSubmitBehavior="false" OnClientClick="pcConfirmarEliminarArticulo.Hide();" class="btn default" Text="Cerrar" />
-                                        <asp:Button type="button" ID="Button2" runat="server" OnClick="btnAceptarEliminarArticulo_Click" class="btn blue" Text="Aceptar" />
+                                        <asp:Button type="button" ID="Button1" runat="server" OnClientClick="pcConfirmarEliminarArticulo.Hide();" class="btn default" Text="Cerrar" />
+                                        <asp:Button type="button" ID="Button2" runat="server" UseSubmitBehavior="false" OnClick="btnAceptarEliminarArticulo_Click" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
                             </div>
@@ -187,7 +187,7 @@
                                                             <label class="control-label col-md-3">Marca</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtMarca" placeholder="Marca" runat="server" class="form-control">
-                                                            &nbsp;</input></input></input></div>
+                                                           </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -195,7 +195,7 @@
                                                             <label class="control-label col-md-3">Unidad</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
-                                                            &nbsp;</input></input></input></div>
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -210,11 +210,7 @@
                                                                     <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
                                                                         <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
                                                                 </span>
-                                                            &nbsp;</input></input></input><span class="input-group-btn">
-                                                            <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                            </button>
-                                                            </span>
+                                                            
                                                             </div>
 
                                                         </div>
@@ -225,7 +221,7 @@
                                                             <label class="control-label col-md-3">Moneda</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTipoDeCambio" placeholder="Tipo de Cambio" runat="server" class="form-control">
-                                                            &nbsp;</input></input></input></div>
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -511,7 +507,7 @@
                                                         <div class="form-group">
                                                             <label>Codigo Articulo</label>
                                                             <input type="text" id="txtCodigoClienteArticulo" placeholder="Codigo Articulo" runat="server" class="form-control" required />
-                                                        &nbsp;</input></input></input>&nbsp;</input></input></input>&nbsp;</input></input></input></div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -520,7 +516,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" runat="server" OnClick="btnGuardarRelacionArticuloCliente_Click" class="btn blue" Text="Aceptar" />
+                                        <asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" UseSubmitBehavior="false" runat="server" OnClick="btnGuardarRelacionArticuloCliente_Click" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
                             </div>
@@ -592,6 +588,9 @@
         }
         function ShowEliminarRelacionArticuloCliente() {
             pcConfirmarEliminarRelacionArticuloCliente.Show();
+        }
+        function ShowRelacionArticuloCliente() {
+            pcRelacionArticuloCliente.Show();
         }
     </script>
 </asp:Content>

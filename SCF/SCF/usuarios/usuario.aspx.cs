@@ -12,7 +12,7 @@ namespace SCF.usuarios
     public partial class usuario : System.Web.UI.Page
     {
         Usuario oUsuarioActual;
-        private int codigoOperacion;
+        //private int codigoOperacion;
 
         protected void Page_Load(object sender, EventArgs e)
         {

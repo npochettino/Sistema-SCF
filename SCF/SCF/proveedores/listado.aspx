@@ -1,11 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="listado.aspx.cs" Inherits="SCF.proveedores.listado" %>
 
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPanel" TagPrefix="dx" %>
-
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
-
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
-
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -19,10 +16,8 @@
                     <h1>Proveedores <small>listado de proveedores</small></h1>
                 </div>
                 <!-- END PAGE TITLE -->
-
             </div>
             <!-- END PAGE HEAD -->
-
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
@@ -36,7 +31,6 @@
             </ul>
             <!-- END PAGE BREADCRUMB -->
             <!-- END PAGE HEADER-->
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="portlet box green">
@@ -55,7 +49,6 @@
                                     <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" UseSubmitBehavior="false" Text="Nuevo" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" UseSubmitBehavior="false" Text="Editar" />
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarProveedor()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
-
                                 </div>
                                 <div class="btn-set pull-right">
                                     <asp:Button type="button" ID="btnInactivarProveedor" runat="server" OnClientClick="ShowInactivarProveedor()" UseSubmitBehavior="false" class="btn red-intense" Text="Inactivar" />
@@ -100,14 +93,11 @@
                                     <SettingsBehavior AllowFocusedRow="True" />
                                     <Settings ShowFilterRow="True" />
                                 </dx:ASPxGridView>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- END CONTENT -->
@@ -136,8 +126,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="Button1" runat="server" UseSubmitBehavior="false" OnClientClick="pcConfirmarEliminarProveedor.Hide();" class="btn default" Text="Cerrar" />
-                                        <asp:Button type="button" ID="btnAceptarEliminarProveedor" runat="server" OnClick="btnAceptarEliminarProveedor_Click" class="btn blue" Text="Aceptar" />
+                                        <asp:Button type="button" ID="Button1" runat="server" OnClientClick="pcConfirmarEliminarProveedor.Hide();" class="btn default" Text="Cerrar" />
+                                        <asp:Button type="button" ID="btnAceptarEliminarProveedor" UseSubmitBehavior="false" runat="server" OnClick="btnAceptarEliminarProveedor_Click" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
                             </div>
@@ -168,14 +158,13 @@
                                                     <textarea type="text" id="txtObservacion" placeholder="Observación" runat="server" class="form-control" required rows="5"></textarea>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </form>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="Button2" runat="server" UseSubmitBehavior="false" OnClientClick="pcShowInactivarProveedor.Hide();" class="btn default" Text="Cerrar" />
-                                        <asp:Button type="button" ID="btnAceptarInactivarProveedor" runat="server" OnClick="btnAceptarInactivarProveedor_Click" class="btn blue" Text="Aceptar" />
+                                        <asp:Button type="button" ID="Button2" runat="server" OnClientClick="pcShowInactivarProveedor.Hide();" class="btn default" Text="Cerrar" />
+                                        <asp:Button type="button" ID="btnAceptarInactivarProveedor" UseSubmitBehavior="false" runat="server" OnClick="btnAceptarInactivarProveedor_Click" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
                             </div>
@@ -207,9 +196,9 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Nro. Proveedor</label>
+                                                            <label class="control-label col-md-3">Razon Social</label>
                                                             <div class="col-md-9">
-                                                                <input type="text" id="txtNroProveedor" placeholder="Nro. Proveedor" runat="server" class="form-control">
+                                                                <input type="text" id="txtRazonSocial" placeholder="Razon Social" runat="server" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -221,25 +210,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">Razon Social</label>
-                                                            <div class="col-md-9">
-                                                                <input type="text" id="txtRazonSocial" placeholder="Razon Social" runat="server" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">Contacto</label>
-                                                            <div class="col-md-9">
-                                                                <input type="text" id="txtPersonaCantacto" placeholder="Persona de Contacto" runat="server" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                </div>                                                
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label class="control-label col-md-3">Email</label>
@@ -252,6 +223,16 @@
                                                             <label class="control-label col-md-3">Tel. / Fax.</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTelFax" placeholder="Tel. / Fax" runat="server" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Contacto</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" id="txtPersonaCantacto" placeholder="Persona de Contacto" runat="server" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -289,8 +270,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <div class="btn-set pull-right">
-                                                    <button type="button" ID="Button3" onclick="pcShowDetalleProveedor.Hide();" class="btn default">Cerrar</button>
-                                                    
+                                                    <button type="button" ID="Button3" onclick="pcShowDetalleProveedor.Hide();" class="btn default">Cerrar</button>                                                    
                                                 </div>
                                             </div>
                                         </form>

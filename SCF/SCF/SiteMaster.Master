@@ -293,6 +293,22 @@ License: SempaIT - Todos los derechos reservados.
                             </ul>
                         </li>
 
+                        <%--<li>
+                            <a href="javascript:;">
+                                <i class="icon-flag"></i>
+                                <span class="title">Transporte</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="../transportes/listado.aspx">Listado</a>
+                                </li>
+                                <li>
+                                    <a href="../transportes/factura.aspx">Nuevo</a>
+                                </li>
+                            </ul>
+                        </li>--%>
+
                         <li>
                             <a href="javascript:;">
                                 <i class="icon-settings"></i>

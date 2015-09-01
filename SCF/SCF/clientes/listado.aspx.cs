@@ -65,18 +65,18 @@ namespace SCF.clientes
             clienteActual.NumeroCuenta = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "numeroCuenta").ToString();
             clienteActual.Observaciones = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "observaciones").ToString();
 
-
-
             Session.Add("clienteActual", clienteActual);
-
             Response.Redirect("cliente.aspx");
         }
 
         protected void btnAceptarEliminarCliente_Click(object sender, EventArgs e)
         {
-            ControladorGeneral.EliminarCliente(int.Parse(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente").ToString()));
-            
-            Response.Redirect("listado.aspx");
+            if (gvClientes.FocusedRowIndex != -1)
+            {
+                ControladorGeneral.EliminarCliente(int.Parse(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente").ToString()));
+                pcConfirmarEliminarCliente.ShowOnPageLoad = false;
+                loadGridClientes();
+            }
         }
 
 
@@ -116,8 +116,11 @@ namespace SCF.clientes
 
         protected void btnActivarCliente_Click(object sender, EventArgs e)
         {
-            ActivarInactivarCliente();
-            LoadGrillaClientesInactivos();
+            if (gvClientes.FocusedRowIndex != -1)
+            {
+                ActivarInactivarCliente();
+                LoadGrillaClientesInactivos();
+            }
         }
 
         private void ActivarInactivarCliente()
@@ -128,6 +131,7 @@ namespace SCF.clientes
         protected void btnAceptarInactivarCliente_Click(object sender, EventArgs e)
         {
             ActivarInactivarCliente();
+            pcShowInactivarCliente.ShowOnPageLoad = false;
             LoadGrillaClientesActivos();
         }
 

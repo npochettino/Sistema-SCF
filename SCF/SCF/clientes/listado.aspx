@@ -1,12 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="listado.aspx.cs" Inherits="SCF.clientes.listado" %>
 
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPanel" TagPrefix="dx" %>
-
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
-
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
-
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- BEGIN CONTENT -->
@@ -19,10 +16,8 @@
                     <h1>Clientes <small>listado de clientes</small></h1>
                 </div>
                 <!-- END PAGE TITLE -->
-
             </div>
             <!-- END PAGE HEAD -->
-
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
@@ -36,7 +31,6 @@
             </ul>
             <!-- END PAGE BREADCRUMB -->
             <!-- END PAGE HEADER-->
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="portlet box green">
@@ -54,11 +48,10 @@
                                 <div class="btn-set pull-left">
                                     <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
-                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarCliente()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
-
+                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarCliente()" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnInactivarCliente" runat="server" OnClientClick="ShowInactivarCliente()" UseSubmitBehavior="false" class="btn red-intense" Text="Inactivar" />
+                                    <asp:Button type="button" ID="btnInactivarCliente" runat="server" OnClientClick="ShowInactivarCliente()" class="btn red-intense" Text="Inactivar" />
                                     <asp:Button type="button" ID="btnActivarCliente" runat="server" OnClick="btnActivarCliente_Click" UseSubmitBehavior="false" class="btn blue" Text="Activar" />
                                     <asp:Button type="button" ID="btnVerDetalleCliente" runat="server" OnClick="btnVerDetalleCliente_Click" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>
@@ -95,20 +88,16 @@
                                         <dx:GridViewDataTextColumn FieldName="mail" Caption="Mail" VisibleIndex="7">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />
                                     <Settings ShowFilterRow="True" />
                                 </dx:ASPxGridView>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- END CONTENT -->
@@ -118,7 +107,6 @@
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarCliente"
         HeaderText="Eliminar Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
-        <ClientSideEvents PopUp="function(s, e) {  txtPrecio.Focus(); }" />
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
                 <dx:ASPxPanel ID="Panel2" runat="server" DefaultButton="">
@@ -137,8 +125,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="Button1" runat="server" UseSubmitBehavior="false" OnClientClick="pcConfirmarEliminarCliente.Hide();" class="btn default" Text="Cerrar" />
-                                        <asp:Button type="button" ID="btnAceptarEliminarCliente" runat="server" OnClick="btnAceptarEliminarCliente_Click" class="btn blue" Text="Aceptar" />
+                                        <asp:Button type="button" ID="Button1" runat="server" OnClientClick="pcConfirmarEliminarCliente.Hide();" class="btn default" Text="Cerrar" />
+                                        <asp:Button type="button" ID="btnAceptarEliminarCliente" UseSubmitBehavior="false" runat="server" OnClick="btnAceptarEliminarCliente_Click" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +141,6 @@
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowInactivarCliente"
         HeaderText="Inactivar Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
-        <ClientSideEvents PopUp="function(s, e) {  txtPrecio.Focus(); }" />
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
                 <dx:ASPxPanel ID="ASPxPanel1" runat="server" DefaultButton="">
@@ -175,8 +162,8 @@
                                 </form>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="Button2" runat="server" UseSubmitBehavior="false" OnClientClick="pcShowInactivarCliente.Hide();" class="btn default" Text="Cerrar" />
-                                        <asp:Button type="button" ID="btnAceptarInactivarCliente" runat="server" OnClick="btnAceptarInactivarCliente_Click" class="btn blue" Text="Aceptar" />
+                                        <asp:Button type="button" ID="Button2" runat="server" OnClientClick="pcShowInactivarCliente.Hide();" class="btn default" Text="Cerrar" />
+                                        <asp:Button type="button" ID="btnAceptarInactivarCliente" UseSubmitBehavior="false" runat="server" OnClick="btnAceptarInactivarCliente_Click" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
                             </div>
@@ -191,7 +178,7 @@
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleCliente"
         HeaderText="Detalle del Cliente" AllowDragging="True" EnableViewState="False" Width="800px"
         PopupAnimationType="Fade" Theme="Metropolis" ScrollBars="Auto">
-        <ClientSideEvents PopUp="function(s, e) {  txtNroProveedor.Focus(); }" />
+        <ClientSideEvents PopUp="function(s, e) {  pcShowDetalleCliente.Focus(); }" />
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl3" runat="server">
                 <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btnGuardarAticuloProveedor">
@@ -208,9 +195,9 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Nro. Cliente</label>
+                                                            <label class="control-label col-md-3">Razon Social</label>
                                                             <div class="col-md-9">
-                                                                <input type="text" id="txtNroCliente" placeholder="Nro. Cliente" runat="server" class="form-control">
+                                                                <input type="text" id="txtRazonSocial" placeholder="Razon Social" runat="server" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -222,25 +209,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">Razon Social</label>
-                                                            <div class="col-md-9">
-                                                                <input type="text" id="txtRazonSocial" placeholder="Razon Social" runat="server" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">Contacto</label>
-                                                            <div class="col-md-9">
-                                                                <input type="text" id="txtPersonaCantacto" placeholder="Persona de Contacto" runat="server" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                </div>                                                
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label class="control-label col-md-3">Email</label>
@@ -253,6 +222,16 @@
                                                             <label class="control-label col-md-3">Tel. / Fax.</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTelFax" placeholder="Tel. / Fax" runat="server" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">                                                    
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Contacto</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" id="txtPersonaCantacto" placeholder="Persona de Contacto" runat="server" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -290,8 +269,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <div class="btn-set pull-right">
-                                                    <button type="button" ID="Button3" onclick="pcShowDetalleCliente.Hide();" class="btn default">Cerrar</button>
-                                                    
+                                                    <button type="button" id="Button3" onclick="pcShowDetalleCliente.Hide();" class="btn default">Cerrar</button>
                                                 </div>
                                             </div>
                                         </form>

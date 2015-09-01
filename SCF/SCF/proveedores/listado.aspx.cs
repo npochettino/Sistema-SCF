@@ -76,8 +76,11 @@ namespace SCF.proveedores
 
         protected void btnActivarProveedor_Click(object sender, EventArgs e)
         {
-            ControladorGeneral.ActivarInactivarProveedor(int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString()));
-            LoadGrillaProveedoresInactivos();
+            if (gvProveedores.FocusedRowIndex != -1)
+            {
+                ControladorGeneral.ActivarInactivarProveedor(int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString()));
+                LoadGrillaProveedoresInactivos();
+            }
         }
 
         protected void rbActivoSi_CheckedChanged(object sender, EventArgs e)
@@ -117,6 +120,7 @@ namespace SCF.proveedores
         protected void btnAceptarInactivarProveedor_Click(object sender, EventArgs e)
         {
             ControladorGeneral.ActivarInactivarProveedor(int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString()));
+            pcShowInactivarProveedor.ShowOnPageLoad = false;
             LoadGrillaProveedoresActivos();
         }
 

@@ -115,49 +115,44 @@
                                                     </div>
                                                     <div class="tools">
                                                         <a href="javascript:;" class="collapse"></a>
-                                                        <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                                        <a href="javascript:;" class="reload"></a>
                                                         <a href="javascript:;" class="fullscreen"></a>
-                                                        <a href="javascript:;" class="remove"></a>
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
                                                     <div id="chart_8" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ARTICULOS-->
-                                                        <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis" Width="100%">
+                                                        <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" 
+                                                            Theme="Metropolis" Width="500">
                                                             <Columns>
-                                                                <dx:GridViewCommandColumn ShowSelectCheckbox="True"
-                                                                    VisibleIndex="0" Caption="Seleccionar">
+                                                                <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Caption=" " Width="40">
                                                                 </dx:GridViewCommandColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="False" VisibleIndex="1">
+                                                                <dx:GridViewDataTextColumn FieldName="codigoArticulo" Caption="Cod." Width="40" ReadOnly="True" VisibleIndex="1">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2">
+                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Caption="Desc. Corta" Width="300">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Visible="false" FieldName="descripcionLarga" VisibleIndex="3">
+                                                                <dx:GridViewDataTextColumn Visible="false" FieldName="descripcionLarga" VisibleIndex="3" Width="40">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="4">
+                                                                <dx:GridViewDataTextColumn FieldName="marca" Width="60" Visible="false" VisibleIndex="4" Caption="Marca">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-
-                                                                <dx:GridViewDataTextColumn Caption="cantidad" Visible="false" VisibleIndex="5" FieldName="cantidad">
+                                                                <dx:GridViewDataTextColumn Caption="cantidad" Visible="false" VisibleIndex="5" Width="40" FieldName="cantidad">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="fechaEntrega" Visible="false" VisibleIndex="6" FieldName="fechaEntrega">
+                                                                <dx:GridViewDataTextColumn Caption="fechaEntrega" Visible="false" VisibleIndex="6" Width="40" FieldName="fechaEntrega">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-
-                                                                <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" VisibleIndex="7" FieldName="codigoItemNotaDePedido">
+                                                                <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" Width="40" VisibleIndex="7" FieldName="codigoItemNotaDePedido">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-
-                                                                <dx:GridViewDataTextColumn Caption="precio" VisibleIndex="8" FieldName="precio">
+                                                                <dx:GridViewDataTextColumn Caption="Precio" VisibleIndex="8" FieldName="precio" Width="40">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                             </Columns>
+                                                            <SettingsBehavior ColumnResizeMode="NextColumn" />
                                                             <SettingsBehavior AllowFocusedRow="True" />
                                                             <SettingsPager PageSize="10">
                                                             </SettingsPager>
@@ -186,10 +181,7 @@
                                                     </div>
                                                     <div class="tools">
                                                         <a href="javascript:;" class="collapse"></a>
-                                                        <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                                        <a href="javascript:;" class="reload"></a>
                                                         <a href="javascript:;" class="fullscreen"></a>
-                                                        <a href="javascript:;" class="remove"></a>
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
@@ -202,14 +194,14 @@
                                                                     Visible="false">
                                                                     <Settings AllowSort="True" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="descripcionCorta" VisibleIndex="1" FieldName="descripcionCorta">
+                                                                <dx:GridViewDataTextColumn Caption="Desc. Corta" VisibleIndex="1" FieldName="descripcionCorta">
                                                                     <Settings AllowSort="True" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="descripcionLarga" Visible="false" VisibleIndex="2" FieldName="descripcionLarga">
                                                                     <Settings AllowSort="True" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="3">
+                                                                <dx:GridViewDataTextColumn FieldName="marca" Caption="Marca" VisibleIndex="3">
                                                                     <Settings AllowSort="True" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
@@ -219,7 +211,8 @@
 
                                                                 </dx:GridViewDataTextColumn>
 
-                                                                <dx:GridViewDataDateColumn Caption="fechaEntrega" PropertiesDateEdit-DisplayFormatString="d/MM/yyyy" VisibleIndex="5" FieldName="fechaEntrega" Width="100px">
+                                                                <dx:GridViewDataDateColumn Caption="Entrega" PropertiesDateEdit-DisplayFormatString="d/MM/yyyy" 
+                                                                    VisibleIndex="5" FieldName="fechaEntrega" Width="100px">
                                                                     <Settings AllowSort="True" />
                                                                     <PropertiesDateEdit DisplayFormatString="d/MM/yyyy" />
                                                                     
@@ -229,7 +222,7 @@
                                                                     <Settings AllowSort="True" />
                                                                 </dx:GridViewDataTextColumn>
 
-                                                                <dx:GridViewDataTextColumn Caption="precio" VisibleIndex="7" FieldName="precio">
+                                                                <dx:GridViewDataTextColumn Caption="Precio" VisibleIndex="7" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
@@ -248,7 +241,6 @@
                                                             <div class="btn-set pull-right">
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
