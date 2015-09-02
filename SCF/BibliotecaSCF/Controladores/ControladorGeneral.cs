@@ -1155,7 +1155,7 @@ namespace BibliotecaSCF.Controladores
 
         #region ContratoMarco
 
-        public static string InsertarContratosMarcosPorTabla(DataTable tablaItemsContratoMarco)
+        public static string InsertarActualizarContratosMarcosPorTabla(DataTable tablaItemsContratoMarco)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
             ITransaction trans = nhSesion.BeginTransaction();
@@ -1172,17 +1172,22 @@ namespace BibliotecaSCF.Controladores
 
                     if (cm == null)
                     {
-                        cm = new ContratoMarco();
-                        cm.Descripcion = descripcionCM;
+                        cm = CatalogoContratoMarco.RecuperarPor(x => x.Descripcion == descripcionCM, nhSesion);
+                        if (cm == null)
+                        {
+                            cm = new ContratoMarco();
+                            cm.Descripcion = descripcionCM;
+                        }
+
                         cm.FechaInicio = Convert.ToDateTime(fila["INICIO"]);
                         cm.FechaFin = Convert.ToDateTime(fila["FIN"]);
                         cm.Comprador = fila["COMPRADOR"].ToString();
 
-                        Cliente cliente = CatalogoCliente.RecuperarPorRazonSocial(fila["Cliente"].ToString(), nhSesion);
+                        Cliente cliente = CatalogoCliente.RecuperarPorRazonSocial(fila["CLIENTE"].ToString(), nhSesion);
 
                         if (cliente == null)
                         {
-                            return "Cliente inexistente: " + fila["Cliente"].ToString();
+                            return "Cliente inexistente: " + fila["CLIENTE"].ToString();
                         }
 
                         cm.Cliente = cliente;
@@ -1190,58 +1195,53 @@ namespace BibliotecaSCF.Controladores
                         listaContratosMarco.Add(cm);
                     }
 
-                    string descripcionCorta = fila["texto breve"].ToString();
+                    string descripcionCorta = fila["DESCRIPCION"].ToString();
 
-                    Articulo articulo = CatalogoArticulo.RecuperarPor(x => x.DescripcionCorta == descripcionCorta, nhSesion);
+                    if (descripcionCorta == "FLEXIBLE ACERO GALVANIZADO           *I*")
+                    {
+                        int a = 0;
+                    }
+                    string codigoInterno = fila["PLANTA"].ToString();
+
+                    Articulo articulo = CatalogoArticulo.RecuperarPorClienteYCodigoInternoCliente(codigoInterno, cm.Cliente.Codigo, nhSesion);
 
                     if (articulo == null)
                     {
-                        articulo = new Articulo();
-                        articulo.DescripcionCorta = descripcionCorta;
-                        articulo.DescripcionLarga = string.Empty;
-                        articulo.Marca = string.Empty;
-                        articulo.NombreImagen = string.Empty;
-                        articulo.UnidadMedida = fila["unidad de medida"].ToString();
+                        articulo = CatalogoArticulo.RecuperarPor(x => x.DescripcionCorta == descripcionCorta, nhSesion);
+
+                        if (articulo == null)
+                        {
+                            articulo = new Articulo();
+                            articulo.DescripcionCorta = descripcionCorta;
+                            articulo.DescripcionLarga = string.Empty;
+                            articulo.Marca = string.Empty;
+                            articulo.NombreImagen = string.Empty;
+                            articulo.UnidadMedida = fila["MEDIDA"].ToString();
+                        }
                     }
 
-                    ArticuloCliente artCl = (from a in articulo.ArticulosClientes where a.CodigoInterno == fila["cod planta"].ToString() && a.Cliente.Codigo == cm.Cliente.Codigo select a).SingleOrDefault();
+                    ArticuloCliente artCl = (from a in articulo.ArticulosClientes where a.CodigoInterno == codigoInterno && a.Cliente.Codigo == cm.Cliente.Codigo select a).SingleOrDefault();
 
                     if (artCl == null)
                     {
                         artCl = new ArticuloCliente();
-                        artCl.CodigoInterno = fila["cod planta"].ToString();
+                        artCl.CodigoInterno = codigoInterno;
                         artCl.Cliente = cm.Cliente;
                         articulo.ArticulosClientes.Add(artCl);
                     }
 
-                    //HistorialPrecio histPrecio = (from h in articulo.HistorialesPrecio where h.FechaHasta == null select h).SingleOrDefault();
-                    //if (histPrecio == null)
-                    //{
-                    //    histPrecio = new HistorialPrecio();
-                    //    histPrecio.CodigoMoneda = RecuperarCodigoMoneda(fila["moneda"].ToString());
-                    //    histPrecio.FechaDesde = fechaHoraDesde;
-                    //    histPrecio.FechaHasta = null;
-                    //    histPrecio.Precio = Convert.ToDouble(fila["precio base"]);
-                    //}
-                    //else
-                    //{
-                    //    if (histPrecio.Precio != Convert.ToDouble(fila["precio base"]) || histPrecio.CodigoMoneda != RecuperarCodigoMoneda(fila["moneda"].ToString()))
-                    //    {
-                    //        histPrecio.FechaHasta = fechaHoraDesde.AddSeconds(-1);
-                    //        HistorialPrecio histPrecioNuevo = new HistorialPrecio();
-                    //        histPrecio.CodigoMoneda = RecuperarCodigoMoneda(fila["moneda"].ToString());
-                    //        histPrecio.FechaDesde = fechaHoraDesde;
-                    //        histPrecio.FechaHasta = null;
-                    //        histPrecio.Precio = Convert.ToDouble(fila["precio base"]);
-                    //    }
-                    //}
+                    ItemContratoMarco itemCM = (from i in cm.ItemsContratoMarco where i.Articulo.Codigo == articulo.Codigo select i).SingleOrDefault();
+                    
+                    if (itemCM == null)
+                    {
+                        itemCM = new ItemContratoMarco();
+                        cm.ItemsContratoMarco.Add(itemCM);
+                        itemCM.Articulo = articulo;
+                    }
 
-                    ItemContratoMarco itemCM = new ItemContratoMarco();
-                    itemCM.Articulo = articulo;
-                    itemCM.Precio = Convert.ToDouble(fila["precio base"]);
-                    itemCM.Posicion = Convert.ToInt32(fila["pos"]);
+                    itemCM.Precio = Convert.ToDouble(fila["PRECIO"]);
+                    itemCM.Posicion = Convert.ToInt32(fila["POSICION"]);
 
-                    cm.ItemsContratoMarco.Add(itemCM);
                 }
 
                 foreach (ContratoMarco cm in listaContratosMarco)
@@ -1249,7 +1249,7 @@ namespace BibliotecaSCF.Controladores
                     CatalogoContratoMarco.InsertarActualizar(cm, nhSesion);
                 }
 
-                trans.Commit();
+                trans.Rollback();
                 return "ok";
             }
             catch (Exception ex)

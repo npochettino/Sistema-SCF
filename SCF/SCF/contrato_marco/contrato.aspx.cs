@@ -42,26 +42,124 @@ namespace SCF.contrato_marco
             {
 
                 DataTable tabla = OpenExcelFile(Session["rutaExcel"].ToString());
-                string rta = ControladorGeneral.InsertarContratosMarcosPorTabla(tabla);
-
-                if (rta != "ok")
+                if (tabla.Rows.Count > 0)
                 {
-                    pcError.ShowOnPageLoad = true;
-                    lblError.Text = rta;
-                }
+                    string rta = ControladorGeneral.InsertarActualizarContratosMarcosPorTabla(tabla);
 
-                Session["rutaExcel"] = null;
+                    if (rta != "ok")
+                    {
+                        pcError.ShowOnPageLoad = true;
+                        lblError.Text = rta;
+                    }
+
+                    Session["rutaExcel"] = null;
+                }
             }
         }
 
         protected DataTable OpenExcelFile(string fileName)
         {
-            DataTable dataTable = new DataTable();
+            DataTable tablaItems = new DataTable();
             string connectionString = string.Format("Provider=Microsoft.Jet.OLEDB.4.0; data source={0}; Extended Properties=Excel 8.0;", fileName);
-            OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT * FROM [scf$]", connectionString);
-            adapter.Fill(dataTable);
+            OleDbConnection conexion = new OleDbConnection(connectionString);
+            conexion.Open();
+            DataTable tablaSheets = conexion.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
 
-            return dataTable;
+            if (tablaSheets != null)
+            {
+                if (tablaSheets.Rows.Count > 0)
+                {
+                    string nombreSheet = tablaSheets.Rows[0]["TABLE_NAME"].ToString();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT * FROM [" + nombreSheet + "]", connectionString);
+                    adapter.Fill(tablaItems);
+
+                    foreach (DataColumn columna in tablaItems.Columns)
+                    {
+                        columna.ColumnName = columna.ColumnName.ToUpper();
+                    }
+
+                    string rta = ValidarColumnas(tablaItems);
+
+                    if (!string.IsNullOrEmpty(rta))
+                    {
+                        pcError.ShowOnPageLoad = true;
+                        lblError.Text = "Faltan la/s siguiente/s columna/s: " + rta + ".";
+                        tablaItems.Rows.Clear();
+                    }
+                }
+                else
+                {
+                    pcError.ShowOnPageLoad = true;
+                    lblError.Text = "El archivo excel no tiene ninguna hoja.";
+                    tablaItems.Rows.Clear();
+                }
+            }
+            else
+            {
+                pcError.ShowOnPageLoad = true;
+                lblError.Text = "Error al abrir el archivo excel. Por favor controle que la ruta de acceso sea correcta.";
+                tablaItems.Rows.Clear();
+            }
+
+            conexion.Close();
+            conexion.Dispose();
+            return tablaItems;
+        }
+
+        private string ValidarColumnas(DataTable tablaItems)
+        {
+            string rta = string.Empty;
+            if (!tablaItems.Columns.Contains("Cm"))
+            {
+                rta += "CM, ";
+            }
+            if (!tablaItems.Columns.Contains("POSICION"))
+            {
+                rta += "POSICION, ";
+            }
+            if (!tablaItems.Columns.Contains("CLIENTE"))
+            {
+                rta += "CLIENTE, ";
+            }
+            if (!tablaItems.Columns.Contains("COMPRADOR"))
+            {
+                rta += "COMPRADOR, ";
+            }
+            if (!tablaItems.Columns.Contains("INICIO"))
+            {
+                rta += "INICIO, ";
+            }
+            if (!tablaItems.Columns.Contains("FIN"))
+            {
+                rta += "FIN, ";
+            }
+            if (!tablaItems.Columns.Contains("PLANTA"))
+            {
+                rta += "PLANTA, ";
+            }
+            if (!tablaItems.Columns.Contains("DESCRIPCION"))
+            {
+                rta += "DESCRIPCION, ";
+            }
+            if (!tablaItems.Columns.Contains("PRECIO"))
+            {
+                rta += "PRECIO, ";
+            }
+            if (!tablaItems.Columns.Contains("MEDIDA"))
+            {
+                rta += "MEDIDA, ";
+            }
+            if (!tablaItems.Columns.Contains("MONEDA"))
+            {
+                rta += "MONEDA, ";
+            }
+
+            if (rta.Length > 0)
+            {
+                rta = rta.Substring(0, rta.Length - 2);
+            }
+
+            return rta;
         }
 
         protected void btnCargarGrilla_Click(object sender, EventArgs e)
@@ -75,10 +173,18 @@ namespace SCF.contrato_marco
                 Session.Add("rutaExcel", path);
 
                 DataTable tabla = OpenExcelFile(path);
-                gvArticulos.DataSource = tabla;
-                gvArticulos.DataBind();
+                if (tabla.Rows.Count > 0)
+                {
+                    gvArticulos.DataSource = tabla;
+                    gvArticulos.DataBind();
 
-                Session["tablaItemsContratoMarco"] = tabla;
+                    Session["tablaItemsContratoMarco"] = tabla;
+                }
+            }
+            else
+            {
+                pcError.ShowOnPageLoad = true;
+                lblError.Text = "Debe seleccionar un archivo";
             }
         }
     }

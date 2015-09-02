@@ -24,6 +24,19 @@ namespace BibliotecaSCF.Catalogos
             }
         }
 
+        public static Articulo RecuperarPorClienteYCodigoInternoCliente(string codigoInternoCliente, int codigoCliente, ISession nhSesion)
+        {
+            try
+            {
+                Articulo articulo = nhSesion.Query<Articulo>().Where(x => x.ArticulosClientes.Any(ac => ac.CodigoInterno == codigoInternoCliente && ac.Cliente.Codigo == codigoCliente)).SingleOrDefault();
+                return articulo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static List<Articulo> RecuperarPorCodigoCliente(int codigoCliente, ISession nhSesion)
         {
             try
