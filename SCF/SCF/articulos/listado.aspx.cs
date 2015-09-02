@@ -26,7 +26,7 @@ namespace SCF.articulos
             {
                 gvArticulos.DataSource = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(txtCodigoCliente.Value);
                 gvArticulos.DataBind();
-                gvArticulos.Columns["codigoCliente"].Visible = true;
+                gvArticulos.Columns["codigoCliente"].Visible = false;
                 gvArticulos.Columns["razonSocialCliente"].Visible = true;
                 gvArticulos.Columns["codigoArticuloCliente"].Visible = true;
             }

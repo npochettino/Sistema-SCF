@@ -122,6 +122,7 @@
                                                     <a href="javascript:;" class="fullscreen"></a>
                                                     <a href="javascript:;" class="remove"></a>
                                                 </div>
+<<<<<<< Updated upstream
                                             </div>
                                             <div class="portlet-body">
                                                 <div id="chart_8" class="chart" style="height: auto">
@@ -167,6 +168,53 @@
                                                         </SettingsPager>
                                                         <Settings ShowFilterRow="True" />
                                                     </dx:ASPxGridView>
+=======
+                                                <div class="portlet-body">
+                                                    <div id="chart_8" class="chart" style="height: auto">
+                                                        <!-- GRID VIEW ARTICULOS-->
+                                                        <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="COD PLANTA" Theme="Metropolis" Width="100%">
+                                                            <Columns>
+                                                                <dx:GridViewDataTextColumn FieldName="CM" VisibleIndex="1" Caption="Contrato Marco">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="POS" VisibleIndex="2" Caption="Posición">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="Cliente" VisibleIndex="3" Caption="Cliente">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="COMPRADOR" VisibleIndex="4" Caption="Comprador">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="INICIO" VisibleIndex="5" Caption="Fecha inicio">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="FIN" VisibleIndex="6" Caption="Fecha fin">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="COD PLANTA" VisibleIndex="7" Caption="Codigo articulo cliente">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="Texto breve" VisibleIndex="8" Caption="Desc. Corta">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="PRECIO BASE" Caption="Precio" VisibleIndex="9">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="UNIDAD DE MEDIDA" Caption="Unidad de medida" VisibleIndex="10">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="MONEDA" Caption="Moneda" VisibleIndex="11">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                            </Columns>
+                                                            <SettingsBehavior AllowFocusedRow="True" />
+                                                            <SettingsPager PageSize="10">
+                                                            </SettingsPager>
+                                                            <Settings ShowFilterRow="True" />
+                                                        </dx:ASPxGridView>
+                                                    </div>
+>>>>>>> Stashed changes
                                                 </div>
                                             </div>
                                             <!-- END CHART PORTLET-->
