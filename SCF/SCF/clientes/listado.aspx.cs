@@ -143,6 +143,16 @@ namespace SCF.clientes
         protected void btnVerDetalleCliente_Click(object sender, EventArgs e)
         {
             pcShowDetalleCliente.ShowOnPageLoad = true;
+
+            txtRazonSocial.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "razonSocial").ToString();
+            txtEmail.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "mail").ToString();
+            txtCUIL.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "cuil").ToString();
+            txtTelFax.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "telefono").ToString();
+            txtPersonaCantacto.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "personaContacto").ToString();
+            txtNroCuenta.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "numeroCuenta").ToString();
+            txtBanco.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "banco").ToString();
+            txtCBU.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "cbu").ToString();
+
         }
     }
 }
