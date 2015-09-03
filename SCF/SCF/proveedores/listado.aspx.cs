@@ -138,6 +138,20 @@ namespace SCF.proveedores
         protected void btnVerDetalleProveedor_Click(object sender, EventArgs e)
         {
             pcShowDetalleProveedor.ShowOnPageLoad = true;
+
+            int codigoArticulo = int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString());
+
+
+            txtRazonSocial.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "razonSocial").ToString();
+            txtEmail.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "mail").ToString();
+            txtCUIL.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "cuil").ToString();
+            txtTelFax.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "telefono").ToString();
+            txtPersonaCantacto.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "personaContacto").ToString();
+            txtNroCuenta.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "numeroCuenta").ToString();
+            txtBanco.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "banco").ToString();
+            txtCBU.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "cbu").ToString();
+
+
         }
 
 
