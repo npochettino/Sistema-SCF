@@ -121,7 +121,7 @@
                                                 <div class="portlet-body">
                                                     <div id="chart_8" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ARTICULOS-->
-                                                        <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" 
+                                                        <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo"
                                                             Theme="Metropolis" Width="500">
                                                             <Columns>
                                                                 <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Caption=" " Width="40">
@@ -136,7 +136,12 @@
                                                                 <dx:GridViewDataTextColumn Visible="false" FieldName="descripcionLarga" VisibleIndex="3" Width="40">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="marca" Width="60" Visible="false" VisibleIndex="4" Caption="Marca">
+
+                                                                <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="9">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn Caption="Codigo articulo cliente" VisibleIndex="4" FieldName="codigoArticuloCliente">
+
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="cantidad" Visible="false" VisibleIndex="5" Width="40" FieldName="cantidad">
@@ -152,9 +157,7 @@
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
 
-                                                                <dx:GridViewDataTextColumn Caption="Codigo articulo cliente" VisibleIndex="9" FieldName="codigoArticuloCliente">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
+
                                                             </Columns>
                                                             <SettingsBehavior ColumnResizeMode="NextColumn" />
                                                             <SettingsBehavior AllowFocusedRow="True" />
@@ -215,7 +218,7 @@
 
                                                                 </dx:GridViewDataTextColumn>
 
-                                                                <dx:GridViewDataDateColumn Caption="Entrega" PropertiesDateEdit-DisplayFormatString="d/MM/yyyy" 
+                                                                <dx:GridViewDataDateColumn Caption="Entrega" PropertiesDateEdit-DisplayFormatString="d/MM/yyyy"
                                                                     VisibleIndex="5" FieldName="fechaEntrega" Width="100px">
                                                                     <Settings AllowSort="True" />
                                                                     <PropertiesDateEdit DisplayFormatString="d/MM/yyyy" />

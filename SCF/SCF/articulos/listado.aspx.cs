@@ -79,8 +79,12 @@ namespace SCF.articulos
         {
             if (gvArticulos.FocusedRowIndex != -1)
             {
-                ControladorGeneral.EliminarArticulo(int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString()));
-                loadGridArticulos();
+                try
+                {
+                    ControladorGeneral.EliminarArticulo(int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString()));
+                    loadGridArticulos();
+                }
+                catch { }
             }
         }
 
@@ -167,6 +171,6 @@ namespace SCF.articulos
             gvArticulos.Columns["codigoArticuloCliente"].Visible = false;
         }
 
-        
+
     }
 }

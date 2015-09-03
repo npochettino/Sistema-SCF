@@ -73,9 +73,14 @@ namespace SCF.clientes
         {
             if (gvClientes.FocusedRowIndex != -1)
             {
-                ControladorGeneral.EliminarCliente(int.Parse(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente").ToString()));
-                pcConfirmarEliminarCliente.ShowOnPageLoad = false;
-                loadGridClientes();
+                try
+                {
+                    ControladorGeneral.EliminarCliente(int.Parse(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente").ToString()));
+                    pcConfirmarEliminarCliente.ShowOnPageLoad = false;
+                    loadGridClientes();
+                }
+
+                catch { }
             }
         }
 

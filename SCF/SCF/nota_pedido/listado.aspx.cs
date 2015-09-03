@@ -133,5 +133,10 @@ namespace SCF.nota_pedido
         {
             txtObservacion.Value = Convert.ToString(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "observaciones").ToString());
         }
+
+        protected void btnVerDetalle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

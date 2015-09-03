@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="btn-set pull-right">
                                     <asp:Button type="button" ID="btnShowPopUpObservacion" runat="server" OnClientClick="ShowObservacion()" class="btn red" Text="Anular" />
-                                    <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleNotaPedido()" class="btn green" Text="Detalle" />
+                                    <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleNotaPedido()" class="btn green" Text="Detalle" OnClick="btnVerDetalle_Click" />
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">

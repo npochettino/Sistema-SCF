@@ -70,8 +70,19 @@ namespace SCF.proveedores
 
         protected void btnAceptarEliminarProveedor_Click(object sender, EventArgs e)
         {
-            ControladorGeneral.EliminarProveedor(int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString()));
-            Response.Redirect("listado.aspx");
+            if (gvProveedores.FocusedRowIndex != -1)
+            {
+                try
+                {
+                    ControladorGeneral.EliminarProveedor(int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString()));
+                    Response.Redirect("listado.aspx");
+                }
+
+                catch
+                {
+
+                }
+            }
         }
 
         protected void btnActivarProveedor_Click(object sender, EventArgs e)
