@@ -102,6 +102,12 @@ namespace SCF.articulos
 
         protected void btnRelacionArticuloCliente_Click(object sender, EventArgs e)
         {
+            cargarGrillaRelacionArticuloCliente();
+
+        }
+
+        private void cargarGrillaRelacionArticuloCliente()
+        {
             pcRelacionArticuloCliente.ShowOnPageLoad = true;
 
             if (gvArticulos.FocusedRowIndex != -1)
@@ -109,8 +115,9 @@ namespace SCF.articulos
 
                 gvArticuloCliente.DataSource = ControladorGeneral.RecuperarArticulosClientesPorArticulo(int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString()));
                 gvArticuloCliente.DataBind();
-            }
 
+
+            }
         }
 
         protected void btnEliminarRelacionArticuloCliente_Click(object sender, EventArgs e)
@@ -129,6 +136,12 @@ namespace SCF.articulos
             Articulo mArticulo = (Articulo)Session["articuloActual"];
             if (!txtCodigoClienteArticulo.Value.Equals(""))
                 ControladorGeneral.InsertarActualizarArticuloCliente(0, mArticulo.Codigo, txtCodigoClienteArticulo.Value.ToString(), (int)cbClientes.SelectedItem.Value);
+
+            pcNuevaRelacionArticuloCliente.ShowOnPageLoad = true;
+            cargarGrillaRelacionArticuloCliente();
+
+
+
         }
 
         protected void pcRelacionArticuloCliente_Unload(object sender, EventArgs e)
@@ -181,6 +194,16 @@ namespace SCF.articulos
             gvArticulos.Columns["codigoCliente"].Visible = false;
             gvArticulos.Columns["razonSocialCliente"].Visible = false;
             gvArticulos.Columns["codigoArticuloCliente"].Visible = false;
+        }
+
+        protected void BtnNuevaRelacionCliente_Click(object sender, EventArgs e)
+        {
+            pcNuevaRelacionArticuloCliente.ShowOnPageLoad = true;
+
+            cbClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
+            cbClientes.DataBind();
+
+
         }
 
 

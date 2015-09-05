@@ -6847,6 +6847,8 @@ Blue Default
 .blue.btn {
   color: #FFFFFF;
   background-color: #3598dc;
+    top: 0px;
+    left: 0px;
 }
 .blue.btn:hover, .blue.btn:focus, .blue.btn:active, .blue.btn.active {
   color: #FFFFFF;
@@ -10652,6 +10654,8 @@ Red Default
 .red.btn {
   color: #FFFFFF;
   background-color: #cb5a5e;
+    top: 0px;
+    left: 0px;
 }
 .red.btn:hover, .red.btn:focus, .red.btn:active, .red.btn.active {
   color: #FFFFFF;

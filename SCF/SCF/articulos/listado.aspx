@@ -201,6 +201,12 @@
                                                             <label class="control-label col-md-3">Unidad</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
+                                                            &nbsp;</input>
+                                                                </input>
+&nbsp;</input></input></input></input></input></input>&nbsp;</input></input></input>&nbsp;</input></input></input></input></input></input></input></input></input></input> </input>&nbsp;</input></input></input></input></input></input></input>&nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+
                                                             </div>
                                                         </div>
 
@@ -213,6 +219,50 @@
                                                             <div class="input-group">
                                                                 <input type="text" id="txtPrecioActual" placeholder="Precio" runat="server" class="form-control">
 
+<<<<<<< HEAD
+=======
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
+                                                                            <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
+                                                                    </span>
+
+                                                                    &nbsp;</input>
+                                                                </input>
+&nbsp;</input></input></input></input></input><span class="input-group-btn">
+    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+    </button>
+</span></input>&nbsp;</input></input></input><span class="input-group-btn">
+    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+    </button>
+    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+    </button>
+</span>&nbsp;</input>&nbsp;</input>&nbsp;</input></input></input><span class="input-group-btn">
+    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+    </button>
+</span></input></input></input></input><span class="input-group-btn">
+    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+    </button>
+</span>
+
+                                                                &nbsp;&nbsp;</input></input></input><span class="input-group-btn">
+                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                    </button>
+                                                                </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
+                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                    </button>
+                                                                </span>&nbsp;</input></input></input><span class="input-group-btn">
+                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                    </button>
+                                                                </span>&nbsp;&nbsp; </input></input> </input>
+>>>>>>> Falta resolver por que vienen null las cosas desde los popup y estaria agregar proveedores en articulos y relacion con clientes
                                                                 <span class="input-group-btn">
                                                                     <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
                                                                         <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
@@ -229,6 +279,14 @@
                                                             <label class="control-label col-md-3">Moneda</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTipoDeCambio" placeholder="Tipo de Cambio" runat="server" class="form-control">
+<<<<<<< HEAD
+=======
+                                                            &nbsp;</input>
+                                                                </input>
+&nbsp;</input></input></input></input></input></input>&nbsp;</input></input></input>&nbsp;</input></input></input></input></input></input></input></input></input></input> </input>&nbsp;</input></input></input></input></input></input></input>&nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+>>>>>>> Falta resolver por que vienen null las cosas desde los popup y estaria agregar proveedores en articulos y relacion con clientes
                                                             </div>
                                                         </div>
 
@@ -445,6 +503,7 @@
                                                             <%--<asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />--%>
                                                             <button type="button" onclick="ShowNuevaRelacionArticuloCliente()" class="btn blue">Nuevo</button>
                                                             <button type="button" onclick="ShowEliminarRelacionArticuloCliente()" class="btn red">Eliminar</button>
+                                                            <asp:Button type="button" ID="BtnNuevaRelacionCliente" runat="server" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" OnClick="BtnNuevaRelacionCliente_Click" />
                                                         </div>
                                                         <div class="form-group">
                                                             <dx:ASPxGridView ID="gvArticuloCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
@@ -515,18 +574,39 @@
                                                         <div class="form-group">
                                                             <label>Codigo Articulo</label>
                                                             <input type="text" id="txtCodigoClienteArticulo" placeholder="Codigo Articulo" runat="server" class="form-control" required />
+                                                            <<<<<<< HEAD
                                                         </div>
+                                                        =======
+                                                            </input>
+                                                            </input>
+                                                            </input>
+                                                            </input>
+                                                            </input>
+                                                            </input>
+                                                            </input>
+                                                            </input>
+                                                            </input>
+                                                            &nbsp;</input></input></input>&nbsp;</input></input></input>&nbsp;</input></input></input>&nbsp;</input></input></input>&nbsp;</input></input></input>
+                                                        &nbsp;
+                                                        &nbsp;
+                                                        &nbsp;
+                                                        </input>
+                                                            </input>
+                                                            </input>
+                                                            &nbsp;
                                                     </div>
+                                                    >>>>>>> Falta resolver por que vienen null las cosas desde los popup y estaria agregar proveedores en articulos y relacion con clientes
                                                 </div>
                                             </div>
-                                        </form>
                                     </div>
+                                    </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" UseSubmitBehavior="false" runat="server" OnClick="btnGuardarRelacionArticuloCliente_Click" class="btn blue" Text="Aceptar" />
-                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="btn-set pull-right">
+                                    <asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" UseSubmitBehavior="false" runat="server" OnClick="btnGuardarRelacionArticuloCliente_Click" class="btn blue" Text="Aceptar" />
                                 </div>
+                            </div>
                             </div>
                         </dx:PanelContent>
                     </PanelCollection>
@@ -591,10 +671,10 @@
         //    else
         //        document.getElementById('divBuscarPorNroCliente').style.display = 'none';
         //}
-        function ShowNuevaRelacionArticuloCliente() {
-            pcNuevaRelacionArticuloCliente.Show();
+        //function ShowNuevaRelacionArticuloCliente() {
+        //    pcNuevaRelacionArticuloCliente.Show();
 
-        }
+        //}
         function ShowEliminarRelacionArticuloCliente() {
             pcConfirmarEliminarRelacionArticuloCliente.Show();
         }
