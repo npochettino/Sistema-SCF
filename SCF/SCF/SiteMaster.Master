@@ -280,7 +280,7 @@ License: SempaIT - Todos los derechos reservados.
                         <li>
                             <a href="javascript:;">
                                 <i class="icon-briefcase"></i>
-                                <span class="title">Factura</span>
+                                <span class="title">Facturación</span>
                                 <span class="arrow "></span>
                             </a>
                             <ul class="sub-menu">
@@ -290,10 +290,13 @@ License: SempaIT - Todos los derechos reservados.
                                 <li>
                                     <a href="../facturas/factura.aspx">Nuevo</a>
                                 </li>
+                                <li>
+                                    <a href="../facturas/tipo_comprobante.aspx">Tipo Comprobante</a>
+                                </li>
                             </ul>
                         </li>
 
-                        <%--<li>
+                        <li>
                             <a href="javascript:;">
                                 <i class="icon-flag"></i>
                                 <span class="title">Transporte</span>
@@ -304,10 +307,10 @@ License: SempaIT - Todos los derechos reservados.
                                     <a href="../transportes/listado.aspx">Listado</a>
                                 </li>
                                 <li>
-                                    <a href="../transportes/factura.aspx">Nuevo</a>
+                                    <a href="../transportes/transporte.aspx">Nuevo</a>
                                 </li>
                             </ul>
-                        </li>--%>
+                        </li>
 
                         <li>
                             <a href="javascript:;">

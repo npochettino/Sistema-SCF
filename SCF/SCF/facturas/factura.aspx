@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="factura.aspx.cs" Inherits="SCF.facturas.factura" %>
 
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridLookup" TagPrefix="dx" %>
+
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPanel" TagPrefix="dx" %>
 
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
@@ -56,21 +58,16 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="control-label">Nro. Factura</label>
-                                                <dx:ASPxTextBox ID="txtNroFactura" runat="server" CssClass="form-control" Width="100%" placeholder="Nro Factura"></dx:ASPxTextBox>
+                                                <label class="control-label">Tipo de Comprobante</label>
+                                                <dx:ASPxComboBox ID="cbTipoComprobante" runat="server" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
+                                                </dx:ASPxComboBox>
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="control-label">Tipo de Factura</label>
-                                                <dx:ASPxComboBox ID="cbTipoFactura" runat="server" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
-                                                    <Items>
-                                                        <dx:ListEditItem Selected="true" Text="Seleccione un tipo de factura" Value="0" />
-                                                        <dx:ListEditItem Text="Tipo A" Value="1" />
-                                                        <dx:ListEditItem Text="Tipo C" Value="2" />
-                                                    </Items>
-                                                </dx:ASPxComboBox>
+                                                <label class="control-label">Nro. Factura</label>
+                                                <dx:ASPxTextBox ID="txtNroFactura" runat="server" CssClass="form-control" Width="100%" placeholder="Nro Factura"></dx:ASPxTextBox>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -89,21 +86,27 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Remito</label>
-                                                <dx:ASPxComboBox ID="cbRemito" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
-                                                    ValueField="codigoRemito" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis" OnSelectedIndexChanged="cbRemito_SelectedIndexChanged" AutoPostBack="True">
+                                                <dx:ASPxGridLookup ID="gluRemito" runat="server" SelectionMode="Multiple" CssClass="form-control"
+                                                    ClientInstanceName="gridLookup" Theme="Metropolis"
+                                                    KeyFieldName="codigoNotaDePedido" Width="100%" TextFormatString="{0} ({1})" MultiTextSeparator=", ">
                                                     <Columns>
-                                                        <dx:ListBoxColumn FieldName="numeroRemito" Caption="Nro Remito" Width="30%" />
-                                                        <dx:ListBoxColumn FieldName="razonSocialCliente" Caption="Cliente" />
-                                                        <dx:ListBoxColumn FieldName="cuil" Caption="CUIL" />
+                                                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" Width="100%" Caption=" " />
+                                                        <dx:GridViewDataColumn FieldName="codigoNotaDePedido" Caption="Nro Remito" Width="100%" />
+                                                        <dx:GridViewDataColumn FieldName="razonSocialCliente" Caption="Cliente" Width="100%" />
+                                                        <%--<dx:GridViewDataColumn FieldName="cuil" Caption="CUIL" />--%>
                                                     </Columns>
-                                                </dx:ASPxComboBox>
+                                                    <GridViewProperties>
+                                                        <Settings ShowFilterRow="True" ShowStatusBar="Visible" />
+                                                    </GridViewProperties>
+                                                </dx:ASPxGridLookup>
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Tipo de Moneda</label>
-                                                <dx:ASPxComboBox ID="ASPxComboBox1" runat="server" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
+                                                <dx:ASPxComboBox ID="ASPxComboBox1" runat="server" DropDownStyle="DropDownList" EnableTheming="True" 
+                                                    Theme="Metropolis" CssClass="form-control" Width="100%">
                                                     <Items>
                                                         <dx:ListEditItem Selected="true" Text="Seleccione un tipo de moneda" Value="0" />
                                                         <dx:ListEditItem Text="Peso" Value="1" />
@@ -203,14 +206,46 @@
                                             </div>
                                         </div>
                                         <div class="portlet-body">
-                                            <h3 style="text-align: right">SUBTOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <dx:ASPxLabel ID="lblSubtotal" runat="server" Text="123123"></dx:ASPxLabel>
-                                            </h3>
-                                            <h3 style="text-align: right">IVA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="txtIVA" runat="server" Text="21" Width="40px" OnTextChanged="txtIVA_TextChanged"></asp:TextBox></h3>
-                                            <h3 style="text-align: right">TOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <dx:ASPxLabel ID="lblTotal" runat="server" Text="123123"></dx:ASPxLabel>
-                                            </h3>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">SUBTOTAL</label>
+                                                        <div class="col-md-9">
+                                                            <dx:ASPxLabel ID="lblSubtotal" runat="server" Text="123123"></dx:ASPxLabel>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">IVA</label>
+                                                        <div class="col-md-9">
+                                                            <dx:ASPxComboBox ID="cbCondicionIVA" runat="server" DropDownStyle="DropDownList"
+                                                                EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="80">
+                                                                <Items>
+                                                                    <dx:ListEditItem Text="0 %" Value="3" />
+                                                                    <dx:ListEditItem Text="10,5 %" Value="4" />
+                                                                    <dx:ListEditItem Selected="true" Text="21 %" Value="5" />
+                                                                    <dx:ListEditItem Text="27 %" Value="6" />
+                                                                    <dx:ListEditItem Text="5 %" Value="8" />
+                                                                    <dx:ListEditItem Text="2,50 %" Value="9" />
+                                                                </Items>
+                                                            </dx:ASPxComboBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">TOTAL</label>
+                                                        <div class="col-md-9">
+                                                            <dx:ASPxLabel ID="lblTotal" runat="server" Text="123123"></dx:ASPxLabel>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 

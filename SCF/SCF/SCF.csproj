@@ -4038,6 +4038,7 @@
     <Content Include="assets\sweetalert-dev.js" />
     <Content Include="assets\sweetalert.css" />
     <Content Include="assets\sweetalert.min.js" />
+    <Content Include="facturas\tipo_comprobante.aspx" />
     <Content Include="remitos\remito.js" />
     <Content Include="template\blank.aspx" />
     <Content Include="template\charts_amcharts.html" />
@@ -4074,6 +4075,8 @@
     <Content Include="template\ui_alert_dialog_api.html" />
     <Content Include="template\ui_buttons.html" />
     <Content Include="template\ui_modals.html" />
+    <Content Include="transportes\listado.aspx" />
+    <Content Include="transportes\transporte.aspx" />
     <Content Include="usuarios\listado.aspx" />
     <Content Include="usuarios\usuario.aspx" />
     <Content Include="Web.config" />
@@ -4085,6 +4088,13 @@
     </Compile>
     <Compile Include="articulos\articulo.aspx.designer.cs">
       <DependentUpon>articulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="facturas\tipo_comprobante.aspx.cs">
+      <DependentUpon>tipo_comprobante.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="facturas\tipo_comprobante.aspx.designer.cs">
+      <DependentUpon>tipo_comprobante.aspx</DependentUpon>
     </Compile>
     <Compile Include="template\blank.aspx.cs">
       <DependentUpon>blank.aspx</DependentUpon>
@@ -4233,6 +4243,20 @@
     </Compile>
     <Compile Include="SiteMaster.Master.designer.cs">
       <DependentUpon>SiteMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="transportes\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transportes\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="transportes\transporte.aspx.cs">
+      <DependentUpon>transporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="transportes\transporte.aspx.designer.cs">
+      <DependentUpon>transporte.aspx</DependentUpon>
     </Compile>
     <Compile Include="usuarios\listado.aspx.cs">
       <DependentUpon>listado.aspx</DependentUpon>

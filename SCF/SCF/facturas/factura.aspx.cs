@@ -18,8 +18,11 @@ namespace SCF.facturas
 
         private void CargarComboRemito()
         {
-            //cbRemito.DataSource = ControladorGeneral.RecuperarTodosRemitos();
+            //cbRemito.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(true);
             //cbRemito.DataBind();
+
+            gluRemito.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(true);
+            gluRemito.DataBind();
         }
 
         protected void cbRemito_SelectedIndexChanged(object sender, EventArgs e)

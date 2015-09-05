@@ -7,91 +7,127 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace SCF.facturas {
+namespace SCF.transportes {
     
     
-    public partial class factura {
+    public partial class transporte {
         
         /// <summary>
-        /// Control cbTipoComprobante.
+        /// Control txtRazonSocial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbTipoComprobante;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtRazonSocial;
         
         /// <summary>
-        /// Control txtNroFactura.
+        /// Control txtCUIL.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtNroFactura;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCUIL;
         
         /// <summary>
-        /// Control txtFechaFacturacion.
+        /// Control txtDireccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxDateEdit txtFechaFacturacion;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDireccion;
         
         /// <summary>
-        /// Control gluRemito.
+        /// Control txtMail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridLookup.ASPxGridLookup gluRemito;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtMail;
         
         /// <summary>
-        /// Control ASPxComboBox1.
+        /// Control txtProvincia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox ASPxComboBox1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtProvincia;
         
         /// <summary>
-        /// Control gvItemsFactura.
+        /// Control txtCiudad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvItemsFactura;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCiudad;
         
         /// <summary>
-        /// Control lblSubtotal.
+        /// Control txtTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxLabel lblSubtotal;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTelefono;
         
         /// <summary>
-        /// Control cbCondicionIVA.
+        /// Control txtFax.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbCondicionIVA;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFax;
         
         /// <summary>
-        /// Control lblTotal.
+        /// Control txtPersonaContacto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxLabel lblTotal;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPersonaContacto;
+        
+        /// <summary>
+        /// Control txtBanco.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtBanco;
+        
+        /// <summary>
+        /// Control txtCBU.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCBU;
+        
+        /// <summary>
+        /// Control txtNroCuentaBancaria.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNroCuentaBancaria;
+        
+        /// <summary>
+        /// Control txtObservacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtObservacion;
         
         /// <summary>
         /// Control btnGuardar.
