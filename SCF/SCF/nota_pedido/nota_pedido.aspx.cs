@@ -67,8 +67,6 @@ namespace SCF.nota_pedido
 
         private void CargarGrillaItemsNotaDePedido(bool isSeleccionar)
         {
-            //CargarGrillaArticulosPorCliente();
-
             DataTable tablaItemsNotaDePedido = new DataTable();
 
             if (Session["tablaItemsNotaDePedido"] == null)
@@ -98,6 +96,10 @@ namespace SCF.nota_pedido
                     if (gvArticulos.Selection.IsRowSelected(i))
                     {
                         DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
+                        if (gvArticulosSeleccionados.VisibleRowCount < 1)
+                            cbContratoMarco.SelectedItem = cbContratoMarco.Items.FindByValue(getContratoMarco((int)mRow.Row.ItemArray[0]));
+
+
                         tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false);
                     }
                 }
@@ -134,6 +136,11 @@ namespace SCF.nota_pedido
 
         }
 
+        private int getContratoMarco(int codigoArticulo)
+        {
+            return Convert.ToInt16(ControladorGeneral.RecuperarContratosMarcoVigentePorClienteYArticulo((int)cbClientes.SelectedItem.Value, codigoArticulo).Rows[0]);
+        }
+
         private void CargarGrillaArticulosPorCliente()
         {
             if (cbClientes.SelectedItem != null)
@@ -155,6 +162,12 @@ namespace SCF.nota_pedido
         {
             cbClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
             cbClientes.DataBind();
+        }
+
+        private void CargarComboContratoMarco(int codigoCliente)
+        {
+            cbContratoMarco.DataSource = ControladorGeneral.RecuperarContratosMarcoVigentePorCliente(codigoCliente);
+            cbContratoMarco.DataBind();
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -235,6 +248,7 @@ namespace SCF.nota_pedido
         protected void cbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             //CargarGrillaArticulosPorCliente();
+            //CargarComboContratoMarco((int)cbClientes.SelectedItem.Value);
         }
 
     }

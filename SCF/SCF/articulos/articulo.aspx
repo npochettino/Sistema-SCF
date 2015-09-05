@@ -197,7 +197,7 @@
                                                         <div class="form-group">
                                                             <label>Costo:</label>
                                                             <input type="text" id="txtCosto" placeholder="Costo" runat="server" class="form-control" required />
-                                                        </div>
+                                                        &nbsp;</input></input></input></div>
                                                     </div>
                                                 </div>
                                                 <div class="row hidden">
@@ -205,7 +205,7 @@
                                                         <div class="form-group">
                                                             <label>Cantidad</label>
                                                             <input type="text" id="txtCantidad" placeholder="Cantidad" runat="server" class="form-control" required />
-                                                        </div>
+                                                        &nbsp;</input></input></input></div>
                                                     </div>
                                                 </div>
                                                 <div class="row">

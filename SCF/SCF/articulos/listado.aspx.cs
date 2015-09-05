@@ -72,6 +72,7 @@ namespace SCF.articulos
             articuloActual.DescripcionLarga = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionLarga").ToString();
             articuloActual.Marca = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "marca").ToString();
 
+
             Session.Add("articuloActual", articuloActual);
         }
 
@@ -102,6 +103,14 @@ namespace SCF.articulos
         protected void btnRelacionArticuloCliente_Click(object sender, EventArgs e)
         {
             pcRelacionArticuloCliente.ShowOnPageLoad = true;
+
+            if (gvArticulos.FocusedRowIndex != -1)
+            {
+
+                gvArticuloCliente.DataSource = ControladorGeneral.RecuperarArticulosClientesPorArticulo(int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString()));
+                gvArticuloCliente.DataBind();
+            }
+
         }
 
         protected void btnEliminarRelacionArticuloCliente_Click(object sender, EventArgs e)
@@ -137,6 +146,7 @@ namespace SCF.articulos
         protected void pcNuevaRelacionArticuloCliente_Unload(object sender, EventArgs e)
         {
             cbClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
+
             cbClientes.DataBind();
         }
 
@@ -151,6 +161,8 @@ namespace SCF.articulos
             txtMarca.Value = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "marca").ToString();
             //txtUnidadDeMedida.Value = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "unidadDeMedida").ToString();
             txtPrecioActual.Value = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "precio").ToString();
+            //txtUnidadDeMedida.Value = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "unidadMedida").ToString();
+
             gvCliente.DataSource = ControladorGeneral.RecuperarArticulosClientesPorArticulo(codigoArticulo);
             gvCliente.DataBind();
             gvArticuloProveedores.DataSource = ControladorGeneral.RecuperarArticulosProveedoresPorArticulo(codigoArticulo);

@@ -31,6 +31,8 @@ namespace SCF.clientes
 
         private void CargarDatosParaEditar(Cliente oClienteActual)
         {
+
+
             txtCUIL.Value = oClienteActual.Cuil;
             txtRazonSocial.Value = oClienteActual.RazonSocial;
             txtCiudad.Value = oClienteActual.Localidad;
@@ -44,7 +46,6 @@ namespace SCF.clientes
             txtNroCuentaBancaria.Value = oClienteActual.NumeroCuenta;
             txtObservacion.Value = oClienteActual.Observaciones;
             txtFax.Value = oClienteActual.Fax;
-            //txtNroInternoCliente.Value = oClienteActual.NumeroInterno.ToString();
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -53,12 +54,12 @@ namespace SCF.clientes
             if (Session["codigoOperacion"] == null)
             {
                 oClienteActual = (Cliente)Session["clienteActual"];
-                ControladorGeneral.InsertarActualizarCliente(oClienteActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, "fax", txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0);
+                ControladorGeneral.InsertarActualizarCliente(oClienteActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0);
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                ControladorGeneral.InsertarActualizarCliente(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, "fax", txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0);
+                ControladorGeneral.InsertarActualizarCliente(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtFax.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0);
             }
             Response.Redirect("listado.aspx");
         }

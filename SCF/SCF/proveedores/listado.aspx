@@ -103,6 +103,9 @@
                                         <dx:GridViewDataTextColumn FieldName="observacion" Caption="Observacion" Visible="false" VisibleIndex="12">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="fax" Caption="Fax" Visible="false" VisibleIndex="13">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />

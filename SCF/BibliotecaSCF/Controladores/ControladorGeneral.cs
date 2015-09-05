@@ -81,13 +81,14 @@ namespace BibliotecaSCF.Controladores
                 tablaProveedores.Columns.Add("banco");
                 tablaProveedores.Columns.Add("cbu");
                 tablaProveedores.Columns.Add("observaciones");
+                tablaProveedores.Columns.Add("fax");
 
                 List<Proveedor> listaProveedores = CatalogoProveedor.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
 
                 listaProveedores.Aggregate(tablaProveedores, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil,
-                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones); return dt;
+                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones,r.Fax); return dt;
                 });
 
                 return tablaProveedores;
@@ -324,13 +325,14 @@ namespace BibliotecaSCF.Controladores
                 tablaClientes.Columns.Add("banco");
                 tablaClientes.Columns.Add("cbu");
                 tablaClientes.Columns.Add("observaciones");
+                tablaClientes.Columns.Add("fax");
 
                 List<Cliente> listaClientes = CatalogoCliente.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
 
                 listaClientes.Aggregate(tablaClientes, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil,
-                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones); return dt;
+                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax); return dt;
                 });
 
                 return tablaClientes;
@@ -517,6 +519,7 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulos.Columns.Add("codigoArticuloCliente");
                 tablaArticulos.Columns.Add("codigoCliente");
                 tablaArticulos.Columns.Add("razonSocialCliente");
+                tablaArticulos.Columns.Add("unidadMedidad");
 
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarTodos(nhSesion);
 
@@ -524,7 +527,7 @@ namespace BibliotecaSCF.Controladores
                 {
                     dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
 
-                        r.RecuperarPrecioActual(), r.NombreImagen, string.Empty, string.Empty, string.Empty); return dt;
+                        r.RecuperarPrecioActual(), r.NombreImagen, string.Empty, string.Empty, string.Empty,r.UnidadMedida); return dt;
 
                 });
 
@@ -1231,7 +1234,7 @@ namespace BibliotecaSCF.Controladores
                     }
 
                     ItemContratoMarco itemCM = (from i in cm.ItemsContratoMarco where i.Articulo.Codigo == articulo.Codigo select i).SingleOrDefault();
-                    
+
                     if (itemCM == null)
                     {
                         itemCM = new ItemContratoMarco();
@@ -1308,6 +1311,8 @@ namespace BibliotecaSCF.Controladores
                 nhSesion.Dispose();
             }
         }
+
+
 
         public static DataTable RecuperarContratosMarcoVigentePorClienteYArticulo(int codigoCliente, int codigoArticulo)
         {

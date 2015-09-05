@@ -95,7 +95,16 @@
                                         <div class="col-md-6" id="divContratoMarco">
                                             <div class="form-group">
                                                 <label class="control-label">Contrato Marco</label>
-                                                <dx:ASPxComboBox ID="cbContratoMarco" runat="server" DropDownStyle="DropDownList" Width="100%" CssClass="form-control" EnableTheming="True" Theme="Metropolis"></dx:ASPxComboBox>
+                                                <dx:ASPxComboBox ID="cbContratoMarco" runat="server" DropDownStyle="DropDownList" Width="100%" CssClass="form-control" ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" EnableTheming="True" Theme="Metropolis">
+
+                                                    <Columns>
+                                                        <dx:ListBoxColumn FieldName="codigoContratoMarco" Width="100px" Visible="false" />
+                                                        <dx:ListBoxColumn FieldName="descripcion" Width="300px" />
+                                                        <dx:ListBoxColumn FieldName="fechaInicio" Width="100px" />
+                                                        <dx:ListBoxColumn FieldName="fechaFin" Width="100px" />
+                                                    </Columns>
+
+                                                </dx:ASPxComboBox>
                                             </div>
                                         </div>
                                         <!--/span-->

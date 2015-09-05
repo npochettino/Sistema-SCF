@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -34,6 +35,10 @@ namespace SCF.articulos
             txtDescripcionCorta.Value = oArticuloActual.DescripcionCorta;
             txtDescripcionLarga.Value = oArticuloActual.DescripcionLarga;
             txtMarca.Value = oArticuloActual.Marca;
+            DataTable dtPrecioHistrialArticulo = ControladorGeneral.RecuperarHistorialPreciosPorArticulo(oArticuloActual.Codigo);
+            txtPrecio.Value = dtPrecioHistrialArticulo.Rows[dtPrecioHistrialArticulo.Rows.Count - 1]["precio"].ToString();
+            //ddlTipoMonedaPrecio.SelectedItem.Value = oArticuloActual.t;
+
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -42,12 +47,12 @@ namespace SCF.articulos
             if (Session["codigoOperacion"] == null)
             {
                 oArticuloActual = (Articulo)Session["articuloActual"];
-                ControladorGeneral.InsertarActualizarArticulo(oArticuloActual.Codigo, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value, "", Convert.ToDouble(txtPrecio.Value), 1);
+                ControladorGeneral.InsertarActualizarArticulo(oArticuloActual.Codigo, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value, txtPrecio.Value, Convert.ToDouble(txtPrecio.Value), int.Parse(ddlTipoMonedaPrecio.SelectedItem.Value));
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                ControladorGeneral.InsertarActualizarArticulo(0, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value, "", Convert.ToDouble(txtPrecio.Value), 1);
+                ControladorGeneral.InsertarActualizarArticulo(0, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value, txtPrecio.Value, Convert.ToDouble(txtPrecio.Value), int.Parse(ddlTipoMonedaPrecio.SelectedItem.Value));
             }
 
             Response.Redirect("listado.aspx");
@@ -65,7 +70,9 @@ namespace SCF.articulos
 
         protected void btnGuardarArticuloProveedor_Click(object sender, EventArgs e)
         {
+            oArticuloActual = (Articulo)Session["articuloActual"];
 
+            ControladorGeneral.InsertarActualizarArticuloProveedor(0, oArticuloActual.Codigo, (int)cbProveedores.SelectedItem.Value, double.Parse(txtCosto.Value.ToString()), int.Parse(ddlTipoMonedaCosto.SelectedItem.Value.ToString()));
         }
 
         protected void btnEditarPrecio_Click(object sender, EventArgs e)

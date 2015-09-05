@@ -62,6 +62,8 @@ namespace SCF.proveedores
             proveedorActual.PersonaContacto = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "personaContacto").ToString();
             proveedorActual.NumeroCuenta = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "numeroCuenta").ToString();
             proveedorActual.Observaciones = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "observaciones").ToString();
+            proveedorActual.Fax = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "fax").ToString();
+
 
             Session.Add("proveedorActual", proveedorActual);
 
@@ -145,7 +147,7 @@ namespace SCF.proveedores
             txtRazonSocial.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "razonSocial").ToString();
             txtEmail.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "mail").ToString();
             txtCUIL.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "cuil").ToString();
-            txtTelFax.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "telefono").ToString();
+            txtTelFax.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "telefono").ToString() + "/" + gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "fax").ToString();
             txtPersonaCantacto.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "personaContacto").ToString();
             txtNroCuenta.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "numeroCuenta").ToString();
             txtBanco.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "banco").ToString();
