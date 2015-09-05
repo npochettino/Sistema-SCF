@@ -240,7 +240,7 @@
 
                                                                 <dx:GridViewDataTextColumn Caption="Precio" VisibleIndex="7" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
+                                                                    
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn VisibleIndex="8" FieldName="isEliminada" Visible="false" />
                                                                 <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="8" />

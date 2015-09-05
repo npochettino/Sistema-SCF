@@ -227,9 +227,11 @@ namespace SCF.nota_pedido
 
             fila["cantidad"] = Convert.ToInt32(e.NewValues["cantidad"]);
             DateTime fechaEntrega = Convert.ToDateTime(e.NewValues["fechaEntrega"]);
+            fila["precio"] = Convert.ToInt32(e.NewValues["precio"]);
 
             fila["fechaEntrega"] = fechaEntrega;
             Session["tablaItemsNotaDePedido"] = tablaItemsNotaDePedido;
+
             e.Cancel = true;
             gvArticulosSeleccionados.CancelEdit();
             CargarGrillaItemsNotaDePedido(false);
