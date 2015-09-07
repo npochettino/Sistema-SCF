@@ -29,14 +29,14 @@ namespace SCF.facturas
 
         }
 
-        protected void btnVer_Click(object sender, EventArgs e)
+        protected void btnConfirmarEliminarFactura_Click(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnConfirmarEliminarFactura_Click(object sender, EventArgs e)
+        protected void btnDetalle_Click(object sender, EventArgs e)
         {
-
+            pcDetalleComprobante.ShowOnPageLoad = true;
         }
     }
 }

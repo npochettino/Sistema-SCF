@@ -408,20 +408,45 @@
                                                             <!--/row-->
                                                         </div>
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView ID="gvArticuloCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                            <dx:ASPxGridView ID="gvDetalleFactura" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="False" VisibleIndex="1">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                         <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigoInterno" Caption="Codigo Interno" VisibleIndex="1">
-                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Descripción Corta">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigoCliente" Caption="Codigo Cliente" VisibleIndex="1" Visible="false">
-                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoInternoCliente" VisibleIndex="2" Width="100px" Visible="true" Caption="Codigo">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialCliente" Caption="Razon Social Cliente" VisibleIndex="1">
-                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    <dx:GridViewDataTextColumn FieldName="posicion" VisibleIndex="2" Width="150px" Visible="true" Caption="Posición">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataSpinEditColumn Caption="Precio Unitario" Width="100px" VisibleIndex="4" FieldName="precio">
+                                                                        <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <DataItemTemplate>
+                                                                            <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
+                                                                            </dx:ASPxSpinEdit>
+                                                                        </DataItemTemplate>
+                                                                    </dx:GridViewDataSpinEditColumn>
+                                                                    <dx:GridViewDataSpinEditColumn Caption="Cantidad" Width="60px" VisibleIndex="4" FieldName="cantidad">
+                                                                        <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <DataItemTemplate>
+                                                                            <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
+                                                                            </dx:ASPxSpinEdit>
+                                                                        </DataItemTemplate>
+                                                                    </dx:GridViewDataSpinEditColumn>
+                                                                    <dx:GridViewDataSpinEditColumn Caption="Importe" Width="100px" VisibleIndex="4" FieldName="precio">
+                                                                        <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <DataItemTemplate>
+                                                                            <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
+                                                                            </dx:ASPxSpinEdit>
+                                                                        </DataItemTemplate>
+                                                                    </dx:GridViewDataSpinEditColumn>
                                                                 </Columns>
                                                             </dx:ASPxGridView>
                                                         </div>
@@ -478,7 +503,6 @@
                                                             <!--/row-->
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    
                                                                 </div>
                                                                 <!--/span-->
                                                                 <div class="col-md-6">
