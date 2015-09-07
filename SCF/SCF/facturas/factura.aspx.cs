@@ -30,12 +30,24 @@ namespace SCF.facturas
 
         }
 
-        protected void btnGuardar_Click(object sender, EventArgs e)
+        //Retorna el ultimo comprobante autorizado para el tipo de comprobante / cuit / punto de venta ingresado/ Tipo de Emisión
+        //Enviar CUIT,PtoVta,CbteTipo
+        protected void btnUltimoNroComprobante_Click(object sender, EventArgs e)
+        {
+            pcUltimoComprobanteAfip.ShowOnPageLoad = true;
+        }
+
+        protected void btnEmitir_Click(object sender, EventArgs e)
+        {
+            pcValidarComprobante.ShowOnPageLoad = true;
+        }
+
+        protected void pcValidarComprobante_Unload(object sender, EventArgs e)
         {
 
         }
 
-        protected void txtIVA_TextChanged(object sender, EventArgs e)
+        protected void btnEmitirComprobante_Click(object sender, EventArgs e)
         {
 
         }
