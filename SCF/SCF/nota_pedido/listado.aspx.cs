@@ -131,7 +131,10 @@ namespace SCF.nota_pedido
 
         protected void pcShowObservacion_Load(object sender, EventArgs e)
         {
-            txtObservacion.Value = Convert.ToString(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "observaciones").ToString());
+            if (gvNotasPedido.FocusedRowIndex != -1)
+            {
+                txtObservacion.Value = Convert.ToString(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "observaciones").ToString());
+            }
         }
 
         protected void btnVerDetalle_Click(object sender, EventArgs e)

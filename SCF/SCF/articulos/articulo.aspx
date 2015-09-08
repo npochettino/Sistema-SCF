@@ -77,11 +77,9 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <label>Unidad de Medida</label>
-                                                <asp:DropDownList CssClass="form-control" ID="ddlUnidadDeMedida" runat="server">
-                                                    <asp:ListItem Value="0" Text="Elija una Opcion"></asp:ListItem>
-                                                    <asp:ListItem Value="1" Text="KG"></asp:ListItem>
-                                                    <asp:ListItem Value="2" Text="Metro"></asp:ListItem>
-                                                </asp:DropDownList>
+                                                <dx:ASPxComboBox ID="cbUnidadMedida" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                    ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" TextField="descripcion">
+                                                </dx:ASPxComboBox>
                                             </div>
                                         </div>
                                     </div>
@@ -95,12 +93,9 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <label>Tipo de Moneda</label>
-                                                <asp:DropDownList CssClass="form-control" ID="ddlTipoMonedaPrecio" runat="server">
-                                                    <asp:ListItem Value="" Text="Elija una Opcion"></asp:ListItem>
-                                                    <asp:ListItem Value="1" Text="Peso"></asp:ListItem>
-                                                    <asp:ListItem Value="2" Text="Dolar"></asp:ListItem>
-                                                    <asp:ListItem Value="3" Text="Euro"></asp:ListItem>
-                                                </asp:DropDownList>
+                                                <dx:ASPxComboBox ID="cbMonedaPrecio" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                    ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" TextField="descripcion">
+                                                </dx:ASPxComboBox>
                                             </div>
                                         </div>
                                     </div>
@@ -137,7 +132,7 @@
                                         <asp:Button type="button" ID="btnNuevoArticuloProveedor" OnClick="btnNuevoArticuloProveedor_Click" runat="server" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
                                         <asp:Button type="button" ID="btnEditarArticuloProveedor" runat="server" OnClick="btnEditarArticuloProveedor_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
                                         <button class="btn red" type="button" onclick="ShowConfirmarEliminarArticuloProveedor()">Eliminar</button>
-                                    </div>      
+                                    </div>
                                 </div>
                                 <div class="form-body">
                                     <h3 class="form-section">Info del Proveedores</h3>
@@ -197,7 +192,8 @@
                                                         <div class="form-group">
                                                             <label>Costo:</label>
                                                             <input type="text" id="txtCosto" placeholder="Costo" runat="server" class="form-control" required />
-                                                        &nbsp;</input></input></input></div>
+                                                            &nbsp;</input></input></input>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="row hidden">
@@ -205,19 +201,17 @@
                                                         <div class="form-group">
                                                             <label>Cantidad</label>
                                                             <input type="text" id="txtCantidad" placeholder="Cantidad" runat="server" class="form-control" required />
-                                                        &nbsp;</input></input></input></div>
+                                                            &nbsp;</input></input></input>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Tipo de Moneda</label>
-                                                            <asp:DropDownList CssClass="form-control" ID="ddlTipoMonedaCosto" runat="server">
-                                                                <asp:ListItem Value="" Text="Elija una Opcion"></asp:ListItem>
-                                                                <asp:ListItem Value="1" Text="Peso"></asp:ListItem>
-                                                                <asp:ListItem Value="2" Text="Dolar"></asp:ListItem>
-                                                                <asp:ListItem Value="3" Text="Euro"></asp:ListItem>
-                                                            </asp:DropDownList>
+                                                            <dx:ASPxComboBox ID="cbMonedaCosto" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                                ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" TextField="descripcion">
+                                                            </dx:ASPxComboBox>
                                                         </div>
                                                     </div>
                                                 </div>

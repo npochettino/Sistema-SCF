@@ -16,6 +16,13 @@ namespace SCF.articulos
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            cbMonedaCosto.DataSource = ControladorGeneral.RecuperarTodasMonedas();
+            cbMonedaCosto.DataBind();
+            cbMonedaPrecio.DataSource = ControladorGeneral.RecuperarTodasMonedas();
+            cbMonedaPrecio.DataBind();
+            cbUnidadMedida.DataSource = ControladorGeneral.RecuperarTodasUnidadesMedida();
+            cbUnidadMedida.DataBind();
+
             if (!IsPostBack)
             {
                 //Cargo el form para editar
@@ -47,12 +54,12 @@ namespace SCF.articulos
             if (Session["codigoOperacion"] == null)
             {
                 oArticuloActual = (Articulo)Session["articuloActual"];
-                ControladorGeneral.InsertarActualizarArticulo(oArticuloActual.Codigo, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value, txtPrecio.Value, Convert.ToDouble(txtPrecio.Value), int.Parse(ddlTipoMonedaPrecio.SelectedItem.Value));
+                ControladorGeneral.InsertarActualizarArticulo(oArticuloActual.Codigo, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value, txtPrecio.Value, Convert.ToDouble(txtPrecio.Value), Convert.ToInt32(cbMonedaPrecio.SelectedItem.Value), Convert.ToInt32(cbUnidadMedida.SelectedItem.Value));
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                ControladorGeneral.InsertarActualizarArticulo(0, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value, txtPrecio.Value, Convert.ToDouble(txtPrecio.Value), int.Parse(ddlTipoMonedaPrecio.SelectedItem.Value));
+                ControladorGeneral.InsertarActualizarArticulo(0, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value, txtPrecio.Value, Convert.ToDouble(txtPrecio.Value), Convert.ToInt32(cbMonedaPrecio.SelectedItem.Value), Convert.ToInt32(cbUnidadMedida.SelectedItem.Value));
             }
 
             Response.Redirect("listado.aspx");
@@ -72,7 +79,7 @@ namespace SCF.articulos
         {
             oArticuloActual = (Articulo)Session["articuloActual"];
 
-            ControladorGeneral.InsertarActualizarArticuloProveedor(0, oArticuloActual.Codigo, (int)cbProveedores.SelectedItem.Value, double.Parse(txtCosto.Value.ToString()), int.Parse(ddlTipoMonedaCosto.SelectedItem.Value.ToString()));
+            ControladorGeneral.InsertarActualizarArticuloProveedor(0, oArticuloActual.Codigo, (int)cbProveedores.SelectedItem.Value, double.Parse(txtCosto.Value.ToString()), Convert.ToInt32(cbMonedaCosto.SelectedItem.Value.ToString()));
         }
 
         protected void btnEditarPrecio_Click(object sender, EventArgs e)

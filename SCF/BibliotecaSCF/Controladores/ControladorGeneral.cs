@@ -433,13 +433,18 @@ namespace BibliotecaSCF.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         #endregion
 
         #region Articulo
 
-        public static void InsertarActualizarArticulo(int codigoArticulo, string descripcionCorta, string descripcionLarga, string marca, string nombreImagen, double precio, int codigoMoneda)
+        public static void InsertarActualizarArticulo(int codigoArticulo, string descripcionCorta, string descripcionLarga, string marca, string nombreImagen, double precio, int codigoMoneda, int codigoUnidadMedida)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
             ITransaction transaccion = nhSesion.BeginTransaction();
@@ -485,6 +490,7 @@ namespace BibliotecaSCF.Controladores
                     }
                 }
 
+                articulo.UnidadMedida = CatalogoUnidadMedida.RecuperarPorCodigo(codigoUnidadMedida, nhSesion);
                 articulo.DescripcionCorta = descripcionCorta;
                 articulo.DescripcionLarga = descripcionLarga;
                 articulo.Marca = marca;
@@ -1165,6 +1171,11 @@ namespace BibliotecaSCF.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         #endregion
@@ -1335,8 +1346,6 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-
-
         public static DataTable RecuperarContratosMarcoVigentePorClienteYArticulo(int codigoCliente, int codigoArticulo)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
@@ -1400,6 +1409,11 @@ namespace BibliotecaSCF.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         public static DataTable RecuperarTodosItemsContratoMarco(int codigoContratoMarco)
@@ -1423,6 +1437,11 @@ namespace BibliotecaSCF.Controladores
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 
@@ -1701,6 +1720,101 @@ namespace BibliotecaSCF.Controladores
                 }
 
                 return tablaItemsEntrega;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region UnidadMediad
+
+        public static DataTable RecuperarTodasUnidadesMedida()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaUnidadesMedida = new DataTable();
+                tablaUnidadesMedida.Columns.Add("codigo");
+                tablaUnidadesMedida.Columns.Add("descripcion");
+                tablaUnidadesMedida.Columns.Add("abreviatura");
+
+                List<UnidadMedida> listaUnidadesMedida = CatalogoUnidadMedida.RecuperarTodos(nhSesion);
+
+                listaUnidadesMedida.Aggregate(tablaUnidadesMedida, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.Abreviatura); return dt; });
+
+                return tablaUnidadesMedida;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region Moneda
+
+        public static DataTable RecuperarTodasMonedas()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaMonedas = new DataTable();
+                tablaMonedas.Columns.Add("codigo");
+                tablaMonedas.Columns.Add("descripcion");
+                tablaMonedas.Columns.Add("abreviatura");
+
+                List<Moneda> listaMonedas = CatalogoMoneda.RecuperarTodos(nhSesion);
+
+                listaMonedas.Aggregate(tablaMonedas, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.Abreviatura); return dt; });
+
+                return tablaMonedas;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region TipoDocumento
+
+        public static DataTable RecuperarTodosTiposDocumentos()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaTiposDocumentos = new DataTable();
+                tablaTiposDocumentos.Columns.Add("codigo");
+                tablaTiposDocumentos.Columns.Add("descripcion");
+
+                List<TipoDocumento> listaTiposDocumentos = CatalogoTipoDocumento.RecuperarTodos(nhSesion);
+
+                listaTiposDocumentos.Aggregate(tablaTiposDocumentos, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion); return dt; });
+
+                return tablaTiposDocumentos;
             }
             catch (Exception ex)
             {

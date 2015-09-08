@@ -40,13 +40,13 @@ namespace SCF.articulos {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtMarca;
         
         /// <summary>
-        /// Control ddlUnidadDeMedida.
+        /// Control cbUnidadMedida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUnidadDeMedida;
+        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbUnidadMedida;
         
         /// <summary>
         /// Control txtPrecio.
@@ -58,13 +58,13 @@ namespace SCF.articulos {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtPrecio;
         
         /// <summary>
-        /// Control ddlTipoMonedaPrecio.
+        /// Control cbMonedaPrecio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoMonedaPrecio;
+        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbMonedaPrecio;
         
         /// <summary>
         /// Control btnGuardar.
@@ -175,13 +175,13 @@ namespace SCF.articulos {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtCantidad;
         
         /// <summary>
-        /// Control ddlTipoMonedaCosto.
+        /// Control cbMonedaCosto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoMonedaCosto;
+        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbMonedaCosto;
         
         /// <summary>
         /// Control btnGuardarArticuloProveedor.
