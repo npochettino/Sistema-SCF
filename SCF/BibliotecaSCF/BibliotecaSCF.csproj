@@ -57,12 +57,16 @@
     <Compile Include="Catalogos\CatalogoArticuloCliente.cs" />
     <Compile Include="Catalogos\CatalogoArticuloProveedor.cs" />
     <Compile Include="Catalogos\CatalogoCliente.cs" />
+    <Compile Include="Catalogos\CatalogoConcepto.cs" />
     <Compile Include="Catalogos\CatalogoContratoMarco.cs" />
     <Compile Include="Catalogos\CatalogoEntrega.cs" />
+    <Compile Include="Catalogos\CatalogoFactura.cs" />
     <Compile Include="Catalogos\CatalogoGenerico.cs" />
+    <Compile Include="Catalogos\CatalogoIva.cs" />
     <Compile Include="Catalogos\CatalogoMoneda.cs" />
     <Compile Include="Catalogos\CatalogoNotaDePedido.cs" />
     <Compile Include="Catalogos\CatalogoProveedor.cs" />
+    <Compile Include="Catalogos\CatalogoTipoComprobante.cs" />
     <Compile Include="Catalogos\CatalogoTipoDocumento.cs" />
     <Compile Include="Catalogos\CatalogoUnidadMedida.cs" />
     <Compile Include="Catalogos\CatalogoUsuario.cs" />
