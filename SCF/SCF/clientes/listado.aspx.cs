@@ -52,7 +52,7 @@ namespace SCF.clientes
             Cliente clienteActual = new Cliente();
 
             clienteActual.Codigo = int.Parse(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente").ToString());
-            clienteActual.Cuil = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "cuil").ToString();
+            clienteActual.NumeroDocumento = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "cuil").ToString();
             clienteActual.Direccion = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "direccion").ToString();
             clienteActual.Localidad = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "localidad").ToString();
             clienteActual.Mail = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "mail").ToString();

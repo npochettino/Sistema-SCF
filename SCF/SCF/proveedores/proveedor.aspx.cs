@@ -31,7 +31,7 @@ namespace SCF.proveedores
 
         private void CargarDatosParaEditar(Proveedor oProveedorActual)
         {
-            txtCUIL.Value = oProveedorActual.Cuil;
+            txtCUIL.Value = oProveedorActual.NumeroDocumento;
             txtRazonSocial.Value = oProveedorActual.RazonSocial;
             txtCiudad.Value = oProveedorActual.Localidad;
             txtDireccion.Value = oProveedorActual.Direccion;
@@ -54,12 +54,12 @@ namespace SCF.proveedores
             if (Session["codigoOperacion"] == null)
             {
                 oProveedorActual = (Proveedor)Session["proveedorActual"];
-                ControladorGeneral.InsertarActualizarProveedor(oProveedorActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0);
+                ControladorGeneral.InsertarActualizarProveedor(oProveedorActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                ControladorGeneral.InsertarActualizarProveedor(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0);
+                ControladorGeneral.InsertarActualizarProveedor(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
             }
             Response.Redirect("listado.aspx");
         }

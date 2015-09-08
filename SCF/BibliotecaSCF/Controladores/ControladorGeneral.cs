@@ -15,7 +15,7 @@ namespace BibliotecaSCF.Controladores
     {
         #region Proveedores
 
-        public static void InsertarActualizarProveedor(int codigoProveedor, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno)
+        public static void InsertarActualizarProveedor(int codigoProveedor, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno, int codigoTipoDocumento)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -38,7 +38,7 @@ namespace BibliotecaSCF.Controladores
                 proveedor.Direccion = direccion;
                 proveedor.Telefono = telefono;
                 proveedor.Mail = mail;
-                proveedor.Cuil = cuil;
+                proveedor.NumeroDocumento = numeroDocumento;
                 proveedor.PersonaContacto = personaContacto;
                 proveedor.NumeroCuenta = numeroCuenta;
                 proveedor.Banco = banco;
@@ -47,6 +47,7 @@ namespace BibliotecaSCF.Controladores
                 proveedor.Observaciones = observaciones;
                 proveedor.IsInactivo = false;
                 proveedor.NumeroInterno = numeroInterno;
+                proveedor.TipoDocumento = CatalogoTipoDocumento.RecuperarPorCodigo(codigoTipoDocumento, nhSesion);
 
                 CatalogoProveedor.InsertarActualizar(proveedor, nhSesion);
             }
@@ -87,8 +88,8 @@ namespace BibliotecaSCF.Controladores
 
                 listaProveedores.Aggregate(tablaProveedores, (dt, r) =>
                 {
-                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil,
-                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones,r.Fax); return dt;
+                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento,
+                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax); return dt;
                 });
 
                 return tablaProveedores;
@@ -259,7 +260,7 @@ namespace BibliotecaSCF.Controladores
 
         #region Cliente
 
-        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string cuil, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno)
+        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno, int codigoTipoDocumento)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -283,7 +284,7 @@ namespace BibliotecaSCF.Controladores
                 cliente.Telefono = telefono;
                 cliente.Fax = fax;
                 cliente.Mail = mail;
-                cliente.Cuil = cuil;
+                cliente.NumeroDocumento = numeroDocumento;
                 cliente.PersonaContacto = personaContacto;
                 cliente.NumeroCuenta = numeroCuenta;
                 cliente.Banco = banco;
@@ -291,6 +292,7 @@ namespace BibliotecaSCF.Controladores
                 cliente.Observaciones = observaciones;
                 cliente.IsInactivo = false;
                 cliente.NumeroInterno = numeroInterno;
+                cliente.TipoDocumento = CatalogoTipoDocumento.RecuperarPorCodigo(codigoTipoDocumento, nhSesion);
 
                 CatalogoCliente.InsertarActualizar(cliente, nhSesion);
             }
@@ -331,7 +333,7 @@ namespace BibliotecaSCF.Controladores
 
                 listaClientes.Aggregate(tablaClientes, (dt, r) =>
                 {
-                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.Cuil,
+                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento,
                         r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax); return dt;
                 });
 
@@ -422,7 +424,7 @@ namespace BibliotecaSCF.Controladores
                 ContratoMarco contratoMarco = CatalogoContratoMarco.RecuperarPorCodigo(codigoContratoMarco, nhSesion);
 
                 tablaCliente.Rows.Add(new object[] { contratoMarco.Cliente.Codigo, contratoMarco.Cliente.RazonSocial, contratoMarco.Cliente.Provincia, contratoMarco.Cliente.Localidad,
-                contratoMarco.Cliente.Direccion, contratoMarco.Cliente.Telefono, contratoMarco.Cliente.Mail, contratoMarco.Cliente.Cuil, contratoMarco.Cliente.PersonaContacto,
+                contratoMarco.Cliente.Direccion, contratoMarco.Cliente.Telefono, contratoMarco.Cliente.Mail, contratoMarco.Cliente.NumeroDocumento, contratoMarco.Cliente.PersonaContacto,
                 contratoMarco.Cliente.NumeroCuenta, contratoMarco.Cliente.Banco, contratoMarco.Cliente.Cbu, contratoMarco.Cliente.Observaciones});
 
                 return tablaCliente;
@@ -463,13 +465,13 @@ namespace BibliotecaSCF.Controladores
                     histPrecio.FechaDesde = DateTime.Now;
                     histPrecio.FechaHasta = null;
                     histPrecio.Precio = precio;
-                    histPrecio.CodigoMoneda = codigoMoneda;
+                    histPrecio.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
 
                     articulo.HistorialesPrecio.Add(histPrecio);
                 }
                 else
                 {
-                    if (histPrecio.Precio != precio || histPrecio.CodigoMoneda != codigoMoneda)
+                    if (histPrecio.Precio != precio || histPrecio.Moneda.Codigo != codigoMoneda)
                     {
                         histPrecio.FechaHasta = DateTime.Now.AddSeconds(-1);
 
@@ -477,7 +479,7 @@ namespace BibliotecaSCF.Controladores
                         histPrecioNuevo.FechaDesde = DateTime.Now;
                         histPrecioNuevo.FechaHasta = null;
                         histPrecioNuevo.Precio = precio;
-                        histPrecio.CodigoMoneda = codigoMoneda;
+                        histPrecio.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
 
                         articulo.HistorialesPrecio.Add(histPrecioNuevo);
                     }
@@ -519,15 +521,18 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulos.Columns.Add("codigoArticuloCliente");
                 tablaArticulos.Columns.Add("codigoCliente");
                 tablaArticulos.Columns.Add("razonSocialCliente");
+                tablaArticulos.Columns.Add("codigoUnidadMedida");
                 tablaArticulos.Columns.Add("unidadMedidad");
+                tablaArticulos.Columns.Add("codigoMoneda");
+                tablaArticulos.Columns.Add("descripcionMoneda");
 
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarTodos(nhSesion);
 
                 listaArticulos.Aggregate(tablaArticulos, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
-
-                        r.RecuperarPrecioActual(), r.NombreImagen, string.Empty, string.Empty, string.Empty,r.UnidadMedida); return dt;
+                        r.RecuperarHistorialPrecioActual().Precio, r.NombreImagen, string.Empty, string.Empty, string.Empty, r.UnidadMedida.Codigo, r.UnidadMedida.Descripcion,
+                        r.RecuperarHistorialPrecioActual().Moneda.Codigo, r.RecuperarHistorialPrecioActual().Moneda.Descripcion); return dt;
 
                 });
 
@@ -581,16 +586,19 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulo.Columns.Add("codigoArticuloCliente");
                 tablaArticulo.Columns.Add("codigoCliente");
                 tablaArticulo.Columns.Add("razonSocialCliente");
+                tablaArticulo.Columns.Add("codigoMoneda");
+                tablaArticulo.Columns.Add("descripcionMoneda");
 
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarPorCodigoInternoCliente(codigoInternoCliente, nhSesion);
 
                 listaArticulos.Aggregate(tablaArticulo, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
-                        r.RecuperarPrecioActual(), r.NombreImagen,
+                        r.RecuperarHistorialPrecioActual().Precio, r.NombreImagen,
                         (from ac in r.ArticulosClientes where ac.CodigoInterno.Contains(codigoInternoCliente) select ac).FirstOrDefault().CodigoInterno,
                         (from ac in r.ArticulosClientes where ac.CodigoInterno.Contains(codigoInternoCliente) select ac.Cliente).FirstOrDefault().Codigo,
-                        (from ac in r.ArticulosClientes where ac.CodigoInterno.Contains(codigoInternoCliente) select ac.Cliente).FirstOrDefault().RazonSocial); return dt; //VER, como resolver que haya mas de uno que contenga el codigointernocliente
+                        (from ac in r.ArticulosClientes where ac.CodigoInterno.Contains(codigoInternoCliente) select ac.Cliente).FirstOrDefault().RazonSocial,
+                        r.RecuperarHistorialPrecioActual().Moneda.Codigo, r.RecuperarHistorialPrecioActual().Moneda.Descripcion); return dt; //VER, como resolver que haya mas de uno que contenga el codigointernocliente
                 });
 
                 return tablaArticulo;
@@ -622,6 +630,8 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulo.Columns.Add("codigoArticuloCliente");
                 tablaArticulo.Columns.Add("codigoCliente");
                 tablaArticulo.Columns.Add("razonSocialCliente");
+                tablaArticulo.Columns.Add("codigoMoneda");
+                tablaArticulo.Columns.Add("descripcionMoneda");
 
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarPorCodigoCliente(codigoCliente, nhSesion);
                 Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
@@ -631,9 +641,9 @@ namespace BibliotecaSCF.Controladores
                 listaArticulos.Aggregate(tablaArticulo, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
-                        r.RecuperarPrecioActual(), r.NombreImagen,
+                        r.RecuperarHistorialPrecioActual().Precio, r.NombreImagen,
                         (from ac in r.ArticulosClientes where ac.Cliente.Codigo == codigoCliente select ac).SingleOrDefault().CodigoInterno,
-                        cliente.Codigo, cliente.RazonSocial); return dt;
+                        cliente.Codigo, cliente.RazonSocial, r.RecuperarHistorialPrecioActual().Moneda.Codigo, r.RecuperarHistorialPrecioActual().Moneda.Descripcion); return dt;
                 });
 
                 return tablaArticulo;
@@ -743,13 +753,13 @@ namespace BibliotecaSCF.Controladores
                     histPrecio.FechaDesde = DateTime.Now;
                     histPrecio.FechaHasta = null;
                     histPrecio.Costo = costo;
-                    histPrecio.CodigoMoneda = codigoMoneda;
+                    histPrecio.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
 
                     articuloProveedor.HistorialesCosto.Add(histPrecio);
                 }
                 else
                 {
-                    if (histPrecio.Costo != costo || histPrecio.CodigoMoneda != codigoMoneda)
+                    if (histPrecio.Costo != costo || histPrecio.Moneda.Codigo != codigoMoneda)
                     {
                         histPrecio.FechaHasta = DateTime.Now.AddSeconds(-1);
 
@@ -757,7 +767,7 @@ namespace BibliotecaSCF.Controladores
                         histPrecioNuevo.FechaDesde = DateTime.Now;
                         histPrecioNuevo.FechaHasta = null;
                         histPrecioNuevo.Costo = costo;
-                        histPrecio.CodigoMoneda = codigoMoneda;
+                        histPrecio.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
 
                         articuloProveedor.HistorialesCosto.Add(histPrecioNuevo);
                     }
@@ -1131,6 +1141,8 @@ namespace BibliotecaSCF.Controladores
                 tablaItemsNotaDePedido.Columns.Add("cantidad");
                 tablaItemsNotaDePedido.Columns.Add("fechaEntrega");
                 tablaItemsNotaDePedido.Columns.Add("cantidadEntregada");
+                tablaItemsNotaDePedido.Columns.Add("codigoMoneda");
+                tablaItemsNotaDePedido.Columns.Add("descripcionMoneda");
 
                 NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
 
@@ -1142,7 +1154,8 @@ namespace BibliotecaSCF.Controladores
                     int cantidadEntregada = (from e in listaEntregas select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == item.Codigo select i.CantidadAEntregar).SingleOrDefault()).Sum();
 
                     tablaItemsNotaDePedido.Rows.Add(item.Codigo, item.Articulo.Codigo, item.Articulo.DescripcionCorta, item.Articulo.DescripcionLarga, item.Articulo.Marca,
-                    item.Articulo.RecuperarPrecioActual(), item.CantidadPedida, item.FechaEntrega, cantidadEntregada);
+                    item.Articulo.RecuperarHistorialPrecioActual().Precio, item.CantidadPedida, item.FechaEntrega, cantidadEntregada, item.Articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
+                    item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion);
                 }
 
 
@@ -1219,7 +1232,12 @@ namespace BibliotecaSCF.Controladores
                             articulo.DescripcionLarga = string.Empty;
                             articulo.Marca = string.Empty;
                             articulo.NombreImagen = string.Empty;
-                            articulo.UnidadMedida = fila["MEDIDA"].ToString();
+                            articulo.UnidadMedida = CatalogoUnidadMedida.RecuperarPor(x => x.Abreviatura == fila["MEDIDA"].ToString(), nhSesion);
+
+                            if (articulo.UnidadMedida == null)
+                            {
+                                return "No existe la unidad de medida: " + fila["MEDIDA"].ToString();
+                            }
                         }
                     }
 
@@ -1244,7 +1262,12 @@ namespace BibliotecaSCF.Controladores
 
                     itemCM.Precio = Convert.ToDouble(fila["PRECIO"]);
                     itemCM.Posicion = Convert.ToInt32(fila["POSICION"]);
+                    itemCM.Moneda = CatalogoMoneda.RecuperarPor(x => x.Abreviatura == fila["MONEDA"].ToString(), nhSesion);
 
+                    if (itemCM.Moneda == null)
+                    {
+                        return "No existe moneda: " + fila["MONEDA"].ToString();
+                    }
                 }
 
                 foreach (ContratoMarco cm in listaContratosMarco)
@@ -1252,7 +1275,7 @@ namespace BibliotecaSCF.Controladores
                     CatalogoContratoMarco.InsertarActualizar(cm, nhSesion);
                 }
 
-                trans.Rollback();
+                trans.Commit();
                 return "ok";
             }
             catch (Exception ex)
@@ -1369,7 +1392,7 @@ namespace BibliotecaSCF.Controladores
                     listaContratosMarco = CatalogoContratoMarco.RecuperarLista(x => x.FechaFin <= DateTime.Now, nhSesion);
                 }
 
-                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.FechaInicio, r.FechaFin, r.Cliente.Codigo, r.Cliente.Cuil, r.Cliente.RazonSocial); return dt; });
+                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.FechaInicio, r.FechaFin, r.Cliente.Codigo, r.Cliente.NumeroDocumento, r.Cliente.RazonSocial); return dt; });
 
                 return tablaContratosMarco;
             }

@@ -50,7 +50,7 @@ namespace SCF.proveedores
             Proveedor proveedorActual = new Proveedor();
 
             proveedorActual.Codigo = int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString());
-            proveedorActual.Cuil = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "cuil").ToString();
+            proveedorActual.NumeroDocumento = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "cuil").ToString();
             proveedorActual.Direccion = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "direccion").ToString();
             proveedorActual.Localidad = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "localidad").ToString();
             proveedorActual.Mail = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "mail").ToString();

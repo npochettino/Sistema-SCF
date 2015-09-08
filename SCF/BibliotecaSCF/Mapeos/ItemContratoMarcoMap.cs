@@ -17,6 +17,7 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.Precio).Column("precio");
             Map(x => x.Posicion).Column("posicion");
 
+            References(x => x.Moneda).Column("codigoTipoMoneda").Cascade.None().LazyLoad(Laziness.Proxy);
             References(x => x.Articulo).Column("codigoArticulo").Cascade.SaveUpdate().Nullable().LazyLoad(Laziness.Proxy);
         }
     }

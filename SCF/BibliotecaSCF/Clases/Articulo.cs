@@ -20,15 +20,15 @@ namespace BibliotecaSCF.Clases
         public virtual string DescripcionLarga { get; set; }
         public virtual string Marca { get; set; }
         public virtual string NombreImagen { get; set; }
-        public virtual string UnidadMedida { get; set; }
 
+        public virtual UnidadMedida UnidadMedida { get; set; }
         public virtual IList<ArticuloProveedor> ArticulosProveedor { get; set; }
         public virtual IList<ArticuloCliente> ArticulosClientes { get; set; }
         public virtual IList<HistorialPrecio> HistorialesPrecio { get; set; }
 
-        public virtual double RecuperarPrecioActual()
+        public virtual HistorialPrecio RecuperarHistorialPrecioActual()
         {
-            return this.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault() != null ? this.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault().Precio : 0.0;
+            return this.HistorialesPrecio.Where(x => x.FechaHasta == null).SingleOrDefault();
         }
     }
 }
