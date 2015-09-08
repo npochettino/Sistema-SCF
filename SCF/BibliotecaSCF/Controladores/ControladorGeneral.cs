@@ -537,9 +537,8 @@ namespace BibliotecaSCF.Controladores
                 listaArticulos.Aggregate(tablaArticulos, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
-                        r.RecuperarHistorialPrecioActual().Precio, r.NombreImagen, string.Empty, string.Empty, string.Empty, r.UnidadMedida.Codigo, r.UnidadMedida.Descripcion,
+                        r.RecuperarHistorialPrecioActual().Precio + " " + r.RecuperarHistorialPrecioActual().Moneda.Abreviatura, r.NombreImagen, string.Empty, string.Empty, string.Empty, r.UnidadMedida.Codigo, r.UnidadMedida.Descripcion,
                         r.RecuperarHistorialPrecioActual().Moneda.Codigo, r.RecuperarHistorialPrecioActual().Moneda.Descripcion); return dt;
-
                 });
 
                 return tablaArticulos;
@@ -1815,6 +1814,71 @@ namespace BibliotecaSCF.Controladores
                 listaTiposDocumentos.Aggregate(tablaTiposDocumentos, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion); return dt; });
 
                 return tablaTiposDocumentos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region Factura
+
+        public static void InsertarActualizarFactura(int codigoFactura, int numeroFactura, DateTime fechaFacturacion, int codigoEntrega, int codigoMoneda, int codigoConcepto, int codigoIva, double subtotal, double total)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Factura factura;
+
+                if (codigoFactura == 0)
+                {
+                    factura = new Factura();
+                }
+                else
+                {
+                    factura = CatalogoFactura.RecuperarPorCodigo(codigoFactura, nhSesion);
+                }
+
+                factura.Concepto = CatalogoConcepto.RecuperarPorCodigo(codigoConcepto, nhSesion);
+                factura.Entrega = CatalogoEntrega.RecuperarPorCodigo(codigoEntrega, nhSesion);
+                factura.FechaFacturacion = fechaFacturacion;
+                factura.Iva = CatalogoIva.RecuperarPorCodigo(codigoIva, nhSesion);
+                factura.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
+                factura.NumeroFactura = numeroFactura;
+                factura.Subtotal = subtotal;
+                factura.TipoComprobante = CatalogoTipoComprobante.RecuperarPorCodigo(1, nhSesion);
+                factura.Total = total;
+
+                CatalogoFactura.InsertarActualizar(factura, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void EmitirFactura(int codigoFactura)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Factura factura = CatalogoFactura.RecuperarPorCodigo(codigoFactura, nhSesion);
+
+
             }
             catch (Exception ex)
             {

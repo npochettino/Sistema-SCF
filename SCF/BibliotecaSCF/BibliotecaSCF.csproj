@@ -75,6 +75,7 @@
     <Compile Include="Clases\Concepto.cs" />
     <Compile Include="Clases\ContratoMarco.cs" />
     <Compile Include="Clases\Entrega.cs" />
+    <Compile Include="Clases\Factura.cs" />
     <Compile Include="Clases\HistorialCosto.cs" />
     <Compile Include="Clases\HistorialPrecio.cs" />
     <Compile Include="Clases\ItemContratoMarco.cs" />
