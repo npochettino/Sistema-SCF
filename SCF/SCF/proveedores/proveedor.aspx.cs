@@ -27,11 +27,20 @@ namespace SCF.proveedores
                     Session.Add("codigoOperacion", 0);
                 }
             }
+            CargarComboTipoDocumento();
+        }
+
+        private void CargarComboTipoDocumento()
+        {
+            //ddlTipoDocumento.DataSource = ControladorGeneral.RecuperarTodosTipoDocumento();
+            //ddlTipoDocumento.DataBind();
         }
 
         private void CargarDatosParaEditar(Proveedor oProveedorActual)
         {
-            txtCUIL.Value = oProveedorActual.NumeroDocumento;
+            ddlTipoDocumento.Text = oProveedorActual.TipoDocumento.Descripcion;
+
+            txtNroDocumento.Value = oProveedorActual.NumeroDocumento;
             txtRazonSocial.Value = oProveedorActual.RazonSocial;
             txtCiudad.Value = oProveedorActual.Localidad;
             txtDireccion.Value = oProveedorActual.Direccion;
@@ -44,8 +53,6 @@ namespace SCF.proveedores
             txtNroCuentaBancaria.Value = oProveedorActual.NumeroCuenta;
             txtObservacion.Value = oProveedorActual.Observaciones;
             txtFax.Value = oProveedorActual.Fax;
-            //txtNroInternoCliente.Value = oProveedorActual.NumeroInterno.ToString();
-
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -54,12 +61,12 @@ namespace SCF.proveedores
             if (Session["codigoOperacion"] == null)
             {
                 oProveedorActual = (Proveedor)Session["proveedorActual"];
-                ControladorGeneral.InsertarActualizarProveedor(oProveedorActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
+                ControladorGeneral.InsertarActualizarProveedor(oProveedorActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                ControladorGeneral.InsertarActualizarProveedor(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
+                ControladorGeneral.InsertarActualizarProveedor(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
             }
             Response.Redirect("listado.aspx");
         }

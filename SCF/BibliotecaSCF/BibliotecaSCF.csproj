@@ -51,6 +51,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WSAA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WSAA.dll</HintPath>
+    </Reference>
     <Reference Include="WSFEv1, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\WSFEv1.dll</HintPath>
@@ -82,6 +86,7 @@
     <Compile Include="Catalogos\CatalogoTipoDocumento.cs" />
     <Compile Include="Catalogos\CatalogoUnidadMedida.cs" />
     <Compile Include="Catalogos\CatalogoUsuario.cs" />
+    <Compile Include="ClasesComplementarias\Afip.cs" />
     <Compile Include="ClasesComplementarias\Constantes.cs" />
     <Compile Include="ClasesComplementarias\ManejoDeNHibernate.cs" />
     <Compile Include="Clases\Articulo.cs" />
@@ -129,7 +134,6 @@
     <Compile Include="ModuloPrueba.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

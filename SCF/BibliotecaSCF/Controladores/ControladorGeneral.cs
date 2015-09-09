@@ -840,10 +840,11 @@ namespace BibliotecaSCF.Controladores
                 tablaHistorialPrecio.Columns.Add("fechaDesde");
                 tablaHistorialPrecio.Columns.Add("fechaHasta");
                 tablaHistorialPrecio.Columns.Add("precio");
+                tablaHistorialPrecio.Columns.Add("descripcionMoneda");
 
                 Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
 
-                articulo.HistorialesPrecio.Aggregate(tablaHistorialPrecio, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Precio); return dt; });
+                articulo.HistorialesPrecio.Aggregate(tablaHistorialPrecio, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Precio, r.Moneda.Descripcion); return dt; });
 
                 return tablaHistorialPrecio;
             }

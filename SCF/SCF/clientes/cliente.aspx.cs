@@ -27,13 +27,14 @@ namespace SCF.clientes
                     Session.Add("codigoOperacion", 0);
                 }
             }
+            CargarComboTipoDocumento();
         }
 
         private void CargarDatosParaEditar(Cliente oClienteActual)
         {
-
-
-            txtCUIL.Value = oClienteActual.NumeroDocumento;
+            ddlTipoDocumento.Text = oClienteActual.TipoDocumento.Descripcion;
+            
+            txtNroDocumento.Value = oClienteActual.NumeroDocumento;
             txtRazonSocial.Value = oClienteActual.RazonSocial;
             txtCiudad.Value = oClienteActual.Localidad;
             txtDireccion.Value = oClienteActual.Direccion;
@@ -48,18 +49,24 @@ namespace SCF.clientes
             txtFax.Value = oClienteActual.Fax;
         }
 
+        private void CargarComboTipoDocumento()
+        {
+            //ddlTipoDocumento.DataSource = ControladorGeneral.RecuperarTodosTipoDocumento();
+            //ddlTipoDocumento.DataBind();
+        }
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             //si el codigoOperacion es Null es una edicion.
             if (Session["codigoOperacion"] == null)
             {
                 oClienteActual = (Cliente)Session["clienteActual"];
-                ControladorGeneral.InsertarActualizarCliente(oClienteActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
+                ControladorGeneral.InsertarActualizarCliente(oClienteActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value,txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                ControladorGeneral.InsertarActualizarCliente(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtFax.Value, txtCUIL.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
+                ControladorGeneral.InsertarActualizarCliente(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtFax.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
             }
             Response.Redirect("listado.aspx");
         }

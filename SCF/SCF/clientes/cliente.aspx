@@ -50,12 +50,30 @@
                                             </div>
                                         </div>
                                         <!--/span-->
+                                         <!--/span-->
+                                         <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Persona de Contacto</label>
+                                                <input type="text" id="txtPersonaContacto" runat="server" class="form-control" placeholder="Persona de Contacto" >
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    <div class="row">                                        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label">CUIL</label>
-                                                <input type="text" id="txtCUIL" runat="server" class="form-control" placeholder="Cuil" required>
+                                                <label class="control-label">Tipo Documento</label>
+                                                <asp:DropDownList CssClass="form-control" ID="ddlTipoDocumento" runat="server">
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Nro Documento</label>
+                                                <input type="text" id="txtNroDocumento" runat="server" class="form-control" placeholder="Cuil" required>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -102,17 +120,7 @@
                                                 <input type="text" id="txtFax" runat="server" class="form-control" placeholder="Fax" >
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">                                        
-                                        <!--/span-->
-                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Persona de Contacto</label>
-                                                <input type="text" id="txtPersonaContacto" runat="server" class="form-control" placeholder="Persona de Contacto" >
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                    </div>
+                                    </div>                                    
                                     <!--/row-->                  
                                     <h3 class="form-section">Datos Bancarios</h3>
                                     <div class="row">

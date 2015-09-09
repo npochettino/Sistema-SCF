@@ -35,6 +35,24 @@ namespace SCF.articulos
                     Session.Add("codigoOperacion", 0);
                 }
             }
+            CargarComboUnidadDeMedida();
+            CargarComboTipoMoneda();
+        }
+
+        private void CargarComboTipoMoneda()
+        {
+            //DataTable dtTipoMoneda = ControladorGeneral.RecuperarTodosTipoMoneda();
+            
+            //ddlTipoMonedaPrecio.DataSource = dtTipoMoneda;
+            //ddlTipoMonedaPrecio.DataBind();
+            //ddlTipoMonedaCosto.DataSource = dtTipoMoneda;
+            //ddlTipoMonedaCosto.DataBind();
+        }
+
+        private void CargarComboUnidadDeMedida()
+        {
+            //ddlUnidadDeMedida.DataSource = ControladorGeneral.RecuperarTodosTipoDeMedida();
+            //ddlUnidadDeMedida.DataBind();
         }
 
         private void CargarDatosParaEditar(Articulo oArticuloActual)
@@ -44,6 +62,8 @@ namespace SCF.articulos
             txtMarca.Value = oArticuloActual.Marca;
             DataTable dtPrecioHistrialArticulo = ControladorGeneral.RecuperarHistorialPreciosPorArticulo(oArticuloActual.Codigo);
             txtPrecio.Value = dtPrecioHistrialArticulo.Rows[dtPrecioHistrialArticulo.Rows.Count - 1]["precio"].ToString();
+            ddlUnidadDeMedida.Text = oArticuloActual.UnidadMedida.Descripcion;
+            ddlTipoMonedaPrecio.Text = dtPrecioHistrialArticulo.Rows[dtPrecioHistrialArticulo.Rows.Count - 1]["descripcionMoneda"].ToString();
             //ddlTipoMonedaPrecio.SelectedItem.Value = oArticuloActual.t;
 
         }

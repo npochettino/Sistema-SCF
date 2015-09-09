@@ -4079,7 +4079,9 @@
     <Content Include="transportes\transporte.aspx" />
     <Content Include="usuarios\listado.aspx" />
     <Content Include="usuarios\usuario.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="articulos\articulo.aspx.cs">
@@ -4587,6 +4589,7 @@
     <Content Include="assets\global\plugins\uniform\README.md" />
     <Content Include="assets\admin\pages\media\blog\Thumbs.db" />
     <Content Include="assets\admin\pages\media\pages\Thumbs.db" />
+    <Content Include="Comprobantes_AFIP\SCF_Prueba.pfx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

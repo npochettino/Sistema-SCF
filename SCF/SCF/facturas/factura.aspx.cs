@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BibliotecaSCF.ClasesComplementarias;
 using BibliotecaSCF.Controladores;
 
 namespace SCF.facturas
@@ -34,6 +35,11 @@ namespace SCF.facturas
         //Enviar CUIT,PtoVta,CbteTipo
         protected void btnUltimoNroComprobante_Click(object sender, EventArgs e)
         {
+            //pcUltimoComprobanteAfip.ShowOnPageLoad = true;
+            Afip clsAfip = new Afip();
+
+            lblUltimoNroComprobante.Text = Convert.ToString(clsAfip.ConsultarUltimoNro(2,1));
+
             pcUltimoComprobanteAfip.ShowOnPageLoad = true;
         }
 
