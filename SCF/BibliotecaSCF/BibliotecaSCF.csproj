@@ -51,6 +51,18 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WSFEv1, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WSFEv1.dll</HintPath>
+    </Reference>
+    <Reference Include="WSFEv1.Logica, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WSFEv1.Logica.dll</HintPath>
+    </Reference>
+    <Reference Include="WSFEv1.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WSFEv1.Service.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Catalogos\CatalogoArticulo.cs" />
@@ -86,7 +98,7 @@
     <Compile Include="Clases\ItemEntrega.cs" />
     <Compile Include="Clases\ItemNotaDePedido.cs" />
     <Compile Include="Clases\Iva.cs" />
-    <Compile Include="Clases\Moneda.cs" />
+    <Compile Include="Clases\TipoMoneda.cs" />
     <Compile Include="Clases\NotaDePedido.cs" />
     <Compile Include="Clases\Proveedor.cs" />
     <Compile Include="Clases\TipoComprobante.cs" />
@@ -107,7 +119,7 @@
     <Compile Include="Mapeos\ItemEntregaMap.cs" />
     <Compile Include="Mapeos\ItemNotaDePedidoMap.cs" />
     <Compile Include="Mapeos\IvaMap.cs" />
-    <Compile Include="Mapeos\MonedaMap.cs" />
+    <Compile Include="Mapeos\TipoMonedaMap.cs" />
     <Compile Include="Mapeos\NotaDePedidoMap.cs" />
     <Compile Include="Mapeos\ProveedorMap.cs" />
     <Compile Include="Mapeos\TipoComprobanteMap.cs" />

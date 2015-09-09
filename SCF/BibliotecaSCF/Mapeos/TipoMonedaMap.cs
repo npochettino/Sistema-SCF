@@ -8,9 +8,9 @@ using FluentNHibernate.Mapping;
 
 namespace BibliotecaSCF.Mapeos
 {
-    public class MonedaMap : ClassMap<Moneda>
+    public class TipoMonedaMap : ClassMap<TipoMoneda>
     {
-        public MonedaMap()
+        public TipoMonedaMap()
         {
             Table("AFIP_TiposMonedas");
             Id(x => x.Codigo).Column("codigoTipoMoneda").GeneratedBy.Identity();

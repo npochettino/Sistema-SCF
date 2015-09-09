@@ -16,7 +16,7 @@ namespace BibliotecaSCF.Clases
 
         public virtual TipoComprobante TipoComprobante { get; set; }
         public virtual Entrega Entrega { get; set; }
-        public virtual Moneda Moneda { get; set; }
+        public virtual TipoMoneda Moneda { get; set; }
         public virtual Concepto Concepto { get; set; }
         public virtual Iva Iva { get; set; }
     }

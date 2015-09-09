@@ -7,7 +7,7 @@ using BibliotecaSCF.Clases;
 
 namespace BibliotecaSCF.Catalogos
 {
-    public class CatalogoMoneda : CatalogoGenerico<Moneda>
+    public class CatalogoMoneda : CatalogoGenerico<TipoMoneda>
     {
 
     }

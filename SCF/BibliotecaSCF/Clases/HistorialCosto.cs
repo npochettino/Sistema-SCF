@@ -13,6 +13,6 @@ namespace BibliotecaSCF.Clases
         public virtual DateTime? FechaHasta { get; set; }
         public virtual double Costo { get; set; }
 
-        public virtual Moneda Moneda { get; set; }
+        public virtual TipoMoneda Moneda { get; set; }
     }
 }

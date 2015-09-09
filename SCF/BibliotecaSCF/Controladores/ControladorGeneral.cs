@@ -8,6 +8,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WSFEv1;
+using WSFEv1.Logica;
+using WSFEv1.Logica.Wsfe;
 
 namespace BibliotecaSCF.Controladores
 {
@@ -537,7 +540,7 @@ namespace BibliotecaSCF.Controladores
                 listaArticulos.Aggregate(tablaArticulos, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
-                        r.RecuperarHistorialPrecioActual().Precio + " " + r.RecuperarHistorialPrecioActual().Moneda.Abreviatura, r.NombreImagen, string.Empty, string.Empty, string.Empty, r.UnidadMedida.Codigo, r.UnidadMedida.Descripcion,
+                        r.RecuperarHistorialPrecioActual().Precio, r.NombreImagen, string.Empty, string.Empty, string.Empty, r.UnidadMedida.Codigo, r.UnidadMedida.Descripcion,
                         r.RecuperarHistorialPrecioActual().Moneda.Codigo, r.RecuperarHistorialPrecioActual().Moneda.Descripcion); return dt;
                 });
 
@@ -1778,7 +1781,7 @@ namespace BibliotecaSCF.Controladores
                 tablaMonedas.Columns.Add("descripcion");
                 tablaMonedas.Columns.Add("abreviatura");
 
-                List<Moneda> listaMonedas = CatalogoMoneda.RecuperarTodos(nhSesion);
+                List<TipoMoneda> listaMonedas = CatalogoMoneda.RecuperarTodos(nhSesion);
 
                 listaMonedas.Aggregate(tablaMonedas, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.Abreviatura); return dt; });
 
@@ -1878,7 +1881,62 @@ namespace BibliotecaSCF.Controladores
             {
                 Factura factura = CatalogoFactura.RecuperarPorCodigo(codigoFactura, nhSesion);
 
+                FECAERequest request = new FECAERequest();
 
+                FECAECabRequest cabeceraReq = new FECAECabRequest();
+                cabeceraReq.CantReg = 1;
+                cabeceraReq.CbteTipo = 1; //factura A
+                cabeceraReq.PtoVta = 1;
+
+                request.FeCabReq = cabeceraReq;
+
+                FECAEDetRequest detalleReq = new FECAEDetRequest();
+                detalleReq.CbteDesde = factura.NumeroFactura;
+                detalleReq.CbteHasta = factura.NumeroFactura;
+                detalleReq.CbteFch = ConvertirFechaAFIP(factura.FechaFacturacion);
+                detalleReq.Concepto = factura.Concepto.Codigo;
+                detalleReq.DocNro = Convert.ToInt64(factura.Entrega.NotaDePedido.Cliente.NumeroDocumento.Replace("-", ""));
+                detalleReq.DocTipo = factura.Entrega.NotaDePedido.Cliente.TipoDocumento.Codigo;
+                //detalleReq.CbtesAsoc = ??????
+
+                if (factura.Concepto.Codigo != 1)
+                {
+                    detalleReq.FchServDesde = ConvertirFechaAFIP(factura.FechaFacturacion);
+                    detalleReq.FchServHasta = ConvertirFechaAFIP(factura.FechaFacturacion);
+                    detalleReq.FchVtoPago = ConvertirFechaAFIP(factura.FechaFacturacion);
+                }
+
+                detalleReq.ImpIVA = factura.Subtotal * 0.21; // VERRR!!!!!!!!!!!
+                detalleReq.ImpNeto = factura.Subtotal;
+                detalleReq.ImpOpEx = 0; //por que??
+                detalleReq.ImpTotal = factura.Total;
+                detalleReq.ImpTotConc = 0; //por que ????
+                detalleReq.ImpTrib = 0; //ver tributos
+                //detalleReq.Iva = 
+                AlicIva[] listaAlicIva = new AlicIva[1];
+                AlicIva alicIva = new AlicIva();
+                alicIva.Id = factura.Iva.Codigo;
+                alicIva.BaseImp = factura.Subtotal;
+                alicIva.Importe = factura.Subtotal * 0.21;
+                detalleReq.MonCotiz = 1; //siempre facturan en pesos ??
+                detalleReq.MonId = factura.Moneda.CodigoAFIP;
+                //detalleReq.Opcionales = ?????
+                detalleReq.Tributos = new Tributo[0];
+
+                request.FeDetReq = new FECAEDetRequest[] { detalleReq };
+
+                clsFacturacion facturar = new clsFacturacion();
+                ResultadoFacturarAFIP resultado = facturar.FacturarAFIP(request, true, true);
+
+                string rta = string.Empty;
+                if (resultado.ResultadoAFIP == WSFEv1.Logica.EnumResultadoAFIP.Facturado)
+                {
+                    rta = string.Format("CAE: {0}\nFecha Vto.: {1}", resultado.CAE, resultado.FechaVtoCAE.ToString()) + " Todo Correcto!";
+                }
+                else
+                {
+                    rta = "Mensaje Afip/Error: " + resultado.MensajeAFIP + " Algo fallo!";
+                }
             }
             catch (Exception ex)
             {
@@ -1889,6 +1947,11 @@ namespace BibliotecaSCF.Controladores
                 nhSesion.Close();
                 nhSesion.Dispose();
             }
+        }
+
+        private static string ConvertirFechaAFIP(DateTime fecha)
+        {
+            return string.Format("{0}{1}{2}", fecha.Year.ToString("0000"), fecha.Month.ToString("00"), fecha.Day.ToString("00"));
         }
 
         #endregion
