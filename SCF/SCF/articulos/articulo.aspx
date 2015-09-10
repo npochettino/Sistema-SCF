@@ -77,14 +77,9 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <label>Unidad de Medida</label>
-<<<<<<< HEAD
                                                 <dx:ASPxComboBox ID="cbUnidadMedida" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
                                                     ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" TextField="descripcion">
                                                 </dx:ASPxComboBox>
-=======
-                                                <asp:DropDownList CssClass="form-control" ID="ddlUnidadDeMedida" runat="server">
-                                                </asp:DropDownList>
->>>>>>> Se modifica tipo doc y nro doc en pantallas clientes y proveedores, se espera por metodo recuperar todos monedas, tipo doc. se agregan servicio recperar ultimo numero de comprobante afip. se aguarda por otra version de la dll.
                                             </div>
                                         </div>
                                     </div>
@@ -98,14 +93,9 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <label>Tipo de Moneda</label>
-<<<<<<< HEAD
                                                 <dx:ASPxComboBox ID="cbMonedaPrecio" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
                                                     ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" TextField="descripcion">
                                                 </dx:ASPxComboBox>
-=======
-                                                <asp:DropDownList CssClass="form-control" ID="ddlTipoMonedaPrecio" runat="server">
-                                                </asp:DropDownList>
->>>>>>> Se modifica tipo doc y nro doc en pantallas clientes y proveedores, se espera por metodo recuperar todos monedas, tipo doc. se agregan servicio recperar ultimo numero de comprobante afip. se aguarda por otra version de la dll.
                                             </div>
                                         </div>
                                     </div>
@@ -202,10 +192,6 @@
                                                         <div class="form-group">
                                                             <label>Costo:</label>
                                                             <input type="text" id="txtCosto" placeholder="Costo" runat="server" class="form-control" required />
-<<<<<<< HEAD
-                                                            &nbsp;</input></input></input>
-=======
->>>>>>> Se modifica tipo doc y nro doc en pantallas clientes y proveedores, se espera por metodo recuperar todos monedas, tipo doc. se agregan servicio recperar ultimo numero de comprobante afip. se aguarda por otra version de la dll.
                                                         </div>
                                                     </div>
                                                 </div>
@@ -214,10 +200,6 @@
                                                         <div class="form-group">
                                                             <label>Cantidad</label>
                                                             <input type="text" id="txtCantidad" placeholder="Cantidad" runat="server" class="form-control" required />
-<<<<<<< HEAD
-                                                            &nbsp;</input></input></input>
-=======
->>>>>>> Se modifica tipo doc y nro doc en pantallas clientes y proveedores, se espera por metodo recuperar todos monedas, tipo doc. se agregan servicio recperar ultimo numero de comprobante afip. se aguarda por otra version de la dll.
                                                         </div>
                                                     </div>
                                                 </div>
@@ -225,14 +207,9 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Tipo de Moneda</label>
-<<<<<<< HEAD
                                                             <dx:ASPxComboBox ID="cbMonedaCosto" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
                                                                 ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" TextField="descripcion">
                                                             </dx:ASPxComboBox>
-=======
-                                                            <asp:DropDownList CssClass="form-control" ID="ddlTipoMonedaCosto" runat="server">
-                                                            </asp:DropDownList>
->>>>>>> Se modifica tipo doc y nro doc en pantallas clientes y proveedores, se espera por metodo recuperar todos monedas, tipo doc. se agregan servicio recperar ultimo numero de comprobante afip. se aguarda por otra version de la dll.
                                                         </div>
                                                     </div>
                                                 </div>

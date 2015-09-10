@@ -15,14 +15,10 @@ namespace SCF.articulos
         Articulo oArticuloActual;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            cbMonedaCosto.DataSource = ControladorGeneral.RecuperarTodasMonedas();
-            cbMonedaCosto.DataBind();
-            cbMonedaPrecio.DataSource = ControladorGeneral.RecuperarTodasMonedas();
-            cbMonedaPrecio.DataBind();
-            cbUnidadMedida.DataSource = ControladorGeneral.RecuperarTodasUnidadesMedida();
-            cbUnidadMedida.DataBind();
-
+        {            
+            CargarComboUnidadDeMedida();
+            CargarComboTipoMoneda();
+            
             if (!IsPostBack)
             {
                 //Cargo el form para editar
@@ -35,24 +31,23 @@ namespace SCF.articulos
                     Session.Add("codigoOperacion", 0);
                 }
             }
-            CargarComboUnidadDeMedida();
-            CargarComboTipoMoneda();
+            
         }
 
         private void CargarComboTipoMoneda()
         {
-            //DataTable dtTipoMoneda = ControladorGeneral.RecuperarTodosTipoMoneda();
+            DataTable dtTipoMoneda = ControladorGeneral.RecuperarTodasMonedas();
             
-            //ddlTipoMonedaPrecio.DataSource = dtTipoMoneda;
-            //ddlTipoMonedaPrecio.DataBind();
-            //ddlTipoMonedaCosto.DataSource = dtTipoMoneda;
-            //ddlTipoMonedaCosto.DataBind();
+            cbMonedaPrecio.DataSource = dtTipoMoneda;
+            cbMonedaPrecio.DataBind();
+            cbMonedaCosto.DataSource = dtTipoMoneda;
+            cbMonedaCosto.DataBind();
         }
 
         private void CargarComboUnidadDeMedida()
         {
-            //ddlUnidadDeMedida.DataSource = ControladorGeneral.RecuperarTodosTipoDeMedida();
-            //ddlUnidadDeMedida.DataBind();
+            cbUnidadMedida.DataSource = ControladorGeneral.RecuperarTodasUnidadesMedida();
+            cbUnidadMedida.DataBind();
         }
 
         private void CargarDatosParaEditar(Articulo oArticuloActual)
@@ -62,8 +57,8 @@ namespace SCF.articulos
             txtMarca.Value = oArticuloActual.Marca;
             DataTable dtPrecioHistrialArticulo = ControladorGeneral.RecuperarHistorialPreciosPorArticulo(oArticuloActual.Codigo);
             txtPrecio.Value = dtPrecioHistrialArticulo.Rows[dtPrecioHistrialArticulo.Rows.Count - 1]["precio"].ToString();
-            ddlUnidadDeMedida.Text = oArticuloActual.UnidadMedida.Descripcion;
-            ddlTipoMonedaPrecio.Text = dtPrecioHistrialArticulo.Rows[dtPrecioHistrialArticulo.Rows.Count - 1]["descripcionMoneda"].ToString();
+            cbUnidadMedida.Text = oArticuloActual.UnidadMedida.Descripcion;
+            cbMonedaPrecio.Text = dtPrecioHistrialArticulo.Rows[dtPrecioHistrialArticulo.Rows.Count - 1]["descripcionMoneda"].ToString();
             //ddlTipoMonedaPrecio.SelectedItem.Value = oArticuloActual.t;
 
         }
