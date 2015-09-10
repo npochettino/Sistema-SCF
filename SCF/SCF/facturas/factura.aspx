@@ -544,7 +544,7 @@
 
     <dx:ASPxPopupControl ID="pcUltimoComprobanteAfip" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcUltimoComprobanteAfip"
-        HeaderText="Ultimo Comprobante AFIP" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="1000"
+        HeaderText="Ultimo Comprobante AFIP" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
         EnableViewState="False" Theme="Metropolis">
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
@@ -557,42 +557,28 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-3">CUIT Contribuyente</label>
-                                                <div class="col-md-9">
-                                                    <input type="text" class="form-control" placeholder="CUIT">
-                                                </div>
+                                                <label class="control-label col-md-12">CUIT Contribuyente: 27-29680438-5</label>
+                                                
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-3">Punto de Venta</label>
-                                                <div class="col-md-9">
-                                                    <input type="text" class="form-control" placeholder="Punto de Venta">
-                                                </div>
+                                                <label class="control-label col-md-12">Punto de Venta: 002</label>
+                                                
                                             </div>
                                         </div>
                                         <!--/span-->
-                                    </div>
-                                    <!--/row-->
-                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-3">Tipo de Comprobante</label>
-                                                <div class="col-md-9">
-                                                    <input type="text" class="form-control" placeholder="Tipo Comprobante">
-                                                </div>
+                                                <label class="control-label col-md-12">Tipo de Comprobante: Factura Tipo A</label>
+                                                
                                             </div>
                                         </div>
-                                        <!--/span-->
-                                        <div class="col-md-6">
-                                        </div>
-                                        <!--/span-->
                                     </div>
                                     <!--/row-->
-                                    <h3 class="form-section">Ultimo Nro. de comprobante &nbsp;&nbsp; <strong>
+                                    <h3 class="form-section">Ultimo Nro. de comprobante: &nbsp;&nbsp; <strong>
                                         <asp:Label ID="lblUltimoNroComprobante" runat="server" Text="0001-00002345"></asp:Label></strong></h3>
-
                                 </div>
                             </div>
                         </dx:PanelContent>
