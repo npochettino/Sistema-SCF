@@ -15,12 +15,14 @@ namespace SCF.articulos
         Articulo oArticuloActual;
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
             CargarComboUnidadDeMedida();
             CargarComboTipoMoneda();
-            
+
             if (!IsPostBack)
             {
+                txtPrecio.Value = "0";
+               
                 //Cargo el form para editar
                 if ((Articulo)Session["articuloActual"] != null)
                 {
@@ -31,13 +33,13 @@ namespace SCF.articulos
                     Session.Add("codigoOperacion", 0);
                 }
             }
-            
+
         }
 
         private void CargarComboTipoMoneda()
         {
             DataTable dtTipoMoneda = ControladorGeneral.RecuperarTodasMonedas();
-            
+
             cbMonedaPrecio.DataSource = dtTipoMoneda;
             cbMonedaPrecio.DataBind();
             cbMonedaCosto.DataSource = dtTipoMoneda;
@@ -74,7 +76,9 @@ namespace SCF.articulos
             //si el codigoOperacion es != null hago un insert.
             else
             {
+
                 ControladorGeneral.InsertarActualizarArticulo(0, txtDescripcionCorta.Value, txtDescripcionLarga.Value, txtMarca.Value, txtPrecio.Value, Convert.ToDouble(txtPrecio.Value), Convert.ToInt32(cbMonedaPrecio.SelectedItem.Value), Convert.ToInt32(cbUnidadMedida.SelectedItem.Value));
+
             }
 
             Response.Redirect("listado.aspx");

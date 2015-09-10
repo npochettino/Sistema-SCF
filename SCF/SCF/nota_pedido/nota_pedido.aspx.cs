@@ -250,8 +250,8 @@ namespace SCF.nota_pedido
 
         protected void cbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //CargarGrillaArticulosPorCliente();
-            //CargarComboContratoMarco((int)cbClientes.SelectedItem.Value);
+            CargarGrillaArticulosPorCliente();
+            CargarComboContratoMarco((int)cbClientes.SelectedItem.Value);
         }
 
     }

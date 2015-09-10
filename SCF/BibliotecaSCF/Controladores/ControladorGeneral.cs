@@ -475,6 +475,7 @@ namespace BibliotecaSCF.Controladores
                     histPrecio.Precio = precio;
                     histPrecio.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
 
+
                     articulo.HistorialesPrecio.Add(histPrecio);
                 }
                 else

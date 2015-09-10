@@ -128,29 +128,28 @@
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
-                                                    <div id="chart_8" class="chart" style="height: auto">
+                                                    <div id="chart_8" class="chart" style="height: auto" >
                                                         <!-- GRID VIEW ARTICULOS-->
                                                         <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo"
-                                                            Theme="Metropolis" Width="500">
+                                                            Theme="Metropolis" Width="450">
                                                             <Columns>
                                                                 <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Caption=" " Width="40">
                                                                 </dx:GridViewCommandColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoArticulo" Caption="Cod." Width="40" ReadOnly="True" VisibleIndex="1">
+                                                                <dx:GridViewDataTextColumn FieldName="codigoArticulo" Caption="Cod." Width="60" ReadOnly="True" VisibleIndex="1">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Caption="Desc. Corta" Width="300">
+                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Caption="Desc. Corta" Width="150">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Visible="false" FieldName="descripcionLarga" VisibleIndex="3" Width="40">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
 
-                                                                <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="9">
+                                                                <dx:GridViewDataTextColumn FieldName="marca" VisibleIndex="9" Visible="false">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Codigo articulo cliente" VisibleIndex="4" FieldName="codigoArticuloCliente">
-
+                                                                <dx:GridViewDataTextColumn Caption="Codigo articulo cliente" VisibleIndex="4" Width="130    " FieldName="codigoArticuloCliente">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 
@@ -163,7 +162,7 @@
                                                                 <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" Width="40" VisibleIndex="7" FieldName="codigoItemNotaDePedido">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Precio" VisibleIndex="8" FieldName="precio" Width="40">
+                                                                <dx:GridViewDataTextColumn Caption="Precio" VisibleIndex="8" FieldName="precio" >
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
 
@@ -243,7 +242,7 @@
 
                                                                 <dx:GridViewDataTextColumn Caption="Precio" VisibleIndex="7" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    
+
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn VisibleIndex="8" FieldName="isEliminada" Visible="false" />
                                                                 <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="8" />
