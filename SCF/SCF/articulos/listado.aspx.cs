@@ -206,6 +206,42 @@ namespace SCF.articulos
 
         }
 
+        protected void pcRelacionArticuloProveedor_Unload(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void pcNuevaRelacionArticuloProveedor_Unload(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnConfirmarEliminarRelacionArticuloProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarRelacionArticuloProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnNuevaRelacionArticuloProvevedor_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void btnRelacionArticuloProvevedor_Click(object sender, EventArgs e)
+        {
+
+            cbMonedaCosto.DataSource = ControladorGeneral.RecuperarTodasMonedas();
+            cbMonedaCosto.DataBind();
+            cbProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(false);
+            cbProveedores.DataBind();
+
+            pcRelacionArticuloProveedor.ShowOnPageLoad = true;
+        }
+
 
     }
 }

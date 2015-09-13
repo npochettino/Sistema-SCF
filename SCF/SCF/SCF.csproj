@@ -4590,6 +4590,7 @@
     <Content Include="assets\admin\pages\media\blog\Thumbs.db" />
     <Content Include="assets\admin\pages\media\pages\Thumbs.db" />
     <Content Include="Comprobantes_AFIP\SCF_Prueba.pfx" />
+    <Content Include="Comprobantes_AFIP\sempait.pfx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

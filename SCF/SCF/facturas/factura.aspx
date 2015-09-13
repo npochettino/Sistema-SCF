@@ -109,13 +109,12 @@
                                             <div class="form-group">
                                                 <label class="control-label">Tipo de Moneda</label>
                                                 <dx:ASPxComboBox ID="cbTipoMoneda" runat="server" DropDownStyle="DropDownList" EnableTheming="True"
-                                                    Theme="Metropolis" CssClass="form-control" Width="100%">
-                                                    <Items>
-                                                        <dx:ListEditItem Selected="true" Text="Seleccione un tipo de moneda" Value="0" />
-                                                        <dx:ListEditItem Text="Peso" Value="1" />
-                                                        <dx:ListEditItem Text="Dolar" Value="2" />
-                                                        <dx:ListEditItem Text="Euro" Value="2" />
-                                                    </Items>
+                                                    Theme="Metropolis" CssClass="form-control" Width="100%" ValueField="codigo" IncrementalFilteringMode="Contains">
+                                                    <Columns>
+                                                        <dx:ListBoxColumn FieldName="codigo" Width="100px" Visible="false" />
+                                                        <dx:ListBoxColumn FieldName="descripcion" Width="100px" Caption="Descripción" />
+                                                        <dx:ListBoxColumn FieldName="abreviatura" Width="300px" Caption="Abreviatura" />
+                                                    </Columns>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
@@ -124,13 +123,12 @@
                                             <div class="form-group">
                                                 <label class="control-label">Concepto</label>
                                                 <dx:ASPxComboBox ID="cbConcepto" runat="server" DropDownStyle="DropDownList" EnableTheming="True"
-                                                    Theme="Metropolis" CssClass="form-control" Width="100%">
-                                                    <Items>
-                                                        <dx:ListEditItem Selected="true" Text="Seleccione un tipo de concepto" Value="0" />
-                                                        <dx:ListEditItem Text="Producto" Value="1" />
-                                                        <dx:ListEditItem Text="Producto y Servicio" Value="2" />
-                                                        <dx:ListEditItem Text="Servicio" Value="2" />
-                                                    </Items>
+                                                    Theme="Metropolis" CssClass="form-control" Width="100%" ValueField="codigo" IncrementalFilteringMode="Contains">
+                                                    <Columns>
+                                                        <dx:ListBoxColumn FieldName="codigo" Width="100px" Visible="false" />
+                                                        <dx:ListBoxColumn FieldName="descripcion" Width="100px" Caption="Descripción" />
+                                                        <dx:ListBoxColumn FieldName="abreviatura" Width="300px" Caption="Abreviatura" />
+                                                    </Columns>                                                    
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
@@ -229,7 +227,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3">SUBTOTAL</label>
                                                         <div class="col-md-9">
-                                                            <dx:ASPxLabel ID="lblSubtotal" runat="server" Text="123123"></dx:ASPxLabel>
+                                                            <dx:ASPxLabel ID="txtSubtotal" runat="server" Text="123123"></dx:ASPxLabel>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -330,14 +328,14 @@
                                                     <div class="col-md-12">
                                                         <div class="form-body">
                                                             <h3 class="form-section">Detalle Factura &nbsp;&nbsp;
-                                                    <asp:Label ID="lblNroFactura" runat="server" Text="0001-00002678"></asp:Label></h3>
+                                                    <asp:Label ID="lblNroFacturaAEmitir" runat="server" Text="0001-00002678"></asp:Label></h3>
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="control-label col-md-3">Cliente:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                Bob
+                                                                                <asp:Label ID="lblNombreApellidoCliente" runat="server" ></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -348,7 +346,7 @@
                                                                         <label class="control-label col-md-3">Domicilio:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                Nilson
+                                                                                <asp:Label ID="lblDomicilio" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -362,7 +360,7 @@
                                                                         <label class="control-label col-md-3">Localidad:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                Male
+                                                                                <asp:Label ID="lblLocalidad" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -370,10 +368,10 @@
                                                                 <!--/span-->
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">C.U.I.T:</label>
+                                                                        <asp:Label CssClass="control-label col-md-3" ID="lblTipoDocumento" runat="server"></asp:Label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                20.01.1984
+                                                                                <asp:Label ID="lblNumeroDocumento" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -387,7 +385,7 @@
                                                                         <label class="control-label col-md-3">Condición de Venta:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                Category1
+                                                                               <asp:Label ID="lblCondicionVenta" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -398,7 +396,7 @@
                                                                         <label class="control-label col-md-3">Remito:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                Free
+                                                                               <asp:Label ID="lblNroRemitos" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -457,7 +455,7 @@
                                                                         <label class="control-label col-md-3">CAE:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                123123123123123123
+                                                                                <asp:Label ID="lblNroCAE" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -468,7 +466,7 @@
                                                                         <label class="control-label col-md-3">SUBTOTAL:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                3455
+                                                                                <asp:Label ID="lblSubtotal" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -482,7 +480,7 @@
                                                                         <label class="control-label col-md-3">FECHA VENC. CAE:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                05/10/2015
+                                                                                <asp:Label ID="lblFechaVencimientoCAE" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -493,7 +491,7 @@
                                                                         <label class="control-label col-md-3">I.V.A: (21%)</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                4567
+                                                                              <asp:Label ID="lblImporteIVA" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -510,7 +508,7 @@
                                                                         <label class="control-label col-md-3">TOTAL:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                5000
+                                                                                <asp:Label ID="lblValidarTotal" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>

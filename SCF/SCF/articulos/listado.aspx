@@ -52,6 +52,7 @@
                                     <%--<asp:CheckBox runat="server" ID="chkBuscarPorNroCliente" Text="Buscar por Cliente" OnClick="chkBuscarPorNroCliente(this.checked)" />--%>
                                 </div>
                                 <div class="btn-set pull-right">
+                                    <asp:Button type="button" ID="btnRelacionArticuloProvevedor" runat="server" OnClick="btnRelacionArticuloProvevedor_Click" UseSubmitBehavior="false" class="btn blue" Text="Relación Proveedor" />
                                     <asp:Button type="button" ID="btnRelacionArticuloCliente" runat="server" OnClick="btnRelacionArticuloCliente_Click" UseSubmitBehavior="false" class="btn red" Text="Relación Cliente" />
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClick="btnVerDetalle_Click" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>
@@ -440,7 +441,7 @@
                                                             <%--<asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />--%>
                                                             <button type="button" onclick="ShowNuevaRelacionArticuloCliente()" class="btn blue">Nuevo</button>
                                                             <button type="button" onclick="ShowEliminarRelacionArticuloCliente()" class="btn red">Eliminar</button>
-                                                            <asp:Button type="button" ID="BtnNuevaRelacionCliente" runat="server" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" OnClick="BtnNuevaRelacionCliente_Click" />
+                                                            <%--<asp:Button type="button" ID="BtnNuevaRelacionCliente" runat="server" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" OnClick="BtnNuevaRelacionCliente_Click" />--%>
                                                         </div>
                                                         <div class="form-group">
                                                             <dx:ASPxGridView ID="gvArticuloCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
@@ -568,6 +569,177 @@
 
     <!--END POPUP-->
 
+
+    <!--END POPUP RELACION ARTICULO - CLIENTE-->
+    <dx:ASPxPopupControl ID="pcRelacionArticuloProveedor" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcRelacionArticuloProveedor"
+        HeaderText="Relacion Articulo Proveedor" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
+        EnableViewState="False" Theme="Metropolis" OnUnload="pcRelacionArticuloProveedor_Unload">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl8" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel6" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent8" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="btn-set pull-left" style="padding-bottom: 5px">
+                                                            <%--<asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />--%>
+                                                            <button type="button" onclick="ShowNuevaRelacionArticuloProveedor()" class="btn blue">Nuevo</button>
+                                                            <button type="button" onclick="ShowEliminarRelacionArticuloProveedor()" class="btn red">Eliminar</button>
+                                                            
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <dx:ASPxGridView ID="gvArticuloProveedor" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                                <Columns>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="costo" Caption="Costo" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="cuit" Caption="CUIT" VisibleIndex="1" Visible="false">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" Caption="Razon Social Proveedor" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
+                                                            </dx:ASPxGridView>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ID="pcNuevaRelacionArticuloProveedor" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcNuevaRelacionArticuloProveedor"
+        HeaderText="Nueva Relacion" AllowDragging="True" EnableViewState="False" Width="400px"
+        PopupAnimationType="Fade" Theme="Metropolis" OnUnload="pcNuevaRelacionArticuloProveedor_Unload">
+        <ClientSideEvents PopUp="function(s, e) {  pcNuevaRelacionArticuloProveedor.Focus(); }" />
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl9" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel7" runat="server" DefaultButton="btnGuardarAticuloProveedor">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent9" runat="server">
+                            <div data-width="760">
+                                <div class="modal-body">
+
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <div class="form-group">
+                                                            <label>Proveedor</label>
+                                                            <dx:ASPxComboBox ID="cbProveedores" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                                ValueField="codigoProveedor" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
+                                                                <Columns>
+                                                                    <dx:ListBoxColumn FieldName="codigoProveedor" Width="100px" Visible="false" />
+                                                                    <dx:ListBoxColumn FieldName="cuil" Width="100px" />
+                                                                    <dx:ListBoxColumn FieldName="razonSocial" Width="300px" />
+                                                                </Columns>
+                                                            </dx:ASPxComboBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <div class="form-group">
+                                                            <label>Costo:</label>
+                                                            <input type="text" id="txtCosto" placeholder="Costo" runat="server" class="form-control" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row hidden">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Cantidad</label>
+                                                            <input type="text" id="txtCantidad" placeholder="Cantidad" runat="server" class="form-control" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Tipo de Moneda</label>
+                                                            <dx:ASPxComboBox ID="cbMonedaCosto" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                                ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" TextField="descripcion">
+                                                            </dx:ASPxComboBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="btn-set pull-right">
+                                    <asp:Button type="button" ID="btnGuardarRelacionArticuloProveedor" UseSubmitBehavior="false" runat="server" OnClick="btnGuardarRelacionArticuloProveedor_Click" class="btn blue" Text="Aceptar" />
+                                </div>
+                            </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ID="pcConfirmarEliminarRelacionArticuloProveedor" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarRelacionArticuloProveedor"
+        HeaderText="Eliminar Relacion Artículo Proveedor" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        EnableViewState="False" Theme="Metropolis">
+        <ClientSideEvents PopUp="function(s, e) {  pcConfirmarEliminarRelacionArticuloProveedor.Focus(); }" />
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl10" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel8" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent10" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                ¿Desea eliminar la relación del articulo con el proveedor seleccionado?
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="btn-set pull-right">
+                                        <button type="button" onclick="pcConfirmarEliminarRelacionArticuloProveedor.Hide();" class="btn default">Cerrar</button>
+                                        <asp:Button type="button" ID="btnConfirmarEliminarRelacionArticuloProveedor" runat="server" OnClick="btnConfirmarEliminarRelacionArticuloProveedor_Click" UseSubmitBehavior="false" class="btn blue" Text="Aceptar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+
+    <!--END POPUP RELACION ARTICULO - CLIENTE-->
+
+
     <script lang="javascript" type="text/javascript">
         function ShowConfirmarEliminarArticulo() {
             pcConfirmarEliminarArticulo.Show();
@@ -587,15 +759,25 @@
         //    else
         //        document.getElementById('divBuscarPorNroCliente').style.display = 'none';
         //}
-        //function ShowNuevaRelacionArticuloCliente() {
-        //    pcNuevaRelacionArticuloCliente.Show();
+        function ShowNuevaRelacionArticuloCliente() {
+            pcNuevaRelacionArticuloCliente.Show();
 
-        //}
+        }
         function ShowEliminarRelacionArticuloCliente() {
             pcConfirmarEliminarRelacionArticuloCliente.Show();
         }
         function ShowRelacionArticuloCliente() {
             pcRelacionArticuloCliente.Show();
+        }
+        function ShowEliminarRelacionArticuloProveedor() {
+            pcConfirmarEliminarRelacionArticuloProveedor.Show();
+        }
+        function ShowRelacionArticuloProveedor() {
+            pcRelacionArticuloProveedor.Show();
+        }
+        function ShowNuevaRelacionArticuloProveedor() {
+            pcNuevaRelacionArticuloProveedor.Show();
+
         }
     </script>
 </asp:Content>

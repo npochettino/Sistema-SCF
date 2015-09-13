@@ -86,7 +86,6 @@
     <Compile Include="Catalogos\CatalogoTipoDocumento.cs" />
     <Compile Include="Catalogos\CatalogoUnidadMedida.cs" />
     <Compile Include="Catalogos\CatalogoUsuario.cs" />
-    <Compile Include="ClasesComplementarias\Afip.cs" />
     <Compile Include="ClasesComplementarias\Constantes.cs" />
     <Compile Include="ClasesComplementarias\ManejoDeNHibernate.cs" />
     <Compile Include="Clases\Articulo.cs" />

@@ -1834,6 +1834,13 @@ namespace BibliotecaSCF.Controladores
 
         #region Factura
 
+        public static int ConsultarUltimoNroComprobante(int ptoVenta, int tipoComptobanteAfip)
+        {
+            var clsFac = new clsFacturacion();
+            var ultNroComprobante = clsFac.ConsultarUltNroOrden(ptoVenta, tipoComptobanteAfip);
+            return ultNroComprobante;
+        }
+
         public static void InsertarActualizarFactura(int codigoFactura, int numeroFactura, DateTime fechaFacturacion, int codigoEntrega, int codigoMoneda, int codigoConcepto, int codigoIva, double subtotal, double total)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
@@ -1887,7 +1894,7 @@ namespace BibliotecaSCF.Controladores
                 FECAECabRequest cabeceraReq = new FECAECabRequest();
                 cabeceraReq.CantReg = 1;
                 cabeceraReq.CbteTipo = 1; //factura A
-                cabeceraReq.PtoVta = 1;
+                cabeceraReq.PtoVta = 2;
 
                 request.FeCabReq = cabeceraReq;
 
@@ -1956,5 +1963,59 @@ namespace BibliotecaSCF.Controladores
         }
 
         #endregion
+
+        public static DataTable RecuperarTodosConceptos()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaConceptos = new DataTable();
+                tablaConceptos.Columns.Add("codigoConcepto");
+                tablaConceptos.Columns.Add("descripcion");
+
+                List<Concepto> listaConceptos = CatalogoConcepto.RecuperarTodos(nhSesion);
+
+                listaConceptos.Aggregate(tablaConceptos, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion); return dt; });
+
+                return tablaConceptos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarTodosTipoComprobantes()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaTipoComprobantes = new DataTable();
+                tablaTipoComprobantes.Columns.Add("codigoTipoComprobante");
+                tablaTipoComprobantes.Columns.Add("descripcion");
+
+                List<TipoComprobante> listaTipoComprobantes = CatalogoTipoComprobante.RecuperarTodos(nhSesion);
+
+                listaTipoComprobantes.Aggregate(tablaTipoComprobantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion); return dt; });
+
+                return tablaTipoComprobantes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
     }
 }

@@ -15,15 +15,40 @@ namespace SCF.facturas
         {
             txtFechaFacturacion.Value = DateTime.Now;
             CargarComboRemito();
+            CargarComboTipoComprobante();
+            CargarComboConcepto();
+            CargarComboTipoMoneda();
+            CargarNumeroDeFactura();
+        }
+
+        private void CargarNumeroDeFactura()
+        {
+            //Obtengo el Ultimo numero de factura y le sumo 1.
+            txtNroFactura.Text = "1"; 
+        }
+
+        private void CargarComboTipoMoneda()
+        {
+            cbTipoMoneda.DataSource = ControladorGeneral.RecuperarTodasMonedas();
+            cbTipoMoneda.DataBind();
+        }
+
+        private void CargarComboConcepto()
+        {
+            cbConcepto.DataSource = ControladorGeneral.RecuperarTodosConceptos();
+            cbConcepto.DataBind();
+        }
+
+        private void CargarComboTipoComprobante()
+        {
+            cbTipoComprobante.DataSource = ControladorGeneral.RecuperarTodosTipoComprobantes();
+            cbTipoComprobante.DataBind();
         }
 
         private void CargarComboRemito()
         {
-            //cbRemito.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(true);
-            //cbRemito.DataBind();
-
-            gluRemito.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(true);
-            gluRemito.DataBind();
+            //gluRemito.DataSource = ControladorGeneral.RecuperarTodRemitos();
+            //gluRemito.DataBind();
         }
 
         protected void cbRemito_SelectedIndexChanged(object sender, EventArgs e)
@@ -35,17 +60,22 @@ namespace SCF.facturas
         //Enviar CUIT,PtoVta,CbteTipo
         protected void btnUltimoNroComprobante_Click(object sender, EventArgs e)
         {
-            //pcUltimoComprobanteAfip.ShowOnPageLoad = true;
-            Afip clsAfip = new Afip();
-
-            lblUltimoNroComprobante.Text = Convert.ToString(clsAfip.ConsultarUltimoNro(2,1));
-
-            pcUltimoComprobanteAfip.ShowOnPageLoad = true;
+            try
+            {
+                lblUltimoNroComprobante.Text = Convert.ToString(ControladorGeneral.ConsultarUltimoNroComprobante(2, 1));
+                pcUltimoComprobanteAfip.ShowOnPageLoad = true;
+            }
+            catch
+            {
+ 
+            }
+            
         }
 
         protected void btnEmitir_Click(object sender, EventArgs e)
         {
             pcValidarComprobante.ShowOnPageLoad = true;
+            
         }
 
         protected void pcValidarComprobante_Unload(object sender, EventArgs e)
@@ -55,7 +85,9 @@ namespace SCF.facturas
 
         protected void btnEmitirComprobante_Click(object sender, EventArgs e)
         {
-
+            //gluRemito.GridView.GetRowValues(gluRemito.GridView.FocusedRowIndex, "Mobile");
+            //ControladorGeneral.InsertarActualizarFactura(0,txtNroFactura.Text,txtFechaFacturacion.Text,gluRemito
+            
         }
     }
 }
