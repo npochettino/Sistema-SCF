@@ -73,7 +73,7 @@ namespace SCF.articulos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCodigoCliente;
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoCliente;
         
         /// <summary>
         /// Control btnBuscarPorCodigoCliente.
@@ -451,7 +451,7 @@ namespace SCF.articulos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCodigoClienteArticulo;
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoClienteArticulo;
         
         /// <summary>
         /// Control btnGuardarRelacionArticuloCliente.
@@ -604,7 +604,7 @@ namespace SCF.articulos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCosto;
+        protected global::System.Web.UI.WebControls.TextBox txtCosto;
         
         /// <summary>
         /// Control txtCantidad.
@@ -613,7 +613,7 @@ namespace SCF.articulos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCantidad;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidad;
         
         /// <summary>
         /// Control cbMonedaCosto.

@@ -53,11 +53,11 @@
                             <form action="#" class="horizontal-form">
                                 <div class="form-body">
                                     <h3 class="form-section">Detalle del Remito</h3>
+                                    <!--/row-->
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Nota de Pedido</label>
-
                                                 <dx:ASPxComboBox ID="cbNotaDePedido" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
                                                     ValueField="codigoNotaDePedido" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis" OnSelectedIndexChanged="cbNotaDePedido_SelectedIndexChanged" AutoPostBack="True">
                                                     <Columns>
@@ -68,7 +68,8 @@
                                             </div>
                                         </div>
                                         <!--/span-->
-                                        <div class="col-md-4">
+                                         <!--/span-->
+                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Fecha Emisión</label>
                                                 <dx:ASPxDateEdit ID="txtFechaEmision" runat="server" CssClass="form-control" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
@@ -77,16 +78,31 @@
 
                                                 </dx:ASPxDateEdit>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
+                                        </div>                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Codigo</label>
                                                 <dx:ASPxTextBox ID="txtCodigoRemito" runat="server" CssClass="form-control" Width="100%" placeholder="Codigo"></dx:ASPxTextBox>
                                             </div>
                                         </div>
                                         <!--/span-->
+                                         <!--/span-->
+                                         <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Transporte</label>
+                                                <dx:ASPxComboBox ID="cbTransporte" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                    ValueField="codigoTransporte" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis" OnSelectedIndexChanged="cbNotaDePedido_SelectedIndexChanged" AutoPostBack="True">
+                                                    <Columns>
+                                                        <dx:ListBoxColumn FieldName="codigoTransporte" Visible="false" Width="30%" />
+                                                        <dx:ListBoxColumn FieldName="cuit" Caption="CUIT" />
+                                                        <dx:ListBoxColumn FieldName="razonSocialTransporte" Caption="Razon Social" />
+                                                    </Columns>
+                                                </dx:ASPxComboBox>
+                                            </div>
+                                        </div>                                        
                                     </div>
-                                    <!--/row-->
 
                                     <!-- BEGIN ROW -->
                                     <h3 class="form-section">Items de la Nota de Pedido</h3>

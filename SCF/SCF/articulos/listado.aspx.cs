@@ -18,13 +18,13 @@ namespace SCF.articulos
 
             }
 
-            if (string.IsNullOrEmpty(txtCodigoCliente.Value))
+            if (string.IsNullOrEmpty(txtCodigoCliente.Text))
             {
                 loadGridArticulos();
             }
             else
             {
-                gvArticulos.DataSource = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(txtCodigoCliente.Value);
+                gvArticulos.DataSource = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(txtCodigoCliente.Text);
                 gvArticulos.DataBind();
                 gvArticulos.Columns["codigoCliente"].Visible = false;
                 gvArticulos.Columns["razonSocialCliente"].Visible = true;
@@ -91,7 +91,7 @@ namespace SCF.articulos
 
         protected void btnBuscarPorCodigoCliente_Click(object sender, EventArgs e)
         {
-            gvArticulos.DataSource = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(txtCodigoCliente.Value);
+            gvArticulos.DataSource = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(txtCodigoCliente.Text);
             gvArticulos.DataBind();
 
             gvArticulos.Columns["codigoCliente"].Visible = true;
@@ -134,8 +134,8 @@ namespace SCF.articulos
         protected void btnGuardarRelacionArticuloCliente_Click(object sender, EventArgs e)
         {
             Articulo mArticulo = (Articulo)Session["articuloActual"];
-            if (!txtCodigoClienteArticulo.Value.Equals(""))
-                ControladorGeneral.InsertarActualizarArticuloCliente(0, mArticulo.Codigo, txtCodigoClienteArticulo.Value.ToString(), (int)cbClientes.SelectedItem.Value);
+            if (!txtCodigoClienteArticulo.Text.Equals(""))
+                ControladorGeneral.InsertarActualizarArticuloCliente(0, mArticulo.Codigo, txtCodigoClienteArticulo.Text.ToString(), (int)cbClientes.SelectedItem.Value);
 
             pcNuevaRelacionArticuloCliente.ShowOnPageLoad = true;
             cargarGrillaRelacionArticuloCliente();

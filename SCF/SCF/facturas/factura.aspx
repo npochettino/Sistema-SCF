@@ -63,7 +63,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Tipo de Comprobante</label>
-                                                <dx:ASPxComboBox ID="cbTipoComprobante" runat="server" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
+                                                <dx:ASPxComboBox ID="cbTipoComprobante" runat="server" ValueField="codigoTipoComprobante" TextField="descripcion" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
@@ -123,18 +123,43 @@
                                             <div class="form-group">
                                                 <label class="control-label">Concepto</label>
                                                 <dx:ASPxComboBox ID="cbConcepto" runat="server" DropDownStyle="DropDownList" EnableTheming="True"
-                                                    Theme="Metropolis" CssClass="form-control" Width="100%" ValueField="codigo" IncrementalFilteringMode="Contains">
+                                                    Theme="Metropolis" CssClass="form-control" Width="100%" ValueField="codigoConcepto" IncrementalFilteringMode="Contains">
                                                     <Columns>
-                                                        <dx:ListBoxColumn FieldName="codigo" Width="100px" Visible="false" />
+                                                        <dx:ListBoxColumn FieldName="codigoConcepto" Width="100px" Visible="false" />
                                                         <dx:ListBoxColumn FieldName="descripcion" Width="100px" Caption="Descripción" />
-                                                        <dx:ListBoxColumn FieldName="abreviatura" Width="300px" Caption="Abreviatura" />
-                                                    </Columns>                                                    
+                                                    </Columns>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
                                         <!--/span-->
                                     </div>
                                     <!--/row-->
+
+                                    <!-- BEGIN ROW Detalle del cliente-->
+                                    <h3 class="form-section">Detalle del cliente</h3>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Razon Social</label>
+                                                <asp:TextBox ID="txtRazonSocial" runat="server" CssClass="form-control" Width="100%" placeholder="Razon Social"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">CUIT</label>
+                                                <asp:TextBox runat="server" ID="txtNroDocumento" CssClass="form-control" Width="100%" placeholder="Nro documento"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Codigo con SCF</label>
+                                                <asp:TextBox ID="txtCodigoConSCF" runat="server" CssClass="form-control" Width="100%" placeholder="Codigo con SCF"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- BEGIN ROW Detalle del cliente-->
 
                                     <!-- BEGIN ROW -->
                                     <h3 class="form-section">Items de la Factura</h3>
@@ -149,8 +174,6 @@
                                                     </div>
                                                     <div class="tools">
                                                         <a href="javascript:;" class="collapse"></a>
-                                                        <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                                        <a href="javascript:;" class="reload"></a>
                                                         <a href="javascript:;" class="fullscreen"></a>
                                                         <a href="javascript:;" class="remove"></a>
                                                     </div>
@@ -164,6 +187,14 @@
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" Width="60px" VisibleIndex="4" FieldName="cantidad">
+                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <DataItemTemplate>
+                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
+                                                                        </dx:ASPxSpinEdit>
+                                                                    </DataItemTemplate>
+                                                                </dx:GridViewDataSpinEditColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Descripción Corta">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
@@ -181,14 +212,7 @@
                                                                         </dx:ASPxSpinEdit>
                                                                     </DataItemTemplate>
                                                                 </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" Width="60px" VisibleIndex="4" FieldName="cantidad">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-                                                                </dx:GridViewDataSpinEditColumn>
+                                                                
                                                                 <dx:GridViewDataSpinEditColumn Caption="Importe" Width="100px" VisibleIndex="4" FieldName="precio">
                                                                     <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
@@ -235,8 +259,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="control-label col-md-3">IVA</label>
-                                                        <div class="col-md-9">
+                                                        <label class="control-label col-md-3">
                                                             <dx:ASPxComboBox ID="cbCondicionIVA" runat="server" DropDownStyle="DropDownList"
                                                                 EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="80">
                                                                 <Items>
@@ -248,6 +271,9 @@
                                                                     <dx:ListEditItem Text="2,50 %" Value="9" />
                                                                 </Items>
                                                             </dx:ASPxComboBox>
+                                                        </label>
+                                                        <div class="col-md-9">
+                                                            <label>ImporteIVA</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -335,7 +361,7 @@
                                                                         <label class="control-label col-md-3">Cliente:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                <asp:Label ID="lblNombreApellidoCliente" runat="server" ></asp:Label>
+                                                                                <asp:Label ID="lblNombreApellidoCliente" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -385,7 +411,7 @@
                                                                         <label class="control-label col-md-3">Condición de Venta:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                               <asp:Label ID="lblCondicionVenta" runat="server"></asp:Label>
+                                                                                <asp:Label ID="lblCondicionVenta" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -396,7 +422,7 @@
                                                                         <label class="control-label col-md-3">Remito:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                               <asp:Label ID="lblNroRemitos" runat="server"></asp:Label>
+                                                                                <asp:Label ID="lblNroRemitos" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -491,7 +517,7 @@
                                                                         <label class="control-label col-md-3">I.V.A: (21%)</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                              <asp:Label ID="lblImporteIVA" runat="server"></asp:Label>
+                                                                                <asp:Label ID="lblImporteIVA" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -556,21 +582,21 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label col-md-12">CUIT Contribuyente: 27-29680438-5</label>
-                                                
+
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label col-md-12">Punto de Venta: 002</label>
-                                                
+
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label col-md-12">Tipo de Comprobante: Factura Tipo A</label>
-                                                
+
                                             </div>
                                         </div>
                                     </div>

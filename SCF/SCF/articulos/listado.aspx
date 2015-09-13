@@ -61,7 +61,7 @@
                                 <div class="col-md-6">
                                     <label>Buscar por Código Cliente:</label>
                                     <div class="input-group">
-                                        <input type="text" id="txtCodigoCliente" placeholder="Ingrese el Código del cliente" runat="server" class="form-control">
+                                        <asp:TextBox type="text" id="txtCodigoCliente" placeholder="Ingrese el Código del cliente" runat="server" class="form-control"></asp:TextBox>
                                         <span class="input-group-btn">
                                             <asp:Button class="btn blue" type="button" runat="server" ID="btnBuscarPorCodigoCliente" OnClick="btnBuscarPorCodigoCliente_Click" UseSubmitBehavior="false" Text="Buscar" />
                                             <asp:Button class="btn red" type="button" runat="server" ID="btnBorrar" OnClick="btnBorrar_Click" UseSubmitBehavior="false" Text="Borrar" />
@@ -511,7 +511,7 @@
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <label>Codigo Articulo</label>
-                                                            <input type="text" id="txtCodigoClienteArticulo" placeholder="Codigo Articulo" runat="server" class="form-control" required />
+                                                            <asp:TextBox ID="txtCodigoClienteArticulo" runat="server" placeholder="Codigo Articulo" required></asp:TextBox>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -662,7 +662,7 @@
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <label>Costo:</label>
-                                                            <input type="text" id="txtCosto" placeholder="Costo" runat="server" class="form-control" required />
+                                                            <asp:TextBox ID="txtCosto" runat="server" placeholder="Costo" class="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -670,7 +670,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Cantidad</label>
-                                                            <input type="text" id="txtCantidad" placeholder="Cantidad" runat="server" class="form-control" required />
+                                                            <asp:TextBox  type="text" id="txtCantidad" placeholder="Cantidad" runat="server" class="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                 </div>

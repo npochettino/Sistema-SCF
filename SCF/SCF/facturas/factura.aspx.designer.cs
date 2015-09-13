@@ -76,6 +76,33 @@ namespace SCF.facturas {
         protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbConcepto;
         
         /// <summary>
+        /// Control txtRazonSocial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRazonSocial;
+        
+        /// <summary>
+        /// Control txtNroDocumento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNroDocumento;
+        
+        /// <summary>
+        /// Control txtCodigoConSCF.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoConSCF;
+        
+        /// <summary>
         /// Control gvItemsFactura.
         /// </summary>
         /// <remarks>

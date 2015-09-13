@@ -120,6 +120,14 @@
                                                 <input type="text" id="txtFax" runat="server" class="form-control" placeholder="Fax" >
                                             </div>
                                         </div>
+                                    </div> 
+                                    <div class="row">                                       
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Código con SCF</label>
+                                                <input type="text" id="txtCodigoConSCF" runat="server" class="form-control" placeholder="Codigo con SCF" >
+                                            </div>
+                                        </div>
                                     </div>                                    
                                     <!--/row-->                  
                                     <h3 class="form-section">Datos Bancarios</h3>
