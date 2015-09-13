@@ -47,10 +47,10 @@
                                 <div class="btn-set pull-left">
                                     <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" class="btn blue" UseSubmitBehavior="false" Text="Nuevo" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" UseSubmitBehavior="false" Text="Editar" />
-                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarTransporte()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" OnClick="btnEliminar_Click" />
+                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarTransporte()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnInactivarTransporte" runat="server" OnClientClick="ShowInactivarTransporte()" UseSubmitBehavior="false" class="btn red-intense" Text="Inactivar" OnClick="btnInactivarTransporte_Click" />
+                                    <asp:Button type="button" ID="btnInactivarTransporte" runat="server" OnClientClick="ShowInactivarTransporte()" UseSubmitBehavior="false" class="btn red-intense" Text="Inactivar"/>
                                     <asp:Button type="button" ID="btnActivarTransporte" runat="server" OnClick="btnActivarTransporte_Click" UseSubmitBehavior="false" class="btn blue" Text="Activar" />
                                     <asp:Button type="button" ID="btnVerDetalleTransporte" runat="server" OnClick="btnVerDetalleTransporte_Click" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
                                 </div>

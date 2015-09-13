@@ -45,29 +45,47 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Razón Social</label>
-                                                <input type="text" id="txtRazonSocial" runat="server" class="form-control" placeholder="Razón Social">
+                                                <input type="text" id="txtRazonSocial" runat="server" class="form-control" placeholder="Razón Social" >
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                         <!--/span-->
+                                         <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Persona de Contacto</label>
+                                                <input type="text" id="txtPersonaContacto" runat="server" class="form-control" placeholder="Persona de Contacto" >
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    <div class="row">                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Tipo Documento</label>
+                                                <asp:DropDownList CssClass="form-control" ID="ddlTipoDocumento" runat="server">
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label">CUIL</label>
-                                                <input type="text" id="txtCUIL" runat="server" class="form-control" placeholder="Cuil" required>
+                                                <label class="control-label">Nro Documento</label>
+                                                <input type="text" id="txtNroDocumento" runat="server" class="form-control" placeholder="Cuil" required>
                                             </div>
                                         </div>
+                                        <!--/span-->
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Dirección</label>
-                                                <input type="text" id="txtDireccion" runat="server" class="form-control" placeholder="Direccion">
+                                                <input type="text" id="txtDireccion" runat="server" class="form-control" placeholder="Direccion" >
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="text" id="txtMail" placeholder="Mail" runat="server" class="form-control">
+                                                <input type="text" id="txtMail" placeholder="Mail" runat="server" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
@@ -76,42 +94,32 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Provincia</label>
-                                                <input type="text" id="txtProvincia" runat="server" class="form-control" placeholder="Provincia">
+                                                <input type="text" id="txtProvincia" runat="server" class="form-control" placeholder="Provincia" >
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Ciudad</label>
-                                                <input type="text" id="txtCiudad" runat="server" class="form-control" placeholder="Ciudad">
+                                                <input type="text" id="txtCiudad" runat="server" class="form-control" placeholder="Ciudad" >
                                             </div>
                                         </div>
                                         <!--/span-->
                                     </div>
-                                    <div class="row">
+                                    <div class="row">                                       
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Teléfono</label>
-                                                <input type="text" id="txtTelefono" runat="server" class="form-control" placeholder="Telefono">
+                                                <input type="text" id="txtTelefono" runat="server" class="form-control" placeholder="Telefono" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Fax</label>
-                                                <input type="text" id="txtFax" runat="server" class="form-control" placeholder="Fax">
+                                                <input type="text" id="txtFax" runat="server" class="form-control" placeholder="Fax" >
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <!--/span-->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Persona de Contacto</label>
-                                                <input type="text" id="txtPersonaContacto" runat="server" class="form-control" placeholder="Persona de Contacto">
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                    </div>
+                                    </div> 
                                     <!--/row-->
                                     <h3 class="form-section">Datos Bancarios</h3>
                                     <div class="row">

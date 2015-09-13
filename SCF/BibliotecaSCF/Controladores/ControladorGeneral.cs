@@ -2017,5 +2017,10 @@ namespace BibliotecaSCF.Controladores
                 nhSesion.Dispose();
             }
         }
+
+        public static void ActivarInactivarTransporte(int p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
