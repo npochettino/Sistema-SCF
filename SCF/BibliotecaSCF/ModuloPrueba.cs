@@ -14,7 +14,7 @@ namespace BibliotecaSCF
     {
         public static void Main()
         {
-            ControladorGeneral.InsertarActualizarFactura(0, 1, DateTime.Now, 10, 1, 1, 5, 10, 12.1);
+            //ControladorGeneral.InsertarActualizarFactura(0, 1, DateTime.Now, 10, 1, 1, 5, 10, 12.1);
         }
     }
 }

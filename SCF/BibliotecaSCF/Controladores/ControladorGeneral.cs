@@ -1081,6 +1081,8 @@ namespace BibliotecaSCF.Controladores
                     item.Articulo = CatalogoArticulo.RecuperarPorCodigo(Convert.ToInt32(filaItemNotaDePedido["codigoArticulo"]), nhSesion);
                     item.CantidadPedida = Convert.ToInt32(filaItemNotaDePedido["cantidad"]);
                     item.FechaEntrega = Convert.ToDateTime(filaItemNotaDePedido["fechaEntrega"]);
+                    item.Precio = Convert.ToDouble(filaItemNotaDePedido["precio"]);
+                    item.Posicion = Convert.ToInt32(filaItemNotaDePedido["posicion"]);
                 }
 
                 CatalogoNotaDePedido.InsertarActualizar(notaDePedido, nhSesion);
@@ -1152,6 +1154,8 @@ namespace BibliotecaSCF.Controladores
                 tablaItemsNotaDePedido.Columns.Add("cantidadEntregada");
                 tablaItemsNotaDePedido.Columns.Add("codigoMoneda");
                 tablaItemsNotaDePedido.Columns.Add("descripcionMoneda");
+                tablaItemsNotaDePedido.Columns.Add("precio");
+                tablaItemsNotaDePedido.Columns.Add("posicion");
 
                 NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
 
@@ -1159,12 +1163,11 @@ namespace BibliotecaSCF.Controladores
 
                 foreach (ItemNotaDePedido item in notaDePedido.ItemsNotaDePedido)
                 {
-
                     int cantidadEntregada = (from e in listaEntregas select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == item.Codigo select i.CantidadAEntregar).SingleOrDefault()).Sum();
 
                     tablaItemsNotaDePedido.Rows.Add(item.Codigo, item.Articulo.Codigo, item.Articulo.DescripcionCorta, item.Articulo.DescripcionLarga, item.Articulo.Marca,
                     item.Articulo.RecuperarHistorialPrecioActual().Precio, item.CantidadPedida, item.FechaEntrega, cantidadEntregada, item.Articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
-                    item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion);
+                    item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, item.Precio, item.Posicion);
                 }
 
 
@@ -1841,7 +1844,7 @@ namespace BibliotecaSCF.Controladores
             return ultNroComprobante;
         }
 
-        public static void InsertarActualizarFactura(int codigoFactura, int numeroFactura, DateTime fechaFacturacion, int codigoEntrega, int codigoMoneda, int codigoConcepto, int codigoIva, double subtotal, double total)
+        public static void InsertarActualizarFactura(int codigoFactura, int numeroFactura, DateTime fechaFacturacion, List<int> listaCodigosEntrega, int codigoMoneda, int codigoConcepto, int codigoIva, double subtotal, double total)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -1859,7 +1862,23 @@ namespace BibliotecaSCF.Controladores
                 }
 
                 factura.Concepto = CatalogoConcepto.RecuperarPorCodigo(codigoConcepto, nhSesion);
-                factura.Entrega = CatalogoEntrega.RecuperarPorCodigo(codigoEntrega, nhSesion);
+
+                List<Entrega> listaEntregasBorradas = (from e in factura.Entregas where !listaCodigosEntrega.Contains(e.Codigo) select e).ToList();
+                foreach (Entrega entregaBorrar in listaEntregasBorradas)
+                {
+                    factura.Entregas.Remove(entregaBorrar);
+                }
+
+                foreach (int codigoEntrega in listaCodigosEntrega)
+                {
+                    Entrega ent = (from e in factura.Entregas where e.Codigo == codigoEntrega select e).SingleOrDefault();
+
+                    if (ent == null)
+                    {
+                        factura.Entregas.Add(CatalogoEntrega.RecuperarPorCodigo(codigoEntrega, nhSesion));
+                    }
+                }
+
                 factura.FechaFacturacion = fechaFacturacion;
                 factura.Iva = CatalogoIva.RecuperarPorCodigo(codigoIva, nhSesion);
                 factura.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
@@ -1903,8 +1922,8 @@ namespace BibliotecaSCF.Controladores
                 detalleReq.CbteHasta = factura.NumeroFactura;
                 detalleReq.CbteFch = ConvertirFechaAFIP(factura.FechaFacturacion);
                 detalleReq.Concepto = factura.Concepto.Codigo;
-                detalleReq.DocNro = Convert.ToInt64(factura.Entrega.NotaDePedido.Cliente.NumeroDocumento.Replace("-", ""));
-                detalleReq.DocTipo = factura.Entrega.NotaDePedido.Cliente.TipoDocumento.Codigo;
+                detalleReq.DocNro = Convert.ToInt64(factura.Entregas[0].NotaDePedido.Cliente.NumeroDocumento.Replace("-", ""));
+                detalleReq.DocTipo = factura.Entregas[0].NotaDePedido.Cliente.TipoDocumento.Codigo;
                 //detalleReq.CbtesAsoc = ??????
 
                 if (factura.Concepto.Codigo != 1)
@@ -1964,6 +1983,8 @@ namespace BibliotecaSCF.Controladores
 
         #endregion
 
+        #region Concepto
+
         public static DataTable RecuperarTodosConceptos()
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
@@ -1990,6 +2011,10 @@ namespace BibliotecaSCF.Controladores
                 nhSesion.Dispose();
             }
         }
+
+        #endregion
+
+        #region TipoComprobante
 
         public static DataTable RecuperarTodosTipoComprobantes()
         {
@@ -2018,9 +2043,150 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void ActivarInactivarTransporte(int p)
+        #endregion
+
+        #region Transporte
+
+        public static void InsertarActualizarTransporte(int codigoTransporte, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int codigoTipoDocumento)
         {
-            throw new NotImplementedException();
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Transporte transporte;
+
+                if (codigoTransporte == 0)
+                {
+                    transporte = new Transporte();
+                }
+                else
+                {
+                    transporte = CatalogoTransporte.RecuperarPorCodigo(codigoTransporte, nhSesion);
+                }
+
+                transporte.RazonSocial = razonSocial;
+                transporte.Provincia = provincia;
+                transporte.Localidad = localidad;
+                transporte.Direccion = direccion;
+                transporte.Telefono = telefono;
+                transporte.Fax = fax;
+                transporte.Mail = mail;
+                transporte.NumeroDocumento = numeroDocumento;
+                transporte.PersonaContacto = personaContacto;
+                transporte.NumeroCuenta = numeroCuenta;
+                transporte.Banco = banco;
+                transporte.Cbu = cbu;
+                transporte.Observaciones = observaciones;
+                transporte.IsInactivo = false;
+                transporte.TipoDocumento = CatalogoTipoDocumento.RecuperarPorCodigo(codigoTipoDocumento, nhSesion);
+
+                CatalogoTransporte.InsertarActualizar(transporte, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
+
+        public static DataTable RecuperarTodosTransportes(bool isInactivos)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaTransportes = new DataTable();
+                tablaTransportes.Columns.Add("codigoTransporte");
+                tablaTransportes.Columns.Add("razonSocial");
+                tablaTransportes.Columns.Add("provincia");
+                tablaTransportes.Columns.Add("localidad");
+                tablaTransportes.Columns.Add("direccion");
+                tablaTransportes.Columns.Add("telefono");
+                tablaTransportes.Columns.Add("mail");
+                tablaTransportes.Columns.Add("cuil");
+                tablaTransportes.Columns.Add("personaContacto");
+                tablaTransportes.Columns.Add("numeroCuenta");
+                tablaTransportes.Columns.Add("banco");
+                tablaTransportes.Columns.Add("cbu");
+                tablaTransportes.Columns.Add("observaciones");
+                tablaTransportes.Columns.Add("fax");
+
+                List<Transporte> listaTransportes = CatalogoTransporte.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
+
+                listaTransportes.Aggregate(tablaTransportes, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento,
+                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax); return dt;
+                });
+
+                return tablaTransportes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void ActivarInactivarTransporte(int codigoTransporte)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Transporte Transporte = CatalogoTransporte.RecuperarPorCodigo(codigoTransporte, nhSesion);
+
+                if (Transporte.IsInactivo)
+                {
+                    Transporte.IsInactivo = false;
+                }
+                else
+                {
+                    Transporte.IsInactivo = true;
+                }
+
+                CatalogoTransporte.InsertarActualizar(Transporte, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void EliminarTransporte(int codigoCliente)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Transporte transporte = CatalogoTransporte.RecuperarPorCodigo(codigoCliente, nhSesion);
+
+                CatalogoTransporte.Eliminar(transporte, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
     }
 }

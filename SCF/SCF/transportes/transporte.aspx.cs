@@ -61,12 +61,12 @@ namespace SCF.transportes
             if (Session["codigoOperacion"] == null)
             {
                 oTransporteActual = (Transporte)Session["transporteActual"];
-                ControladorGeneral.InsertarActualizarTransporte(oTransporteActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
+                ControladorGeneral.InsertarActualizarTransporte(oTransporteActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 80); //agregar tipo documento
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                ControladorGeneral.InsertarActualizarTransporte(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtFax.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, 80); //agregar tipo documento
+                ControladorGeneral.InsertarActualizarTransporte(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value, txtMail.Value, txtFax.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 80); //agregar tipo documento
             }
             Response.Redirect("listado.aspx");
         }

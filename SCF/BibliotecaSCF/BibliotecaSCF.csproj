@@ -84,6 +84,7 @@
     <Compile Include="Catalogos\CatalogoProveedor.cs" />
     <Compile Include="Catalogos\CatalogoTipoComprobante.cs" />
     <Compile Include="Catalogos\CatalogoTipoDocumento.cs" />
+    <Compile Include="Catalogos\CatalogoTransporte.cs" />
     <Compile Include="Catalogos\CatalogoUnidadMedida.cs" />
     <Compile Include="Catalogos\CatalogoUsuario.cs" />
     <Compile Include="ClasesComplementarias\Constantes.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Clases\Proveedor.cs" />
     <Compile Include="Clases\TipoComprobante.cs" />
     <Compile Include="Clases\TipoDocumento.cs" />
+    <Compile Include="Clases\Transporte.cs" />
     <Compile Include="Clases\UnidadMedida.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Controladores\ControladorGeneral.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Mapeos\ConceptoMap.cs" />
     <Compile Include="Mapeos\ContratoMarcoMap.cs" />
     <Compile Include="Mapeos\EntregaMap.cs" />
+    <Compile Include="Mapeos\FacturaMap.cs" />
     <Compile Include="Mapeos\HistorialCostoMap.cs" />
     <Compile Include="Mapeos\HistorialPrecioMap.cs" />
     <Compile Include="Mapeos\ItemContratoMarcoMap.cs" />
