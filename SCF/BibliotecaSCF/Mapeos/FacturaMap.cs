@@ -12,7 +12,7 @@ namespace BibliotecaSCF.Mapeos
     {
         public FacturaMap()
         {
-            Table("");
+            Table("Facturas");
             Id(x => x.Codigo).Column("codigoFactura").GeneratedBy.Identity();
             Map(x => x.NumeroFactura).Column("numeroFactura");
             Map(x => x.FechaFacturacion).Column("fechaFacturacion");

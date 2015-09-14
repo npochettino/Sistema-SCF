@@ -1154,7 +1154,6 @@ namespace BibliotecaSCF.Controladores
                 tablaItemsNotaDePedido.Columns.Add("cantidadEntregada");
                 tablaItemsNotaDePedido.Columns.Add("codigoMoneda");
                 tablaItemsNotaDePedido.Columns.Add("descripcionMoneda");
-                tablaItemsNotaDePedido.Columns.Add("precio");
                 tablaItemsNotaDePedido.Columns.Add("posicion");
 
                 NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
@@ -1167,7 +1166,7 @@ namespace BibliotecaSCF.Controladores
 
                     tablaItemsNotaDePedido.Rows.Add(item.Codigo, item.Articulo.Codigo, item.Articulo.DescripcionCorta, item.Articulo.DescripcionLarga, item.Articulo.Marca,
                     item.Articulo.RecuperarHistorialPrecioActual().Precio, item.CantidadPedida, item.FechaEntrega, cantidadEntregada, item.Articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
-                    item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, item.Precio, item.Posicion);
+                    item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, item.Posicion);
                 }
 
 
@@ -1466,6 +1465,7 @@ namespace BibliotecaSCF.Controladores
                 tablaEntrega.Columns.Add("codigoNotaDePedido");
                 tablaEntrega.Columns.Add("codigoCliente");
                 tablaEntrega.Columns.Add("razonSocialCliente");
+                tablaEntrega.Columns.Add("cuitCliente");//Agrego nro documento
                 tablaEntrega.Columns.Add("fechaEmision");
                 tablaEntrega.Columns.Add("numeroNotaDePedido");
                 tablaEntrega.Columns.Add("numeroRemito");
@@ -1474,7 +1474,7 @@ namespace BibliotecaSCF.Controladores
 
                 List<Entrega> listaEntregas = CatalogoEntrega.RecuperarTodos(nhSesion);
 
-                listaEntregas.Aggregate(tablaEntrega, (dt, r) => { dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo, r.NotaDePedido.Cliente.RazonSocial, r.FechaEmision, r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito, r.CodigoEstado, r.Observaciones); return dt; });
+                listaEntregas.Aggregate(tablaEntrega, (dt, r) => { dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo, r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.FechaEmision, r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito, r.CodigoEstado, r.Observaciones); return dt; });
 
                 return tablaEntrega;
             }

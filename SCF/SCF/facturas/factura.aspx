@@ -91,11 +91,10 @@
                                                 <label class="control-label">Remito</label>
                                                 <dx:ASPxGridLookup ID="gluRemito" runat="server" SelectionMode="Multiple" CssClass="form-control"
                                                     ClientInstanceName="gridLookup" Theme="Metropolis"
-                                                    KeyFieldName="codigoNotaDePedido" Width="100%" TextFormatString="{0} ({1})" MultiTextSeparator=", ">
+                                                    KeyFieldName="codigoEntrega" Width="100%" TextFormatString="{0}" OnValueChanged="gluRemito_ValueChanged" MultiTextSeparator=", " OnTextChanged="gluRemito_TextChanged">
                                                     <Columns>
                                                         <dx:GridViewCommandColumn ShowSelectCheckbox="True" Width="100%" Caption=" " />
-                                                        <dx:GridViewDataColumn FieldName="codigoNotaDePedido" Caption="Nro Remito" Width="100%" />
-                                                        <dx:GridViewDataColumn FieldName="razonSocialCliente" Caption="Cliente" Width="100%" />
+                                                        <dx:GridViewDataColumn FieldName="numeroRemito" Caption="Remito" Width="100%" />
                                                         <%--<dx:GridViewDataColumn FieldName="cuil" Caption="CUIL" />--%>
                                                     </Columns>
                                                     <GridViewProperties>
@@ -338,7 +337,7 @@
     <dx:ASPxPopupControl ID="pcValidarComprobante" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcValidarComprobante"
         HeaderText="Validar Comprobante" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="1000"
-        EnableViewState="False" Theme="Metropolis" OnUnload="pcValidarComprobante_Unload">
+        EnableViewState="False" Theme="Metropolis">
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl5" runat="server">
                 <dx:ASPxPanel ID="ASPxPanel3" runat="server" DefaultButton="">

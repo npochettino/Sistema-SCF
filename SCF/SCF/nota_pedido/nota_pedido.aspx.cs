@@ -75,6 +75,7 @@ namespace SCF.nota_pedido
                 tablaItemsNotaDePedido.Columns.Add("descripcionCorta");
                 tablaItemsNotaDePedido.Columns.Add("descripcionLarga");
                 tablaItemsNotaDePedido.Columns.Add("marca");
+                tablaItemsNotaDePedido.Columns.Add("posicion", typeof(int));
                 tablaItemsNotaDePedido.Columns.Add("cantidad", typeof(int));
                 tablaItemsNotaDePedido.Columns.Add("fechaEntrega", typeof(DateTime));
                 tablaItemsNotaDePedido.Columns.Add("codigoItemNotaDePedido", typeof(int));
@@ -121,7 +122,7 @@ namespace SCF.nota_pedido
 
                             if (filaRepetida == null)
                             {
-                                tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false);
+                                tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3],1 , 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false);
                             }
                         }
                     }
@@ -225,6 +226,7 @@ namespace SCF.nota_pedido
             int codigoArticulo = Convert.ToInt32(e.Keys["codigoArticulo"]);
             DataRow fila = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoArticulo"]) == codigoArticulo select t).SingleOrDefault();
 
+            fila["posicion"] = Convert.ToInt32(e.NewValues["posicion"]);
             fila["cantidad"] = Convert.ToInt32(e.NewValues["cantidad"]);
             DateTime fechaEntrega = Convert.ToDateTime(e.NewValues["fechaEntrega"]);
             fila["precio"] = Convert.ToInt32(e.NewValues["precio"]);

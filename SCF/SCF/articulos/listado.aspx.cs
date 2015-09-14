@@ -102,22 +102,22 @@ namespace SCF.articulos
 
         protected void btnRelacionArticuloCliente_Click(object sender, EventArgs e)
         {
+            cargarArticuloEnVariableSession();
             cargarGrillaRelacionArticuloCliente();
-
         }
 
         private void cargarGrillaRelacionArticuloCliente()
         {
-            pcRelacionArticuloCliente.ShowOnPageLoad = true;
+            cbClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
+            cbClientes.DataBind();
 
             if (gvArticulos.FocusedRowIndex != -1)
             {
-
                 gvArticuloCliente.DataSource = ControladorGeneral.RecuperarArticulosClientesPorArticulo(int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString()));
                 gvArticuloCliente.DataBind();
-
-
             }
+
+            pcRelacionArticuloCliente.ShowOnPageLoad = true;
         }
 
         protected void btnEliminarRelacionArticuloCliente_Click(object sender, EventArgs e)
@@ -125,23 +125,17 @@ namespace SCF.articulos
 
         }
 
-        protected void btnNuevaRelacionArticuloCliente_Click(object sender, EventArgs e)
-        {
-            pcNuevaRelacionArticuloCliente.ShowOnPageLoad = true;
-            cargarArticuloEnVariableSession();
-        }
-
         protected void btnGuardarRelacionArticuloCliente_Click(object sender, EventArgs e)
         {
+            int test = int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString());
+            cargarArticuloEnVariableSession();
             Articulo mArticulo = (Articulo)Session["articuloActual"];
             if (!txtCodigoClienteArticulo.Text.Equals(""))
                 ControladorGeneral.InsertarActualizarArticuloCliente(0, mArticulo.Codigo, txtCodigoClienteArticulo.Text.ToString(), (int)cbClientes.SelectedItem.Value);
 
-            pcNuevaRelacionArticuloCliente.ShowOnPageLoad = true;
+            
+            pcNuevaRelacionArticuloCliente.ShowOnPageLoad = false;
             cargarGrillaRelacionArticuloCliente();
-
-
-
         }
 
         protected void pcRelacionArticuloCliente_Unload(object sender, EventArgs e)
@@ -196,24 +190,27 @@ namespace SCF.articulos
             gvArticulos.Columns["codigoArticuloCliente"].Visible = false;
         }
 
-        protected void BtnNuevaRelacionCliente_Click(object sender, EventArgs e)
-        {
-            pcNuevaRelacionArticuloCliente.ShowOnPageLoad = true;
+        //protected void BtnNuevaRelacionCliente_Click(object sender, EventArgs e)
+        //{
+        //    pcNuevaRelacionArticuloCliente.ShowOnPageLoad = true;
 
-            cbClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
-            cbClientes.DataBind();
+        //    cbClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
+        //    cbClientes.DataBind();
 
 
-        }
+        //}
 
-        protected void pcRelacionArticuloProveedor_Unload(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void pcNuevaRelacionArticuloProveedor_Unload(object sender, EventArgs e)
+        #region Relacion Articulo Proveedor
+        
+        protected void btnRelacionArticuloProvevedor_Click(object sender, EventArgs e)
         {
 
+            cbMonedaCosto.DataSource = ControladorGeneral.RecuperarTodasMonedas();
+            cbMonedaCosto.DataBind();
+            cbProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(false);
+            cbProveedores.DataBind();
+
+            pcRelacionArticuloProveedor.ShowOnPageLoad = true;
         }
 
         protected void btnConfirmarEliminarRelacionArticuloProveedor_Click(object sender, EventArgs e)
@@ -226,22 +223,17 @@ namespace SCF.articulos
 
         }
 
-        protected void btnNuevaRelacionArticuloProvevedor_Click(object sender, EventArgs e)
-        {
-            
-        }
+        #endregion
 
-        protected void btnRelacionArticuloProvevedor_Click(object sender, EventArgs e)
+        protected void pcRelacionArticuloProveedor_Unload(object sender, EventArgs e)
         {
 
-            cbMonedaCosto.DataSource = ControladorGeneral.RecuperarTodasMonedas();
-            cbMonedaCosto.DataBind();
-            cbProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(false);
-            cbProveedores.DataBind();
-
-            pcRelacionArticuloProveedor.ShowOnPageLoad = true;
         }
 
+        protected void pcNuevaRelacionArticuloProveedor_Unload(object sender, EventArgs e)
+        {
+
+        }
 
     }
 }

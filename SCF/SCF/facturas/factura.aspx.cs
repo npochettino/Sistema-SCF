@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -47,13 +48,18 @@ namespace SCF.facturas
 
         private void CargarComboRemito()
         {
-            //gluRemito.DataSource = ControladorGeneral.RecuperarTodRemitos();
-            //gluRemito.DataBind();
+            gluRemito.DataSource = ControladorGeneral.RecuperarTodasEntregas();
+            gluRemito.DataBind();
         }
 
         protected void cbRemito_SelectedIndexChanged(object sender, EventArgs e)
         {
+            gluRemito.GridView.GetRowValues(gluRemito.GridView.FocusedRowIndex, "numeroRemito");
+        }
 
+        protected void gluRemito_ValueChanged(object sender, EventArgs e)
+        {
+            gluRemito.GridView.GetRowValues(gluRemito.GridView.FocusedRowIndex, "numeroRemito");
         }
 
         //Retorna el ultimo comprobante autorizado para el tipo de comprobante / cuit / punto de venta ingresado/ Tipo de Emisión
@@ -77,16 +83,16 @@ namespace SCF.facturas
             pcValidarComprobante.ShowOnPageLoad = true;
             
         }
-
-        protected void pcValidarComprobante_Unload(object sender, EventArgs e)
-        {
-
-        }
-
+        
         protected void btnEmitirComprobante_Click(object sender, EventArgs e)
         {
             //gluRemito.GridView.GetRowValues(gluRemito.GridView.FocusedRowIndex, "Mobile");
-            //ControladorGeneral.InsertarActualizarFactura(0,txtNroFactura.Text,txtFechaFacturacion.Text,gluRemito
+            //ControladorGeneral.InsertarActualizarFactura(0,txtNroFactura.Text,txtFechaFacturacion.Text,
+            
+        }
+
+        protected void gluRemito_TextChanged(object sender, EventArgs e)
+        {
             
         }
     }

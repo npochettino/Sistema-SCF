@@ -194,7 +194,10 @@
                                                             <label class="control-label col-md-3">Marca</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtMarca" placeholder="Marca" runat="server" class="form-control">
-                                                            </div>
+                                                            &nbsp;</input> </input>
+&nbsp;</input></input></input></input></input></input></input></input>&nbsp;</input></input></input> &nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -202,7 +205,10 @@
                                                             <label class="control-label col-md-3">Unidad</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
-                                                            </div>
+                                                            &nbsp;</input> </input>
+&nbsp;</input></input></input></input></input></input></input></input>&nbsp;</input></input></input> &nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
 
                                                     </div>
@@ -217,6 +223,32 @@
                                                                     <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
                                                                         <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
                                                                 </span>
+                                                            &nbsp;</input> </input>
+&nbsp;</input></input></input></input><span class="input-group-btn">
+                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                </button>
+                                                                </span></input> </input> </input>
+                                                                </input>
+                                                                <span class="input-group-btn">
+                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                </button>
+                                                                </span>&nbsp;</input></input></input><span class="input-group-btn">
+                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                </button>
+                                                                </span>&nbsp;&nbsp; </input></input>
+                                                                </input>
+                                                                <span class="input-group-btn">
+                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                </button>
+                                                                </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
+                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                </button>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -225,7 +257,10 @@
                                                             <label class="control-label col-md-3">Moneda</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTipoDeCambio" placeholder="Tipo de Cambio" runat="server" class="form-control">
-                                                            </div>
+                                                            &nbsp;</input> </input>
+&nbsp;</input></input></input></input></input></input></input></input>&nbsp;</input></input></input> &nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
 
                                                     </div>
@@ -423,7 +458,8 @@
     <dx:ASPxPopupControl ID="pcRelacionArticuloCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcRelacionArticuloCliente"
         HeaderText="Relacion Articulo Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
-        EnableViewState="False" Theme="Metropolis" OnUnload="pcRelacionArticuloCliente_Unload">
+        EnableViewState="False" Theme="Metropolis">
+        <ClientSideEvents PopUp="function(s, e) {  pcRelacionArticuloCliente.Focus(); }" />
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl5" runat="server">
                 <dx:ASPxPanel ID="ASPxPanel3" runat="server" DefaultButton="">
@@ -478,7 +514,7 @@
     <dx:ASPxPopupControl ID="pcNuevaRelacionArticuloCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcNuevaRelacionArticuloCliente"
         HeaderText="Nueva Relacion" AllowDragging="True" EnableViewState="False" Width="400px"
-        PopupAnimationType="Fade" Theme="Metropolis" OnUnload="pcNuevaRelacionArticuloCliente_Unload">
+        PopupAnimationType="Fade" Theme="Metropolis">
         <ClientSideEvents PopUp="function(s, e) {  pcNuevaRelacionArticuloCliente.Focus(); }" />
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl6" runat="server">
@@ -511,7 +547,7 @@
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <label>Codigo Articulo</label>
-                                                            <asp:TextBox ID="txtCodigoClienteArticulo" runat="server" placeholder="Codigo Articulo" required></asp:TextBox>
+                                                            <asp:TextBox ID="txtCodigoClienteArticulo" runat="server" placeholder="Codigo Articulo"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -521,7 +557,7 @@
                             </div>
                             <div class="modal-footer">
                                 <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" UseSubmitBehavior="false" runat="server" OnClick="btnGuardarRelacionArticuloCliente_Click" class="btn blue" Text="Aceptar" />
+                                    <asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" runat="server" OnClick="btnGuardarRelacionArticuloCliente_Click" class="btn blue" Text="Aceptar" />
                                 </div>
                             </div>
                             </div>
@@ -570,7 +606,7 @@
     <!--END POPUP-->
 
 
-    <!--END POPUP RELACION ARTICULO - CLIENTE-->
+    <!--END POPUP RELACION ARTICULO - PROVEEDOR-->
     <dx:ASPxPopupControl ID="pcRelacionArticuloProveedor" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcRelacionArticuloProveedor"
         HeaderText="Relacion Articulo Proveedor" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"

@@ -153,6 +153,7 @@
 
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
+                                                                
                                                                 <dx:GridViewDataTextColumn Caption="cantidad" Visible="false" VisibleIndex="5" Width="40" FieldName="cantidad">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
@@ -221,8 +222,10 @@
                                                                     <Settings AllowSort="True" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-
-                                                                <dx:GridViewDataTextColumn Caption="Cantidad" FieldName="cantidad" Width="40px" VisibleIndex="4">
+                                                                <dx:GridViewDataTextColumn Caption="Posicion" Visible="true" VisibleIndex="4" Width="40" FieldName="posicion">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn Caption="Cantidad" FieldName="cantidad" Width="40px" VisibleIndex="5">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
 
                                                                 </dx:GridViewDataTextColumn>
