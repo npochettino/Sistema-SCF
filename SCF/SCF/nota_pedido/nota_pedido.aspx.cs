@@ -21,8 +21,12 @@ namespace SCF.nota_pedido
 
             CargarComboClientes();
             CargarGrillaArticulos();
-           //Hacer metodo y llamarlo aca para que traiga todos los contratos vigentes 
+            //Hacer metodo y llamarlo aca para que traiga todos los contratos vigentes 
             CargarComboContratoMarco(26);
+            //Hacer un metodo que devuelva todos los arituclos y los que tiene una 
+            //realacion con ese codigo pero no solo los que tiene como relacion
+            CargarGrillaArticulosPorCliente();
+
             txtFechaEmision.Value = DateTime.Now;
 
             if (!IsPostBack)
@@ -265,11 +269,8 @@ namespace SCF.nota_pedido
 
         protected void cbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //CargarGrillaArticulosPorCliente();
+            CargarGrillaArticulosPorCliente();
             CargarComboContratoMarco((int)cbClientes.SelectedItem.Value);
-
-
-
         }
 
     }
