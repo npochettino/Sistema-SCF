@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="articulos\articulo.aspx" />
+    <Content Include="articulos\articulo.js" />
     <Content Include="assets\admin\layout4\css\custom.css" />
     <Content Include="assets\admin\layout4\css\layout.css" />
     <Content Include="assets\admin\layout4\css\themes\default.css" />

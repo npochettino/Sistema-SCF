@@ -13,6 +13,15 @@ namespace SCF.articulos {
     public partial class listado {
         
         /// <summary>
+        /// Control ScriptManager1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
         /// Control btnNuevo.
         /// </summary>
         /// <remarks>
@@ -451,7 +460,7 @@ namespace SCF.articulos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigoClienteArticulo;
+        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtCodigoClienteArticulo;
         
         /// <summary>
         /// Control btnGuardarRelacionArticuloCliente.
@@ -460,7 +469,7 @@ namespace SCF.articulos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarRelacionArticuloCliente;
+        protected global::DevExpress.Web.ASPxEditors.ASPxButton btnGuardarRelacionArticuloCliente;
         
         /// <summary>
         /// Control pcConfirmarEliminarRelacionArticuloCliente.

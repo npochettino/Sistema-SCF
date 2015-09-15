@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BibliotecaSCF.Clases;
 using BibliotecaSCF.Controladores;
+using System.Web.Services;
 
 namespace SCF.articulos
 {
@@ -71,7 +72,7 @@ namespace SCF.articulos
             articuloActual.DescripcionCorta = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionCorta").ToString();
             articuloActual.DescripcionLarga = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionLarga").ToString();
             articuloActual.Marca = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "marca").ToString();
-            
+
             //Como recupero la unidad de medida
 
             Session.Add("articuloActual", articuloActual);
@@ -126,18 +127,18 @@ namespace SCF.articulos
 
         }
 
-        protected void btnGuardarRelacionArticuloCliente_Click(object sender, EventArgs e)
-        {
-            int test = int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString());
-            cargarArticuloEnVariableSession();
-            Articulo mArticulo = (Articulo)Session["articuloActual"];
-            if (!txtCodigoClienteArticulo.Text.Equals(""))
-                ControladorGeneral.InsertarActualizarArticuloCliente(0, mArticulo.Codigo, txtCodigoClienteArticulo.Text.ToString(), (int)cbClientes.SelectedItem.Value);
+        //protected void btnGuardarRelacionArticuloCliente_Click(object sender, EventArgs e)
+        //{
+        //    int test = int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString());
+        //    cargarArticuloEnVariableSession();
+        //    Articulo mArticulo = (Articulo)Session["articuloActual"];
+        //    if (!txtCodigoClienteArticulo.Text.Equals(""))
+        //        ControladorGeneral.InsertarActualizarArticuloCliente(0, mArticulo.Codigo, txtCodigoClienteArticulo.Text.ToString(), (int)cbClientes.SelectedItem.Value);
 
 
-            pcNuevaRelacionArticuloCliente.ShowOnPageLoad = false;
-            cargarGrillaRelacionArticuloCliente();
-        }
+        //    pcNuevaRelacionArticuloCliente.ShowOnPageLoad = false;
+        //    cargarGrillaRelacionArticuloCliente();
+        //}
 
         protected void pcRelacionArticuloCliente_Unload(object sender, EventArgs e)
         {
@@ -244,5 +245,18 @@ namespace SCF.articulos
 
         }
 
+        [WebMethod]
+        public static string InsertarActualizarArticuloCliente(string codigoArticulo, string codigoArticuloCliente, int codigoCliente)
+        {
+            try
+            {
+                ControladorGeneral.InsertarActualizarArticuloCliente(0, Convert.ToInt32(codigoArticulo), codigoArticuloCliente, codigoCliente);
+                return "ok";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

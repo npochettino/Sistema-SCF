@@ -6,6 +6,8 @@
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
+    <script src="articulo.js" type="text/javascript"></script>
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -61,7 +63,7 @@
                                 <div class="col-md-6">
                                     <label>Buscar por Código Cliente:</label>
                                     <div class="input-group">
-                                        <asp:TextBox type="text" id="txtCodigoCliente" placeholder="Ingrese el Código del cliente" runat="server" class="form-control"></asp:TextBox>
+                                        <asp:TextBox type="text" ID="txtCodigoCliente" placeholder="Ingrese el Código del cliente" runat="server" class="form-control"></asp:TextBox>
                                         <span class="input-group-btn">
                                             <asp:Button class="btn blue" type="button" runat="server" ID="btnBuscarPorCodigoCliente" OnClick="btnBuscarPorCodigoCliente_Click" UseSubmitBehavior="false" Text="Buscar" />
                                             <asp:Button class="btn red" type="button" runat="server" ID="btnBorrar" OnClick="btnBorrar_Click" UseSubmitBehavior="false" Text="Borrar" />
@@ -70,7 +72,7 @@
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">
-                                <dx:ASPxGridView ID="gvArticulos" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis">
+                                <dx:ASPxGridView ID="gvArticulos" ClientInstanceName="gvArticulos" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis">
                                     <Columns>
                                         <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="false" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
@@ -194,10 +196,12 @@
                                                             <label class="control-label col-md-3">Marca</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtMarca" placeholder="Marca" runat="server" class="form-control">
-                                                            &nbsp;</input> </input>
+                                                            &nbsp;</input>
+                                                                </input>
 &nbsp;</input></input></input></input></input></input></input></input></input>&nbsp;</input></input></input></input></input></input> &nbsp; &nbsp; </input></input>
                                                                 </input>
-                                                                &nbsp;&nbsp;</input></input></input></div>
+                                                                &nbsp;&nbsp;</input></input></input>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -205,10 +209,12 @@
                                                             <label class="control-label col-md-3">Unidad</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
-                                                            &nbsp;</input> </input>
+                                                            &nbsp;</input>
+                                                                </input>
 &nbsp;</input></input></input></input></input></input></input></input></input>&nbsp;</input></input></input></input></input></input> &nbsp; &nbsp; </input></input>
                                                                 </input>
-                                                                &nbsp;&nbsp;</input></input></input></div>
+                                                                &nbsp;&nbsp;</input></input></input>
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -219,39 +225,40 @@
                                                         <div class="col-md-9">
                                                             <div class="input-group">
                                                                 <input type="text" id="txtPrecioActual" placeholder="Precio" runat="server" class="form-control">
-                                                                <span class="input-group-btn">
-                                                                    <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
-                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
-                                                                </span>
-                                                            &nbsp;</input> </input>
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
+                                                                            <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
+                                                                    </span>
+                                                                    &nbsp;</input>
+                                                                </input>
 &nbsp;</input></input></input></input></input><span class="input-group-btn">
-                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                                </button>
-                                                                </span></input> </input> </input>
+    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+    </button>
+</span></input> </input> </input>
                                                                 </input>
                                                                 <span class="input-group-btn">
-                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                                </button>
+                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                    </button>
                                                                 </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
-                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                                </button>
+                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                    </button>
                                                                 </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
-                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                                </button>
+                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                    </button>
                                                                 </span>&nbsp; </input></input>
                                                                 </input>
                                                                 <span class="input-group-btn">
-                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                                </button>
+                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                    </button>
                                                                 </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
-                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                                </button>
+                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                    </button>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -261,10 +268,12 @@
                                                             <label class="control-label col-md-3">Moneda</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTipoDeCambio" placeholder="Tipo de Cambio" runat="server" class="form-control">
-                                                            &nbsp;</input> </input>
+                                                            &nbsp;</input>
+                                                                </input>
 &nbsp;</input></input></input></input></input></input></input></input></input>&nbsp;</input></input></input></input></input></input> &nbsp; &nbsp; </input></input>
                                                                 </input>
-                                                                &nbsp;&nbsp;</input></input></input></div>
+                                                                &nbsp;&nbsp;</input></input></input>
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -536,7 +545,7 @@
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <label>Codigo Cliente</label>
-                                                            <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                            <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" CssClass="form-control" ClientInstanceName="cbClientes"
                                                                 ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
                                                                 <Columns>
                                                                     <dx:ListBoxColumn FieldName="codigoCliente" Width="100px" Visible="false" />
@@ -551,19 +560,22 @@
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <label>Codigo Articulo</label>
-                                                            <asp:TextBox ID="txtCodigoClienteArticulo" runat="server" placeholder="Codigo Articulo"></asp:TextBox>
+                                                            <dx:ASPxTextBox ID="txtCodigoClienteArticulo" ClientInstanceName="txtCodigoClienteArticulo" runat="server" CssClass="form-control" Width="100%"></dx:ASPxTextBox>
+                                                            <%--<asp:TextBox ID="txtCodigoClienteArticulo" runat="server" placeholder="Codigo Articulo"></asp:TextBox>--%>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
-                            </div>
-                            <div class="modal-footer">
-                                <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" runat="server" OnClick="btnGuardarRelacionArticuloCliente_Click" class="btn blue" Text="Aceptar" />
                                 </div>
-                            </div>
+                                <div class="modal-footer">
+                                    <div class="btn-set pull-right">
+                                        <dx:ASPxButton ID="btnGuardarRelacionArticuloCliente" runat="server" Text="Aceptar" AutoPostBack="False" class="btn blue" ClientSideEvents-Click="OnClickAceptarCliente">
+                                        </dx:ASPxButton>
+                                        <%--<asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" runat="server" OnClientClick="OnClickAceptarCliente" class="btn blue" Text="Aceptar" />--%>
+                                    </div>
+                                </div>
                             </div>
                         </dx:PanelContent>
                     </PanelCollection>
@@ -632,7 +644,7 @@
                                                             <%--<asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />--%>
                                                             <button type="button" onclick="ShowNuevaRelacionArticuloProveedor()" class="btn blue">Nuevo</button>
                                                             <button type="button" onclick="ShowEliminarRelacionArticuloProveedor()" class="btn red">Eliminar</button>
-                                                            
+
                                                         </div>
                                                         <div class="form-group">
                                                             <dx:ASPxGridView ID="gvArticuloProveedor" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
@@ -710,7 +722,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Cantidad</label>
-                                                            <asp:TextBox  type="text" id="txtCantidad" placeholder="Cantidad" runat="server" class="form-control"></asp:TextBox>
+                                                            <asp:TextBox type="text" ID="txtCantidad" placeholder="Cantidad" runat="server" class="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -727,12 +739,12 @@
                                             </div>
                                         </form>
                                     </div>
-                            </div>
-                            <div class="modal-footer">
-                                <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnGuardarRelacionArticuloProveedor" UseSubmitBehavior="false" runat="server" OnClick="btnGuardarRelacionArticuloProveedor_Click" class="btn blue" Text="Aceptar" />
                                 </div>
-                            </div>
+                                <div class="modal-footer">
+                                    <div class="btn-set pull-right">
+                                        <asp:Button type="button" ID="btnGuardarRelacionArticuloProveedor" UseSubmitBehavior="false" runat="server" OnClick="btnGuardarRelacionArticuloProveedor_Click" class="btn blue" Text="Aceptar" />
+                                    </div>
+                                </div>
                             </div>
                         </dx:PanelContent>
                     </PanelCollection>
