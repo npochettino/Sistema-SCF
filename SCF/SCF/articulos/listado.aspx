@@ -195,7 +195,7 @@
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtMarca" placeholder="Marca" runat="server" class="form-control">
                                                             &nbsp;</input> </input>
-&nbsp;</input></input></input></input></input></input></input></input>&nbsp;</input></input></input> &nbsp; </input></input>
+&nbsp;</input></input></input></input></input></input></input></input></input>&nbsp;</input></input></input></input></input></input> &nbsp; &nbsp; </input></input>
                                                                 </input>
                                                                 &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
@@ -206,7 +206,7 @@
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
                                                             &nbsp;</input> </input>
-&nbsp;</input></input></input></input></input></input></input></input>&nbsp;</input></input></input> &nbsp; </input></input>
+&nbsp;</input></input></input></input></input></input></input></input></input>&nbsp;</input></input></input></input></input></input> &nbsp; &nbsp; </input></input>
                                                                 </input>
                                                                 &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
@@ -224,7 +224,7 @@
                                                                         <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
                                                                 </span>
                                                             &nbsp;</input> </input>
-&nbsp;</input></input></input></input><span class="input-group-btn">
+&nbsp;</input></input></input></input></input><span class="input-group-btn">
                                                                 <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
                                                                     <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
                                                                 </button>
@@ -234,11 +234,15 @@
                                                                 <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
                                                                     <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
                                                                 </button>
-                                                                </span>&nbsp;</input></input></input><span class="input-group-btn">
+                                                                </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
                                                                 <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
                                                                     <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
                                                                 </button>
-                                                                </span>&nbsp;&nbsp; </input></input>
+                                                                </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
+                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                </button>
+                                                                </span>&nbsp; </input></input>
                                                                 </input>
                                                                 <span class="input-group-btn">
                                                                 <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
@@ -258,7 +262,7 @@
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTipoDeCambio" placeholder="Tipo de Cambio" runat="server" class="form-control">
                                                             &nbsp;</input> </input>
-&nbsp;</input></input></input></input></input></input></input></input>&nbsp;</input></input></input> &nbsp; </input></input>
+&nbsp;</input></input></input></input></input></input></input></input></input>&nbsp;</input></input></input></input></input></input> &nbsp; &nbsp; </input></input>
                                                                 </input>
                                                                 &nbsp;&nbsp;</input></input></input></div>
                                                         </div>

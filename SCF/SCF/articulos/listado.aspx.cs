@@ -133,7 +133,7 @@ namespace SCF.articulos
             if (!txtCodigoClienteArticulo.Text.Equals(""))
                 ControladorGeneral.InsertarActualizarArticuloCliente(0, mArticulo.Codigo, txtCodigoClienteArticulo.Text.ToString(), (int)cbClientes.SelectedItem.Value);
 
-            
+
             pcNuevaRelacionArticuloCliente.ShowOnPageLoad = false;
             cargarGrillaRelacionArticuloCliente();
         }
@@ -201,7 +201,7 @@ namespace SCF.articulos
         //}
 
         #region Relacion Articulo Proveedor
-        
+
         protected void btnRelacionArticuloProvevedor_Click(object sender, EventArgs e)
         {
 
@@ -220,7 +220,15 @@ namespace SCF.articulos
 
         protected void btnGuardarRelacionArticuloProveedor_Click(object sender, EventArgs e)
         {
+            //int test = int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString());
+            //cargarArticuloEnVariableSession();
+            //Articulo mArticulo = (Articulo)Session["articuloActual"];
+            //if (!txtCosto.Text.Equals(""))
+            //    ControladorGeneral.InsertarActualizarArticuloProveedor(0, mArticulo.Codigo, (int)cbProveedores.SelectedItem.Value, Double.Parse(txtCosto.Text), (int)cbMonedaCosto.SelectedItem.Value);
 
+
+            //pcNuevaRelacionArticuloCliente.ShowOnPageLoad = false;
+            //cargarGrillaRelacionArticuloCliente();
         }
 
         #endregion

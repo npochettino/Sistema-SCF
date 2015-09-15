@@ -82,7 +82,7 @@
                                                 <label class="control-label">Cliente</label>
 
                                                 <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
-                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis" OnSelectedIndexChanged="cbClientes_SelectedIndexChanged" AutoPostBack="True">
+                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis" OnSelectedIndexChanged="cbClientes_SelectedIndexChanged" >
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoCliente" Width="100px" Visible="false" />
                                                         <dx:ListBoxColumn FieldName="cuil" Width="100px" />
@@ -95,7 +95,7 @@
                                         <div class="col-md-6" id="divContratoMarco">
                                             <div class="form-group">
                                                 <label class="control-label">Contrato Marco</label>
-                                                <dx:ASPxComboBox ID="cbContratoMarco" runat="server" DropDownStyle="DropDownList" Width="100%" CssClass="form-control" ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" EnableTheming="True" Theme="Metropolis">
+                                                <dx:ASPxComboBox ID="cbContratoMarco" runat="server" DropDownStyle="DropDownList" Width="100%" CssClass="form-control" ValueField="codigoContratoMarco" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" EnableTheming="True"  Theme="Metropolis">
 
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoContratoMarco" Width="100px" Visible="false" />
@@ -128,7 +128,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
-                                                    <div id="chart_8" class="chart" style="height: auto" >
+                                                    <div id="chart_8" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ARTICULOS-->
                                                         <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo"
                                                             Theme="Metropolis" Width="450">
@@ -152,7 +152,7 @@
                                                                 <dx:GridViewDataTextColumn Caption="Codigo articulo cliente" VisibleIndex="4" Width="130    " FieldName="codigoArticuloCliente">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                
+
                                                                 <dx:GridViewDataTextColumn Caption="cantidad" Visible="false" VisibleIndex="5" Width="40" FieldName="cantidad">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
@@ -162,7 +162,7 @@
                                                                 <dx:GridViewDataTextColumn Caption="codigoItemNotaDePedido" Visible="false" Width="40" VisibleIndex="7" FieldName="codigoItemNotaDePedido">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Precio" VisibleIndex="8" FieldName="precio" >
+                                                                <dx:GridViewDataTextColumn Caption="Precio" VisibleIndex="8" FieldName="precio">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
 

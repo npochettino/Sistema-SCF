@@ -21,6 +21,8 @@ namespace SCF.nota_pedido
 
             CargarComboClientes();
             CargarGrillaArticulos();
+           //Hacer metodo y llamarlo aca para que traiga todos los contratos vigentes 
+            CargarComboContratoMarco(26);
             txtFechaEmision.Value = DateTime.Now;
 
             if (!IsPostBack)
@@ -48,6 +50,8 @@ namespace SCF.nota_pedido
                     txtNroInternoCliente.Text = numeroInternoCliente;
                     txtObservacion.InnerText = observaciones;
                     cbClientes.SelectedItem = cbClientes.Items.FindByValue(Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoCliente"]));
+                    CargarComboContratoMarco(Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoCliente"]));
+                    cbContratoMarco.SelectedItem = cbContratoMarco.Items.FindByValue(Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoContratoMarco"]));
 
                     DataTable tablaItemsNotaDePedido = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
                     tablaItemsNotaDePedido.Columns.Add("isEliminada");
@@ -115,14 +119,15 @@ namespace SCF.nota_pedido
                         {
                             DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
                             int codigoArticulo = Convert.ToInt32(mRow.Row.ItemArray[0]);
-                            //if (gvArticulosSeleccionados.VisibleRowCount < 1)
-                            //    cbContratoMarco.SelectedItem = cbContratoMarco.Items.FindByValue(getContratoMarco(codigoArticulo));
+
+                            if (gvArticulosSeleccionados.VisibleRowCount < 1)
+                                cbContratoMarco.SelectedItem = cbContratoMarco.Items.FindByValue(getContratoMarco(codigoArticulo));
 
                             DataRow filaRepetida = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoArticulo"]) == codigoArticulo select t).SingleOrDefault();
 
                             if (filaRepetida == null)
                             {
-                                tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3],1 , 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false);
+                                tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false);
                             }
                         }
                     }
@@ -138,7 +143,9 @@ namespace SCF.nota_pedido
 
         private int getContratoMarco(int codigoArticulo)
         {
-            return Convert.ToInt16(ControladorGeneral.RecuperarContratosMarcoVigentePorClienteYArticulo((int)cbClientes.SelectedItem.Value, codigoArticulo).Rows[0]);
+            int t = Convert.ToInt16(ControladorGeneral.RecuperarContratosMarcoVigentePorClienteYArticulo(int.Parse(cbClientes.SelectedItem.Value.ToString()), codigoArticulo).Rows[0]["codigoContratoMarco"]);
+
+            return t;
         }
 
         private void CargarGrillaArticulosPorCliente()
@@ -164,6 +171,12 @@ namespace SCF.nota_pedido
             cbClientes.DataBind();
         }
 
+        private void CargarComboContratoMarcoPorCliente(int codigoCliente)
+        {
+            cbContratoMarco.DataSource = ControladorGeneral.RecuperarContratosMarcoVigentePorCliente(codigoCliente);
+            cbContratoMarco.DataBind();
+        }
+
         private void CargarComboContratoMarco(int codigoCliente)
         {
             cbContratoMarco.DataSource = ControladorGeneral.RecuperarContratosMarcoVigentePorCliente(codigoCliente);
@@ -181,9 +194,11 @@ namespace SCF.nota_pedido
                 codigoNotaDePedido = Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoNotaDePedido"]);
             }
 
-            ControladorGeneral.InsertarActualizarNotaDePedido(codigoNotaDePedido, txtNroInternoCliente.Text.ToString(), DateTime.Parse(txtFechaEmision.Value.ToString()), txtObservacion.InnerText.ToString(), 0, (int)cbClientes.SelectedItem.Value, tablaItemsNotaDePedido);
-
-            Response.Redirect("listado.aspx");
+            if (cbClientes.SelectedItem != null && !txtNroInternoCliente.Text.Equals(""))
+            {
+                ControladorGeneral.InsertarActualizarNotaDePedido(codigoNotaDePedido, txtNroInternoCliente.Text.ToString(), DateTime.Parse(txtFechaEmision.Value.ToString()), txtObservacion.InnerText.ToString(), (int)cbContratoMarco.SelectedItem.Value, (int)cbClientes.SelectedItem.Value, tablaItemsNotaDePedido);
+                Response.Redirect("listado.aspx");
+            }
         }
 
         protected void btnSeleccionarArticulos_Click(object sender, EventArgs e)
@@ -250,8 +265,11 @@ namespace SCF.nota_pedido
 
         protected void cbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarGrillaArticulosPorCliente();
+            //CargarGrillaArticulosPorCliente();
             CargarComboContratoMarco((int)cbClientes.SelectedItem.Value);
+
+
+
         }
 
     }
