@@ -22,7 +22,7 @@ namespace SCF.articulos
             if (!IsPostBack)
             {
                 txtPrecio.Value = "0";
-               
+
                 //Cargo el form para editar
                 if ((Articulo)Session["articuloActual"] != null)
                 {
@@ -31,6 +31,9 @@ namespace SCF.articulos
                 else
                 {
                     Session.Add("codigoOperacion", 0);
+                    cbMonedaPrecio.SelectedIndex = 0;
+                    cbUnidadMedida.SelectedIndex = 0;
+
                 }
             }
 
@@ -59,8 +62,8 @@ namespace SCF.articulos
             txtMarca.Value = oArticuloActual.Marca;
             DataTable dtPrecioHistrialArticulo = ControladorGeneral.RecuperarHistorialPreciosPorArticulo(oArticuloActual.Codigo);
             txtPrecio.Value = dtPrecioHistrialArticulo.Rows[dtPrecioHistrialArticulo.Rows.Count - 1]["precio"].ToString();
-            cbUnidadMedida.Text = oArticuloActual.UnidadMedida.Descripcion;
             cbMonedaPrecio.Text = dtPrecioHistrialArticulo.Rows[dtPrecioHistrialArticulo.Rows.Count - 1]["descripcionMoneda"].ToString();
+            //cbUnidadMedida.Text = oArticuloActual.UnidadMedida.Descripcion;
             //ddlTipoMonedaPrecio.SelectedItem.Value = oArticuloActual.t;
 
         }

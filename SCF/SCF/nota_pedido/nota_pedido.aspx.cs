@@ -247,10 +247,15 @@ namespace SCF.nota_pedido
 
             fila["posicion"] = Convert.ToInt32(e.NewValues["posicion"]);
             fila["cantidad"] = Convert.ToInt32(e.NewValues["cantidad"]);
-            DateTime fechaEntrega = Convert.ToDateTime(e.NewValues["fechaEntrega"]);
+
+            DateTime a = new DateTime();
+
+
+            a = Convert.ToDateTime(e.NewValues["fechaEntrega"].ToString(), System.Globalization.CultureInfo.GetCultureInfo("en-Us").DateTimeFormat);
+
             fila["precio"] = Convert.ToInt32(e.NewValues["precio"]);
 
-            fila["fechaEntrega"] = fechaEntrega;
+            fila["fechaEntrega"] = a;
             Session["tablaItemsNotaDePedido"] = tablaItemsNotaDePedido;
 
             e.Cancel = true;

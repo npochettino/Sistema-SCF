@@ -71,7 +71,8 @@ namespace SCF.articulos
             articuloActual.DescripcionCorta = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionCorta").ToString();
             articuloActual.DescripcionLarga = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionLarga").ToString();
             articuloActual.Marca = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "marca").ToString();
-
+            
+            //Como recupero la unidad de medida
 
             Session.Add("articuloActual", articuloActual);
         }
