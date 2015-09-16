@@ -489,11 +489,11 @@
                                                         <div class="btn-set pull-left" style="padding-bottom: 5px">
                                                             <%--<asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />--%>
                                                             <button type="button" onclick="ShowNuevaRelacionArticuloCliente()" class="btn blue">Nuevo</button>
-                                                            <button type="button" onclick="ShowEliminarRelacionArticuloCliente()" class="btn red">Eliminar</button>
+                                                            <button type="button" onclick="ShowEliminarRelacionArticuloCliente()" class="btn red" style="visibility: hidden">Eliminar</button>
                                                             <%--<asp:Button type="button" ID="BtnNuevaRelacionCliente" runat="server" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" OnClick="BtnNuevaRelacionCliente_Click" />--%>
                                                         </div>
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView ID="gvArticuloCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                            <dx:ASPxGridView ID="gvArticuloCliente" ClientInstanceName="gvArticuloCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
                                                                     <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
@@ -560,7 +560,7 @@
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <label>Codigo Articulo</label>
-                                                            <dx:ASPxTextBox ID="txtCodigoClienteArticulo" ClientInstanceName="txtCodigoClienteArticulo" runat="server" CssClass="form-control" Width="100%"></dx:ASPxTextBox>
+                                                            <dx:ASPxTextBox ID="txtCodigoClienteArticuloPopUp" ClientInstanceName="txtCodigoClienteArticuloPopUp" runat="server" CssClass="form-control" Width="100%"></dx:ASPxTextBox>
                                                             <%--<asp:TextBox ID="txtCodigoClienteArticulo" runat="server" placeholder="Codigo Articulo"></asp:TextBox>--%>
                                                         </div>
                                                     </div>
@@ -626,7 +626,7 @@
     <dx:ASPxPopupControl ID="pcRelacionArticuloProveedor" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcRelacionArticuloProveedor"
         HeaderText="Relacion Articulo Proveedor" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
-        EnableViewState="False" Theme="Metropolis" OnUnload="pcRelacionArticuloProveedor_Unload">
+        EnableViewState="False" Theme="Metropolis">
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl8" runat="server">
                 <dx:ASPxPanel ID="ASPxPanel6" runat="server" DefaultButton="">
@@ -643,22 +643,31 @@
                                                         <div class="btn-set pull-left" style="padding-bottom: 5px">
                                                             <%--<asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />--%>
                                                             <button type="button" onclick="ShowNuevaRelacionArticuloProveedor()" class="btn blue">Nuevo</button>
-                                                            <button type="button" onclick="ShowEliminarRelacionArticuloProveedor()" class="btn red">Eliminar</button>
+                                                            <button type="button" onclick="ShowEliminarRelacionArticuloProveedor()" class="btn red" style="visibility: hidden">Eliminar</button>
 
                                                         </div>
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView ID="gvArticuloProveedor" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                            <dx:ASPxGridView ID="gvArticuloProveedor" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticuloProveedor">
                                                                 <Columns>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticuloProveedor" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="costo" Caption="Costo" VisibleIndex="1">
-                                                                        <Settings AutoFilterCondition="Contains" />
-                                                                    </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="cuit" Caption="CUIT" VisibleIndex="1" Visible="false">
-                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoProveedor" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                        <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" Caption="Razon Social Proveedor" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="tipoMoneda" Caption="Moneda" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="costoActual" Caption="Costo" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="tipoDocumento" Caption="Tipo Documento" VisibleIndex="1" Visible="false">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="nroDocumento" Caption="Nro Documento" VisibleIndex="1" Visible="false">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                 </Columns>
@@ -681,7 +690,7 @@
     <dx:ASPxPopupControl ID="pcNuevaRelacionArticuloProveedor" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcNuevaRelacionArticuloProveedor"
         HeaderText="Nueva Relacion" AllowDragging="True" EnableViewState="False" Width="400px"
-        PopupAnimationType="Fade" Theme="Metropolis" OnUnload="pcNuevaRelacionArticuloProveedor_Unload">
+        PopupAnimationType="Fade" Theme="Metropolis">
         <ClientSideEvents PopUp="function(s, e) {  pcNuevaRelacionArticuloProveedor.Focus(); }" />
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl9" runat="server">
@@ -699,7 +708,7 @@
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <label>Proveedor</label>
-                                                            <dx:ASPxComboBox ID="cbProveedores" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                            <dx:ASPxComboBox ID="cbProveedores" runat="server" DropDownStyle="DropDownList" CssClass="form-control" ClientInstanceName="cbProveedores"
                                                                 ValueField="codigoProveedor" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis">
                                                                 <Columns>
                                                                     <dx:ListBoxColumn FieldName="codigoProveedor" Width="100px" Visible="false" />
@@ -714,7 +723,7 @@
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <label>Costo:</label>
-                                                            <asp:TextBox ID="txtCosto" runat="server" placeholder="Costo" class="form-control"></asp:TextBox>
+                                                            <dx:ASPxTextBox ID="txtCosto" ClientInstanceName="txtCosto" runat="server" CssClass="form-control" Width="100%"></dx:ASPxTextBox>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -730,7 +739,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Tipo de Moneda</label>
-                                                            <dx:ASPxComboBox ID="cbMonedaCosto" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
+                                                            <dx:ASPxComboBox ID="cbMonedaCosto" runat="server" DropDownStyle="DropDownList" CssClass="form-control" ClientInstanceName="cbMonedaCosto"
                                                                 ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" TextField="descripcion">
                                                             </dx:ASPxComboBox>
                                                         </div>
@@ -742,7 +751,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="btnGuardarRelacionArticuloProveedor" UseSubmitBehavior="false" runat="server" OnClick="btnGuardarRelacionArticuloProveedor_Click" class="btn blue" Text="Aceptar" />
+                                        <dx:ASPxButton ID="btnGuardarRelacionArticuloProveedor" runat="server" Text="Aceptar" AutoPostBack="False" class="btn blue" ClientSideEvents-Click="OnClickAceptarProveedor">
+                                        </dx:ASPxButton>
                                     </div>
                                 </div>
                             </div>

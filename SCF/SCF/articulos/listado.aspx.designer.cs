@@ -454,13 +454,13 @@ namespace SCF.articulos {
         protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbClientes;
         
         /// <summary>
-        /// Control txtCodigoClienteArticulo.
+        /// Control txtCodigoClienteArticuloPopUp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtCodigoClienteArticulo;
+        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtCodigoClienteArticuloPopUp;
         
         /// <summary>
         /// Control btnGuardarRelacionArticuloCliente.
@@ -613,7 +613,7 @@ namespace SCF.articulos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCosto;
+        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtCosto;
         
         /// <summary>
         /// Control txtCantidad.
@@ -640,7 +640,7 @@ namespace SCF.articulos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarRelacionArticuloProveedor;
+        protected global::DevExpress.Web.ASPxEditors.ASPxButton btnGuardarRelacionArticuloProveedor;
         
         /// <summary>
         /// Control pcConfirmarEliminarRelacionArticuloProveedor.

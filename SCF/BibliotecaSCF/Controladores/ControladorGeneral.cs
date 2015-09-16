@@ -600,15 +600,16 @@ namespace BibliotecaSCF.Controladores
 
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarPorCodigoInternoCliente(codigoInternoCliente, nhSesion);
 
-                listaArticulos.Aggregate(tablaArticulo, (dt, r) =>
+                foreach (Articulo articulo in listaArticulos)
                 {
-                    dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
-                        r.RecuperarHistorialPrecioActual().Precio, r.NombreImagen,
-                        (from ac in r.ArticulosClientes where ac.CodigoInterno.Contains(codigoInternoCliente) select ac).FirstOrDefault().CodigoInterno,
-                        (from ac in r.ArticulosClientes where ac.CodigoInterno.Contains(codigoInternoCliente) select ac.Cliente).FirstOrDefault().Codigo,
-                        (from ac in r.ArticulosClientes where ac.CodigoInterno.Contains(codigoInternoCliente) select ac.Cliente).FirstOrDefault().RazonSocial,
-                        r.RecuperarHistorialPrecioActual().Moneda.Codigo, r.RecuperarHistorialPrecioActual().Moneda.Descripcion); return dt; //VER, como resolver que haya mas de uno que contenga el codigointernocliente
-                });
+                    foreach (ArticuloCliente artCli in articulo.ArticulosClientes.Where(x => x.CodigoInterno.Contains(codigoInternoCliente)))
+                    {
+                        tablaArticulo.Rows.Add(articulo.Codigo, articulo.DescripcionCorta, articulo.DescripcionLarga, articulo.Marca,
+                        articulo.RecuperarHistorialPrecioActual().Precio, articulo.NombreImagen,
+                        artCli.CodigoInterno, artCli.Codigo, artCli.Cliente.RazonSocial,
+                        articulo.RecuperarHistorialPrecioActual().Moneda.Codigo, articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion);
+                    }
+                }
 
                 return tablaArticulo;
             }
@@ -683,10 +684,19 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulosProveedores.Columns.Add("codigoProveedor");
                 tablaArticulosProveedores.Columns.Add("razonSocialProveedor");
                 tablaArticulosProveedores.Columns.Add("costoActual");
+                tablaArticulosProveedores.Columns.Add("tipoDocumento");
+                tablaArticulosProveedores.Columns.Add("tipoMoneda");
+                tablaArticulosProveedores.Columns.Add("nroDocumento");
 
                 Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
 
-                articulo.ArticulosProveedor.Aggregate(tablaArticulosProveedores, (dt, r) => { dt.Rows.Add(r.Codigo, r.Proveedor.Codigo, r.Proveedor.RazonSocial, r.HistorialesCosto.Where(x => x.FechaHasta == null).Select(x => x.Costo).SingleOrDefault()); return dt; });
+                articulo.ArticulosProveedor.Aggregate(tablaArticulosProveedores, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.Proveedor.Codigo, r.Proveedor.RazonSocial,
+                        r.HistorialesCosto.Where(x => x.FechaHasta == null).Select(x => x.Costo).SingleOrDefault(),
+                        r.Proveedor.TipoDocumento.Descripcion, r.HistorialesCosto.Where(x => x.FechaHasta == null).Select(x => x.Moneda.Descripcion).SingleOrDefault(),
+                        r.Proveedor.NumeroDocumento); return dt;
+                });
 
                 return tablaArticulosProveedores;
             }

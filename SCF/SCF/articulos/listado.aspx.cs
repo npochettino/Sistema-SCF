@@ -27,7 +27,6 @@ namespace SCF.articulos
             {
                 gvArticulos.DataSource = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(txtCodigoCliente.Text);
                 gvArticulos.DataBind();
-                gvArticulos.Columns["codigoCliente"].Visible = false;
                 gvArticulos.Columns["razonSocialCliente"].Visible = true;
                 gvArticulos.Columns["codigoArticuloCliente"].Visible = true;
             }
@@ -96,7 +95,6 @@ namespace SCF.articulos
             gvArticulos.DataSource = ControladorGeneral.RecuperarArticuloPorCodigoInternoCliente(txtCodigoCliente.Text);
             gvArticulos.DataBind();
 
-            gvArticulos.Columns["codigoCliente"].Visible = true;
             gvArticulos.Columns["razonSocialCliente"].Visible = true;
             gvArticulos.Columns["codigoArticuloCliente"].Visible = true;
 
@@ -186,8 +184,8 @@ namespace SCF.articulos
 
         protected void btnBorrar_Click(object sender, EventArgs e)
         {
+            txtCodigoCliente.Text = string.Empty;
             loadGridArticulos();
-            gvArticulos.Columns["codigoCliente"].Visible = false;
             gvArticulos.Columns["razonSocialCliente"].Visible = false;
             gvArticulos.Columns["codigoArticuloCliente"].Visible = false;
         }
@@ -206,11 +204,13 @@ namespace SCF.articulos
 
         protected void btnRelacionArticuloProvevedor_Click(object sender, EventArgs e)
         {
-
+            int codigoArticulo = int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString());
             cbMonedaCosto.DataSource = ControladorGeneral.RecuperarTodasMonedas();
             cbMonedaCosto.DataBind();
             cbProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(false);
             cbProveedores.DataBind();
+            gvArticuloProveedor.DataSource = ControladorGeneral.RecuperarArticulosProveedoresPorArticulo(codigoArticulo);
+            gvArticuloProveedor.DataBind();
 
             pcRelacionArticuloProveedor.ShowOnPageLoad = true;
         }
@@ -235,22 +235,26 @@ namespace SCF.articulos
 
         #endregion
 
-        protected void pcRelacionArticuloProveedor_Unload(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void pcNuevaRelacionArticuloProveedor_Unload(object sender, EventArgs e)
-        {
-
-        }
-
         [WebMethod]
         public static string InsertarActualizarArticuloCliente(string codigoArticulo, string codigoArticuloCliente, int codigoCliente)
         {
             try
             {
                 ControladorGeneral.InsertarActualizarArticuloCliente(0, Convert.ToInt32(codigoArticulo), codigoArticuloCliente, codigoCliente);
+                return "ok";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [WebMethod]
+        public static string InsertarActualizarArticuloProveedor(string codigoArticulo, int codigoProveedor, string costo, int codigoMoneda)
+        {
+            try
+            {
+                ControladorGeneral.InsertarActualizarArticuloProveedor(0, Convert.ToInt32(codigoArticulo), codigoProveedor, Convert.ToDouble(costo), codigoMoneda);
                 return "ok";
             }
             catch (Exception ex)
