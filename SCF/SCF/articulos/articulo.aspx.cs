@@ -45,8 +45,8 @@ namespace SCF.articulos
 
             cbMonedaPrecio.DataSource = dtTipoMoneda;
             cbMonedaPrecio.DataBind();
-            cbMonedaCosto.DataSource = dtTipoMoneda;
-            cbMonedaCosto.DataBind();
+            //cbMonedaCosto.DataSource = dtTipoMoneda;
+            //cbMonedaCosto.DataBind();
         }
 
         private void CargarComboUnidadDeMedida()
@@ -89,7 +89,7 @@ namespace SCF.articulos
 
         protected void btnEditarArticuloProveedor_Click(object sender, EventArgs e)
         {
-            pcArticuloProveedor.ShowOnPageLoad = true;
+            //pcArticuloProveedor.ShowOnPageLoad = true;
         }
 
         protected void btnEliminarArticuloProveedor_Click(object sender, EventArgs e)
@@ -101,7 +101,7 @@ namespace SCF.articulos
         {
             oArticuloActual = (Articulo)Session["articuloActual"];
 
-            ControladorGeneral.InsertarActualizarArticuloProveedor(0, oArticuloActual.Codigo, (int)cbProveedores.SelectedItem.Value, double.Parse(txtCosto.Value.ToString()), Convert.ToInt32(cbMonedaCosto.SelectedItem.Value.ToString()));
+            //ControladorGeneral.InsertarActualizarArticuloProveedor(0, oArticuloActual.Codigo, (int)cbProveedores.SelectedItem.Value, double.Parse(txtCosto.Value.ToString()), Convert.ToInt32(cbMonedaCosto.SelectedItem.Value.ToString()));
         }
 
         protected void btnEditarPrecio_Click(object sender, EventArgs e)
@@ -136,14 +136,14 @@ namespace SCF.articulos
 
         protected void btnNuevoArticuloProveedor_Click(object sender, EventArgs e)
         {
-            CargarComboProveedores();
-            pcArticuloProveedor.ShowOnPageLoad = true;
+           // CargarComboProveedores();
+           // pcArticuloProveedor.ShowOnPageLoad = true;
         }
 
         private void CargarComboProveedores()
         {
-            cbProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(false);
-            cbProveedores.DataBind();
+            //cbProveedores.DataSource = ControladorGeneral.RecuperarTodosProveedores(false);
+            //cbProveedores.DataBind();
         }
     }
 }

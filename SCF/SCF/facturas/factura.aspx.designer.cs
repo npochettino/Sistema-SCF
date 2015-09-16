@@ -58,15 +58,6 @@ namespace SCF.facturas {
         protected global::DevExpress.Web.ASPxGridLookup.ASPxGridLookup gluRemito;
         
         /// <summary>
-        /// Control cbRemito.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbRemito;
-        
-        /// <summary>
         /// Control cbTipoMoneda.
         /// </summary>
         /// <remarks>
@@ -83,6 +74,15 @@ namespace SCF.facturas {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbConcepto;
+        
+        /// <summary>
+        /// Control cbCondicionVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbCondicionVenta;
         
         /// <summary>
         /// Control txtRazonSocial.
@@ -139,13 +139,13 @@ namespace SCF.facturas {
         protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbCondicionIVA;
         
         /// <summary>
-        /// Control lblTotal.
+        /// Control txtTotal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxLabel lblTotal;
+        protected global::DevExpress.Web.ASPxEditors.ASPxLabel txtTotal;
         
         /// <summary>
         /// Control btnEmitir.
@@ -346,22 +346,22 @@ namespace SCF.facturas {
         protected global::System.Web.UI.WebControls.Label lblFechaVencimientoCAE;
         
         /// <summary>
-        /// Control lblImporteIVA.
+        /// Control lblImporteSubtotal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblImporteIVA;
+        protected global::System.Web.UI.WebControls.Label lblImporteSubtotal;
         
         /// <summary>
-        /// Control lblValidarTotal.
+        /// Control lblImporteTotal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValidarTotal;
+        protected global::System.Web.UI.WebControls.Label lblImporteTotal;
         
         /// <summary>
         /// Control btnEmitirComprobante.

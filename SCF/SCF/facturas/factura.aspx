@@ -90,14 +90,18 @@
                                             <div class="form-group">
                                                 <label class="control-label">Remito</label>
                                                 <dx:ASPxGridLookup ID="gluRemito" runat="server" SelectionMode="Multiple" CssClass="form-control"
-                                                    ClientInstanceName="gridLookup" Theme="Metropolis"
-                                                    KeyFieldName="codigoEntrega" Width="100%" TextFormatString="{0}" OnValueChanged="gluRemito_ValueChanged" MultiTextSeparator=", " OnTextChanged="gluRemito_TextChanged">
+                                                    ClientInstanceName="gridLookup" Theme="Metropolis" AutoPostBack="false"
+                                                    KeyFieldName="codigoEntrega" Width="100%" TextFormatString="{1}" MultiTextSeparator=", " OnTextChanged="gluRemito_TextChanged">
                                                     <Columns>
                                                         <dx:GridViewCommandColumn ShowSelectCheckbox="True" Width="100%" Caption=" " />
+                                                        <dx:GridViewDataColumn FieldName="codigoEntrega" Visible="false" Caption="Remito" Width="100%" />
                                                         <dx:GridViewDataColumn FieldName="numeroRemito" Caption="Remito" Width="100%" />
+                                                        <dx:GridViewDataColumn FieldName="razonSocialCliente" Caption="Cliente" Width="100%" />
+                                                        <dx:GridViewDataColumn FieldName="cuitCliente" Caption="CUIT" Width="100%" />
                                                         <%--<dx:GridViewDataColumn FieldName="cuil" Caption="CUIL" />--%>
                                                     </Columns>
                                                     <GridViewProperties>
+                                                        
                                                         <Settings ShowFilterRow="True" ShowStatusBar="Visible" />
                                                     </GridViewProperties>
                                                 </dx:ASPxGridLookup>
@@ -132,6 +136,20 @@
                                         </div>
                                         <!--/span-->
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Condición de Venta</label>
+                                                <dx:ASPxComboBox ID="cbCondicionVenta" runat="server" ValueField="codigoCondicionVenta" TextField="descripcion" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
+                                                    <Items>
+                                                        <dx:ListEditItem Text="15 Días" Value="1" />
+                                                        <dx:ListEditItem Text="30 Días" Value="2" />
+                                                    </Items>
+                                                </dx:ASPxComboBox>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>                                           
                                     <!--/row-->
 
                                     <!-- BEGIN ROW Detalle del cliente-->
@@ -211,7 +229,7 @@
                                                                         </dx:ASPxSpinEdit>
                                                                     </DataItemTemplate>
                                                                 </dx:GridViewDataSpinEditColumn>
-                                                                
+
                                                                 <dx:GridViewDataSpinEditColumn Caption="Importe" Width="100px" VisibleIndex="4" FieldName="precio">
                                                                     <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
@@ -282,7 +300,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3">TOTAL</label>
                                                         <div class="col-md-9">
-                                                            <dx:ASPxLabel ID="lblTotal" runat="server" Text="123123"></dx:ASPxLabel>
+                                                            <dx:ASPxLabel ID="txtTotal" runat="server" Text="123123"></dx:ASPxLabel>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -513,10 +531,10 @@
                                                                 <!--/span-->
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">I.V.A: (21%)</label>
+                                                                        <label class="control-label col-md-3">Subtotal</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                <asp:Label ID="lblImporteIVA" runat="server"></asp:Label>
+                                                                                <asp:Label ID="lblImporteSubtotal" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -533,7 +551,7 @@
                                                                         <label class="control-label col-md-3">TOTAL:</label>
                                                                         <div class="col-md-9">
                                                                             <p class="form-control-static">
-                                                                                <asp:Label ID="lblValidarTotal" runat="server"></asp:Label>
+                                                                                <asp:Label ID="lblImporteTotal" runat="server"></asp:Label>
                                                                             </p>
                                                                         </div>
                                                                     </div>

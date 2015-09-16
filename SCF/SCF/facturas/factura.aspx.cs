@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BibliotecaSCF.ClasesComplementarias;
 using BibliotecaSCF.Controladores;
+using DevExpress.Web.ASPxGridView;
 
 namespace SCF.facturas
 {
@@ -52,16 +53,6 @@ namespace SCF.facturas
             gluRemito.DataBind();
         }
 
-        protected void cbRemito_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            gluRemito.GridView.GetRowValues(gluRemito.GridView.FocusedRowIndex, "numeroRemito");
-        }
-
-        protected void gluRemito_ValueChanged(object sender, EventArgs e)
-        {
-            gluRemito.GridView.GetRowValues(gluRemito.GridView.FocusedRowIndex, "numeroRemito");
-        }
-
         //Retorna el ultimo comprobante autorizado para el tipo de comprobante / cuit / punto de venta ingresado/ Tipo de Emisión
         //Enviar CUIT,PtoVta,CbteTipo
         protected void btnUltimoNroComprobante_Click(object sender, EventArgs e)
@@ -75,24 +66,54 @@ namespace SCF.facturas
             {
  
             }
-            
         }
 
         protected void btnEmitir_Click(object sender, EventArgs e)
         {
+            lblNroFacturaAEmitir.Text = txtNroFactura.Text;
+            lblCondicionVenta.Text = cbCondicionVenta.Text;
+            lblDomicilio.Text = "";
+            lblNombreApellidoCliente.Text = txtRazonSocial.Text;
+            lblNroRemitos.Text = gluRemito.Text;
+            lblNumeroDocumento.Text = txtNroDocumento.Text;
+            lblTipoDocumento.Text = "CUIT";
+            lblFechaVencimientoCAE.Text = "";
+            lblNroCAE.Text = "";
+            lblImporteSubtotal.Text = txtSubtotal.Text;
+            lblImporteTotal.Text = txtTotal.Text;
+
             pcValidarComprobante.ShowOnPageLoad = true;
-            
         }
         
         protected void btnEmitirComprobante_Click(object sender, EventArgs e)
         {
-            //gluRemito.GridView.GetRowValues(gluRemito.GridView.FocusedRowIndex, "Mobile");
             //ControladorGeneral.InsertarActualizarFactura(0,txtNroFactura.Text,txtFechaFacturacion.Text,
             
         }
 
         protected void gluRemito_TextChanged(object sender, EventArgs e)
         {
+            string[] myFields = { "codigoEntrega","numeroRemito", "razonSocialCliente", "cuitCliente" };
+            List<Object> nroRemitosActual = gluRemito.GridView.GetSelectedFieldValues(myFields);
+
+            if (nroRemitosActual.Count > 0)
+            {
+                foreach (object[] item in nroRemitosActual)
+                {
+                    txtRazonSocial.Text = item[2].ToString();
+                    txtNroDocumento.Text = item[3].ToString();
+                }
+            }
+            
+            CargarItemsDeLaFactura(nroRemitosActual);
+        }
+
+        private void CargarItemsDeLaFactura(List<object> nroRemitos)
+        {
+            foreach (object[] item in nroRemitos)
+            {
+                //DataTable dtItemsFactura = ControladorGeneral.RecuperarItemsEntrega(Convert.ToInt32(item[0].ToString()));
+            }
             
         }
     }

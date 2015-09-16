@@ -23,7 +23,7 @@ namespace SCF
             {
                 Session.Add("usuarioLogueado", dtUsuarioActual.Rows[0][1].ToString());
                 Response.Redirect("index.aspx");
-            }
+            }            
             else
             {
                 divAlertLogin.Visible = true;

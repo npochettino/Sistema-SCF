@@ -193,12 +193,7 @@
                                                             <label class="control-label col-md-3">Marca</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtMarca" placeholder="Marca" runat="server" class="form-control">
-                                                            &nbsp;</input>
-                                                                </input>
-&nbsp;</input></input></input></input></input></input></input></input></input>&nbsp;</input></input></input></input></input></input> &nbsp; &nbsp; </input></input>
-                                                                </input>
-                                                                &nbsp;&nbsp;</input></input></input>
-                                                            </div>
+                                                           </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -206,14 +201,8 @@
                                                             <label class="control-label col-md-3">Unidad</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
-                                                            &nbsp;</input>
-                                                                </input>
-&nbsp;</input></input></input></input></input></input></input></input></input>&nbsp;</input></input></input></input></input></input> &nbsp; &nbsp; </input></input>
-                                                                </input>
-                                                                &nbsp;&nbsp;</input></input></input>
-                                                            </div>
+                                                           </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -222,41 +211,10 @@
                                                         <div class="col-md-9">
                                                             <div class="input-group">
                                                                 <input type="text" id="txtPrecioActual" placeholder="Precio" runat="server" class="form-control">
-                                                                    <span class="input-group-btn">
-                                                                        <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
-                                                                            <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
-                                                                    </span>
-                                                                    &nbsp;</input>
-                                                                </input>
-&nbsp;</input></input></input></input></input><span class="input-group-btn">
-    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-    </button>
-</span></input> </input> </input>
-                                                                </input>
                                                                 <span class="input-group-btn">
-                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                                    </button>
-                                                                </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
-                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                                    </button>
-                                                                </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
-                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                                    </button>
-                                                                </span>&nbsp; </input></input>
-                                                                </input>
-                                                                <span class="input-group-btn">
-                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                                    </button>
-                                                                </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
-                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
-                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
-                                                                    </button>
-                                                                </span>
+                                                                    <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
+                                                                </span>                                                         
                                                             </div>
                                                         </div>
                                                     </div>
@@ -265,12 +223,7 @@
                                                             <label class="control-label col-md-3">Moneda</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTipoDeCambio" placeholder="Tipo de Cambio" runat="server" class="form-control">
-                                                            &nbsp;</input>
-                                                                </input>
-&nbsp;</input></input></input></input></input></input></input></input></input>&nbsp;</input></input></input></input></input></input> &nbsp; &nbsp; </input></input>
-                                                                </input>
-                                                                &nbsp;&nbsp;</input></input></input>
-                                                            </div>
+                                                           </div>
                                                         </div>
 
                                                     </div>
