@@ -1243,33 +1243,35 @@ namespace BibliotecaSCF.Controladores
                     }
 
                     string descripcionCorta = fila["DESCRIPCION"].ToString();
-
-                    if (descripcionCorta == "FLEXIBLE ACERO GALVANIZADO           *I*")
-                    {
-                        int a = 0;
-                    }
                     string codigoInterno = fila["PLANTA"].ToString();
 
                     Articulo articulo = CatalogoArticulo.RecuperarPorClienteYCodigoInternoCliente(codigoInterno, cm.Cliente.Codigo, nhSesion);
 
                     if (articulo == null)
                     {
-                        articulo = CatalogoArticulo.RecuperarPor(x => x.DescripcionCorta == descripcionCorta, nhSesion);
+                        articulo = new Articulo();
+                        articulo.DescripcionCorta = descripcionCorta;
+                        articulo.DescripcionLarga = string.Empty;
+                        articulo.Marca = string.Empty;
+                        articulo.NombreImagen = string.Empty;
+                        articulo.UnidadMedida = CatalogoUnidadMedida.RecuperarPor(x => x.Abreviatura == fila["MEDIDA"].ToString(), nhSesion);
 
-                        if (articulo == null)
+                        if (articulo.UnidadMedida == null)
                         {
-                            articulo = new Articulo();
-                            articulo.DescripcionCorta = descripcionCorta;
-                            articulo.DescripcionLarga = string.Empty;
-                            articulo.Marca = string.Empty;
-                            articulo.NombreImagen = string.Empty;
-                            articulo.UnidadMedida = CatalogoUnidadMedida.RecuperarPor(x => x.Abreviatura == fila["MEDIDA"].ToString(), nhSesion);
-
-                            if (articulo.UnidadMedida == null)
-                            {
-                                return "No existe la unidad de medida: " + fila["MEDIDA"].ToString();
-                            }
+                            return "No existe la unidad de medida: " + fila["MEDIDA"].ToString();
                         }
+                    }
+
+                    HistorialPrecio hist = (from h in articulo.HistorialesPrecio where h.FechaHasta == null select h).SingleOrDefault();
+                    if (hist == null)
+                    {
+                        hist = new HistorialPrecio();
+                        hist.FechaDesde = DateTime.Now;
+                        hist.FechaHasta = null;
+                        hist.Moneda = CatalogoMoneda.RecuperarPor(x => x.Abreviatura == fila["MONEDA"].ToString(), nhSesion);
+                        hist.Precio = Convert.ToDouble(fila["PRECIO"]);
+
+                        articulo.HistorialesPrecio.Add(hist);
                     }
 
                     ArticuloCliente artCl = (from a in articulo.ArticulosClientes where a.CodigoInterno == codigoInterno && a.Cliente.Codigo == cm.Cliente.Codigo select a).SingleOrDefault();
@@ -1293,9 +1295,9 @@ namespace BibliotecaSCF.Controladores
 
                     itemCM.Precio = Convert.ToDouble(fila["PRECIO"]);
                     itemCM.Posicion = Convert.ToInt32(fila["POSICION"]);
-                    itemCM.Moneda = CatalogoMoneda.RecuperarPor(x => x.Abreviatura == fila["MONEDA"].ToString(), nhSesion);
+                    itemCM.TipoMoneda = CatalogoMoneda.RecuperarPor(x => x.Abreviatura == fila["MONEDA"].ToString(), nhSesion);
 
-                    if (itemCM.Moneda == null)
+                    if (itemCM.TipoMoneda == null)
                     {
                         return "No existe moneda: " + fila["MONEDA"].ToString();
                     }

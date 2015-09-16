@@ -92,16 +92,13 @@
                                         <dx:GridViewDataTextColumn FieldName="precio" Caption="Precio" VisibleIndex="5">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="descripcionMoneda" Caption="Moneda" VisibleIndex="5">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="codigoCliente" Visible="false" VisibleIndex="6">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="razonSocialCliente" Caption="Cliente" VisibleIndex="7" Visible="false">
-                                            <Settings AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="unidadMedida" Caption="Cliente" VisibleIndex="8" Visible="false">
-                                            <Settings AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="tipoMoneda" Caption="Cliente" VisibleIndex="9" Visible="false">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
                                     </Columns>

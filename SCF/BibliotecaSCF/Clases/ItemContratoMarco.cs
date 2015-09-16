@@ -13,6 +13,6 @@ namespace BibliotecaSCF.Clases
         public virtual int Posicion { get; set; }
 
         public virtual Articulo Articulo { get; set; }
-        public virtual TipoMoneda Moneda { get; set; }
+        public virtual TipoMoneda TipoMoneda { get; set; }
     }
 }
