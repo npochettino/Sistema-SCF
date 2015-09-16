@@ -254,7 +254,12 @@ namespace SCF.nota_pedido
             fila["cantidad"] = Convert.ToInt32(e.NewValues["cantidad"]);
 
             DateTime a = new DateTime();
-            a = Convert.ToDateTime(e.NewValues["fechaEntrega"].ToString(), System.Globalization.CultureInfo.GetCultureInfo("en-Us").DateTimeFormat);
+
+            if (!DateTime.TryParse(e.NewValues["fechaEntrega"].ToString(), out a))
+            {
+                a = Convert.ToDateTime(e.NewValues["fechaEntrega"].ToString(), System.Globalization.CultureInfo.GetCultureInfo("en-Us").DateTimeFormat);
+
+            }
             fila["precio"] = Convert.ToInt32(e.NewValues["precio"]);
 
             fila["fechaEntrega"] = a;
