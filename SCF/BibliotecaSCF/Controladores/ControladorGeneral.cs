@@ -1731,6 +1731,13 @@ namespace BibliotecaSCF.Controladores
                 tablaItemsEntrega.Columns.Add("codigoProveedor");
                 tablaItemsEntrega.Columns.Add("razonSocialProveedor");
                 tablaItemsEntrega.Columns.Add("codigoItemNotaDePedido");
+                tablaItemsEntrega.Columns.Add("posicion");
+                tablaItemsEntrega.Columns.Add("codigoArticuloCliente");
+                tablaItemsEntrega.Columns.Add("codigoNotaDePedido");
+                tablaItemsEntrega.Columns.Add("numeroNotaDePedido");
+                tablaItemsEntrega.Columns.Add("codigoSCF");
+                tablaItemsEntrega.Columns.Add("precioUnitario");
+                tablaItemsEntrega.Columns.Add("precioTotal");
 
                 Entrega entrega = CatalogoEntrega.RecuperarPorCodigo(codigoEntrega, nhSesion);
 
@@ -1738,7 +1745,11 @@ namespace BibliotecaSCF.Controladores
                 {
                     entrega.ItemsEntrega.Aggregate(tablaItemsEntrega, (dt, r) =>
                     {
-                        dt.Rows.Add(r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.CantidadAEntregar, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo); return dt;
+                        dt.Rows.Add(r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.CantidadAEntregar,
+                            r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, r.ItemNotaDePedido.Posicion,
+                            r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ? 
+                            r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
+                            entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, r.ItemNotaDePedido.Precio * r.ItemNotaDePedido.CantidadPedida); return dt;
                     });
                 }
 

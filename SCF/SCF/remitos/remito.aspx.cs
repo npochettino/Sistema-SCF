@@ -166,9 +166,17 @@ namespace SCF.remitos
                 codigoEntrega = Convert.ToInt32(tablaEntrega.Rows[0]["codigoEntrega"]);
             }
 
-            ControladorGeneral.InsertarActualizarEntrega(codigoEntrega, Convert.ToDateTime(txtFechaEmision.Value), Convert.ToInt32(cbNotaDePedido.Value), Convert.ToInt32(txtCodigoRemito.Text), txtObservacion.InnerText, tablaItemsEntrega);
+            if (txtFechaEmision.Value.ToString() == "" || cbNotaDePedido.SelectedIndex < 0 || txtCodigoRemito.Text == "" || tablaItemsEntrega.Rows.Count == 0)
+            {
+                pcError.ShowOnPageLoad = true;
+                lblError.Text = "Debe completar todos los campos.";
+            }
+            else
+            {
+                ControladorGeneral.InsertarActualizarEntrega(codigoEntrega, Convert.ToDateTime(txtFechaEmision.Value), Convert.ToInt32(cbNotaDePedido.Value), Convert.ToInt32(txtCodigoRemito.Text), txtObservacion.InnerText, tablaItemsEntrega);
 
-            Response.Redirect("listado.aspx");
+                Response.Redirect("listado.aspx");
+            }
         }
 
         protected void cbNotaDePedido_SelectedIndexChanged(object sender, EventArgs e)

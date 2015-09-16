@@ -148,11 +148,14 @@ namespace SCF.nota_pedido
         private int getContratoMarco(int codigoArticulo)
         {
             int t = 0;
-            DataTable tablaContratoMarco = ControladorGeneral.RecuperarContratosMarcoVigentePorClienteYArticulo(int.Parse(cbClientes.SelectedItem.Value.ToString()), codigoArticulo);
-            if (tablaContratoMarco.Rows.Count > 0)
+            if (cbClientes.SelectedItem != null)
             {
-                t = Convert.ToInt16(tablaContratoMarco.Rows[0]["codigoContratoMarco"]);
+                DataTable tablaContratoMarco = ControladorGeneral.RecuperarContratosMarcoVigentePorClienteYArticulo(int.Parse(cbClientes.SelectedItem.Value.ToString()), codigoArticulo);
+                if (tablaContratoMarco.Rows.Count > 0)
+                {
+                    t = Convert.ToInt16(tablaContratoMarco.Rows[0]["codigoContratoMarco"]);
 
+                }
             }
             return t;
         }
@@ -205,7 +208,7 @@ namespace SCF.nota_pedido
 
             if (cbClientes.SelectedItem != null && !txtNroInternoCliente.Text.Equals(""))
             {
-                ControladorGeneral.InsertarActualizarNotaDePedido(codigoNotaDePedido, txtNroInternoCliente.Text.ToString(), DateTime.Parse(txtFechaEmision.Value.ToString()), txtObservacion.InnerText.ToString(), (int)cbContratoMarco.SelectedItem.Value, (int)cbClientes.SelectedItem.Value, tablaItemsNotaDePedido);
+                ControladorGeneral.InsertarActualizarNotaDePedido(codigoNotaDePedido, txtNroInternoCliente.Text.ToString(), DateTime.Parse(txtFechaEmision.Value.ToString()), txtObservacion.InnerText.ToString(), cbContratoMarco.SelectedItem == null ? 0 : Convert.ToInt32(cbContratoMarco.SelectedItem.Value), (int)cbClientes.SelectedItem.Value, tablaItemsNotaDePedido);
                 Response.Redirect("listado.aspx");
             }
         }
@@ -260,7 +263,7 @@ namespace SCF.nota_pedido
                 a = Convert.ToDateTime(e.NewValues["fechaEntrega"].ToString(), System.Globalization.CultureInfo.GetCultureInfo("en-Us").DateTimeFormat);
 
             }
-            fila["precio"] = Convert.ToInt32(e.NewValues["precio"]);
+            fila["precio"] = Convert.ToDouble(e.NewValues["precio"]);
 
             fila["fechaEntrega"] = a;
             Session["tablaItemsNotaDePedido"] = tablaItemsNotaDePedido;
@@ -284,6 +287,5 @@ namespace SCF.nota_pedido
             CargarGrillaArticulosPorCliente();
             CargarComboContratoMarco((int)cbClientes.SelectedItem.Value);
         }
-
     }
 }
