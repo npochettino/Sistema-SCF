@@ -263,7 +263,7 @@ namespace BibliotecaSCF.Controladores
 
         #region Cliente
 
-        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno, int codigoTipoDocumento)
+        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno, int codigoTipoDocumento, string codigoSCF)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -296,6 +296,7 @@ namespace BibliotecaSCF.Controladores
                 cliente.IsInactivo = false;
                 cliente.NumeroInterno = numeroInterno;
                 cliente.TipoDocumento = CatalogoTipoDocumento.RecuperarPorCodigo(codigoTipoDocumento, nhSesion);
+                cliente.CodigoSCF = codigoSCF;
 
                 CatalogoCliente.InsertarActualizar(cliente, nhSesion);
             }
@@ -325,19 +326,22 @@ namespace BibliotecaSCF.Controladores
                 tablaClientes.Columns.Add("telefono");
                 tablaClientes.Columns.Add("mail");
                 tablaClientes.Columns.Add("cuil");
+                tablaClientes.Columns.Add("tipoDocumento");
+                tablaClientes.Columns.Add("codigoTipoDocumento");
                 tablaClientes.Columns.Add("personaContacto");
                 tablaClientes.Columns.Add("numeroCuenta");
                 tablaClientes.Columns.Add("banco");
                 tablaClientes.Columns.Add("cbu");
                 tablaClientes.Columns.Add("observaciones");
                 tablaClientes.Columns.Add("fax");
+                tablaClientes.Columns.Add("codigoSCF");
 
                 List<Cliente> listaClientes = CatalogoCliente.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
 
                 listaClientes.Aggregate(tablaClientes, (dt, r) =>
                 {
-                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento,
-                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax); return dt;
+                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento, r.TipoDocumento.Descripcion,
+                        r.TipoDocumento.Codigo, r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax, r.CodigoSCF); return dt;
                 });
 
                 return tablaClientes;
@@ -643,18 +647,18 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulo.Columns.Add("codigoMoneda");
                 tablaArticulo.Columns.Add("descripcionMoneda");
 
-                List<Articulo> listaArticulos = CatalogoArticulo.RecuperarPorCodigoCliente(codigoCliente, nhSesion);
-                Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+                List<Articulo> listaArticulos = CatalogoArticulo.RecuperarTodos(nhSesion);
 
-                List<Articulo> a = (from b in listaArticulos where b.ArticulosClientes.Count > 1 select b).ToList();
-
-                listaArticulos.Aggregate(tablaArticulo, (dt, r) =>
+                foreach (Articulo articulo in listaArticulos)
                 {
-                    dt.Rows.Add(r.Codigo, r.DescripcionCorta, r.DescripcionLarga, r.Marca,
-                        r.RecuperarHistorialPrecioActual().Precio, r.NombreImagen,
-                        (from ac in r.ArticulosClientes where ac.Cliente.Codigo == codigoCliente select ac).SingleOrDefault().CodigoInterno,
-                        cliente.Codigo, cliente.RazonSocial, r.RecuperarHistorialPrecioActual().Moneda.Codigo, r.RecuperarHistorialPrecioActual().Moneda.Descripcion); return dt;
-                });
+                    ArticuloCliente artCli = (from a in articulo.ArticulosClientes where a.Cliente.Codigo == codigoCliente select a).FirstOrDefault();
+
+                    tablaArticulo.Rows.Add(articulo.Codigo, articulo.DescripcionCorta, articulo.DescripcionLarga, articulo.Marca,
+                        articulo.RecuperarHistorialPrecioActual().Precio, articulo.NombreImagen,
+                        artCli == null ? string.Empty : artCli.CodigoInterno, artCli == null ? string.Empty : artCli.Cliente.Codigo.ToString(),
+                        artCli == null ? string.Empty : artCli.Cliente.RazonSocial, articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
+                        articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion);
+                }
 
                 return tablaArticulo;
             }

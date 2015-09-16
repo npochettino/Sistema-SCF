@@ -58,13 +58,16 @@ namespace SCF.clientes
             clienteActual.Mail = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "mail").ToString();
             clienteActual.Provincia = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "provincia").ToString();
             clienteActual.RazonSocial = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "razonSocial").ToString();
-            clienteActual.Telefono = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "telefono").ToString() + "/" + gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "fax").ToString();
+            clienteActual.Telefono = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "telefono").ToString();
             clienteActual.Banco = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "banco").ToString();
             clienteActual.Cbu = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "cbu").ToString();
             clienteActual.PersonaContacto = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "personaContacto").ToString();
             clienteActual.NumeroCuenta = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "numeroCuenta").ToString();
             clienteActual.Observaciones = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "observaciones").ToString();
             clienteActual.Fax = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "fax").ToString();
+            clienteActual.TipoDocumento = new TipoDocumento();
+            clienteActual.TipoDocumento.Codigo = Convert.ToInt32(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoTipoDocumento"));
+            clienteActual.TipoDocumento.Descripcion = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "tipoDocumento").ToString();
 
             Session.Add("clienteActual", clienteActual);
             Response.Redirect("cliente.aspx");

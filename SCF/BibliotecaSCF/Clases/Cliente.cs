@@ -24,6 +24,7 @@ namespace BibliotecaSCF.Clases
         public virtual string Cbu { get; set; }
         public virtual string Observaciones { get; set; }
         public virtual bool IsInactivo { get; set; }
+        public virtual string CodigoSCF { get; set; }
 
         public virtual TipoDocumento TipoDocumento { get; set; }
     }

@@ -147,8 +147,13 @@ namespace SCF.nota_pedido
 
         private int getContratoMarco(int codigoArticulo)
         {
-            int t = Convert.ToInt16(ControladorGeneral.RecuperarContratosMarcoVigentePorClienteYArticulo(int.Parse(cbClientes.SelectedItem.Value.ToString()), codigoArticulo).Rows[0]["codigoContratoMarco"]);
+            int t = 0;
+            DataTable tablaContratoMarco = ControladorGeneral.RecuperarContratosMarcoVigentePorClienteYArticulo(int.Parse(cbClientes.SelectedItem.Value.ToString()), codigoArticulo);
+            if (tablaContratoMarco.Rows.Count > 0)
+            {
+                t = Convert.ToInt16(tablaContratoMarco.Rows[0]["codigoContratoMarco"]);
 
+            }
             return t;
         }
 
@@ -249,10 +254,7 @@ namespace SCF.nota_pedido
             fila["cantidad"] = Convert.ToInt32(e.NewValues["cantidad"]);
 
             DateTime a = new DateTime();
-
-
             a = Convert.ToDateTime(e.NewValues["fechaEntrega"].ToString(), System.Globalization.CultureInfo.GetCultureInfo("en-Us").DateTimeFormat);
-
             fila["precio"] = Convert.ToInt32(e.NewValues["precio"]);
 
             fila["fechaEntrega"] = a;

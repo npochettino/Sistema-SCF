@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="cliente.aspx.cs" Inherits="SCF.clientes.cliente" %>
 
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPanel" TagPrefix="dx" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
@@ -46,24 +54,25 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Razón Social</label>
-                                                <input type="text" id="txtRazonSocial" runat="server" class="form-control" placeholder="Razón Social" >
+                                                <input type="text" id="txtRazonSocial" runat="server" class="form-control" placeholder="Razón Social">
                                             </div>
                                         </div>
                                         <!--/span-->
-                                         <!--/span-->
-                                         <div class="col-md-6">
+                                        <!--/span-->
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Persona de Contacto</label>
-                                                <input type="text" id="txtPersonaContacto" runat="server" class="form-control" placeholder="Persona de Contacto" >
+                                                <input type="text" id="txtPersonaContacto" runat="server" class="form-control" placeholder="Persona de Contacto">
                                             </div>
-                                        </div>                                        
+                                        </div>
                                     </div>
-                                    <div class="row">                                        
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Tipo Documento</label>
-                                                <asp:DropDownList CssClass="form-control" ID="ddlTipoDocumento" runat="server">
-                                                </asp:DropDownList>
+                                                <dx:aspxcombobox id="cbTipoDocumento" runat="server" dropdownstyle="DropDownList" cssclass="form-control" TextField="descripcion"
+                                                    ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" width="100%" enabletheming="True" theme="Metropolis" AutoPostBack="false">
+                                                </dx:aspxcombobox>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -79,14 +88,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Dirección</label>
-                                                <input type="text" id="txtDireccion" runat="server" class="form-control" placeholder="Direccion" >
+                                                <input type="text" id="txtDireccion" runat="server" class="form-control" placeholder="Direccion">
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="text" id="txtMail" placeholder="Mail" runat="server" class="form-control" >
+                                                <input type="text" id="txtMail" placeholder="Mail" runat="server" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -95,53 +104,53 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Provincia</label>
-                                                <input type="text" id="txtProvincia" runat="server" class="form-control" placeholder="Provincia" >
+                                                <input type="text" id="txtProvincia" runat="server" class="form-control" placeholder="Provincia">
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Ciudad</label>
-                                                <input type="text" id="txtCiudad" runat="server" class="form-control" placeholder="Ciudad" >
+                                                <input type="text" id="txtCiudad" runat="server" class="form-control" placeholder="Ciudad">
                                             </div>
                                         </div>
                                         <!--/span-->
                                     </div>
-                                    <div class="row">                                       
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Teléfono</label>
-                                                <input type="text" id="txtTelefono" runat="server" class="form-control" placeholder="Telefono" >
+                                                <input type="text" id="txtTelefono" runat="server" class="form-control" placeholder="Telefono">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Fax</label>
-                                                <input type="text" id="txtFax" runat="server" class="form-control" placeholder="Fax" >
+                                                <input type="text" id="txtFax" runat="server" class="form-control" placeholder="Fax">
                                             </div>
                                         </div>
-                                    </div> 
-                                    <div class="row">                                       
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Código con SCF</label>
-                                                <input type="text" id="txtCodigoConSCF" runat="server" class="form-control" placeholder="Codigo con SCF" >
+                                                <input type="text" id="txtCodigoConSCF" runat="server" class="form-control" placeholder="Codigo con SCF">
                                             </div>
                                         </div>
-                                    </div>                                    
-                                    <!--/row-->                  
+                                    </div>
+                                    <!--/row-->
                                     <h3 class="form-section">Datos Bancarios</h3>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Banco</label>
-                                                <input type="text" id="txtBanco" placeholder="Banco" runat="server" class="form-control" >
+                                                <input type="text" id="txtBanco" placeholder="Banco" runat="server" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">CBU</label>
-                                                <input type="text" id="txtCBU" runat="server" class="form-control" placeholder="CBU" >
+                                                <input type="text" id="txtCBU" runat="server" class="form-control" placeholder="CBU">
                                             </div>
                                         </div>
                                     </div>
@@ -149,7 +158,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nro. de Cuenta</label>
-                                                <input type="text" id="txtNroCuentaBancaria" placeholder="Nro. de Cuenta Bancaria" runat="server" class="form-control" >
+                                                <input type="text" id="txtNroCuentaBancaria" placeholder="Nro. de Cuenta Bancaria" runat="server" class="form-control">
                                             </div>
                                         </div>
                                     </div>
