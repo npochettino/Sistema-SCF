@@ -42,8 +42,9 @@ namespace SCF.facturas
         private void CargarNumeroDeFactura()
         {
             //Obtengo el Ultimo numero de factura y le sumo 1.
-            DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
-            txtNroFactura.Text = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["numeroFactura"]) + 1).ToString() : string.Empty;
+            //DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
+            //txtNroFactura.Text = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["numeroFactura"]) + 1).ToString() : string.Empty;
+            txtNroFactura.Text = "1";
         }
 
         private void CargarComboTipoMoneda()
@@ -105,15 +106,17 @@ namespace SCF.facturas
         
         protected void btnEmitirComprobante_Click(object sender, EventArgs e)
         {
-            object[] arrayListRemitos = (object[])Session["listRemitos"];
+            pcValidarComprobante.ShowOnPageLoad = false;
+
+            List<object> arrayListRemitos = (List<object>)Session["listRemitos"];
             List<int> codigoRemitos = new List<int>();
             foreach(object[] itmes in arrayListRemitos)
             {
                 codigoRemitos.Add(Convert.ToInt32(itmes[0].ToString()));
             }
 
-            ControladorGeneral.InsertarActualizarFactura(0, Convert.ToInt32(txtNroFactura.Text), Convert.ToDateTime(txtFechaFacturacion.Text), codigoRemitos, Convert.ToInt32(cbTipoMoneda.ValueField), Convert.ToInt32(cbConcepto.ValueField),
-               Convert.ToInt32(cbCondicionIVA.ValueField), Convert.ToDouble(txtSubtotal.Text), Convert.ToDouble(txtTotal.Text));
+            ControladorGeneral.InsertarActualizarFactura(0, Convert.ToInt32(txtNroFactura.Text), Convert.ToDateTime(txtFechaFacturacion.Text), codigoRemitos, Convert.ToInt32(cbTipoMoneda.Value), Convert.ToInt32(cbConcepto.Value),
+               Convert.ToInt32(cbCondicionIVA.Value), Convert.ToDouble(txtSubtotal.Text), Convert.ToDouble(txtTotal.Text));
 
             //Obtengo ultimo codigo de factura y emito la factura
             DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
@@ -172,12 +175,46 @@ namespace SCF.facturas
 
         private void CargarItemsDeLaFactura(List<object> nroRemitosActual)
         {
+            DataTable dtItemsFactura = new DataTable();
             foreach (object[] item in nroRemitosActual)
             {
-                gvItemsFactura.DataSource = ControladorGeneral.RecuperarItemsEntrega(Convert.ToInt32(item[0].ToString()));
-                gvItemsFactura.DataBind();
+                DataTable dtToMerge = new DataTable();
+                dtToMerge = ControladorGeneral.RecuperarItemsEntrega(Convert.ToInt32(item[0].ToString()));
+                dtItemsFactura.Merge(dtToMerge);
             }
+            gvItemsFactura.DataSource = dtItemsFactura;
+            gvItemsFactura.DataBind();
 
+            Session["dtItemsFacturaActual"] = dtItemsFactura;
+
+            CalcularImporteTotal();
+        }
+
+        private void CalcularImporteTotal()
+        {
+            DataTable dtItemsFacturaActual = (DataTable)Session["dtItemsFacturaActual"];
+            Double subtotal = 0;
+            Double total = 0;
+            for (int i = 0; i < dtItemsFacturaActual.Rows.Count; i++)
+            {
+                subtotal = subtotal + Convert.ToDouble(dtItemsFacturaActual.Rows[i]["precioTotal"].ToString());
+            }
+            txtSubtotal.Text = Convert.ToString(subtotal);
+            txtImporteIVA.Text = Convert.ToString(subtotal * 0.21);
+            txtTotal.Text = Convert.ToString(subtotal * 1.21);
+        }
+
+        protected void gvItemsFactura_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
+        {
+            //Double subtotalEditado = 0;
+            //for (int i = 0; i <= gvItemsFactura.VisibleRowCount; i++)
+            //{
+            //    subtotalEditado = subtotalEditado + Convert.ToDouble(gvItemsFactura.GetRowValues(i, "total"));
+            //    string test = Convert.ToString(gvItemsFactura.GetRowValues(i, "total"));
+            //}
+            //txtSubtotal.Text = Convert.ToString(subtotalEditado);
+            //txtImporteIVA.Text = Convert.ToString(subtotalEditado * 0.21);
+            //txtTotal.Text = Convert.ToString(subtotalEditado * 1.21);
         }
     }
 }

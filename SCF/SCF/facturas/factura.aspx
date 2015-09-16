@@ -126,7 +126,7 @@
                                                 <label class="control-label">Condición de Venta</label>
                                                 <dx:ASPxComboBox ID="cbCondicionVenta" runat="server" ValueField="codigoCondicionVenta" TextField="descripcion" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
                                                     <Items>
-                                                        <dx:ListEditItem Text="15 Días" Value="1" />
+                                                        <dx:ListEditItem Selected="true" Text="15 Días" Value="1" />
                                                         <dx:ListEditItem Text="30 Días" Value="2" />
                                                     </Items>
                                                 </dx:ASPxComboBox>
@@ -209,46 +209,55 @@
                                                 <div class="portlet-body">
                                                     <div id="chart_8" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ARTICULOS-->
-                                                        <dx:ASPxGridView ID="gvItemsFactura" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoItemNotaDePedido" Theme="Metropolis" Width="100%">
+                                                        <dx:ASPxGridView ID="gvItemsFactura" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoItemEntrega" OnRowUpdating="gvItemsFactura_RowUpdating" Theme="Metropolis" Width="100%">
                                                             <Columns>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="False" VisibleIndex="1">
+                                                                <dx:GridViewDataTextColumn FieldName="codigoItemEntrega" ReadOnly="True" Visible="False" VisibleIndex="1">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" Width="60px" VisibleIndex="4" FieldName="cantidad">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Desc. Corta">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-                                                                </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Descripción Corta">
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="cantidad" VisibleIndex="2" Visible="true" Caption="Cantidad">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="codigoProveedor" VisibleIndex="2" Visible="true" Caption="Cod. Prov">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" VisibleIndex="2" Visible="true" Caption="Proveedor">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="codigoItemNotaDePedido" VisibleIndex="2" Visible="false" Caption="Cod. Item NP">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="posicion" VisibleIndex="2" Visible="true" Caption="Posición">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="codigoArticuloCliente" VisibleIndex="2" Visible="true" Caption="Cod. Articulo Cliente">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="codigoNotaDePedido" VisibleIndex="2" Width="100px" Visible="false" Caption="Codigo NP">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="numeroNotaDePedido" VisibleIndex="2" Width="150px" Visible="true" Caption="N° NP">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="precioUnitario" VisibleIndex="2" Width="150px" Visible="true" Caption="Precio Unitario">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoInternoCliente" VisibleIndex="2" Width="100px" Visible="true" Caption="Codigo">
+                                                                <dx:GridViewDataTextColumn FieldName="precioTotal" VisibleIndex="2" Width="150px" Visible="true" Caption="Precio Total">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="posicion" VisibleIndex="2" Width="150px" Visible="true" Caption="Posición">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Precio Unitario" Width="100px" VisibleIndex="4" FieldName="precio">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-                                                                </dx:GridViewDataSpinEditColumn>
-
-                                                                <dx:GridViewDataSpinEditColumn Caption="Importe" Width="100px" VisibleIndex="4" FieldName="precio">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-                                                                </dx:GridViewDataSpinEditColumn>
+                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="8" />
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
                                                             <SettingsPager PageSize="10">
@@ -301,7 +310,7 @@
                                                             </dx:ASPxComboBox>
                                                         </label>
                                                         <div class="col-md-9">
-                                                            <label>ImporteIVA</label>
+                                                            <dx:ASPxLabel ID="txtImporteIVA" runat="server" Text="123123"></dx:ASPxLabel>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -574,7 +583,7 @@
                                                         <div class="form-actions top">
                                                             <div class="btn-set pull-right">
                                                                 <button type="button" onclick="pcValidarComprobante.Hide();" class="btn default">Cancelar</button>
-                                                                <asp:Button type="button" class="btn blue" runat="server" ID="btnEmitirComprobante" OnClick="btnEmitirComprobante_Click" Text="Emitir Comprobante" />
+                                                                <asp:Button type="button" class="btn blue" runat="server" ID="btnEmitirComprobante" UseSubmitBehavior="false" OnClick="btnEmitirComprobante_Click" Text="Emitir Comprobante" />
                                                             </div>
                                                         </div>
                                                     </div>

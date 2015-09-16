@@ -37,7 +37,7 @@ namespace SCF.transportes
             btnInactivarTransporte.Visible = false;
             btnActivarTransporte.Visible = true;
             btnEditar.Visible = false;
-            gvTransportes.DataSource = ControladorGeneral.RecuperarTodosClientes(true);
+            gvTransportes.DataSource = ControladorGeneral.RecuperarTodosTransportes(true);
             gvTransportes.DataBind();
         }
 
@@ -46,7 +46,7 @@ namespace SCF.transportes
             btnInactivarTransporte.Visible = true;
             btnEditar.Visible = true;
             btnActivarTransporte.Visible = false;
-            gvTransportes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
+            gvTransportes.DataSource = ControladorGeneral.RecuperarTodosTransportes(false);
             gvTransportes.DataBind();
         }
 
@@ -122,7 +122,7 @@ namespace SCF.transportes
             {
                 try
                 {
-                    ControladorGeneral.EliminarCliente(int.Parse(gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "codigoTransporte").ToString()));
+                    ControladorGeneral.EliminarTransporte(int.Parse(gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "codigoTransporte").ToString()));
                     pcConfirmarEliminarTransporte.ShowOnPageLoad = false;
                     loadGridTransportes();
                 }
