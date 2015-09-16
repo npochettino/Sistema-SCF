@@ -58,6 +58,41 @@
                             <!-- BEGIN FORM-->
                             <form action="#" class="horizontal-form">
                                 <div class="form-body">
+                                    <h3 class="form-section">Seleccione el Remito</h3>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <%--                                            <div class="input-group">
+                                                                <input type="text" id="txtPrecioActual" placeholder="Precio" runat="server" class="form-control">
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
+                                                                </span>                                                         
+                                                            </div>
+                                            <div class="form-group">--%>
+                                            <div class="input-group">
+                                                <%--<label class="control-label">Remito</label>--%>
+                                                <dx:ASPxGridLookup ID="gluRemito" runat="server" SelectionMode="Multiple" CssClass="form-control"
+                                                    ClientInstanceName="gridLookup" Theme="Metropolis" AutoPostBack="false"
+                                                    KeyFieldName="codigoEntrega" Width="100%" TextFormatString="{1}" MultiTextSeparator=", ">
+                                                    <Columns>
+                                                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" Width="100%" Caption=" " />
+                                                        <dx:GridViewDataColumn FieldName="codigoEntrega" Visible="false" Caption="Remito" Width="100%" />
+                                                        <dx:GridViewDataColumn FieldName="numeroRemito" Caption="Remito" Width="100%" />
+                                                        <dx:GridViewDataColumn FieldName="razonSocialCliente" Caption="Cliente" Width="100%" />
+                                                        <dx:GridViewDataColumn FieldName="cuitCliente" Caption="CUIT" Width="100%" />
+                                                        <%--<dx:GridViewDataColumn FieldName="cuil" Caption="CUIL" />--%>
+                                                    </Columns>
+                                                    <GridViewProperties>
+                                                        <Settings ShowFilterRow="True" ShowStatusBar="Visible" />
+                                                    </GridViewProperties>
+                                                </dx:ASPxGridLookup>
+                                                <span class="input-group-btn">
+                                                    <asp:Button class="btn blue" type="button" runat="server" ID="btnObtenerDatosRemito" OnClick="btnObtenerDatosRemito_Click" UseSubmitBehavior="false" Text="Ir" />
+                                                    
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <h3 class="form-section">Detalle de la Factura</h3>
                                     <div class="row">
                                         <div class="col-md-4">
@@ -88,23 +123,13 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="control-label">Remito</label>
-                                                <dx:ASPxGridLookup ID="gluRemito" runat="server" SelectionMode="Multiple" CssClass="form-control"
-                                                    ClientInstanceName="gridLookup" Theme="Metropolis" AutoPostBack="false"
-                                                    KeyFieldName="codigoEntrega" Width="100%" TextFormatString="{1}" MultiTextSeparator=", " OnTextChanged="gluRemito_TextChanged">
-                                                    <Columns>
-                                                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" Width="100%" Caption=" " />
-                                                        <dx:GridViewDataColumn FieldName="codigoEntrega" Visible="false" Caption="Remito" Width="100%" />
-                                                        <dx:GridViewDataColumn FieldName="numeroRemito" Caption="Remito" Width="100%" />
-                                                        <dx:GridViewDataColumn FieldName="razonSocialCliente" Caption="Cliente" Width="100%" />
-                                                        <dx:GridViewDataColumn FieldName="cuitCliente" Caption="CUIT" Width="100%" />
-                                                        <%--<dx:GridViewDataColumn FieldName="cuil" Caption="CUIL" />--%>
-                                                    </Columns>
-                                                    <GridViewProperties>
-                                                        
-                                                        <Settings ShowFilterRow="True" ShowStatusBar="Visible" />
-                                                    </GridViewProperties>
-                                                </dx:ASPxGridLookup>
+                                                <label class="control-label">Condición de Venta</label>
+                                                <dx:ASPxComboBox ID="cbCondicionVenta" runat="server" ValueField="codigoCondicionVenta" TextField="descripcion" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
+                                                    <Items>
+                                                        <dx:ListEditItem Text="15 Días" Value="1" />
+                                                        <dx:ListEditItem Text="30 Días" Value="2" />
+                                                    </Items>
+                                                </dx:ASPxComboBox>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -136,43 +161,29 @@
                                         </div>
                                         <!--/span-->
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="control-label">Condición de Venta</label>
-                                                <dx:ASPxComboBox ID="cbCondicionVenta" runat="server" ValueField="codigoCondicionVenta" TextField="descripcion" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
-                                                    <Items>
-                                                        <dx:ListEditItem Text="15 Días" Value="1" />
-                                                        <dx:ListEditItem Text="30 Días" Value="2" />
-                                                    </Items>
-                                                </dx:ASPxComboBox>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                    </div>                                           
                                     <!--/row-->
 
-                                    <!-- BEGIN ROW Detalle del cliente-->
-                                    <h3 class="form-section">Detalle del cliente</h3>
+                                    <!-- BEGIN ROW Detalle del cliente
+                                    <h3 class="form-section">Detalle del cliente</h3>-->
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Razon Social</label>
-                                                <asp:TextBox ID="txtRazonSocial" runat="server" CssClass="form-control" Width="100%" placeholder="Razon Social"></asp:TextBox>
+                                                <asp:TextBox ID="txtRazonSocial" runat="server" CssClass="form-control" Width="100%"></asp:TextBox>
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">CUIT</label>
-                                                <asp:TextBox runat="server" ID="txtNroDocumento" CssClass="form-control" Width="100%" placeholder="Nro documento"></asp:TextBox>
+                                                <asp:TextBox runat="server" ID="txtNroDocumento" CssClass="form-control" Width="100%"></asp:TextBox>
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Codigo con SCF</label>
-                                                <asp:TextBox ID="txtCodigoConSCF" runat="server" CssClass="form-control" Width="100%" placeholder="Codigo con SCF"></asp:TextBox>
+                                                <asp:TextBox ID="txtCodigoConSCF" runat="server" CssClass="form-control" Width="100%"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>

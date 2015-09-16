@@ -1865,6 +1865,84 @@ namespace BibliotecaSCF.Controladores
 
         #region Factura
 
+        public static DataTable RecuperarUltimaFactura()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaFacturas = new DataTable();
+                tablaFacturas.Columns.Add("codigoFactura");
+                tablaFacturas.Columns.Add("numeroFactura");
+                tablaFacturas.Columns.Add("fechaFacturacion");
+                tablaFacturas.Columns.Add("descripcionTipoComprobante");
+                tablaFacturas.Columns.Add("descripcionTipoMoneda");
+                tablaFacturas.Columns.Add("descripcionConcepto");
+                tablaFacturas.Columns.Add("descripcionIVA");
+                tablaFacturas.Columns.Add("subtotal");
+                tablaFacturas.Columns.Add("total");
+                tablaFacturas.Columns.Add("cae");
+                tablaFacturas.Columns.Add("fechaVencimientoCAE");
+
+                Factura factura = CatalogoFactura.RecuperarUltima(nhSesion);
+
+                if (factura != null)
+                {
+                    tablaFacturas.Rows.Add(new object[] { factura.Codigo, factura.NumeroFactura,factura.FechaFacturacion,factura.TipoComprobante.Descripcion, factura.Moneda.Descripcion, 
+                    factura.Concepto.Descripcion, factura.Iva.Descripcion,factura.Subtotal,factura.Total,factura.Cae,factura.FechaVencimiento });
+                }
+
+                return tablaFacturas;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarTodasFacturas()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaFacturas = new DataTable();
+                tablaFacturas.Columns.Add("codigoFactura");
+                tablaFacturas.Columns.Add("numeroFactura");
+                tablaFacturas.Columns.Add("fechaFacturacion");
+                tablaFacturas.Columns.Add("descripcionTipoComprobante");
+                tablaFacturas.Columns.Add("descripcionTipoMoneda");
+                tablaFacturas.Columns.Add("descripcionConcepto");
+                tablaFacturas.Columns.Add("descripcionIVA");
+                tablaFacturas.Columns.Add("subtotal");
+                tablaFacturas.Columns.Add("total");
+                tablaFacturas.Columns.Add("cae");
+                tablaFacturas.Columns.Add("fechaVencimientoCAE");
+
+
+                List<Factura> listaFacturas = CatalogoFactura.RecuperarTodos(nhSesion);
+
+                listaFacturas.Aggregate(tablaFacturas, (dt, r) => { dt.Rows.Add(r.Codigo, r.NumeroFactura,r.FechaFacturacion,r.TipoComprobante.Descripcion, r.Moneda.Descripcion, 
+                    r.Concepto.Descripcion, r.Iva.Descripcion,r.Subtotal,r.Total,r.Cae,r.FechaVencimiento); return dt; });
+
+                return tablaFacturas;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
         public static int ConsultarUltimoNroComprobante(int ptoVenta, int tipoComptobanteAfip)
         {
             var clsFac = new clsFacturacion();

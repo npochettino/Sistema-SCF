@@ -15,6 +15,22 @@ namespace SCF.facturas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (Session["tablaFactura"] != null)
+                {
+
+                }
+                else
+                {
+                    CargarNumeroDeFactura();
+                }
+
+            }
+            else
+            {
+                
+            }
             txtFechaFacturacion.Value = DateTime.Now;
             CargarComboRemito();
             CargarComboTipoComprobante();
@@ -26,7 +42,8 @@ namespace SCF.facturas
         private void CargarNumeroDeFactura()
         {
             //Obtengo el Ultimo numero de factura y le sumo 1.
-            txtNroFactura.Text = "1"; 
+            DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
+            txtNroFactura.Text = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["numeroFactura"]) + 1).ToString() : string.Empty;
         }
 
         private void CargarComboTipoMoneda()
@@ -64,7 +81,8 @@ namespace SCF.facturas
             }
             catch
             {
- 
+                lblError.Text = "Ha ocurrido un error. No hay conexion con los servidor de AFIP, vuelva a intentar.";
+                pcError.ShowOnPageLoad = true;
             }
         }
 
@@ -87,7 +105,28 @@ namespace SCF.facturas
         
         protected void btnEmitirComprobante_Click(object sender, EventArgs e)
         {
-            //ControladorGeneral.InsertarActualizarFactura(0,txtNroFactura.Text,txtFechaFacturacion.Text,
+            object[] arrayListRemitos = (object[])Session["listRemitos"];
+            List<int> codigoRemitos = new List<int>();
+            foreach(object[] itmes in arrayListRemitos)
+            {
+                codigoRemitos.Add(Convert.ToInt32(itmes[0].ToString()));
+            }
+
+            ControladorGeneral.InsertarActualizarFactura(0, Convert.ToInt32(txtNroFactura.Text), Convert.ToDateTime(txtFechaFacturacion.Text), codigoRemitos, Convert.ToInt32(cbTipoMoneda.ValueField), Convert.ToInt32(cbConcepto.ValueField),
+               Convert.ToInt32(cbCondicionIVA.ValueField), Convert.ToDouble(txtSubtotal.Text), Convert.ToDouble(txtTotal.Text));
+
+            //Obtengo ultimo codigo de factura y emito la factura
+            DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
+            string codigoFactura = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["codigoFactura"])).ToString() : string.Empty;
+            try 
+            {
+                ControladorGeneral.EmitirFactura(Convert.ToInt32(codigoFactura)); 
+            }
+            catch 
+            {
+                lblError.Text = "Ha ocurrido un error. No hay conexion con los servidor de AFIP, vuelva a intentar.";
+                pcError.ShowOnPageLoad = true;
+            }
             
         }
 
@@ -108,13 +147,37 @@ namespace SCF.facturas
             CargarItemsDeLaFactura(nroRemitosActual);
         }
 
-        private void CargarItemsDeLaFactura(List<object> nroRemitos)
+        protected void btnObtenerDatosRemito_Click(object sender, EventArgs e)
         {
-            foreach (object[] item in nroRemitos)
+            ObtenerDatosRemito();
+        }
+
+        private void ObtenerDatosRemito()
+        {
+            string[] myFields = { "codigoEntrega", "numeroRemito", "razonSocialCliente", "cuitCliente" };
+            List<Object> nroRemitosActual = gluRemito.GridView.GetSelectedFieldValues(myFields);
+            Session["listRemitos"] = nroRemitosActual;
+
+            if (nroRemitosActual.Count > 0)
             {
-                //DataTable dtItemsFactura = ControladorGeneral.RecuperarItemsEntrega(Convert.ToInt32(item[0].ToString()));
+                foreach (object[] item in nroRemitosActual)
+                {
+                    txtRazonSocial.Text = item[2].ToString();
+                    txtNroDocumento.Text = item[3].ToString();
+                }
             }
-            
+
+            CargarItemsDeLaFactura(nroRemitosActual);
+        }
+
+        private void CargarItemsDeLaFactura(List<object> nroRemitosActual)
+        {
+            foreach (object[] item in nroRemitosActual)
+            {
+                gvItemsFactura.DataSource = ControladorGeneral.RecuperarItemsEntrega(Convert.ToInt32(item[0].ToString()));
+                gvItemsFactura.DataBind();
+            }
+
         }
     }
 }

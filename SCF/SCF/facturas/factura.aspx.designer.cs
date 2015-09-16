@@ -22,6 +22,24 @@ namespace SCF.facturas {
         protected global::System.Web.UI.WebControls.Button btnUltimoNroComprobante;
         
         /// <summary>
+        /// Control gluRemito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridLookup.ASPxGridLookup gluRemito;
+        
+        /// <summary>
+        /// Control btnObtenerDatosRemito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnObtenerDatosRemito;
+        
+        /// <summary>
         /// Control cbTipoComprobante.
         /// </summary>
         /// <remarks>
@@ -49,13 +67,13 @@ namespace SCF.facturas {
         protected global::DevExpress.Web.ASPxEditors.ASPxDateEdit txtFechaFacturacion;
         
         /// <summary>
-        /// Control gluRemito.
+        /// Control cbCondicionVenta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridLookup.ASPxGridLookup gluRemito;
+        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbCondicionVenta;
         
         /// <summary>
         /// Control cbTipoMoneda.
@@ -74,15 +92,6 @@ namespace SCF.facturas {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbConcepto;
-        
-        /// <summary>
-        /// Control cbCondicionVenta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbCondicionVenta;
         
         /// <summary>
         /// Control txtRazonSocial.

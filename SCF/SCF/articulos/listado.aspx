@@ -521,9 +521,9 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <dx:ASPxButton ID="btnGuardarRelacionArticuloCliente" runat="server" Text="Aceptar" AutoPostBack="False" class="btn blue" ClientSideEvents-Click="OnClickAceptarCliente">
+                                        <dx:ASPxButton ID="btnGuardarRelacionArticuloCliente" runat="server" Text="Aceptar" AutoPostBack="False" CssClass="btn blue" class="btn blue" ClientSideEvents-Click="OnClickAceptarCliente">
                                         </dx:ASPxButton>
-                                        <%--<asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" runat="server" OnClientClick="OnClickAceptarCliente" class="btn blue" Text="Aceptar" />--%>
+                                        <%--<asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" runat="server" UseSubmitBehavior="false" OnClick="OnClickAceptarCliente" OnClientClick="OnClickAceptarCliente" class="btn blue" Text="Aceptar" />--%>
                                     </div>
                                 </div>
                             </div>
@@ -701,7 +701,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <dx:ASPxButton ID="btnGuardarRelacionArticuloProveedor" runat="server" Text="Aceptar" AutoPostBack="False" class="btn blue" ClientSideEvents-Click="OnClickAceptarProveedor">
+                                        <dx:ASPxButton ID="btnGuardarRelacionArticuloProveedor" runat="server" Text="Aceptar" AutoPostBack="False" CssClass="btn blue" class="btn blue" ClientSideEvents-Click="OnClickAceptarProveedor">
                                         </dx:ASPxButton>
                                     </div>
                                 </div>

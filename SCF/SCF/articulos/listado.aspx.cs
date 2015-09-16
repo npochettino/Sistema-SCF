@@ -125,19 +125,6 @@ namespace SCF.articulos
 
         }
 
-        //protected void btnGuardarRelacionArticuloCliente_Click(object sender, EventArgs e)
-        //{
-        //    int test = int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString());
-        //    cargarArticuloEnVariableSession();
-        //    Articulo mArticulo = (Articulo)Session["articuloActual"];
-        //    if (!txtCodigoClienteArticulo.Text.Equals(""))
-        //        ControladorGeneral.InsertarActualizarArticuloCliente(0, mArticulo.Codigo, txtCodigoClienteArticulo.Text.ToString(), (int)cbClientes.SelectedItem.Value);
-
-
-        //    pcNuevaRelacionArticuloCliente.ShowOnPageLoad = false;
-        //    cargarGrillaRelacionArticuloCliente();
-        //}
-
         protected void pcRelacionArticuloCliente_Unload(object sender, EventArgs e)
         {
             if (gvArticulos.FocusedRowIndex != -1)
@@ -190,15 +177,6 @@ namespace SCF.articulos
             gvArticulos.Columns["codigoArticuloCliente"].Visible = false;
         }
 
-        //protected void BtnNuevaRelacionCliente_Click(object sender, EventArgs e)
-        //{
-        //    pcNuevaRelacionArticuloCliente.ShowOnPageLoad = true;
-
-        //    cbClientes.DataSource = ControladorGeneral.RecuperarTodosClientes(false);
-        //    cbClientes.DataBind();
-
-
-        //}
 
         #region Relacion Articulo Proveedor
 

@@ -60,24 +60,39 @@
                             </div>
                             <div class="form-body" style="height: 600px">
                                 <!-- devexpress-->
-                                <dx:ASPxGridView ID="gvComprobantes" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="idFactura" Theme="Metropolis">
+                                <dx:ASPxGridView ID="gvFacturas" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoFactura" Theme="Metropolis">
                                     <Columns>
-                                        <dx:GridViewDataTextColumn FieldName="idFactura" ReadOnly="True" Visible="False" VisibleIndex="0">
+                                        <dx:GridViewDataTextColumn FieldName="codigoFactura" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataDateColumn FieldName="numeroFactura" VisibleIndex="1" Caption="Numero Factura">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="fechaFactura" VisibleIndex="1" Caption="Fecha Facturación">
+                                        <dx:GridViewDataDateColumn FieldName="fechaFacturacion" VisibleIndex="2" Caption="Fecha Facturación">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="cuil" VisibleIndex="1" Caption="CUIL">
+                                        <dx:GridViewDataDateColumn FieldName="descripcionTipoComprobante" VisibleIndex="3" Caption="Tipo Comprobante">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="razonSocialCliente" VisibleIndex="1" Caption="Razon Social">
+                                        <dx:GridViewDataDateColumn FieldName="descripcionTipoMoneda" VisibleIndex="4" Caption="Tipo Moneda" Visible="false">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="importeFactura" VisibleIndex="1" Caption="Importe">
+                                        <dx:GridViewDataDateColumn FieldName="descripcionConcepto" VisibleIndex="5" Caption="Concepto" Visible="false">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="descripcionIVA" VisibleIndex="6" Caption="IVA" Visible="false">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="subtotal" VisibleIndex="7" Caption="Sobtotal">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="total" VisibleIndex="8" Caption="Total">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="cae" VisibleIndex="9" Caption="CAE">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="fechaVencimientoCAE" VisibleIndex="10" Caption="Fecha Venc. CAE" Visible="false">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
                                     </Columns>
