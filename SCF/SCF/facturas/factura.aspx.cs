@@ -42,9 +42,9 @@ namespace SCF.facturas
         private void CargarNumeroDeFactura()
         {
             //Obtengo el Ultimo numero de factura y le sumo 1.
-            //DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
-            //txtNroFactura.Text = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["numeroFactura"]) + 1).ToString() : string.Empty;
-            txtNroFactura.Text = "1";
+            DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
+            txtNroFactura.Text = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["numeroFactura"]) + 1).ToString() : string.Empty;
+            //txtNroFactura.Text = "1";
         }
 
         private void CargarComboTipoMoneda()
@@ -89,17 +89,23 @@ namespace SCF.facturas
 
         protected void btnEmitir_Click(object sender, EventArgs e)
         {
-            lblNroFacturaAEmitir.Text = txtNroFactura.Text;
+            DataTable dtItemsFacturaActual = (DataTable)Session["dtItemsFacturaActual"];
+            gvDetalleFactura.DataSource = dtItemsFacturaActual;
+            gvDetalleFactura.DataBind();
+
+            lblNroFacturaAEmitir.Text = "002 - " + string.Format("{0:00000000}", txtNroFactura.Text);
             lblCondicionVenta.Text = cbCondicionVenta.Text;
-            lblDomicilio.Text = "";
+            lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
+            lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
             lblNombreApellidoCliente.Text = txtRazonSocial.Text;
             lblNroRemitos.Text = gluRemito.Text;
             lblNumeroDocumento.Text = txtNroDocumento.Text;
-            lblTipoDocumento.Text = "CUIT";
-            lblFechaVencimientoCAE.Text = "";
-            lblNroCAE.Text = "";
-            lblImporteSubtotal.Text = txtSubtotal.Text;
-            lblImporteTotal.Text = txtTotal.Text;
+            //lblTipoDocumento.Text = "CUIT";
+            lblFechaVencimientoCAE.Text = "NO FACTURADO";
+            lblNroCAE.Text = "NO FACTURADO";
+            lblSubtotal.Text = txtSubtotal.Text;
+            lblImporteIVA.Text = txtImporteIVA.Text;
+            lblImporteTotal.Text = txtTotal.Text;            
 
             pcValidarComprobante.ShowOnPageLoad = true;
         }
@@ -123,7 +129,9 @@ namespace SCF.facturas
             string codigoFactura = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["codigoFactura"])).ToString() : string.Empty;
             try 
             {
-                ControladorGeneral.EmitirFactura(Convert.ToInt32(codigoFactura)); 
+                string status = ControladorGeneral.EmitirFactura(Convert.ToInt32(codigoFactura));
+                lblError.Text = status;
+                pcError.ShowOnPageLoad = true;
             }
             catch 
             {
@@ -133,23 +141,6 @@ namespace SCF.facturas
             
         }
 
-        protected void gluRemito_TextChanged(object sender, EventArgs e)
-        {
-            string[] myFields = { "codigoEntrega","numeroRemito", "razonSocialCliente", "cuitCliente" };
-            List<Object> nroRemitosActual = gluRemito.GridView.GetSelectedFieldValues(myFields);
-
-            if (nroRemitosActual.Count > 0)
-            {
-                foreach (object[] item in nroRemitosActual)
-                {
-                    txtRazonSocial.Text = item[2].ToString();
-                    txtNroDocumento.Text = item[3].ToString();
-                }
-            }
-            
-            CargarItemsDeLaFactura(nroRemitosActual);
-        }
-
         protected void btnObtenerDatosRemito_Click(object sender, EventArgs e)
         {
             ObtenerDatosRemito();
@@ -157,7 +148,7 @@ namespace SCF.facturas
 
         private void ObtenerDatosRemito()
         {
-            string[] myFields = { "codigoEntrega", "numeroRemito", "razonSocialCliente", "cuitCliente" };
+            string[] myFields = { "codigoEntrega", "numeroRemito", "razonSocialCliente", "cuitCliente", "codigoSCF" };
             List<Object> nroRemitosActual = gluRemito.GridView.GetSelectedFieldValues(myFields);
             Session["listRemitos"] = nroRemitosActual;
 
@@ -167,6 +158,7 @@ namespace SCF.facturas
                 {
                     txtRazonSocial.Text = item[2].ToString();
                     txtNroDocumento.Text = item[3].ToString();
+                    txtCodigoConSCF.Text = item[4].ToString(); 
                 }
             }
 

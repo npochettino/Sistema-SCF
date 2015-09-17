@@ -1483,6 +1483,8 @@ namespace BibliotecaSCF.Controladores
                 tablaEntrega.Columns.Add("codigoCliente");
                 tablaEntrega.Columns.Add("razonSocialCliente");
                 tablaEntrega.Columns.Add("cuitCliente");//Agrego nro documento
+                tablaEntrega.Columns.Add("codigoSCF");
+                tablaEntrega.Columns.Add("direccion");
                 tablaEntrega.Columns.Add("fechaEmision");
                 tablaEntrega.Columns.Add("numeroNotaDePedido");
                 tablaEntrega.Columns.Add("numeroRemito");
@@ -1491,7 +1493,10 @@ namespace BibliotecaSCF.Controladores
 
                 List<Entrega> listaEntregas = CatalogoEntrega.RecuperarTodos(nhSesion);
 
-                listaEntregas.Aggregate(tablaEntrega, (dt, r) => { dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo, r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.FechaEmision, r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito, r.CodigoEstado, r.Observaciones); return dt; });
+                listaEntregas.Aggregate(tablaEntrega, (dt, r) => { dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo,
+                    r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.NotaDePedido.Cliente.CodigoSCF,
+                    r.NotaDePedido.Cliente.Direccion, r.FechaEmision, r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
+                    r.CodigoEstado, r.Observaciones); return dt; });
 
                 return tablaEntrega;
             }
@@ -1738,6 +1743,10 @@ namespace BibliotecaSCF.Controladores
                 tablaItemsEntrega.Columns.Add("codigoSCF");
                 tablaItemsEntrega.Columns.Add("precioUnitario");
                 tablaItemsEntrega.Columns.Add("precioTotal");
+                tablaItemsEntrega.Columns.Add("razonSocialCliente");
+                tablaItemsEntrega.Columns.Add("nroDocumentoCliente");
+                tablaItemsEntrega.Columns.Add("localidadCliente");
+                tablaItemsEntrega.Columns.Add("direccionCliente");
 
                 Entrega entrega = CatalogoEntrega.RecuperarPorCodigo(codigoEntrega, nhSesion);
 
@@ -1749,7 +1758,8 @@ namespace BibliotecaSCF.Controladores
                             r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, r.ItemNotaDePedido.Posicion,
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
-                            entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, r.ItemNotaDePedido.Precio * r.ItemNotaDePedido.CantidadPedida); return dt;
+                            entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, r.ItemNotaDePedido.Precio * r.CantidadAEntregar, 
+                            entrega.NotaDePedido.Cliente.RazonSocial,entrega.NotaDePedido.Cliente.NumeroDocumento,entrega.NotaDePedido.Cliente.Localidad, entrega.NotaDePedido.Cliente.Direccion); return dt;
                     });
                 }
 
@@ -2010,7 +2020,7 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void EmitirFactura(int codigoFactura)
+        public static string EmitirFactura(int codigoFactura)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -2049,16 +2059,23 @@ namespace BibliotecaSCF.Controladores
                 detalleReq.ImpTotal = factura.Total;
                 detalleReq.ImpTotConc = 0; //por que ????
                 detalleReq.ImpTrib = 0; //ver tributos
-                //detalleReq.Iva = 
+                
                 AlicIva[] listaAlicIva = new AlicIva[1];
+                
+                var ls = new List<AlicIva>();
                 AlicIva alicIva = new AlicIva();
                 alicIva.Id = factura.Iva.Codigo;
                 alicIva.BaseImp = factura.Subtotal;
                 alicIva.Importe = factura.Subtotal * 0.21;
+                ls.Add(alicIva);
+
+                detalleReq.Iva = ls.ToArray();
+
                 detalleReq.MonCotiz = 1; //siempre facturan en pesos ??
                 detalleReq.MonId = factura.Moneda.CodigoAFIP;
                 //detalleReq.Opcionales = ?????
-                detalleReq.Tributos = new Tributo[0];
+                //detalleReq.Tributos = new Tributo[0];
+                detalleReq.ImpTrib = 0;
 
                 request.FeDetReq = new FECAEDetRequest[] { detalleReq };
 
@@ -2069,11 +2086,15 @@ namespace BibliotecaSCF.Controladores
                 if (resultado.ResultadoAFIP == WSFEv1.Logica.EnumResultadoAFIP.Facturado)
                 {
                     rta = string.Format("CAE: {0}\nFecha Vto.: {1}", resultado.CAE, resultado.FechaVtoCAE.ToString()) + " Todo Correcto!";
+                    factura.Cae = resultado.CAE;
+                    factura.FechaVencimiento = resultado.FechaVtoCAE;
+                    CatalogoFactura.InsertarActualizar(factura, nhSesion);
                 }
                 else
                 {
                     rta = "Mensaje Afip/Error: " + resultado.MensajeAFIP + " Algo fallo!";
                 }
+                return rta;
             }
             catch (Exception ex)
             {

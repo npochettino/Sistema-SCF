@@ -73,7 +73,30 @@ namespace SCF.facturas
 
         protected void btnDetalle_Click(object sender, EventArgs e)
         {
+            //DataTable dtItemsFacturaActual = (DataTable)Session["dtItemsFacturaActual"];
+            //gvDetalleFactura.DataSource = dtItemsFacturaActual;
+            //gvDetalleFactura.DataBind();
+
+            //lblNroFacturaAEmitir.Text = "002 - " + string.Format("{0:00000000}", txtNroFactura.Text);
+            //lblCondicionVenta.Text = cbCondicionVenta.Text;
+            //lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
+            //lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
+            //lblNombreApellidoCliente.Text = txtRazonSocial.Text;
+            //lblNroRemitos.Text = gluRemito.Text;
+            //lblNumeroDocumento.Text = txtNroDocumento.Text;
+            ////lblTipoDocumento.Text = "CUIT";
+            //lblFechaVencimientoCAE.Text = "NO FACTURADO";
+            //lblNroCAE.Text = "NO FACTURADO";
+            //lblSubtotal.Text = txtSubtotal.Text;
+            //lblImporteIVA.Text = txtImporteIVA.Text;
+            //lblImporteTotal.Text = txtTotal.Text;
+
             pcDetalleComprobante.ShowOnPageLoad = true;
+        }
+
+        protected void btnEmitirComprobante_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

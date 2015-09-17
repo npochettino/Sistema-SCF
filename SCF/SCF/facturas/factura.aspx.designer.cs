@@ -292,15 +292,6 @@ namespace SCF.facturas {
         protected global::System.Web.UI.WebControls.Label lblLocalidad;
         
         /// <summary>
-        /// Control lblTipoDocumento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTipoDocumento;
-        
-        /// <summary>
         /// Control lblNumeroDocumento.
         /// </summary>
         /// <remarks>
@@ -364,13 +355,13 @@ namespace SCF.facturas {
         protected global::System.Web.UI.WebControls.Label lblFechaVencimientoCAE;
         
         /// <summary>
-        /// Control lblImporteSubtotal.
+        /// Control lblImporteIVA.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblImporteSubtotal;
+        protected global::System.Web.UI.WebControls.Label lblImporteIVA;
         
         /// <summary>
         /// Control lblImporteTotal.

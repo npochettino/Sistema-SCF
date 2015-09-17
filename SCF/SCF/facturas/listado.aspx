@@ -51,7 +51,7 @@
                             <div class="form-actions top">
                                 <div class="btn-set pull-left">
                                     <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
-                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" UseSubmitBehavior="false" Text="Editar" />
+                                    <asp:Button type="button" ID="btnEditar" Visible="false" runat="server" OnClick="btnEditar_Click" class="btn yellow" UseSubmitBehavior="false" Text="Editar" />
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarFactura()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
@@ -169,28 +169,17 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-body">
-                                                            <h3 class="form-section">Detalle Factura &nbsp;&nbsp;
-                                                    <asp:Label ID="lblNroFactura" runat="server" Text="0001-00002678"></asp:Label></h3>
+                                                            <h3 class="form-section">Detalle Factura &nbsp;&nbsp;<asp:Label ID="lblNroFacturaAEmitir" runat="server" Text=" "></asp:Label></h3>
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">Cliente:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                Bob
-                                                                            </p>
-                                                                        </div>
+                                                                        <label class="control-label col-md-6">Cliente: &nbsp;&nbsp;<asp:Label ID="lblNombreApellidoCliente" runat="server"></asp:Label></label>
                                                                     </div>
                                                                 </div>
                                                                 <!--/span-->
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">Domicilio:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                Nilson
-                                                                            </p>
-                                                                        </div>
+                                                                        <label class="control-label col-md-6">Domicilio: &nbsp;&nbsp;<asp:Label ID="lblDomicilio" runat="server"></asp:Label></label>
                                                                     </div>
                                                                 </div>
                                                                 <!--/span-->
@@ -199,23 +188,13 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">Localidad:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                Male
-                                                                            </p>
-                                                                        </div>
+                                                                        <label class="control-label col-md-6">Localidad: &nbsp;&nbsp;<asp:Label ID="lblLocalidad" runat="server"></asp:Label></label>
                                                                     </div>
                                                                 </div>
                                                                 <!--/span-->
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">C.U.I.T:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                20.01.1984
-                                                                            </p>
-                                                                        </div>
+                                                                        <label class="control-label col-md-6">CUIT: &nbsp;&nbsp;<asp:Label ID="lblNumeroDocumento" runat="server"></asp:Label></label>
                                                                     </div>
                                                                 </div>
                                                                 <!--/span-->
@@ -224,23 +203,13 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">Condición de Venta:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                Category1
-                                                                            </p>
-                                                                        </div>
+                                                                        <label class="control-label col-md-6">Condición de Venta: &nbsp;&nbsp;<asp:Label ID="lblCondicionVenta" runat="server"></asp:Label></label>
                                                                     </div>
                                                                 </div>
                                                                 <!--/span-->
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">Remito:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                Free
-                                                                            </p>
-                                                                        </div>
+                                                                        <label class="control-label col-md-6">Remito: &nbsp;&nbsp;<asp:Label ID="lblNroRemitos" runat="server"></asp:Label></label>
                                                                     </div>
                                                                 </div>
                                                                 <!--/span-->
@@ -248,69 +217,68 @@
                                                             <!--/row-->
                                                         </div>
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView ID="gvDetalleComprobante" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                            <dx:ASPxGridView ID="gvDetalleFactura" runat="server" Width="100%" Theme="Metropolis" KeyFieldName="codigoItemEntrega" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="False" VisibleIndex="1">
+                                                                <dx:GridViewDataTextColumn FieldName="codigoItemEntrega" ReadOnly="True" Visible="False" VisibleIndex="1">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Descripción Corta">
+                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Desc. Corta">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="cantidad" VisibleIndex="2" Visible="true" Caption="Cantidad">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="codigoProveedor" VisibleIndex="2" Visible="true" Caption="Cod. Prov">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" VisibleIndex="2" Visible="true" Caption="Proveedor">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="codigoItemNotaDePedido" VisibleIndex="2" Visible="false" Caption="Cod. Item NP">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="posicion" VisibleIndex="2" Visible="true" Caption="Posición">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="codigoArticuloCliente" VisibleIndex="2" Visible="true" Caption="Cod. Articulo Cliente">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="codigoNotaDePedido" VisibleIndex="2" Width="100px" Visible="false" Caption="Codigo NP">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="numeroNotaDePedido" VisibleIndex="2" Width="150px" Visible="true" Caption="N° NP">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="precioUnitario" VisibleIndex="2" Width="150px" Visible="true" Caption="Precio Unitario">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoInternoCliente" VisibleIndex="2" Width="100px" Visible="true" Caption="Codigo">
+                                                                <dx:GridViewDataTextColumn FieldName="precioTotal" VisibleIndex="2" Width="150px" Visible="true" Caption="Precio Total">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="posicion" VisibleIndex="2" Width="150px" Visible="true" Caption="Posición">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Precio Unitario" Width="100px" VisibleIndex="4" FieldName="precio">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-                                                                </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Cantidad" Width="60px" VisibleIndex="4" FieldName="cantidad">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-                                                                </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Importe" Width="100px" VisibleIndex="4" FieldName="precio">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit runat="server" ID="txtTitle" Width="100px" Number="1" MinValue="1" MaxValue="100">
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-                                                                </dx:GridViewDataSpinEditColumn>
-                                                                </Columns>
+                                                            </Columns>
                                                             </dx:ASPxGridView>
                                                         </div>
                                                         <div class="form-body">
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">CAE:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                123123123123123123
-                                                                            </p>
-                                                                        </div>
+                                                                        <label class="control-label col-md-6">CAE: &nbsp;&nbsp;<asp:Label ID="lblNroCAE" runat="server"></asp:Label></label>
                                                                     </div>
                                                                 </div>
                                                                 <!--/span-->
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">SUBTOTAL:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                3455
-                                                                            </p>
-                                                                        </div>
+                                                                        <label class="control-label col-md-6">SUBTOTAL: &nbsp;&nbsp;<asp:Label ID="lblSubtotal" runat="server"></asp:Label></label>
                                                                     </div>
                                                                 </div>
                                                                 <!--/span-->
@@ -319,23 +287,13 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">FECHA VENC. CAE:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                05/10/2015
-                                                                            </p>
-                                                                        </div>
+                                                                        <label class="control-label col-md-6">FECHA VENC. CAE: &nbsp;&nbsp;<asp:Label ID="lblFechaVencimientoCAE" runat="server"></asp:Label></label>
                                                                     </div>
                                                                 </div>
                                                                 <!--/span-->
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">I.V.A: (21%)</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                4567
-                                                                            </p>
-                                                                        </div>
+                                                                        <label class="control-label col-md-6">IVA: &nbsp;&nbsp;<asp:Label ID="lblImporteIVA" runat="server"></asp:Label></label>
                                                                     </div>
                                                                 </div>
                                                                 <!--/span-->
@@ -343,29 +301,23 @@
                                                             <!--/row-->
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    
                                                                 </div>
                                                                 <!--/span-->
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="control-label col-md-3">TOTAL:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                5000
-                                                                            </p>
-                                                                        </div>
+                                                                        <label class="control-label col-md-6">TOTAL: &nbsp;&nbsp;<asp:Label ID="lblImporteTotal" runat="server"></asp:Label></label>
                                                                     </div>
                                                                 </div>
                                                                 <!--/span-->
                                                             </div>
                                                             <!--/row-->
                                                         </div>
-                                                       <%-- <div class="form-actions top">
+                                                       <div class="form-actions top">
                                                             <div class="btn-set pull-right">
-                                                                <button type="button" onclick="pcValidarComprobante.Hide();" class="btn default">Cancelar</button>
+                                                                <button type="button" onclick="pcDetalleComprobante.Hide();" class="btn default">Cancelar</button>
                                                                 <asp:Button type="button" class="btn blue" runat="server" ID="btnEmitirComprobante" OnClick="btnEmitirComprobante_Click" Text="Emitir Comprobante" />
                                                             </div>
-                                                        </div>--%>
+                                                        </div>
                                                     </div>
 
                                                 </div>
