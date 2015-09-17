@@ -1747,7 +1747,7 @@ namespace BibliotecaSCF.Controladores
                     {
                         dt.Rows.Add(r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.CantidadAEntregar,
                             r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, r.ItemNotaDePedido.Posicion,
-                            r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ? 
+                            r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
                             entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, r.ItemNotaDePedido.Precio * r.ItemNotaDePedido.CantidadPedida); return dt;
                     });
@@ -1927,8 +1927,11 @@ namespace BibliotecaSCF.Controladores
 
                 List<Factura> listaFacturas = CatalogoFactura.RecuperarTodos(nhSesion);
 
-                listaFacturas.Aggregate(tablaFacturas, (dt, r) => { dt.Rows.Add(r.Codigo, r.NumeroFactura,r.FechaFacturacion,r.TipoComprobante.Descripcion, r.Moneda.Descripcion, 
-                    r.Concepto.Descripcion, r.Iva.Descripcion,r.Subtotal,r.Total,r.Cae,r.FechaVencimiento); return dt; });
+                listaFacturas.Aggregate(tablaFacturas, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion, r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
+                        r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento); return dt;
+                });
 
                 return tablaFacturas;
             }
@@ -1992,6 +1995,7 @@ namespace BibliotecaSCF.Controladores
                 factura.Subtotal = subtotal;
                 factura.TipoComprobante = CatalogoTipoComprobante.RecuperarPorCodigo(1, nhSesion);
                 factura.Total = total;
+                factura.FechaVencimiento = null;
 
                 CatalogoFactura.InsertarActualizar(factura, nhSesion);
             }
