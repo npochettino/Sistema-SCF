@@ -67,6 +67,12 @@
                                         <dx:GridViewDataTextColumn FieldName="codigoProveedor" ReadOnly="True" Visible="false" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="tipoDocumento" Caption="Tipo Documento" VisibleIndex="1">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="codigoTipoDocumento" Visible="false" VisibleIndex="1">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="cuil" Caption="CUIL" VisibleIndex="1">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>

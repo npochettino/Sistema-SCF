@@ -51,6 +51,11 @@ namespace SCF.proveedores
 
             proveedorActual.Codigo = int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString());
             proveedorActual.NumeroDocumento = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "cuil").ToString();
+
+            proveedorActual.TipoDocumento = new TipoDocumento();
+            proveedorActual.TipoDocumento.Codigo = Convert.ToInt32(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoTipoDocumento"));
+            proveedorActual.TipoDocumento.Descripcion = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "tipoDocumento").ToString();
+
             proveedorActual.Direccion = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "direccion").ToString();
             proveedorActual.Localidad = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "localidad").ToString();
             proveedorActual.Mail = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "mail").ToString();

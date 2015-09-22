@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using WSFEv1;
 using WSFEv1.Logica;
 using WSFEv1.Logica.Wsfe;
+using IDAutomation.NetAssembly;
 
 namespace BibliotecaSCF.Controladores
 {
@@ -80,6 +81,8 @@ namespace BibliotecaSCF.Controladores
                 tablaProveedores.Columns.Add("telefono");
                 tablaProveedores.Columns.Add("mail");
                 tablaProveedores.Columns.Add("cuil");
+                tablaProveedores.Columns.Add("tipoDocumento");
+                tablaProveedores.Columns.Add("codigoTipoDocumento");
                 tablaProveedores.Columns.Add("personaContacto");
                 tablaProveedores.Columns.Add("numeroCuenta");
                 tablaProveedores.Columns.Add("banco");
@@ -92,6 +95,7 @@ namespace BibliotecaSCF.Controladores
                 listaProveedores.Aggregate(tablaProveedores, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento,
+                        r.TipoDocumento.Descripcion, r.TipoDocumento.Codigo,
                         r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax); return dt;
                 });
 
@@ -1799,6 +1803,10 @@ namespace BibliotecaSCF.Controladores
                 tablaItemsEntrega.Columns.Add("codigoSCF");
                 tablaItemsEntrega.Columns.Add("precioUnitario");
                 tablaItemsEntrega.Columns.Add("precioTotal");
+                tablaItemsEntrega.Columns.Add("razonSocialCliente");
+                tablaItemsEntrega.Columns.Add("nroDocumentoCliente");
+                tablaItemsEntrega.Columns.Add("localidadCliente");
+                tablaItemsEntrega.Columns.Add("direccionCliente");
 
                 Factura factura = CatalogoFactura.RecuperarPorCodigo(codigoFactura, nhSesion);
 
@@ -1812,7 +1820,8 @@ namespace BibliotecaSCF.Controladores
                                 r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, r.ItemNotaDePedido.Posicion,
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
-                                entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, r.ItemNotaDePedido.Precio * r.ItemNotaDePedido.CantidadPedida); return dt;
+                                entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, r.ItemNotaDePedido.Precio * r.CantidadAEntregar,
+                            entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento, entrega.NotaDePedido.Cliente.Localidad, entrega.NotaDePedido.Cliente.Direccion); return dt;
                         });
                     }
                 }
@@ -2166,6 +2175,12 @@ namespace BibliotecaSCF.Controladores
             return string.Format("{0}{1}{2}", fecha.Year.ToString("0000"), fecha.Month.ToString("00"), fecha.Day.ToString("00"));
         }
 
+        private static string ConvertirBarCode(string nroCae)
+        {
+            string nroCodeBar = "30711039704010002" + nroCae + DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + "0";
+            return nroCodeBar;
+        }
+        
         #endregion
 
         #region Concepto
@@ -2360,6 +2375,150 @@ namespace BibliotecaSCF.Controladores
                 Transporte transporte = CatalogoTransporte.RecuperarPorCodigo(codigoCliente, nhSesion);
 
                 CatalogoTransporte.Eliminar(transporte, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region DatosEmpresa
+
+        public static void InsertarActualizarDatosEmpresa(int codigoDatosEmpresa, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int codigoTipoDocumento)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DatosEmpresa datosEmpresa;
+
+                if (codigoDatosEmpresa == 0)
+                {
+                    datosEmpresa = new DatosEmpresa();
+                }
+                else
+                {
+                    datosEmpresa = CatalogoDatosEmpresa.RecuperarPorCodigo(codigoDatosEmpresa, nhSesion);
+                }
+
+                datosEmpresa.RazonSocial = razonSocial;
+                datosEmpresa.Provincia = provincia;
+                datosEmpresa.Localidad = localidad;
+                datosEmpresa.Direccion = direccion;
+                datosEmpresa.Telefono = telefono;
+                datosEmpresa.Fax = fax;
+                datosEmpresa.Mail = mail;
+                datosEmpresa.NumeroDocumento = numeroDocumento;
+                datosEmpresa.PersonaContacto = personaContacto;
+                datosEmpresa.NumeroCuenta = numeroCuenta;
+                datosEmpresa.Banco = banco;
+                datosEmpresa.Cbu = cbu;
+                datosEmpresa.Observaciones = observaciones;
+                datosEmpresa.IsInactivo = false;
+                datosEmpresa.TipoDocumento = CatalogoTipoDocumento.RecuperarPorCodigo(codigoTipoDocumento, nhSesion);
+
+                CatalogoDatosEmpresa.InsertarActualizar(datosEmpresa, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarTodosDatosEmpresa(bool isInactivos)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaDatosEmpresa = new DataTable();
+                tablaDatosEmpresa.Columns.Add("codigoDatosEmpresa");
+                tablaDatosEmpresa.Columns.Add("razonSocial");
+                tablaDatosEmpresa.Columns.Add("provincia");
+                tablaDatosEmpresa.Columns.Add("localidad");
+                tablaDatosEmpresa.Columns.Add("direccion");
+                tablaDatosEmpresa.Columns.Add("telefono");
+                tablaDatosEmpresa.Columns.Add("mail");
+                tablaDatosEmpresa.Columns.Add("cuil");
+                tablaDatosEmpresa.Columns.Add("personaContacto");
+                tablaDatosEmpresa.Columns.Add("numeroCuenta");
+                tablaDatosEmpresa.Columns.Add("banco");
+                tablaDatosEmpresa.Columns.Add("cbu");
+                tablaDatosEmpresa.Columns.Add("observaciones");
+                tablaDatosEmpresa.Columns.Add("fax");
+
+                List<DatosEmpresa> listaDatosEmpresa = CatalogoDatosEmpresa.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
+
+                listaDatosEmpresa.Aggregate(tablaDatosEmpresa, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento,
+                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax); return dt;
+                });
+
+                return tablaDatosEmpresa;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void ActivarInactivarDatosEmpresa(int codigoDatosEmpresa)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DatosEmpresa datosEmpresa = CatalogoDatosEmpresa.RecuperarPorCodigo(codigoDatosEmpresa, nhSesion);
+
+                if (datosEmpresa.IsInactivo)
+                {
+                    datosEmpresa.IsInactivo = false;
+                }
+                else
+                {
+                    datosEmpresa.IsInactivo = true;
+                }
+
+                CatalogoDatosEmpresa.InsertarActualizar(datosEmpresa, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void EliminarDatosEmpresa(int codigoDatosEmpresa)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DatosEmpresa datosEmpresa = CatalogoDatosEmpresa.RecuperarPorCodigo(codigoDatosEmpresa, nhSesion);
+
+                CatalogoDatosEmpresa.Eliminar(datosEmpresa, nhSesion);
             }
             catch (Exception ex)
             {

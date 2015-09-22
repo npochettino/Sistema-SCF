@@ -39,7 +39,7 @@ namespace SCF.facturas
             string descripcionIVA = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "descripcionIVA").ToString();
             Double subtotal = Convert.ToDouble(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "subtotal"));
             Double total = Convert.ToDouble(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "total"));
-            string cae = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "razonSocialCliente").ToString();
+            string cae = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString();
             DateTime fechaVencimientoCAE = Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE"));
 
             DataTable tablaFactura = new DataTable();
@@ -73,30 +73,50 @@ namespace SCF.facturas
 
         protected void btnDetalle_Click(object sender, EventArgs e)
         {
-            //DataTable dtItemsFacturaActual = (DataTable)Session["dtItemsFacturaActual"];
-            //gvDetalleFactura.DataSource = dtItemsFacturaActual;
-            //gvDetalleFactura.DataBind();
-
-            //lblNroFacturaAEmitir.Text = "002 - " + string.Format("{0:00000000}", txtNroFactura.Text);
+            string remitos = "";
+            if (gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString() == "")
+            { btnEmitirComprobante.Visible = true; }
+            DataTable dtItemsFacturaActual = ControladorGeneral.RecuperarItemsEntregaPorFactura(Convert.ToInt32(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "codigoFactura")));
+            gvDetalleFactura.DataSource = dtItemsFacturaActual;
+            gvDetalleFactura.DataBind();
+            string nroAMostrar = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString();
+            
+            lblNroFacturaAEmitir.Text = "002 - " + Convert.ToInt32(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "numeroFactura")).ToString("D8");
+            
+            for (int i = 0; i < dtItemsFacturaActual.Rows.Count; i++)
+            {
+                remitos = dtItemsFacturaActual.Rows[0]["nroRemito"] + ", ";
+            }
+            lblNroRemitos.Text = remitos;
             //lblCondicionVenta.Text = cbCondicionVenta.Text;
-            //lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
-            //lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
-            //lblNombreApellidoCliente.Text = txtRazonSocial.Text;
-            //lblNroRemitos.Text = gluRemito.Text;
-            //lblNumeroDocumento.Text = txtNroDocumento.Text;
-            ////lblTipoDocumento.Text = "CUIT";
-            //lblFechaVencimientoCAE.Text = "NO FACTURADO";
-            //lblNroCAE.Text = "NO FACTURADO";
-            //lblSubtotal.Text = txtSubtotal.Text;
-            //lblImporteIVA.Text = txtImporteIVA.Text;
-            //lblImporteTotal.Text = txtTotal.Text;
+            lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
+            lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
+            lblNombreApellidoCliente.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialCliente"]);
+
+
+            lblNumeroDocumento.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["nroDocumentoCliente"]);
+            lblFechaVencimientoCAE.Text = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE"));
+            lblNroCAE.Text = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString();
+            lblSubtotal.Text = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "subtotal"));
+            lblImporteIVA.Text = Convert.ToString(Convert.ToDouble(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "subtotal")) * 0.21);
+            lblImporteTotal.Text = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "total"));
 
             pcDetalleComprobante.ShowOnPageLoad = true;
         }
 
         protected void btnEmitirComprobante_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                string status = ControladorGeneral.EmitirFactura(Convert.ToInt32(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "codigoFactura")));
+                lblError.Text = status;
+                pcError.ShowOnPageLoad = true;
+            }
+            catch
+            {
+                lblError.Text = "Ha ocurrido un error. No hay conexion con los servidor de AFIP, vuelva a intentar.";
+                pcError.ShowOnPageLoad = true;
+            }
         }
     }
 }

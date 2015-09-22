@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="transporte.aspx.cs" Inherits="SCF.transportes.transporte" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
@@ -61,8 +63,10 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Tipo Documento</label>
-                                                <asp:DropDownList CssClass="form-control" ID="ddlTipoDocumento" runat="server">
-                                                </asp:DropDownList>
+                                                <dx:ASPxComboBox id="cbTipoDocumento" runat="server" dropdownstyle="DropDownList" cssclass="form-control" TextField="descripcion"
+                                                    ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" width="100%" enabletheming="True" theme="Metropolis" AutoPostBack="false">
+                                                </dx:ASPxComboBox>
+                                                
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -119,8 +123,8 @@
                                                 <input type="text" id="txtFax" runat="server" class="form-control" placeholder="Fax" >
                                             </div>
                                         </div>
-                                    </div> 
-                                    <!--/row-->
+                                    </div>                                    
+                                    <!--/row-->   
                                     <h3 class="form-section">Datos Bancarios</h3>
                                     <div class="row">
                                         <div class="col-md-6">

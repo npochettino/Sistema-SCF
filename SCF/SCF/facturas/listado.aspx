@@ -114,6 +114,33 @@
     </div>
     <!-- END CONTENT -->
 
+        <dx:ASPxPopupControl ID="pcError" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcError"
+        HeaderText="Mensaje" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        EnableViewState="False" Theme="Metropolis">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl3" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel1" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent3" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <dx:ASPxLabel ID="lblError" Text="Hola" runat="server">
+                                                </dx:ASPxLabel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
     <!-- BEGIN POPUP ELIMINAR ARTICULO -->
     <dx:ASPxPopupControl ID="pcConfirmarEliminarFactura" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarFactura"
@@ -315,7 +342,7 @@
                                                        <div class="form-actions top">
                                                             <div class="btn-set pull-right">
                                                                 <button type="button" onclick="pcDetalleComprobante.Hide();" class="btn default">Cancelar</button>
-                                                                <asp:Button type="button" class="btn blue" runat="server" ID="btnEmitirComprobante" OnClick="btnEmitirComprobante_Click" Text="Emitir Comprobante" />
+                                                                <asp:Button type="button" class="btn blue" Visible="false" runat="server" ID="btnEmitirComprobante" OnClick="btnEmitirComprobante_Click" Text="Emitir Comprobante" />
                                                             </div>
                                                         </div>
                                                     </div>

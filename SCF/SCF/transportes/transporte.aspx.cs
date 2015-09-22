@@ -32,7 +32,7 @@ namespace SCF.transportes
 
         private void CargarDatosParaEditar(Transporte transporte)
         {
-            ddlTipoDocumento.Text = oTransporteActual.TipoDocumento.Descripcion;
+            cbTipoDocumento.SelectedItem = cbTipoDocumento.Items.FindByValue(oTransporteActual.TipoDocumento.Codigo);
 
             txtNroDocumento.Value = oTransporteActual.NumeroDocumento;
             txtRazonSocial.Value = oTransporteActual.RazonSocial;
@@ -52,8 +52,8 @@ namespace SCF.transportes
 
         private void CargarComboTipoDocumento()
         {
-            ddlTipoDocumento.DataSource = ControladorGeneral.RecuperarTodosTiposDocumentos();
-            ddlTipoDocumento.DataBind();
+            cbTipoDocumento.DataSource = ControladorGeneral.RecuperarTodosTiposDocumentos();
+            cbTipoDocumento.DataBind();
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)

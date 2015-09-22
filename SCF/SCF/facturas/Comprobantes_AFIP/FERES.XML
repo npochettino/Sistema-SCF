@@ -4,9 +4,9 @@
     <Cuit>27296804385</Cuit>
     <PtoVta>2</PtoVta>
     <CbteTipo>1</CbteTipo>
-    <FchProceso>20150917160549</FchProceso>
+    <FchProceso>20150921225351</FchProceso>
     <CantReg>1</CantReg>
-    <Resultado>A</Resultado>
+    <Resultado>R</Resultado>
     <Reproceso>N</Reproceso>
   </FeCabResp>
   <FeDetResp xmlns="http://ar.gov.afip.dif.FEV1/">
@@ -14,18 +14,18 @@
       <Concepto>1</Concepto>
       <DocTipo>80</DocTipo>
       <DocNro>20111111112</DocNro>
-      <CbteDesde>3</CbteDesde>
-      <CbteHasta>3</CbteHasta>
+      <CbteDesde>1</CbteDesde>
+      <CbteHasta>1</CbteHasta>
       <CbteFch>20150917</CbteFch>
-      <Resultado>A</Resultado>
-      <Observaciones>
-        <Obs>
-          <Code>10063</Code>
-          <Msg>Factura individual, DocTipo: 80, DocNro 20111111112 no se encuentra inscripto en condicion ACTIVA en el impuesto.</Msg>
-        </Obs>
-      </Observaciones>
-      <CAE>65385308823225</CAE>
-      <CAEFchVto>20150927</CAEFchVto>
+      <Resultado>R</Resultado>
+      <CAE />
+      <CAEFchVto />
     </FECAEDetResponse>
   </FeDetResp>
+  <Errors xmlns="http://ar.gov.afip.dif.FEV1/">
+    <Err>
+      <Code>10016</Code>
+      <Msg>El nÃºmero o fecha del comprobante no se corresponde con el prÃ³ximo a autorizar. Consultar metodo FECompUltimoAutorizado.</Msg>
+    </Err>
+  </Errors>
 </FECAEResponse>

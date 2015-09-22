@@ -32,13 +32,13 @@ namespace SCF.proveedores
 
         private void CargarComboTipoDocumento()
         {
-            //ddlTipoDocumento.DataSource = ControladorGeneral.RecuperarTodosTipoDocumento();
-            //ddlTipoDocumento.DataBind();
+            cbTipoDocumento.DataSource = ControladorGeneral.RecuperarTodosTiposDocumentos();
+            cbTipoDocumento.DataBind();
         }
 
         private void CargarDatosParaEditar(Proveedor oProveedorActual)
         {
-            ddlTipoDocumento.Text = oProveedorActual.TipoDocumento.Descripcion;
+            cbTipoDocumento.SelectedItem = cbTipoDocumento.Items.FindByValue(oProveedorActual.TipoDocumento.Codigo);
 
             txtNroDocumento.Value = oProveedorActual.NumeroDocumento;
             txtRazonSocial.Value = oProveedorActual.RazonSocial;

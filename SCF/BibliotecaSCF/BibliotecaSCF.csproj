@@ -38,6 +38,18 @@
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="IDAutomation.DataBarFontEncoder, Version=2014.5.0.0, Culture=neutral, PublicKeyToken=f77ee95231f619c9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\IDAutomation.DataBarFontEncoder.dll</HintPath>
+    </Reference>
+    <Reference Include="IDAutomation.IntelligentMail, Version=2014.5.0.0, Culture=neutral, PublicKeyToken=f77ee95231f619c9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\IDAutomation.IntelligentMail.dll</HintPath>
+    </Reference>
+    <Reference Include="IDAutomation.NetAssembly, Version=2014.5.0.0, Culture=neutral, PublicKeyToken=f77ee95231f619c9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\IDAutomation.NetAssembly.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -75,6 +87,7 @@
     <Compile Include="Catalogos\CatalogoCliente.cs" />
     <Compile Include="Catalogos\CatalogoConcepto.cs" />
     <Compile Include="Catalogos\CatalogoContratoMarco.cs" />
+    <Compile Include="Catalogos\CatalogoDatosEmpresa.cs" />
     <Compile Include="Catalogos\CatalogoEntrega.cs" />
     <Compile Include="Catalogos\CatalogoFactura.cs" />
     <Compile Include="Catalogos\CatalogoGenerico.cs" />
@@ -95,6 +108,7 @@
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Concepto.cs" />
     <Compile Include="Clases\ContratoMarco.cs" />
+    <Compile Include="Clases\DatosEmpresa.cs" />
     <Compile Include="Clases\Entrega.cs" />
     <Compile Include="Clases\Factura.cs" />
     <Compile Include="Clases\HistorialCosto.cs" />
@@ -118,6 +132,7 @@
     <Compile Include="Mapeos\ClienteMap.cs" />
     <Compile Include="Mapeos\ConceptoMap.cs" />
     <Compile Include="Mapeos\ContratoMarcoMap.cs" />
+    <Compile Include="Mapeos\DatosEmpresaMap.cs" />
     <Compile Include="Mapeos\EntregaMap.cs" />
     <Compile Include="Mapeos\FacturaMap.cs" />
     <Compile Include="Mapeos\HistorialCostoMap.cs" />

@@ -31,13 +31,13 @@ namespace SCF.proveedores {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtPersonaContacto;
         
         /// <summary>
-        /// Control ddlTipoDocumento.
+        /// Control cbTipoDocumento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoDocumento;
+        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbTipoDocumento;
         
         /// <summary>
         /// Control txtNroDocumento.

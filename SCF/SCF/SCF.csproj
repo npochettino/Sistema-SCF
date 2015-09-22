@@ -44,6 +44,15 @@
     <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.ASPxThemes.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="IDAutomation.DataBarFontEncoder">
+      <HintPath>..\BibliotecaSCF\bin\Debug\IDAutomation.DataBarFontEncoder.dll</HintPath>
+    </Reference>
+    <Reference Include="IDAutomation.IntelligentMail">
+      <HintPath>..\BibliotecaSCF\bin\Debug\IDAutomation.IntelligentMail.dll</HintPath>
+    </Reference>
+    <Reference Include="IDAutomation.NetAssembly">
+      <HintPath>..\BibliotecaSCF\bin\Debug\IDAutomation.NetAssembly.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
@@ -4590,8 +4599,8 @@
     <Content Include="assets\global\plugins\uniform\README.md" />
     <Content Include="assets\admin\pages\media\blog\Thumbs.db" />
     <Content Include="assets\admin\pages\media\pages\Thumbs.db" />
-    <Content Include="Comprobantes_AFIP\SCF_Prueba.pfx" />
-    <Content Include="Comprobantes_AFIP\sempait.pfx" />
+    <Content Include="facturas\Comprobantes_AFIP\SCF_Prueba.pfx" />
+    <Content Include="facturas\Comprobantes_AFIP\sempait.pfx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

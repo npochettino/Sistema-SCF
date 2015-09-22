@@ -1,20 +1,19 @@
-﻿using BibliotecaSCF.Clases;
-using FluentNHibernate.Mapping;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BibliotecaSCF.Clases;
+using FluentNHibernate.Mapping;
 
 namespace BibliotecaSCF.Mapeos
 {
-    public class ProveedorMap : ClassMap<Proveedor>
+    class DatosEmpresaMap : ClassMap<DatosEmpresa>
     {
-        public ProveedorMap()
+        public DatosEmpresaMap()
         {
-            Table("Proveedores");
-            Id(x => x.Codigo).Column("codigoProveedor").GeneratedBy.Identity();
-            Map(x => x.NumeroInterno).Column("numeroInterno");
+            Table("DatosEmpresa");
+            Id(x => x.Codigo).Column("codigoDatosEmpresa").GeneratedBy.Identity();
             Map(x => x.RazonSocial).Column("razonSocial");
             Map(x => x.Provincia).Column("provincia");
             Map(x => x.Localidad).Column("localidad");

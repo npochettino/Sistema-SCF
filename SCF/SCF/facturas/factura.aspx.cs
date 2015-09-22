@@ -93,14 +93,13 @@ namespace SCF.facturas
             gvDetalleFactura.DataSource = dtItemsFacturaActual;
             gvDetalleFactura.DataBind();
 
-            lblNroFacturaAEmitir.Text = "002 - " + string.Format("{0:00000000}", txtNroFactura.Text);
+            lblNroFacturaAEmitir.Text = "002 - " + (Convert.ToInt32(txtNroFactura.Text)).ToString("D8");
             lblCondicionVenta.Text = cbCondicionVenta.Text;
             lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
             lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
             lblNombreApellidoCliente.Text = txtRazonSocial.Text;
             lblNroRemitos.Text = gluRemito.Text;
             lblNumeroDocumento.Text = txtNroDocumento.Text;
-            //lblTipoDocumento.Text = "CUIT";
             lblFechaVencimientoCAE.Text = "NO FACTURADO";
             lblNroCAE.Text = "NO FACTURADO";
             lblSubtotal.Text = txtSubtotal.Text;
