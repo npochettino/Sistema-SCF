@@ -93,7 +93,7 @@ namespace SCF.facturas
             gvDetalleFactura.DataSource = dtItemsFacturaActual;
             gvDetalleFactura.DataBind();
 
-            lblNroFacturaAEmitir.Text = "002 - " + (Convert.ToInt32(txtNroFactura.Text)).ToString("D8");
+            lblNroFacturaAEmitir.Text = "002 - " + (Convert.ToInt32(txtNroFactura.Value)).ToString("D8");
             lblCondicionVenta.Text = cbCondicionVenta.Text;
             lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
             lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);

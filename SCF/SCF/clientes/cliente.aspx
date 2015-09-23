@@ -54,7 +54,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Razón Social</label>
-                                                <input type="text" id="txtRazonSocial" runat="server" class="form-control" placeholder="Razón Social">
+                                                <input type="text" id="txtRazonSocial" runat="server" class="form-control" placeholder="Razón Social" required>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -70,9 +70,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Tipo Documento</label>
-                                                <dx:aspxcombobox id="cbTipoDocumento" runat="server" dropdownstyle="DropDownList" cssclass="form-control" TextField="descripcion"
-                                                    ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" width="100%" enabletheming="True" theme="Metropolis" AutoPostBack="false">
-                                                </dx:aspxcombobox>
+                                                <dx:ASPxComboBox ID="cbTipoDocumento" runat="server" DropDownStyle="DropDownList" CssClass="form-control" TextField="descripcion"
+                                                    ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" AutoPostBack="false">
+                                                </dx:ASPxComboBox>
                                             </div>
                                         </div>
                                         <!--/span-->

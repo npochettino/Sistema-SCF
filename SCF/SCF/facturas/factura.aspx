@@ -88,7 +88,7 @@
                                                 </dx:ASPxGridLookup>
                                                 <span class="input-group-btn">
                                                     <asp:Button class="btn blue" type="button" runat="server" ID="btnObtenerDatosRemito" OnClick="btnObtenerDatosRemito_Click" UseSubmitBehavior="false" Text="Ir" />
-                                                    
+
                                                 </span>
                                             </div>
                                         </div>
@@ -440,53 +440,53 @@
                                                         <div class="form-group">
                                                             <dx:ASPxGridView ID="gvDetalleFactura" runat="server" Width="100%" Theme="Metropolis" KeyFieldName="codigoItemEntrega" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoItemEntrega" ReadOnly="True" Visible="False" VisibleIndex="1">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Desc. Corta">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="cantidad" VisibleIndex="2" Visible="true" Caption="Cantidad">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoProveedor" VisibleIndex="2" Visible="true" Caption="Cod. Prov">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" VisibleIndex="2" Visible="true" Caption="Proveedor">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoItemNotaDePedido" VisibleIndex="2" Visible="false" Caption="Cod. Item NP">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="posicion" VisibleIndex="2" Visible="true" Caption="Posición">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoArticuloCliente" VisibleIndex="2" Visible="true" Caption="Cod. Articulo Cliente">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoNotaDePedido" VisibleIndex="2" Width="100px" Visible="false" Caption="Codigo NP">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="numeroNotaDePedido" VisibleIndex="2" Width="150px" Visible="true" Caption="N° NP">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="precioUnitario" VisibleIndex="2" Width="150px" Visible="true" Caption="Precio Unitario">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="precioTotal" VisibleIndex="2" Width="150px" Visible="true" Caption="Precio Total">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                            </Columns>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoItemEntrega" ReadOnly="True" Visible="False" VisibleIndex="1">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="2" Visible="true" Caption="Desc. Corta">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="cantidad" VisibleIndex="2" Visible="true" Caption="Cantidad">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoProveedor" VisibleIndex="2" Visible="true" Caption="Cod. Prov">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" VisibleIndex="2" Visible="true" Caption="Proveedor">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoItemNotaDePedido" VisibleIndex="2" Visible="false" Caption="Cod. Item NP">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="posicion" VisibleIndex="2" Visible="true" Caption="Posición">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticuloCliente" VisibleIndex="2" Visible="true" Caption="Cod. Articulo Cliente">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoNotaDePedido" VisibleIndex="2" Width="100px" Visible="false" Caption="Codigo NP">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="numeroNotaDePedido" VisibleIndex="2" Width="150px" Visible="true" Caption="N° NP">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="precioUnitario" VisibleIndex="2" Width="150px" Visible="true" Caption="Precio Unitario">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="precioTotal" VisibleIndex="2" Width="150px" Visible="true" Caption="Precio Total">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
                                                             </dx:ASPxGridView>
                                                         </div>
                                                         <div class="form-body">

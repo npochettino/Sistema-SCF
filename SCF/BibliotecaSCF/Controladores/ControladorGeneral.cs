@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using WSFEv1;
 using WSFEv1.Logica;
 using WSFEv1.Logica.Wsfe;
-using IDAutomation.NetAssembly;
 
 namespace BibliotecaSCF.Controladores
 {

@@ -58,7 +58,12 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Nro. Interno Nota Pedido del Cliente</label>
-                                                <dx:ASPxTextBox ID="txtNroInternoCliente" runat="server" CssClass="form-control" Width="100%" placeholder="Nro. Interno Nota Pedido Cliente"></dx:ASPxTextBox>
+                                                <dx:ASPxTextBox ID="txtNroInternoCliente" runat="server" CssClass="form-control" Width="100%" placeholder="Nro. Interno Nota Pedido Cliente">
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
+
+                                                </dx:ASPxTextBox>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -82,7 +87,7 @@
                                                 <label class="control-label">Cliente</label>
 
                                                 <dx:ASPxComboBox ID="cbClientes" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
-                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis" AutoPostBack="True" OnSelectedIndexChanged="cbClientes_SelectedIndexChanged" >
+                                                    ValueField="codigoCliente" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis" AutoPostBack="True" OnSelectedIndexChanged="cbClientes_SelectedIndexChanged">
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoCliente" Width="100px" Visible="false" />
                                                         <dx:ListBoxColumn FieldName="cuil" Width="100px" />
@@ -95,7 +100,7 @@
                                         <div class="col-md-6" id="divContratoMarco">
                                             <div class="form-group">
                                                 <label class="control-label">Contrato Marco</label>
-                                                <dx:ASPxComboBox ID="cbContratoMarco" runat="server" DropDownStyle="DropDownList" Width="100%" CssClass="form-control" ValueField="codigoContratoMarco" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" EnableTheming="True"  Theme="Metropolis">
+                                                <dx:ASPxComboBox ID="cbContratoMarco" runat="server" DropDownStyle="DropDownList" Width="100%" CssClass="form-control" ValueField="codigoContratoMarco" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" EnableTheming="True" Theme="Metropolis">
 
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoContratoMarco" Width="100px" Visible="false" />

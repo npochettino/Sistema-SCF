@@ -38,7 +38,7 @@ namespace SCF.config
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            ControladorGeneral.InsertarActualizarDatosEmpresa(Convert.ToInt32(Session["codigoDatosEmpresa"]), txtRazonSocial.value, txtProvincia.Text, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value,
+            ControladorGeneral.InsertarActualizarDatosEmpresa(Convert.ToInt32(Session["codigoDatosEmpresa"]), txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value,
                     txtFax.Value, txtMail.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 80); //agregar tipo documento
         }
     }
