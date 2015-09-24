@@ -21,10 +21,8 @@
                     <h1>Factura <small>editar/nuevo Factura</small></h1>
                 </div>
                 <!-- END PAGE TITLE -->
-
             </div>
             <!-- END PAGE HEAD -->
-
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
@@ -61,16 +59,7 @@
                                     <h3 class="form-section">Seleccione el Remito</h3>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <%--                                            <div class="input-group">
-                                                                <input type="text" id="txtPrecioActual" placeholder="Precio" runat="server" class="form-control">
-                                                                <span class="input-group-btn">
-                                                                    <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
-                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
-                                                                </span>                                                         
-                                                            </div>
-                                            <div class="form-group">--%>
                                             <div class="input-group">
-                                                <%--<label class="control-label">Remito</label>--%>
                                                 <dx:ASPxGridLookup ID="gluRemito" runat="server" SelectionMode="Multiple" CssClass="form-control"
                                                     ClientInstanceName="gridLookup" Theme="Metropolis" AutoPostBack="false"
                                                     KeyFieldName="codigoEntrega" Width="100%" TextFormatString="{1}" MultiTextSeparator=", ">
@@ -82,13 +71,15 @@
                                                         <dx:GridViewDataColumn FieldName="cuitCliente" Caption="CUIT" Width="100%" />
                                                         <dx:GridViewDataColumn FieldName="codigoSCF" Caption="Codigo conSCF" Width="100%" />
                                                     </Columns>
+<%--                                                    <ValidationSettings SetFocusOnError="true">
+                                                        <RequiredField IsRequired="true" ErrorText="Ingrese un remito" />
+                                                    </ValidationSettings>--%>
                                                     <GridViewProperties>
                                                         <Settings ShowFilterRow="True" ShowStatusBar="Visible" />
                                                     </GridViewProperties>
                                                 </dx:ASPxGridLookup>
                                                 <span class="input-group-btn">
                                                     <asp:Button class="btn blue" type="button" runat="server" ID="btnObtenerDatosRemito" OnClick="btnObtenerDatosRemito_Click" UseSubmitBehavior="false" Text="Ir" />
-
                                                 </span>
                                             </div>
                                         </div>
@@ -99,6 +90,9 @@
                                             <div class="form-group">
                                                 <label class="control-label">Tipo de Comprobante</label>
                                                 <dx:ASPxComboBox ID="cbTipoComprobante" runat="server" ValueField="codigoTipoComprobante" TextField="descripcion" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
+                                                <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
@@ -106,7 +100,11 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Nro. Factura</label>
-                                                <dx:ASPxTextBox ID="txtNroFactura" runat="server" CssClass="form-control" Width="100%" placeholder="Nro Factura"></dx:ASPxTextBox>
+                                                <dx:ASPxTextBox ID="txtNroFactura" runat="server" CssClass="form-control" Width="100%" placeholder="Nro Factura">
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
+                                                </dx:ASPxTextBox>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -116,6 +114,9 @@
                                                 <dx:ASPxDateEdit ID="txtFechaFacturacion" runat="server" CssClass="form-control" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
                                                     <TimeSectionProperties Visible="True">
                                                     </TimeSectionProperties>
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
                                                 </dx:ASPxDateEdit>
                                             </div>
                                         </div>
@@ -129,6 +130,9 @@
                                                         <dx:ListEditItem Selected="true" Text="15 Días" Value="1" />
                                                         <dx:ListEditItem Text="30 Días" Value="2" />
                                                     </Items>
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
@@ -143,6 +147,9 @@
                                                         <dx:ListBoxColumn FieldName="descripcion" Width="100px" Caption="Descripción" />
                                                         <dx:ListBoxColumn FieldName="abreviatura" Width="300px" Caption="Abreviatura" />
                                                     </Columns>
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
@@ -156,6 +163,9 @@
                                                         <dx:ListBoxColumn FieldName="codigoConcepto" Width="100px" Visible="false" />
                                                         <dx:ListBoxColumn FieldName="descripcion" Width="100px" Caption="Descripción" />
                                                     </Columns>
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
@@ -169,21 +179,33 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Razon Social</label>
-                                                <asp:TextBox ID="txtRazonSocial" runat="server" CssClass="form-control" Width="100%"></asp:TextBox>
+                                                <dx:ASPxTextBox ID="txtRazonSocial" runat="server" CssClass="form-control" Width="100%">
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
+                                                </dx:ASPxTextBox>
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">CUIT</label>
-                                                <asp:TextBox runat="server" ID="txtNroDocumento" CssClass="form-control" Width="100%"></asp:TextBox>
+                                                <dx:ASPxTextBox runat="server" ID="txtNroDocumento" CssClass="form-control" Width="100%">
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
+                                                </dx:ASPxTextBox>
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Codigo con SCF</label>
-                                                <asp:TextBox ID="txtCodigoConSCF" runat="server" CssClass="form-control" Width="100%"></asp:TextBox>
+                                                <dx:ASPxTextBox ID="txtCodigoConSCF" runat="server" CssClass="form-control" Width="100%">
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
+                                                </dx:ASPxTextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -247,7 +269,7 @@
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="numeroNotaDePedido" VisibleIndex="2" Width="150px" Visible="true" Caption="N° NP">
+                                                                <dx:GridViewDataTextColumn FieldName="numeroNotaDePedido" VisibleIndex="2" Width="150px" Visible="true" Caption="N° Nota Pedido">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
@@ -330,7 +352,7 @@
 
                                     <div class="form-actions right">
                                         <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
-                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnEmitir" Text="Emitir Factura" OnClick="btnEmitir_Click" />
+                                        <asp:Button type="button" class="btn blue" runat="server" ID="btnEmitir" UseSubmitBehavior="false" Text="Emitir Factura" OnClick="btnEmitir_Click" />
                                     </div>
                                 </div>
                             </form>
@@ -344,7 +366,7 @@
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN POPUP ELIMINAR ARTICULO -->
-    <dx:ASPxPopupControl ID="pcError" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcError" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcError"
         HeaderText="Mensaje" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">

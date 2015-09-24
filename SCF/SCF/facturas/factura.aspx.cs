@@ -90,23 +90,26 @@ namespace SCF.facturas
         protected void btnEmitir_Click(object sender, EventArgs e)
         {
             DataTable dtItemsFacturaActual = (DataTable)Session["dtItemsFacturaActual"];
-            gvDetalleFactura.DataSource = dtItemsFacturaActual;
-            gvDetalleFactura.DataBind();
+            if (dtItemsFacturaActual != null)
+            {
+                gvDetalleFactura.DataSource = dtItemsFacturaActual;
+                gvDetalleFactura.DataBind();
 
-            lblNroFacturaAEmitir.Text = "002 - " + (Convert.ToInt32(txtNroFactura.Value)).ToString("D8");
-            lblCondicionVenta.Text = cbCondicionVenta.Text;
-            lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
-            lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
-            lblNombreApellidoCliente.Text = txtRazonSocial.Text;
-            lblNroRemitos.Text = gluRemito.Text;
-            lblNumeroDocumento.Text = txtNroDocumento.Text;
-            lblFechaVencimientoCAE.Text = "NO FACTURADO";
-            lblNroCAE.Text = "NO FACTURADO";
-            lblSubtotal.Text = txtSubtotal.Text;
-            lblImporteIVA.Text = txtImporteIVA.Text;
-            lblImporteTotal.Text = txtTotal.Text;            
+                lblNroFacturaAEmitir.Text = "002 - " + (Convert.ToInt32(txtNroFactura.Value)).ToString("D8");
+                lblCondicionVenta.Text = cbCondicionVenta.Text;
+                lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
+                lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
+                lblNombreApellidoCliente.Text = txtRazonSocial.Text;
+                lblNroRemitos.Text = gluRemito.Text;
+                lblNumeroDocumento.Text = txtNroDocumento.Text;
+                lblFechaVencimientoCAE.Text = "NO FACTURADO";
+                lblNroCAE.Text = "NO FACTURADO";
+                lblSubtotal.Text = txtSubtotal.Text;
+                lblImporteIVA.Text = txtImporteIVA.Text;
+                lblImporteTotal.Text = txtTotal.Text;
 
-            pcValidarComprobante.ShowOnPageLoad = true;
+                pcValidarComprobante.ShowOnPageLoad = true;
+            }
         }
         
         protected void btnEmitirComprobante_Click(object sender, EventArgs e)

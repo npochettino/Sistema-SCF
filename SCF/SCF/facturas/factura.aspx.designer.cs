@@ -100,7 +100,7 @@ namespace SCF.facturas {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRazonSocial;
+        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtRazonSocial;
         
         /// <summary>
         /// Control txtNroDocumento.
@@ -109,7 +109,7 @@ namespace SCF.facturas {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNroDocumento;
+        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtNroDocumento;
         
         /// <summary>
         /// Control txtCodigoConSCF.
@@ -118,7 +118,7 @@ namespace SCF.facturas {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigoConSCF;
+        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtCodigoConSCF;
         
         /// <summary>
         /// Control gvItemsFactura.
