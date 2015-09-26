@@ -298,7 +298,7 @@
                                                                     <%--<dx:GridViewDataTextColumn FieldName="cantidad" Caption="Cantidad" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>--%>
-                                                                    <dx:GridViewDataTextColumn FieldName="costo" Caption="Costo" VisibleIndex="3">
+                                                                    <dx:GridViewDataTextColumn FieldName="costoActual" Caption="Costo" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                 </Columns>

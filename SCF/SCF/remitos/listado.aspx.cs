@@ -89,6 +89,10 @@ namespace SCF.remitos
             if (gvEntregas.FocusedRowIndex != -1)
             {
                 int codigoEntrega = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoEntrega"));
+                //Falta el desarrollo del metodo que devuelve un string.
+                //string mensaje = ControladorGeneral.EliminarEntrega(codigoEntrega);
+                //lblMensaje.Text = mensaje;
+                pcError.ShowOnPageLoad = true;
                 
             }
         }
@@ -105,6 +109,7 @@ namespace SCF.remitos
             }
             else
             {
+                lblMensaje.Text = "No se permite entregar un remito que esta anulado.";
                 pcError.ShowOnPageLoad = true;
             }
         }

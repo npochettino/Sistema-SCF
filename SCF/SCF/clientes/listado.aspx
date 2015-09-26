@@ -53,7 +53,7 @@
                                 <div class="btn-set pull-right">
                                     <asp:Button type="button" ID="btnInactivarCliente" runat="server" OnClientClick="ShowInactivarCliente()" class="btn red-intense" Text="Inactivar" />
                                     <asp:Button type="button" ID="btnActivarCliente" runat="server" OnClick="btnActivarCliente_Click" UseSubmitBehavior="false" class="btn blue" Text="Activar" />
-                                    <asp:Button type="button" ID="btnVerDetalleCliente" runat="server" OnClick="btnVerDetalleCliente_Click" UseSubmitBehavior="false" class="btn green" Text="Detalle" />
+                                    <asp:Button type="button" ID="btnVerDetalleCliente" runat="server" OnClick="btnVerDetalleCliente_Click" UseSubmitBehavior="false" CssClass="btn green" Text="Detalle" />
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">
@@ -67,7 +67,7 @@
                                         <dx:GridViewDataTextColumn FieldName="codigoCliente" ReadOnly="True" Visible="false" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="2">
+                                        <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Cliente" VisibleIndex="2">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="tipoDocumento" Caption="Tipo Documento" VisibleIndex="1">
@@ -127,7 +127,7 @@
     <!-- END CONTENT -->
 
     <!-- BEGIN POPUP ELIMINAR ARTICULO -->
-    <dx:ASPxPopupControl ID="pcConfirmarEliminarCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcConfirmarEliminarCliente" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarCliente"
         HeaderText="Eliminar Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
@@ -161,7 +161,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-    <dx:ASPxPopupControl ID="pcShowInactivarCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcShowInactivarCliente" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowInactivarCliente"
         HeaderText="Inactivar Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
@@ -198,7 +198,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-    <dx:ASPxPopupControl ID="pcShowDetalleCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
+    <dx:ASPxPopupControl ID="pcShowDetalleCliente" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleCliente"
         HeaderText="Detalle del Cliente" AllowDragging="True" EnableViewState="False" Width="800px"
         PopupAnimationType="Fade" Theme="Metropolis" ScrollBars="Auto">
@@ -222,14 +222,6 @@
                                                             <label class="control-label col-md-3">Razon Social</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtRazonSocial" placeholder="Razon Social" runat="server" class="form-control">
-                                                            &nbsp;</input>
-                                                                </input>
-&nbsp;</input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input></input></input></input></input></input></input></input>
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -238,14 +230,6 @@
                                                             <label class="control-label col-md-3">CUIL</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtCUIL" placeholder="CUIL" runat="server" class="form-control">
-                                                            &nbsp;</input>
-                                                                </input>
-&nbsp;</input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input></input></input></input></input></input></input></input>
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -255,14 +239,6 @@
                                                         <label class="control-label col-md-3">Email</label>
                                                         <div class="col-md-9">
                                                             <input type="text" id="txtEmail" placeholder="Email" runat="server" class="form-control">
-                                                        &nbsp;</input>
-                                                            </input>
-&nbsp;</input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input></input></input></input></input></input></input></input>
-                                                        &nbsp;
-                                                        &nbsp;
-                                                        &nbsp;
-                                                        &nbsp;
-                                                        &nbsp;
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -270,14 +246,6 @@
                                                             <label class="control-label col-md-3">Tel. / Fax.</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTelFax" placeholder="Tel. / Fax" runat="server" class="form-control">
-                                                            &nbsp;</input>
-                                                                </input>
-&nbsp;</input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input></input></input></input></input></input></input></input>
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -288,14 +256,6 @@
                                                             <label class="control-label col-md-3">Contacto</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtPersonaCantacto" placeholder="Persona de Contacto" runat="server" class="form-control">
-                                                            &nbsp;</input>
-                                                                </input>
-&nbsp;</input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input></input></input></input></input></input></input></input>
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -308,14 +268,6 @@
                                                             <label class="control-label col-md-3">Banco</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtBanco" placeholder="Banco" runat="server" class="form-control">
-                                                            &nbsp;</input>
-                                                                </input>
-&nbsp;</input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input></input></input></input></input></input></input></input>
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -324,14 +276,6 @@
                                                             <label class="control-label col-md-3">CBU</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtCBU" placeholder="CBU" runat="server" class="form-control">
-                                                            &nbsp;</input>
-                                                                </input>
-&nbsp;</input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input></input></input></input></input></input></input></input>
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -342,14 +286,6 @@
                                                             <label class="control-label col-md-3">Nro. de Cuenta</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtNroCuenta" placeholder="Nro. Cuenta" runat="server" class="form-control">
-                                                            &nbsp;</input>
-                                                                </input>
-&nbsp;</input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input></input></input></input></input></input></input></input>
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -371,7 +307,38 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
+   
+
+    <!--Inicio PopUp Mensaje-->
+    <dx:ASPxPopupControl ID="pcMensaje" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcMensaje"
+        HeaderText="Mensaje" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        EnableViewState="False" Theme="Metropolis">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl4" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel2" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent4" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <dx:ASPxLabel ID="lblMensaje" runat="server" Text=""></dx:ASPxLabel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
     <!--END POPUP-->
+     <!--END POPUP-->
 
     <script lang="javascript" type="text/javascript">
         function ShowConfirmarEliminarCliente() {

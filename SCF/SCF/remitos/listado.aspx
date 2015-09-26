@@ -49,7 +49,7 @@
                                 <div class="btn-set pull-left">
                                     <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" UseSubmitBehavior="false" Text="Editar" />
-                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarRemito()" class="btn red" Text="Eliminar" />
+                                    <button type="button" ID="btnEliminar2" runat="server" onclick="ShowConfirmarEliminarRemito()" class="btn red" Text="Eliminar">Eliminar</button>
                                 </div>
                                 <div class="btn-set pull-right">
                                     <asp:Button type="button" ID="btnEntregada" runat="server" OnClick="btnEntregada_Click" class="btn green" Text="Entregada" CommandName="bb" />
@@ -96,7 +96,7 @@
     <!-- END CONTENT -->
 
     <!-- BEGIN POPUP ELIMINAR ARTICULO -->
-    <dx:ASPxPopupControl ID="pcConfirmarEliminarRemito" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcConfirmarEliminarRemito" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarRemito"
         HeaderText="Eliminar Remito" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
-                                        <asp:Button type="button" ID="Button1" runat="server" OnClientClick="pcConfirmarEliminarRemito.Hide();" class="btn default" Text="Cerrar" />
+                                        <asp:Button type="button" ID="Button1" runat="server" OnClientClick="pcConfirmarEliminarRemito.Hide();" UseSubmitBehavior="false" class="btn default" Text="Cerrar" />
                                         <asp:Button type="button" ID="btnAceptarEliminarRemito" runat="server" OnClick="btnAceptarEliminarRemito_Click" UseSubmitBehavior="false" class="btn blue" Text="Aceptar" />
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
     <!-- BEGIN POPUP ELIMINAR ARTICULO -->
     <dx:ASPxPopupControl ID="pcError" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcError"
-        HeaderText="Error" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        HeaderText="Mensaje" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl3" runat="server">
@@ -145,7 +145,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="input-group">
-                                                No se permite entregar un remito que esta anulado.
+                                                <dx:ASPxLabel ID="lblMensaje" runat="server" Text=""></dx:ASPxLabel>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -159,7 +160,7 @@
     </dx:ASPxPopupControl>
     <!--END POPUP-->
 
-    <dx:ASPxPopupControl ID="pcShowDetalleRemito" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
+    <dx:ASPxPopupControl ID="pcShowDetalleRemito" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleRemito"
         HeaderText="Detalle de Remito" AllowDragging="True" EnableViewState="False" Width="800px"
         PopupAnimationType="Fade" Theme="Metropolis">
@@ -221,7 +222,7 @@
                                                                     <dx:GridViewDataTextColumn FieldName="codigoItemEntrega" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticulo" VisibleIndex="1">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticulo" Visible="false" VisibleIndex="1">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="descripcionCorta" Caption="Desc. Corta" VisibleIndex="2">
@@ -233,7 +234,7 @@
                                                                     <dx:GridViewDataTextColumn FieldName="codigoProveedor" Visible="false" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" Caption="Proveedor" VisibleIndex="3">
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" Visible="false" Caption="Proveedor" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="codigoItemNotaDePedido" Visible="false" VisibleIndex="3">

@@ -33,12 +33,15 @@ namespace SCF.contrato_marco
 
         protected void btnAceptarEliminarContratoMarco_Click(object sender, EventArgs e)
         {
-
+            //Falta el desarrollo del metodo que devuelve un string.
+            //string mensaje = ControladorGeneral.EliminarContratoMarco(int.Parse(gvContratosMarco.GetRowValues(gvContratosMarco.FocusedRowIndex, "codigoContratoMarco").ToString()));
+            //lblError.Text = mensaje;
+            pcError.ShowOnPageLoad = true;
         }
 
         protected void btnDetalle_Click(object sender, EventArgs e)
         {
-
+            pcShowDetalleContratoMarco.ShowOnPageLoad = true;
         }
     }
 }

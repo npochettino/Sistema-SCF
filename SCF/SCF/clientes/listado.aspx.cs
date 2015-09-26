@@ -82,6 +82,9 @@ namespace SCF.clientes
                     ControladorGeneral.EliminarCliente(int.Parse(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente").ToString()));
                     pcConfirmarEliminarCliente.ShowOnPageLoad = false;
                     loadGridClientes();
+                    //Muestro el mensaje que me devuelve del metodo Eliminar
+                    //lblMensaje.Text = 
+                    //pcMensaje.ShowOnPageLoad = true;
                 }
 
                 catch { }

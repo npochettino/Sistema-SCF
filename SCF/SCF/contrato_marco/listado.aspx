@@ -53,7 +53,7 @@
                             <div class="form-actions top">
                                 <div class="btn-set pull-left">
                                     <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
-                                    <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
+                                    <%--<asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />--%>
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarContratoMarco()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
@@ -79,10 +79,10 @@
                                         <dx:GridViewDataTextColumn FieldName="codigoCliente" Visible="false" VisibleIndex="4" Caption="codigoCliente">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="cuilCliente" VisibleIndex="4" Caption="CUIL">
+                                        <dx:GridViewDataTextColumn FieldName="cuilCliente" VisibleIndex="4" Visible="false" Caption="CUIL">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="5" Caption="Razon Social">
+                                        <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="5" Caption="Cliente">
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="true" />
@@ -125,6 +125,161 @@
                                     <div class="btn-set pull-right">
                                         <asp:Button type="button" ID="Button1" runat="server" UseSubmitBehavior="false" OnClientClick="pcConfirmarEliminarContratoMarco.Hide();" class="btn default" Text="Cerrar" />
                                         <asp:Button type="button" ID="btnAceptarEliminarContratoMarco" runat="server" OnClick="btnAceptarEliminarContratoMarco_Click" class="btn blue" Text="Aceptar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+    <!--END POPUP-->
+
+    <dx:ASPxPopupControl ID="pcShowDetalleContratoMarco" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="True" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleContratoMarco"
+        HeaderText="Detalle del Contrato Marco" AllowDragging="True" EnableViewState="False" Width="800px"
+        PopupAnimationType="Fade" Theme="Metropolis">
+        <ClientSideEvents PopUp="function(s, e) {  txtCodigoInterno.Focus(); }" />
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
+                <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btnGuardarAticuloProveedor">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent2" runat="server">
+                            <div data-width="760">
+                                <div class="modal-body">
+                                    <!--INFO DEL ARTICULO-->
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <label style="font-size: medium"><strong>Info del Contrato Marco</strong></label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Descripción</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" id="txtDescripcion" placeholder="Descripción" runat="server" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Cliente</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" id="txtRazonSocialCliente" placeholder="Cliente" runat="server" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Fecha Inicio</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" id="txtFechaInicio" placeholder="Fecha Inicio" runat="server" class="form-control">
+                                                           </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Fecha Fin</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" id="txtFechaFin" placeholder="Fecha Fin" runat="server" class="form-control">
+                                                           </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/row-->
+                                            </div>
+                                        </form>
+                                        <!-- END FORM-->
+                                    </div>
+
+                                    <!--INFO DEL CLIENTE-->
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <label style="font-size: medium"><strong>Items del Contrato</strong></label>
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <div class="form-group">
+                                                            <dx:ASPxGridView ID="gvItemsContratoMarco" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="PLANTA" Theme="Metropolis" Width="100%">
+                                                            <Columns>
+                                                                <dx:GridViewDataTextColumn FieldName="CM" VisibleIndex="1" Caption="Contrato Marco">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="POSICION" VisibleIndex="2" Caption="Posición">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="CLIENTE" VisibleIndex="3" Caption="Cliente">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="COMPRADOR" VisibleIndex="4" Caption="Comprador">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="INICIO" VisibleIndex="5" Caption="Fecha inicio">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="FIN" VisibleIndex="6" Caption="Fecha fin">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="PLANTA" VisibleIndex="7" Caption="Codigo articulo cliente">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="DESCRIPCION" VisibleIndex="8" Caption="Desc. Corta">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="PRECIO" Caption="Precio" VisibleIndex="9">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="MEDIDA" Caption="Unidad de medida" VisibleIndex="10">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="MONEDA" Caption="Moneda" VisibleIndex="11">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                </dx:GridViewDataTextColumn>
+                                                            </Columns>
+                                                            <SettingsBehavior AllowFocusedRow="True" />
+                                                            <SettingsPager PageSize="10">
+                                                            </SettingsPager>
+                                                            <Settings ShowFilterRow="True" />
+                                                        </dx:ASPxGridView>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--FIN INFO DEL CLIENTE-->
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ID="pcError" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcError"
+        HeaderText="Mensaje" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        EnableViewState="False" Theme="Metropolis">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl3" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel1" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent3" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <dx:ASPxLabel ID="lblError" Text="Hola" runat="server">
+                                                </dx:ASPxLabel>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

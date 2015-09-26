@@ -83,6 +83,10 @@ namespace SCF.proveedores
                 {
                     ControladorGeneral.EliminarProveedor(int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString()));
                     Response.Redirect("listado.aspx");
+
+                    //Muestro el mensaje que me devuelve del metodo Eliminar
+                    //lblMensaje.Text = 
+                    //pcMensaje.ShowOnPageLoad = true;
                 }
 
                 catch
