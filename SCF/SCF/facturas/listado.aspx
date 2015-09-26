@@ -55,6 +55,7 @@
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarFactura()" UseSubmitBehavior="false" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
+                                    <asp:Button type="button" ID="Button2" runat="server" OnClick="btnGenerarPDF_Click" UseSubmitBehavior="false" class="btn red" Text="PDF" />
                                     <asp:Button type="button" ID="btnDetalle" runat="server" OnClick="btnDetalle_Click" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
@@ -192,6 +193,11 @@
                                     <div class="portlet-body form">
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
+                                            <div class="form-actions top">
+                                                <div class="btn-set pull-right">
+                                                    <asp:Button type="button" ID="btnGenerarPDF" runat="server" OnClick="btnGenerarPDF_Click" UseSubmitBehavior="false" class="btn red" Text="PDF" />
+                                                </div>
+                                            </div>
                                             <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-md-12">

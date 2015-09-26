@@ -182,5 +182,11 @@ namespace SCF.remitos
         {
 
         }
+
+        protected void btnGenerarPDF_Click(object sender, EventArgs e)
+        {
+            Response.Write("<script>window.open('generar_pdf.aspx','_blank');</script>");
+            //Response.Redirect("generar_pdf.aspx");
+        }
     }
 }

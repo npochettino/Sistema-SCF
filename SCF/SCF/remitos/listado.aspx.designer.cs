@@ -40,6 +40,15 @@ namespace SCF.remitos {
         protected global::System.Web.UI.HtmlControls.HtmlButton btnEliminar2;
         
         /// <summary>
+        /// Control btnGenerarPDF.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGenerarPDF;
+        
+        /// <summary>
         /// Control btnEntregada.
         /// </summary>
         /// <remarks>
@@ -209,6 +218,15 @@ namespace SCF.remitos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::DevExpress.Web.ASPxPanel.PanelContent PanelContent2;
+        
+        /// <summary>
+        /// Control Button5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button5;
         
         /// <summary>
         /// Control txtNotaDePedido.

@@ -49,9 +49,10 @@
                                 <div class="btn-set pull-left">
                                     <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" class="btn yellow" UseSubmitBehavior="false" Text="Editar" />
-                                    <button type="button" ID="btnEliminar2" runat="server" onclick="ShowConfirmarEliminarRemito()" class="btn red" Text="Eliminar">Eliminar</button>
+                                    <button type="button" id="btnEliminar2" runat="server" onclick="ShowConfirmarEliminarRemito()" class="btn red" text="Eliminar">Eliminar</button>
                                 </div>
                                 <div class="btn-set pull-right">
+                                    <asp:Button type="button" ID="btnGenerarPDF" runat="server" OnClick="btnGenerarPDF_Click" UseSubmitBehavior="false" class="btn red" Text="PDF" />
                                     <asp:Button type="button" ID="btnEntregada" runat="server" OnClick="btnEntregada_Click" class="btn green" Text="Entregada" CommandName="bb" />
                                     <asp:Button type="button" ID="btnDevolucion" runat="server" OnClick="btnDevolucion_Click" class="btn red" Text="Devolución" />
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClick="btnVerDetalle_Click" class="btn green" Text="Detalle" />
@@ -146,7 +147,7 @@
                                         <div class="col-md-12">
                                             <div class="input-group">
                                                 <dx:ASPxLabel ID="lblMensaje" runat="server" Text=""></dx:ASPxLabel>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -175,6 +176,11 @@
                                     <div class="portlet-body form">
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
+                                            <div class="form-actions top">
+                                                <div class="btn-set pull-right">
+                                                    <asp:Button type="button" ID="Button5" runat="server" OnClick="btnGenerarPDF_Click" UseSubmitBehavior="false" class="btn red" Text="PDF" />
+                                                </div>
+                                            </div>
                                             <div class="form-body">
                                                 <label style="font-size: medium"><strong>Info del Remito</strong></label>
                                                 <div class="row">

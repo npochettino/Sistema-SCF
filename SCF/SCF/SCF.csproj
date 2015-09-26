@@ -45,6 +45,7 @@
     <Reference Include="DevExpress.Web.ASPxThemes.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -373,6 +374,7 @@
     <Content Include="assets\admin\pages\scripts\ui-notific8.js" />
     <Content Include="assets\admin\pages\scripts\ui-toastr.js" />
     <Content Include="assets\admin\pages\scripts\ui-tree.js" />
+    <Content Include="assets\FacturaA_SCF_base.jpg" />
     <Content Include="assets\global\css\components-md.css" />
     <Content Include="assets\global\css\components-rounded.css" />
     <Content Include="assets\global\css\components.css" />
@@ -4036,10 +4038,13 @@
     <Content Include="assets\global\plugins\zoom\jquery.zoom.min.js" />
     <Content Include="assets\global\scripts\datatable.js" />
     <Content Include="assets\global\scripts\metronic.js" />
+    <Content Include="assets\Remito_SCF_base.jpg" />
     <Content Include="assets\sweetalert-dev.js" />
     <Content Include="assets\sweetalert.css" />
     <Content Include="assets\sweetalert.min.js" />
+    <Content Include="facturas\generar_pdf.aspx" />
     <Content Include="facturas\tipo_comprobante.aspx" />
+    <Content Include="remitos\generar_pdf.aspx" />
     <Content Include="remitos\remito.js" />
     <Content Include="template\blank.aspx" />
     <Content Include="template\charts_amcharts.html" />
@@ -4092,12 +4097,26 @@
     <Compile Include="articulos\articulo.aspx.designer.cs">
       <DependentUpon>articulo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="facturas\generar_pdf.aspx.cs">
+      <DependentUpon>generar_pdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="facturas\generar_pdf.aspx.designer.cs">
+      <DependentUpon>generar_pdf.aspx</DependentUpon>
+    </Compile>
     <Compile Include="facturas\tipo_comprobante.aspx.cs">
       <DependentUpon>tipo_comprobante.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="facturas\tipo_comprobante.aspx.designer.cs">
       <DependentUpon>tipo_comprobante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="remitos\generar_pdf.aspx.cs">
+      <DependentUpon>generar_pdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="remitos\generar_pdf.aspx.designer.cs">
+      <DependentUpon>generar_pdf.aspx</DependentUpon>
     </Compile>
     <Compile Include="template\blank.aspx.cs">
       <DependentUpon>blank.aspx</DependentUpon>
@@ -4592,6 +4611,8 @@
     <Content Include="assets\admin\pages\media\pages\Thumbs.db" />
     <Content Include="facturas\Comprobantes_AFIP\SCF_Prueba.pfx" />
     <Content Include="facturas\Comprobantes_AFIP\sempait.pfx" />
+    <Content Include="assets\Factura_SCF_limpia.pdf" />
+    <Content Include="assets\Remito_SCF_limpia.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4611,6 +4632,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="reportes\facturaA.rdlc" />
+    <EmbeddedResource Include="reportes\remito.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
