@@ -10,22 +10,22 @@
       <Concepto>1</Concepto>
       <DocTipo>80</DocTipo>
       <DocNro>20111111112</DocNro>
-      <CbteDesde>1</CbteDesde>
-      <CbteHasta>1</CbteHasta>
-      <CbteFch>20150917</CbteFch>
-      <ImpTotal>871.2</ImpTotal>
+      <CbteDesde>6</CbteDesde>
+      <CbteHasta>6</CbteHasta>
+      <CbteFch>20150927</CbteFch>
+      <ImpTotal>18150</ImpTotal>
       <ImpTotConc>0</ImpTotConc>
-      <ImpNeto>720</ImpNeto>
+      <ImpNeto>15000</ImpNeto>
       <ImpOpEx>0</ImpOpEx>
       <ImpTrib>0</ImpTrib>
-      <ImpIVA>151.2</ImpIVA>
+      <ImpIVA>3150</ImpIVA>
       <MonId>PES</MonId>
       <MonCotiz>1</MonCotiz>
       <Iva>
         <AlicIva>
           <Id>5</Id>
-          <BaseImp>720</BaseImp>
-          <Importe>151.2</Importe>
+          <BaseImp>15000</BaseImp>
+          <Importe>3150</Importe>
         </AlicIva>
       </Iva>
     </FECAEDetRequest>

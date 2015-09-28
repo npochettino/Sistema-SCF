@@ -185,8 +185,43 @@ namespace SCF.remitos
 
         protected void btnGenerarPDF_Click(object sender, EventArgs e)
         {
-            Response.Write("<script>window.open('generar_pdf.aspx','_blank');</script>");
-            //Response.Redirect("generar_pdf.aspx");
+            if (gvEntregas.FocusedRowIndex != -1)
+            {
+                DataTable tableRemitoActual = GetTablaRemitoActualSession();
+                Session["tablaRemito"] = tableRemitoActual;
+                Response.Write("<script>window.open('generar_pdf.aspx','_blank');</script>");
+            }
+            else
+            {
+                lblMensaje.Text = "Debe seleccionar una factura para poder generar el PDF.";
+                pcError.ShowOnPageLoad = true;
+            }
+        }
+
+        private DataTable GetTablaRemitoActualSession()
+        {
+            int codigoEntrega = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoEntrega"));
+            int codigoNotaDePedido = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoNotaDePedido"));
+            int codigoCliente = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoCliente"));
+            string razonSocialCliente = gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "razonSocialCliente").ToString();
+            DateTime fechaEmision = Convert.ToDateTime(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "fechaEmision"));
+            int numeroRemito = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "numeroRemito"));
+            int codigoEstado = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoEstado"));
+            string observaciones = gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "observaciones").ToString();
+
+            DataTable tablaEntrega = new DataTable();
+            tablaEntrega.Columns.Add("codigoEntrega");
+            tablaEntrega.Columns.Add("codigoNotaDePedido");
+            tablaEntrega.Columns.Add("codigoCliente");
+            tablaEntrega.Columns.Add("razonSocialCliente");
+            tablaEntrega.Columns.Add("fechaEmision");
+            tablaEntrega.Columns.Add("numeroRemito");
+            tablaEntrega.Columns.Add("codigoEstado");
+            tablaEntrega.Columns.Add("observaciones");
+            
+            tablaEntrega.Rows.Add(new object[] { codigoEntrega, codigoNotaDePedido, codigoCliente, razonSocialCliente, fechaEmision, numeroRemito, codigoEstado, observaciones });
+
+            return tablaEntrega;
         }
     }
 }

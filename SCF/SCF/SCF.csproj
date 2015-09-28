@@ -4097,6 +4097,16 @@
     <Compile Include="articulos\articulo.aspx.designer.cs">
       <DependentUpon>articulo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="dsItemsFacturaA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsItemsFacturaA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsItemsRemito.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsItemsRemito.xsd</DependentUpon>
+    </Compile>
     <Compile Include="facturas\generar_pdf.aspx.cs">
       <DependentUpon>generar_pdf.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4613,6 +4623,28 @@
     <Content Include="facturas\Comprobantes_AFIP\sempait.pfx" />
     <Content Include="assets\Factura_SCF_limpia.pdf" />
     <Content Include="assets\Remito_SCF_limpia.pdf" />
+    <Content Include="dsItemsFacturaA.xsc">
+      <DependentUpon>dsItemsFacturaA.xsd</DependentUpon>
+    </Content>
+    <None Include="dsItemsFacturaA.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsItemsFacturaA.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="dsItemsFacturaA.xss">
+      <DependentUpon>dsItemsFacturaA.xsd</DependentUpon>
+    </Content>
+    <Content Include="dsItemsRemito.xsc">
+      <DependentUpon>dsItemsRemito.xsd</DependentUpon>
+    </Content>
+    <None Include="dsItemsRemito.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsItemsRemito.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="dsItemsRemito.xss">
+      <DependentUpon>dsItemsRemito.xsd</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

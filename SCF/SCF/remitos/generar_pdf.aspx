@@ -6,15 +6,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-            <rsweb:ReportViewer ID="rvRemito" Width="800" Height="600" runat="server"></rsweb:ReportViewer>
-    </div>
+        <div>
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <rsweb:ReportViewer ID="rvRemito" Width="800" Height="800" runat="server"></rsweb:ReportViewer>
+        </div>
     </form>
 </body>
 </html>
