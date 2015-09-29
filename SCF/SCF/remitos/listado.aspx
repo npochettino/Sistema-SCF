@@ -176,11 +176,6 @@
                                     <div class="portlet-body form">
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
-                                            <div class="form-actions top">
-                                                <div class="btn-set pull-right">
-                                                    <asp:Button type="button" ID="Button5" runat="server" OnClick="btnGenerarPDF_Click" UseSubmitBehavior="false" class="btn red" Text="PDF" />
-                                                </div>
-                                            </div>
                                             <div class="form-body">
                                                 <label style="font-size: medium"><strong>Info del Remito</strong></label>
                                                 <div class="row">

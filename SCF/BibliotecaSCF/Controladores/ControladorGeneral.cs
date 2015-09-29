@@ -1502,7 +1502,7 @@ namespace BibliotecaSCF.Controladores
                 {
                     dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo,
                         r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.NotaDePedido.Cliente.CodigoSCF,
-                        r.NotaDePedido.Cliente.Direccion, r.FechaEmision, r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
+                        r.NotaDePedido.Cliente.Direccion, r.FechaEmision.ToString("dd/MM/yyyy"), r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
                         r.CodigoEstado, r.Observaciones); return dt;
                 });
 
@@ -2179,9 +2179,9 @@ namespace BibliotecaSCF.Controladores
             return string.Format("{0}{1}{2}", fecha.Year.ToString("0000"), fecha.Month.ToString("00"), fecha.Day.ToString("00"));
         }
 
-        private static string ConvertirBarCode(string nroCae)
+        public static string ConvertirBarCode(string nroCae,DateTime fechaFactura)
         {
-            string nroCodeBar = "30711039704010002" + nroCae + DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + "0";
+            string nroCodeBar = "30711039704010002" + nroCae + fechaFactura.Year + fechaFactura.Month + fechaFactura.Day + "0";
             return nroCodeBar;
         }
 

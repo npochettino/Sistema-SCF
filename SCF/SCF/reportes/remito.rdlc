@@ -3,7 +3,6 @@
   <Body>
     <ReportItems>
       <Textbox Name="Textbox1">
-        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
@@ -17,9 +16,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>1.6637cm</Top>
+        <Top>1.61078cm</Top>
         <Left>17.08891cm</Left>
-        <Height>0.65291cm</Height>
+        <Height>0.57354cm</Height>
         <Width>3.16146cm</Width>
         <Style>
           <Border>
@@ -32,7 +31,6 @@
         </Style>
       </Textbox>
       <Textbox Name="txtCliente">
-        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
@@ -46,10 +44,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtCliente</rd:DefaultName>
-        <Top>6.3653cm</Top>
+        <Top>6.18891cm</Top>
         <Left>2.7485cm</Left>
-        <Height>0.46771cm</Height>
-        <Width>9.14104cm</Width>
+        <Height>0.57354cm</Height>
+        <Width>4.43146cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -62,7 +60,6 @@
         </Style>
       </Textbox>
       <Textbox Name="txtLocalidad">
-        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
@@ -76,9 +73,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtLocalidad</rd:DefaultName>
-        <Top>6.86829cm</Top>
+        <Top>6.76246cm</Top>
         <Left>15.84537cm</Left>
-        <Height>0.53799cm</Height>
+        <Height>0.57326cm</Height>
         <Width>4.405cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
@@ -92,7 +89,6 @@
         </Style>
       </Textbox>
       <Textbox Name="txtDomicilio">
-        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
@@ -106,10 +102,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtDomicilio</rd:DefaultName>
-        <Top>6.86829cm</Top>
+        <Top>6.76246cm</Top>
         <Left>2.7485cm</Left>
-        <Height>0.53799cm</Height>
-        <Width>6.49521cm</Width>
+        <Height>0.57326cm</Height>
+        <Width>4.43146cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -136,10 +132,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtNroDocumento</rd:DefaultName>
-        <Top>7.18579cm</Top>
-        <Left>9.09849cm</Left>
-        <Height>0.6441cm</Height>
-        <Width>3.87583cm</Width>
+        <Top>7.24725cm</Top>
+        <Left>8.56932cm</Left>
+        <Height>0.61764cm</Height>
+        <Width>3.92875cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -166,10 +162,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtCondicionVenta</rd:DefaultName>
-        <Top>7.82989cm</Top>
-        <Left>4.94455cm</Left>
-        <Height>0.54708cm</Height>
-        <Width>5.51625cm</Width>
+        <Top>7.80343cm</Top>
+        <Left>4.12434cm</Left>
+        <Height>0.65291cm</Height>
+        <Width>3.77cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -182,7 +178,6 @@
         </Style>
       </Textbox>
       <Textbox Name="txtFechaRemito">
-        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
@@ -198,10 +193,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtFechaRemito</rd:DefaultName>
-        <Top>3.11891cm</Top>
-        <Left>17.08891cm</Left>
-        <Height>0.46771cm</Height>
-        <Width>3.16146cm</Width>
+        <Top>2.96016cm</Top>
+        <Left>16.79787cm</Left>
+        <Height>0.62646cm</Height>
+        <Width>3.4525cm</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -233,7 +228,6 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="codigoArticulo">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -264,7 +258,6 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="descripcion">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -295,7 +288,6 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="cantidad">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -354,7 +346,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>11.625in</Height>
+    <Height>11.64583in</Height>
     <Style>
       <Border>
         <Style>None</Style>
@@ -365,7 +357,7 @@
       </BackgroundImage>
     </Style>
   </Body>
-  <Width>8.19133in</Width>
+  <Width>8.37883in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

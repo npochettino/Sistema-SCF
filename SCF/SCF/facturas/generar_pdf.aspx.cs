@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BibliotecaSCF.Controladores;
 using Microsoft.Reporting.WebForms;
+using Bytescout.BarCode;
+using System.IO;
 
 namespace SCF.facturas
 {
@@ -43,14 +45,28 @@ namespace SCF.facturas
             ReportParameter txtIVA = new ReportParameter("txtIVA", Convert.ToString(Convert.ToDouble(dtFacturaActual.Rows[0]["subtotal"])*0.21));
             ReportParameter txtTotal = new ReportParameter("txtTotal", Convert.ToString(dtFacturaActual.Rows[0]["total"]));
             ReportParameter txtCAE = new ReportParameter("txtCAE", Convert.ToString(dtFacturaActual.Rows[0]["cae"]));
-            ReportParameter txtFechaVencimientoCAE = new ReportParameter("txtFechaVencimientoCAE", Convert.ToString(dtFacturaActual.Rows[0]["fechaVencimientoCAE"]));
-            ReportParameter txtFechaFacturacion = new ReportParameter("txtFechaFacturacion", Convert.ToString(dtFacturaActual.Rows[0]["fechaFacturacion"]));
+            ReportParameter txtFechaVencimientoCAE = new ReportParameter("txtFechaVencimientoCAE", Convert.ToString(dtFacturaActual.Rows[0]["fechaVencimientoCAE"]).Remove(10,8));
+            ReportParameter txtFechaFacturacion = new ReportParameter("txtFechaFacturacion", Convert.ToString(dtFacturaActual.Rows[0]["fechaFacturacion"]).Remove(10,8));
+
+            // Create and setup an instance of Bytescout Barcode SDK
+            Barcode bc = new Barcode(SymbologyType.Code128);
+            bc.RegistrationName = "demo";
+            bc.RegistrationKey = "demo";
+            bc.DrawCaption = false;
+            bc.Value = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtFacturaActual.Rows[0]["cae"]), Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaFacturacion"]));
+            byte[] imgCodigoDeBarra = bc.GetImageBytesPNG();
+            string urlBarCode = Server.MapPath(".") + "\\Comprobantes_AFIP\\codeBar.png";
+            File.WriteAllBytes(urlBarCode, imgCodigoDeBarra);
+            
+            ReportParameter imgBarCode = new ReportParameter("imgBarCode", urlBarCode);
 
             this.rvFacturaA.LocalReport.SetParameters(new ReportParameter[] { txtNroFactura,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,txtNroRemitos,
-            txtCondicionVenta,txtSubtotal,txtIVA,txtTotal,txtCAE,txtFechaVencimientoCAE,txtFechaFacturacion});
+            txtCondicionVenta,txtSubtotal,txtIVA,txtTotal,txtCAE,txtFechaVencimientoCAE,txtFechaFacturacion,imgBarCode});
             
             dsReporte.DataTable1.Clear();
             tablaReporte = dtItemsFacturaActual;
+
+            
 
             foreach (DataRow fila in tablaReporte.Rows)
             {
@@ -60,7 +76,7 @@ namespace SCF.facturas
                 filaReporte["cantidad"] = fila["cantidad"];
                 filaReporte["precioUnitario"] = fila["precioUnitario"];
                 filaReporte["precioTotal"] = fila["precioTotal"];
-
+                
                 dsReporte.DataTable1.Rows.Add(filaReporte);
             }
 
