@@ -151,6 +151,7 @@ namespace SCF.proveedores
             pcShowDetalleProveedor.ShowOnPageLoad = true;
 
             int codigoArticulo = int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString());
+            lblTipoDoc.InnerText = txtBanco.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "tipoDocumento").ToString();
 
 
             txtRazonSocial.Value = gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "razonSocial").ToString();

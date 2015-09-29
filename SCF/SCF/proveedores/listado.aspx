@@ -223,15 +223,21 @@
                                                             <label class="control-label col-md-3">Razon Social</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtRazonSocial" placeholder="Razon Social" runat="server" class="form-control">
-                                                            </div>
+                                                            &nbsp;</input> </input>
+&nbsp;</input></input></input></input></input></input></input>&nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">CUIL</label>
+                                                            <label ID="lblTipoDoc" runat="server" class="control-label col-md-3">CUIL</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtCUIL" placeholder="CUIL" runat="server" class="form-control">
-                                                            </div>
+                                                            &nbsp;</input> </input>
+&nbsp;</input></input></input></input></input></input></input>&nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -240,14 +246,20 @@
                                                         <label class="control-label col-md-3">Email</label>
                                                         <div class="col-md-9">
                                                             <input type="text" id="txtEmail" placeholder="Email" runat="server" class="form-control">
-                                                        </div>
+                                                        &nbsp;</input> </input>
+&nbsp;</input></input></input></input></input></input></input>&nbsp; </input></input>
+                                                            </input>
+                                                            &nbsp;&nbsp;</input></input></input></div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Tel. / Fax.</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTelFax" placeholder="Tel. / Fax" runat="server" class="form-control">
-                                                            </div>
+                                                            &nbsp;</input> </input>
+&nbsp;</input></input></input></input></input></input></input>&nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -257,7 +269,10 @@
                                                             <label class="control-label col-md-3">Contacto</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtPersonaCantacto" placeholder="Persona de Contacto" runat="server" class="form-control">
-                                                            </div>
+                                                            &nbsp;</input> </input>
+&nbsp;</input></input></input></input></input></input></input>&nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -269,7 +284,10 @@
                                                             <label class="control-label col-md-3">Banco</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtBanco" placeholder="Banco" runat="server" class="form-control">
-                                                            </div>
+                                                            &nbsp;</input> </input>
+&nbsp;</input></input></input></input></input></input></input>&nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -277,7 +295,10 @@
                                                             <label class="control-label col-md-3">CBU</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtCBU" placeholder="CBU" runat="server" class="form-control">
-                                                            </div>
+                                                            &nbsp;</input> </input>
+&nbsp;</input></input></input></input></input></input></input>&nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -287,7 +308,10 @@
                                                             <label class="control-label col-md-3">Nro. de Cuenta</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtNroCuenta" placeholder="Nro. Cuenta" runat="server" class="form-control">
-                                                            </div>
+                                                            &nbsp;</input> </input>
+&nbsp;</input></input></input></input></input></input></input>&nbsp; </input></input>
+                                                                </input>
+                                                                &nbsp;&nbsp;</input></input></input></div>
                                                         </div>
                                                     </div>
                                                 </div>
