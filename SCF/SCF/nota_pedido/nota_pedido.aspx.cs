@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BibliotecaSCF.Clases;
-using DevExpress.Web.ASPxEditors;
 using System.Drawing;
 using System.Globalization;
 
@@ -89,6 +88,7 @@ namespace SCF.nota_pedido
                 tablaItemsNotaDePedido.Columns.Add("codigoItemNotaDePedido", typeof(int));
                 tablaItemsNotaDePedido.Columns.Add("precio", typeof(float));
                 tablaItemsNotaDePedido.Columns.Add("isEliminada");
+                tablaItemsNotaDePedido.Columns.Add("descripcionMoneda");
 
                 if (Session["tablaNotaDePedido"] != null)
                 {
@@ -105,7 +105,7 @@ namespace SCF.nota_pedido
                     if (gvArticulos.Selection.IsRowSelected(i))
                     {
                         DataRowView mRow = (DataRowView)gvArticulos.GetRow(i);
-                        tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false);
+                        tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false, mRow.Row.ItemArray[12]);
                     }
                 }
 
@@ -131,7 +131,7 @@ namespace SCF.nota_pedido
 
                             if (filaRepetida == null)
                             {
-                                tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false);
+                                tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false, mRow.Row.ItemArray[12]);
                             }
                         }
                     }
@@ -210,6 +210,10 @@ namespace SCF.nota_pedido
             {
                 ControladorGeneral.InsertarActualizarNotaDePedido(codigoNotaDePedido, txtNroInternoCliente.Text.ToString(), DateTime.Parse(txtFechaEmision.Value.ToString()), txtObservacion.InnerText.ToString(), cbContratoMarco.SelectedItem == null ? 0 : Convert.ToInt32(cbContratoMarco.SelectedItem.Value), (int)cbClientes.SelectedItem.Value, tablaItemsNotaDePedido);
                 Response.Redirect("listado.aspx");
+            }
+            else
+            {
+                Response.Write("<script>window.alert('Hay campos que deben completarse');</script>");
             }
         }
 

@@ -47,12 +47,12 @@
                             <!-- BEGIN FORM-->
                             <div class="form-actions top">
                                 <div class="btn-set pull-left">
-                                    <asp:Button type="button" ID="btnNuevo" runat="server" onclick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
+                                    <asp:Button type="button" ID="btnNuevo" runat="server" OnClick="btnNuevo_Click" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" />
                                     <asp:Button type="button" ID="btnEditar" runat="server" OnClick="btnEditar_Click" UseSubmitBehavior="false" class="btn yellow" Text="Editar" />
-                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarNotaPedido()" class="btn red" Text="Eliminar"  />
+                                    <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarNotaPedido()" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
-                                    <asp:Button type="button" ID="btnShowPopUpObservacion" runat="server" OnClientClick="ShowObservacion()" class="btn red" Text="Anular" />
+                                    <asp:Button type="button" ID="btnShowPopUpObservacion" Visible="false" runat="server" OnClientClick="ShowObservacion()" class="btn red" Text="Anular" />
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleNotaPedido()" class="btn green" Text="Detalle" OnClick="btnVerDetalle_Click" />
                                 </div>
                             </div>
@@ -65,8 +65,8 @@
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="numeroInternoCliente" VisibleIndex="1" Visible="true" Caption="Nro interno cliente">
-                                            <Settings AllowSort ="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                        <dx:GridViewDataTextColumn FieldName="numeroInternoCliente" VisibleIndex="1" Visible="true" Caption="Nro nota de pedido">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataDateColumn FieldName="fechaEmision" VisibleIndex="2" Caption="Fecha Emisión">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
@@ -86,7 +86,7 @@
                                         <dx:GridViewDataTextColumn FieldName="codigoCliente" VisibleIndex="9" Visible="false">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="10" Visible="true" Caption="Razón social">
+                                        <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="10" Visible="true" Caption="Cliente">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="fechaHoraProximaEntrega" VisibleIndex="11" Visible="true" Caption="Próxima entrega">
