@@ -141,14 +141,19 @@ namespace SCF.nota_pedido
         {
             pcShowDetalleNotaPedido.ShowOnPageLoad = true;
 
-            //txtRazonSocial.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "razonSocial").ToString();
-            //txtEmail.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "mail").ToString();
-            //txtCUIL.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "cuil").ToString();
-            //txtTelFax.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "telefono").ToString();
-            //txtPersonaCantacto.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "personaContacto").ToString();
-            //txtNroCuenta.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "numeroCuenta").ToString();
-            //txtBanco.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "banco").ToString();
-            //txtCBU.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "cbu").ToString(); 
+
+            int codigoNotaDePedido = Convert.ToInt32(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "codigoNotaDePedido"));
+            string observacion = Convert.ToString(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "observaciones").ToString());
+
+            txtNotaDePedido.Text = Convert.ToInt32(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "numeroInternoCliente")).ToString();
+            txtFechaEmision.Value = Convert.ToDateTime(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "fechaEmision"));
+            txtNombreCliente.Text = gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "razonSocialCliente").ToString();
+            txtContratoMarco.Text = gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "descripcionContratoMarco").ToString();
+            txtObservacion.InnerText = observacion;
+
+
+            gvDetalleNotaPedido.DataSource = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
+            gvDetalleNotaPedido.DataBind();
         }
     }
 }

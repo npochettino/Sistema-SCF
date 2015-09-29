@@ -271,7 +271,7 @@
                                                                     <dx:GridViewDataTextColumn FieldName="fechaEntrega" VisibleIndex="5" Visible="true" Caption="Fecha Entrega">
                                                                         <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="moneda" VisibleIndex="6" Visible="true" Caption="Moneda">
+                                                                    <dx:GridViewDataTextColumn FieldName="descripcionMoneda" VisibleIndex="6" Visible="true" Caption="Moneda">
                                                                         <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="precio" VisibleIndex="9" Visible="true" Caption="Precio">
