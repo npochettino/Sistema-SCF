@@ -35,6 +35,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bytescout.BarCode">
+      <HintPath>..\packages\Bytescout.BarCode.4.31.0.784\lib\net45\Bytescout.BarCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytescout.BarCode.WPF">
+      <HintPath>..\packages\Bytescout.BarCode.4.31.0.784\lib\net45\Bytescout.BarCode.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
     </Reference>

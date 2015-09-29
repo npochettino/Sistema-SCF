@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="btn-set pull-right">
                                     <asp:Button type="button" ID="btnShowPopUpObservacion" Visible="false" runat="server" OnClientClick="ShowObservacion()" class="btn red" Text="Anular" />
-                                    <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClientClick="ShowDetalleNotaPedido()" class="btn green" Text="Detalle" OnClick="btnVerDetalle_Click" />
+                                    <asp:Button type="button" ID="btnVerDetalle" runat="server" class="btn green" Text="Detalle" OnClick="btnVerDetalle_Click" UseSubmitBehavior="false" />
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">
@@ -184,6 +184,133 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
+
+
+    <dx:ASPxPopupControl ID="pcShowDetalleNotaPedido" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="True" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleNotaPedido"
+        HeaderText="Detalle Nota de Pedido" AllowDragging="True" EnableViewState="False" Width="800px"
+        PopupAnimationType="Fade" Theme="Metropolis">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl3" runat="server">
+                <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btnGuardarAticuloProveedor">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent3" runat="server">
+                            <div data-width="760">
+                                <div class="modal-body">
+                                    <!--INFO DEL ARTICULO-->
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <label style="font-size: medium"><strong>Info Nota de Pedido</strong></label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Nota de Pedido Cliente</label>
+                                                            <dx:ASPxTextBox ID="txtNotaDePedido" runat="server" CssClass="form-control" Width="100%" placeholder="Nota de Pedido"></dx:ASPxTextBox>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Fecha Emisión</label>
+                                                            <dx:ASPxDateEdit ID="txtFechaEmision" runat="server" CssClass="form-control" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
+                                                                <TimeSectionProperties Visible="True">
+                                                                </TimeSectionProperties>
+                                                            </dx:ASPxDateEdit>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Nombre Cliente</label>
+                                                            <dx:ASPxTextBox ID="txtNombreCliente" runat="server" CssClass="form-control" Width="100%" placeholder="Cliente"></dx:ASPxTextBox>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Contrato Marco</label>
+                                                            <dx:ASPxTextBox ID="txtContratoMarco" runat="server" CssClass="form-control" Width="100%" placeholder="Contrato Marco"></dx:ASPxTextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/row-->
+                                            </div>
+                                        </form>
+                                        <!-- END FORM-->
+                                    </div>
+                                    <!--INFO DEL CLIENTE-->
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <label style="font-size: medium"><strong>Items</strong></label>
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <div class="form-group">
+                                                            <dx:ASPxGridView runat="server" ID="gvDetalleNotaPedido" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                                <Columns>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoNotaDePedido" ReadOnly="True" Visible="False" VisibleIndex="0">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="numeroInternoCliente" VisibleIndex="1" Visible="false" Caption="Nro nota de pedido">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataDateColumn FieldName="descripcionCorta" VisibleIndex="2" Caption="Desc. Corta">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                                                    </dx:GridViewDataDateColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="posicion" Visible="true" VisibleIndex="3" Caption="Posicion">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="cantidad" VisibleIndex="4" Visible="true" Caption="Cantidad">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="fechaEntrega" VisibleIndex="5" Visible="true" Caption="Fecha Entrega">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="moneda" VisibleIndex="6" Visible="true" Caption="Moneda">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="precio" VisibleIndex="9" Visible="true" Caption="Precio">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
+                                                            </dx:ASPxGridView>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--FIN INFO DEL CLIENTE-->
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Observación</label>
+                                                            <textarea id="txtDetalleObservacion" runat="server" rows="3" class="form-control" readonly="readonly" style="resize: none;"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+
     <!--END POPUP-->
 
 

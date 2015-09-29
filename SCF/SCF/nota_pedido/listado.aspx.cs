@@ -139,7 +139,7 @@ namespace SCF.nota_pedido
 
         protected void btnVerDetalle_Click(object sender, EventArgs e)
         {
-            //pcShowObservacion.ShowOnPageLoad = true;
+            pcShowDetalleNotaPedido.ShowOnPageLoad = true;
 
             //txtRazonSocial.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "razonSocial").ToString();
             //txtEmail.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "mail").ToString();
