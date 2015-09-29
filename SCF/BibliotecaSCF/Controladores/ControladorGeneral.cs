@@ -647,6 +647,8 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulo.Columns.Add("codigoArticuloCliente");
                 tablaArticulo.Columns.Add("codigoCliente");
                 tablaArticulo.Columns.Add("razonSocialCliente");
+                tablaArticulo.Columns.Add("codigoUnidadMedida");
+                tablaArticulo.Columns.Add("unidadMedidad");
                 tablaArticulo.Columns.Add("codigoMoneda");
                 tablaArticulo.Columns.Add("descripcionMoneda");
 
@@ -659,7 +661,7 @@ namespace BibliotecaSCF.Controladores
                     tablaArticulo.Rows.Add(articulo.Codigo, articulo.DescripcionCorta, articulo.DescripcionLarga, articulo.Marca,
                         articulo.RecuperarHistorialPrecioActual().Precio, articulo.NombreImagen,
                         artCli == null ? string.Empty : artCli.CodigoInterno, artCli == null ? string.Empty : artCli.Cliente.Codigo.ToString(),
-                        artCli == null ? string.Empty : artCli.Cliente.RazonSocial, articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
+                        artCli == null ? string.Empty : artCli.Cliente.RazonSocial, string.Empty, string.Empty, articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
                         articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion);
                 }
 
@@ -1496,10 +1498,13 @@ namespace BibliotecaSCF.Controladores
 
                 List<Entrega> listaEntregas = CatalogoEntrega.RecuperarTodos(nhSesion);
 
-                listaEntregas.Aggregate(tablaEntrega, (dt, r) => { dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo,
-                    r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.NotaDePedido.Cliente.CodigoSCF,
-                    r.NotaDePedido.Cliente.Direccion, r.FechaEmision, r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
-                    r.CodigoEstado, r.Observaciones); return dt; });
+                listaEntregas.Aggregate(tablaEntrega, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo,
+                        r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.NotaDePedido.Cliente.CodigoSCF,
+                        r.NotaDePedido.Cliente.Direccion, r.FechaEmision, r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
+                        r.CodigoEstado, r.Observaciones); return dt;
+                });
 
                 return tablaEntrega;
             }
@@ -1761,8 +1766,8 @@ namespace BibliotecaSCF.Controladores
                             r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, r.ItemNotaDePedido.Posicion,
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
-                            entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, r.ItemNotaDePedido.Precio * r.CantidadAEntregar, 
-                            entrega.NotaDePedido.Cliente.RazonSocial,entrega.NotaDePedido.Cliente.NumeroDocumento,entrega.NotaDePedido.Cliente.Localidad, entrega.NotaDePedido.Cliente.Direccion); return dt;
+                            entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, r.ItemNotaDePedido.Precio * r.CantidadAEntregar,
+                            entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento, entrega.NotaDePedido.Cliente.Localidad, entrega.NotaDePedido.Cliente.Direccion); return dt;
                     });
                 }
 
@@ -2121,9 +2126,9 @@ namespace BibliotecaSCF.Controladores
                 detalleReq.ImpTotal = factura.Total;
                 detalleReq.ImpTotConc = 0; //por que ????
                 detalleReq.ImpTrib = 0; //ver tributos
-                
+
                 AlicIva[] listaAlicIva = new AlicIva[1];
-                
+
                 var ls = new List<AlicIva>();
                 AlicIva alicIva = new AlicIva();
                 alicIva.Id = factura.Iva.Codigo;
@@ -2179,7 +2184,7 @@ namespace BibliotecaSCF.Controladores
             string nroCodeBar = "30711039704010002" + nroCae + DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + "0";
             return nroCodeBar;
         }
-        
+
         #endregion
 
         #region Concepto
