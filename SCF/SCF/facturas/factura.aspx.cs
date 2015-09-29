@@ -42,9 +42,9 @@ namespace SCF.facturas
         private void CargarNumeroDeFactura()
         {
             //Obtengo el Ultimo numero de factura y le sumo 1.
-            DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
-            txtNroFactura.Text = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["numeroFactura"]) + 1).ToString() : string.Empty;
-            //txtNroFactura.Text = "1";
+            //DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
+            //txtNroFactura.Text = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["numeroFactura"]) + 1).ToString() : string.Empty;
+            txtNroFactura.Text = "6";
         }
 
         private void CargarComboTipoMoneda()

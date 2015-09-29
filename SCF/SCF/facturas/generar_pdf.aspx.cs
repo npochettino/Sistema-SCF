@@ -34,6 +34,7 @@ namespace SCF.facturas
 
             rvFacturaA.ProcessingMode = ProcessingMode.Local;
             rvFacturaA.LocalReport.ReportPath = Server.MapPath("..") + "\\reportes\\facturaA.rdlc";
+            rvFacturaA.LocalReport.EnableExternalImages = true;
             ReportParameter txtNroFactura = new ReportParameter("txtNroFactura", "002 - " +  Convert.ToInt32(dtFacturaActual.Rows[0]["numeroFactura"]).ToString("D8"));
             ReportParameter txtCliente = new ReportParameter("txtCliente", Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialCliente"]));
             ReportParameter txtDomicilio = new ReportParameter("txtDomicilio", Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]));
@@ -45,8 +46,8 @@ namespace SCF.facturas
             ReportParameter txtIVA = new ReportParameter("txtIVA", Convert.ToString(Convert.ToDouble(dtFacturaActual.Rows[0]["subtotal"])*0.21));
             ReportParameter txtTotal = new ReportParameter("txtTotal", Convert.ToString(dtFacturaActual.Rows[0]["total"]));
             ReportParameter txtCAE = new ReportParameter("txtCAE", Convert.ToString(dtFacturaActual.Rows[0]["cae"]));
-            ReportParameter txtFechaVencimientoCAE = new ReportParameter("txtFechaVencimientoCAE", Convert.ToString(dtFacturaActual.Rows[0]["fechaVencimientoCAE"]).Remove(10,8));
-            ReportParameter txtFechaFacturacion = new ReportParameter("txtFechaFacturacion", Convert.ToString(dtFacturaActual.Rows[0]["fechaFacturacion"]).Remove(10,8));
+            ReportParameter txtFechaVencimientoCAE = new ReportParameter("txtFechaVencimientoCAE", Convert.ToString(dtFacturaActual.Rows[0]["fechaVencimientoCAE"]).Remove(10,9));
+            ReportParameter txtFechaFacturacion = new ReportParameter("txtFechaFacturacion", Convert.ToString(dtFacturaActual.Rows[0]["fechaFacturacion"]).Remove(10,9));
 
             // Create and setup an instance of Bytescout Barcode SDK
             Barcode bc = new Barcode(SymbologyType.Code128);
@@ -57,11 +58,16 @@ namespace SCF.facturas
             byte[] imgCodigoDeBarra = bc.GetImageBytesPNG();
             string urlBarCode = Server.MapPath(".") + "\\Comprobantes_AFIP\\codeBar.png";
             File.WriteAllBytes(urlBarCode, imgCodigoDeBarra);
-            
-            ReportParameter imgBarCode = new ReportParameter("imgBarCode", urlBarCode);
+
+            string imagePath = new Uri(Server.MapPath("~/facturas/Comprobantes_AFIP/codeBar.png")).AbsoluteUri;
+            ReportParameter imgBarCode = new ReportParameter("imgBarCode", imagePath);
+
+            //Agrego numero de codigo de barra
+            string NumeroCodigoBarra = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtFacturaActual.Rows[0]["cae"]), Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaFacturacion"]));
+            ReportParameter txtNumeroCodigoBarra = new ReportParameter("txtNumeroCodigoBarra", NumeroCodigoBarra);
 
             this.rvFacturaA.LocalReport.SetParameters(new ReportParameter[] { txtNroFactura,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,txtNroRemitos,
-            txtCondicionVenta,txtSubtotal,txtIVA,txtTotal,txtCAE,txtFechaVencimientoCAE,txtFechaFacturacion,imgBarCode});
+            txtCondicionVenta,txtSubtotal,txtIVA,txtTotal,txtCAE,txtFechaVencimientoCAE,txtFechaFacturacion,imgBarCode,txtNumeroCodigoBarra});
             
             dsReporte.DataTable1.Clear();
             tablaReporte = dtItemsFacturaActual;
