@@ -20,6 +20,7 @@ namespace BibliotecaSCF.Clases
         public virtual double Total { get; set; }
         public virtual string Cae { get; set; }
         public virtual DateTime? FechaVencimiento { get; set; }
+        public virtual string CondicionVenta { get; set; }
 
         public virtual TipoComprobante TipoComprobante { get; set; }
         public virtual IList<Entrega> Entregas { get; set; }

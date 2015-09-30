@@ -2044,6 +2044,7 @@ namespace BibliotecaSCF.Controladores
                 tablaFacturas.Columns.Add("cae");
                 tablaFacturas.Columns.Add("fechaVencimientoCAE");
                 tablaFacturas.Columns.Add("remitos");
+                tablaFacturas.Columns.Add("condicionVenta");
 
 
                 List<Factura> listaFacturas = CatalogoFactura.RecuperarTodos(nhSesion);
@@ -2051,7 +2052,8 @@ namespace BibliotecaSCF.Controladores
                 listaFacturas.Aggregate(tablaFacturas, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion, r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
-                        r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento, string.Join(", ", r.Entregas.Select(x => x.NumeroRemito))); return dt;
+                        r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento, string.Join(", ", r.Entregas.Select(x => x.NumeroRemito)),
+                        r.CondicionVenta); return dt;
                 });
 
                 return tablaFacturas;
@@ -2074,7 +2076,7 @@ namespace BibliotecaSCF.Controladores
             return ultNroComprobante;
         }
 
-        public static void InsertarActualizarFactura(int codigoFactura, int numeroFactura, DateTime fechaFacturacion, List<int> listaCodigosEntrega, int codigoMoneda, int codigoConcepto, int codigoIva, double subtotal, double total)
+        public static void InsertarActualizarFactura(int codigoFactura, int numeroFactura, DateTime fechaFacturacion, List<int> listaCodigosEntrega, int codigoMoneda, int codigoConcepto, int codigoIva, double subtotal, double total, string condicionVenta)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -2117,6 +2119,7 @@ namespace BibliotecaSCF.Controladores
                 factura.TipoComprobante = CatalogoTipoComprobante.RecuperarPorCodigo(1, nhSesion);
                 factura.Total = total;
                 factura.FechaVencimiento = null;
+                factura.CondicionVenta = condicionVenta;
 
                 CatalogoFactura.InsertarActualizar(factura, nhSesion);
             }

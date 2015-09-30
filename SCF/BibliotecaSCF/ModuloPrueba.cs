@@ -17,7 +17,7 @@ namespace BibliotecaSCF
             List<int> l = new List<int>();
             l.Add(10);
             l.Add(11);
-            ControladorGeneral.InsertarActualizarFactura(0, 1, DateTime.Now, l, 1, 1, 5, 100, 121);
+            ControladorGeneral.InsertarActualizarFactura(0, 1, DateTime.Now, l, 1, 1, 5, 100, 121, string.Empty);
         }
     }
 }

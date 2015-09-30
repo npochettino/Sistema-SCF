@@ -20,6 +20,7 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.Total).Column("total");
             Map(x => x.Cae).Column("cae");
             Map(x => x.FechaVencimiento).Column("fechaVencimiento");
+            Map(x => x.CondicionVenta).Column("condicionVenta");
 
             References(x => x.Concepto).Column("codigoConcepto").Cascade.None().LazyLoad(Laziness.Proxy);
             References(x => x.TipoComprobante).Column("codigoTipoComprobante").Cascade.None().LazyLoad(Laziness.Proxy);
