@@ -15,6 +15,7 @@ namespace SCF.transportes
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            CargarComboTipoDocumento();
             if (!IsPostBack)
             {
                 //Cargo el form para editar
@@ -25,9 +26,9 @@ namespace SCF.transportes
                 else
                 {
                     Session.Add("codigoOperacion", 0);
+                    cbTipoDocumento.SelectedIndex = 0;
                 }
             }
-            CargarComboTipoDocumento();
         }
 
         private void CargarDatosParaEditar(Transporte transporte)

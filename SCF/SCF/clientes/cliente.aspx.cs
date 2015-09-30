@@ -26,6 +26,7 @@ namespace SCF.clientes
                 else
                 {
                     Session.Add("codigoOperacion", 0);
+                    cbTipoDocumento.SelectedIndex = 0;
                 }
             }
         }
@@ -47,6 +48,7 @@ namespace SCF.clientes
             txtNroCuentaBancaria.Value = oClienteActual.NumeroCuenta;
             txtObservacion.Value = oClienteActual.Observaciones;
             txtFax.Value = oClienteActual.Fax;
+            txtCodigoConSCF.Value = oClienteActual.CodigoSCF;
         }
 
         private void CargarComboTipoDocumento()

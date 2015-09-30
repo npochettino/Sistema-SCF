@@ -69,7 +69,7 @@ namespace SCF.transportes
         {
             Transporte transporteActual = new Transporte();
 
-            transporteActual.Codigo = int.Parse(gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "codigoCliente").ToString());
+            transporteActual.Codigo = int.Parse(gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "codigoTransporte").ToString());
             transporteActual.NumeroDocumento = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "nroDocumento").ToString();
             transporteActual.Direccion = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "direccion").ToString();
             transporteActual.Localidad = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "localidad").ToString();
@@ -83,6 +83,7 @@ namespace SCF.transportes
             transporteActual.NumeroCuenta = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "numeroCuenta").ToString();
             transporteActual.Observaciones = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "observaciones").ToString();
             transporteActual.Fax = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "fax").ToString();
+
 
             Session.Add("transporteActual", transporteActual);
             Response.Redirect("transporte.aspx");

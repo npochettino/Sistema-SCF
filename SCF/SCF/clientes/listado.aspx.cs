@@ -68,6 +68,7 @@ namespace SCF.clientes
             clienteActual.TipoDocumento = new TipoDocumento();
             clienteActual.TipoDocumento.Codigo = Convert.ToInt32(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoTipoDocumento"));
             clienteActual.TipoDocumento.Descripcion = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "tipoDocumento").ToString();
+            clienteActual.CodigoSCF = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoSCF").ToString();
 
             Session.Add("clienteActual", clienteActual);
             Response.Redirect("cliente.aspx");
@@ -150,11 +151,12 @@ namespace SCF.clientes
         protected void btnVerDetalleCliente_Click(object sender, EventArgs e)
         {
             pcShowDetalleCliente.ShowOnPageLoad = true;
+            lblTipoDoc.InnerText = txtBanco.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "tipoDocumento").ToString();
 
             txtRazonSocial.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "razonSocial").ToString();
             txtEmail.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "mail").ToString();
             txtCUIL.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "cuil").ToString();
-            txtTelFax.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "telefono").ToString();
+            txtTelFax.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "telefono").ToString() + "/" + gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "fax").ToString();
             txtPersonaCantacto.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "personaContacto").ToString();
             txtNroCuenta.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "numeroCuenta").ToString();
             txtBanco.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "banco").ToString();
