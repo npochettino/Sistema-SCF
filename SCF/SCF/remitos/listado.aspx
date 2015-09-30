@@ -54,7 +54,7 @@
                                 <div class="btn-set pull-right">
                                     <asp:Button type="button" ID="btnGenerarPDF" runat="server" OnClick="btnGenerarPDF_Click" UseSubmitBehavior="false" class="btn red" Text="PDF" />
                                     <asp:Button type="button" ID="btnEntregada" runat="server" OnClick="btnEntregada_Click" class="btn green" Text="Entregada" CommandName="bb" />
-                                    <asp:Button type="button" ID="btnDevolucion" runat="server" OnClick="btnDevolucion_Click" class="btn red" Text="Devolución" />
+                                    <asp:Button type="button" ID="btnDevolucion" runat="server" OnClick="btnDevolucion_Click" class="btn red" Text="Devolución" Visible="false"/>
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClick="btnVerDetalle_Click" class="btn green" Text="Detalle" />
                                 </div>
                             </div>

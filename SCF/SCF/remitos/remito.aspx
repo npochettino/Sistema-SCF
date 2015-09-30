@@ -60,6 +60,9 @@
                                                 <label class="control-label">Nota de Pedido</label>
                                                 <dx:ASPxComboBox ID="cbNotaDePedido" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
                                                     ValueField="codigoNotaDePedido" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis" OnSelectedIndexChanged="cbNotaDePedido_SelectedIndexChanged" AutoPostBack="True">
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="numeroInternoCliente" Caption="Nro interno cliente" Width="30%" />
                                                         <dx:ListBoxColumn FieldName="razonSocialCliente" Caption="Cliente" />
@@ -68,40 +71,48 @@
                                             </div>
                                         </div>
                                         <!--/span-->
-                                         <!--/span-->
-                                         <div class="col-md-6">
+                                        <!--/span-->
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Fecha Emisión</label>
                                                 <dx:ASPxDateEdit ID="txtFechaEmision" runat="server" CssClass="form-control" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
                                                     <TimeSectionProperties Visible="True">
                                                     </TimeSectionProperties>
-
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
                                                 </dx:ASPxDateEdit>
                                             </div>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Codigo</label>
-                                                <dx:ASPxTextBox ID="txtCodigoRemito" runat="server" CssClass="form-control" Width="100%" placeholder="Codigo"></dx:ASPxTextBox>
+                                                <dx:ASPxTextBox ID="txtCodigoRemito" runat="server" CssClass="form-control" Width="100%" placeholder="Codigo">
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
+                                                </dx:ASPxTextBox>
                                             </div>
                                         </div>
                                         <!--/span-->
-                                         <!--/span-->
-                                         <div class="col-md-6">
+                                        <!--/span-->
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Transporte</label>
                                                 <dx:ASPxComboBox ID="cbTransporte" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
-                                                    ValueField="codigoTransporte" IncrementalFilteringMode="Contains" ValueType="System.Int32" TextFormatString="{0} ({1})" Width="100%" EnableTheming="True" Theme="Metropolis" OnSelectedIndexChanged="cbNotaDePedido_SelectedIndexChanged" AutoPostBack="True">
+                                                    ValueField="codigoTransporte" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" OnSelectedIndexChanged="cbNotaDePedido_SelectedIndexChanged" AutoPostBack="false">
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoTransporte" Visible="false" Width="30%" />
-                                                        <dx:ListBoxColumn FieldName="cuit" Caption="CUIT" />
-                                                        <dx:ListBoxColumn FieldName="razonSocialTransporte" Caption="Razon Social" />
+                                                        <dx:ListBoxColumn FieldName="razonSocial" Caption="Transporte" />
                                                     </Columns>
                                                 </dx:ASPxComboBox>
                                             </div>
-                                        </div>                                        
+                                        </div>
                                     </div>
 
                                     <!-- BEGIN ROW -->
@@ -153,7 +164,7 @@
                                                                 <dx:GridViewDataTextColumn Caption="Entregada" Visible="true" Width="50" VisibleIndex="7" FieldName="cantidadEntregada">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Fecha Entrega" Visible="true" VisibleIndex="8" FieldName="fechaEntrega" PropertiesTextEdit-DisplayFormatString="d/MM/yyyy" >
+                                                                <dx:GridViewDataTextColumn Caption="Fecha Entrega" Visible="true" VisibleIndex="8" FieldName="fechaEntrega" PropertiesTextEdit-DisplayFormatString="d/MM/yyyy">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <PropertiesTextEdit DisplayFormatString="d/MM/yyyy" />
                                                                 </dx:GridViewDataTextColumn>
@@ -201,14 +212,7 @@
                                                                 <dx:GridViewDataTextColumn VisibleIndex="1" FieldName="codigoArticulo" Visible="false">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Descripcion Corta Articulo" VisibleIndex="2" FieldName="descripcionCorta" Visible="true">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Visible="false" VisibleIndex="3" FieldName="codigoProveedor">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" VisibleIndex="4" Caption="Proveedor">
+                                                                <dx:GridViewDataTextColumn Caption="Desc. Corta Articulo" VisibleIndex="2" FieldName="descripcionCorta" Visible="true">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
@@ -218,10 +222,10 @@
                                                                 <dx:GridViewDataTextColumn VisibleIndex="5" FieldName="codigoItemNotaDePedido" Visible="false">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn VisibleIndex="6" FieldName="isEliminada" Visible="false"/>
-                                                                
-                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="6"/>
-                                                                
+                                                                <dx:GridViewDataTextColumn VisibleIndex="6" FieldName="isEliminada" Visible="false" />
+
+                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="6" />
+
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
                                                             <Settings ShowFilterRow="True" />

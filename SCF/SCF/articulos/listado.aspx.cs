@@ -71,7 +71,8 @@ namespace SCF.articulos
             articuloActual.DescripcionCorta = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionCorta").ToString();
             articuloActual.DescripcionLarga = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionLarga").ToString();
             articuloActual.Marca = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "marca").ToString();
-
+            articuloActual.UnidadMedida = new UnidadMedida();
+            articuloActual.UnidadMedida.Codigo = Convert.ToInt32(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoUnidadMedida"));
             //Como recupero la unidad de medida
 
             Session.Add("articuloActual", articuloActual);
@@ -83,10 +84,24 @@ namespace SCF.articulos
             {
                 try
                 {
-                    ControladorGeneral.EliminarArticulo(int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString()));
+                    string rta = ControladorGeneral.EliminarArticulo(int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString()));
+                    pcError.ShowOnPageLoad = true;
+
+                    if (rta == "ok")
+                    {
+                        lblMensaje.Text = "El articulo se eliminó correctamente.";
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "No se pudo eliminar el articulo ya que esta asociado a una nota de pedido.";
+                    }
+
                     loadGridArticulos();
                 }
-                catch { }
+                catch 
+                { 
+
+                }
             }
         }
 

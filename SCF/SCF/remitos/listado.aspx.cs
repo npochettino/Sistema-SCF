@@ -89,11 +89,21 @@ namespace SCF.remitos
             if (gvEntregas.FocusedRowIndex != -1)
             {
                 int codigoEntrega = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoEntrega"));
-                //Falta el desarrollo del metodo que devuelve un string.
-                //string mensaje = ControladorGeneral.EliminarEntrega(codigoEntrega);
-                //lblMensaje.Text = mensaje;
+                string mensaje = ControladorGeneral.EliminarEntrega(codigoEntrega);
                 pcError.ShowOnPageLoad = true;
-                
+
+                if (mensaje == "ok")
+                {
+                    lblMensaje.Text = "Se ha eliminado correctamente.";
+                    pcError.ShowOnPageLoad = true;
+                }
+                else
+                {
+                    lblMensaje.Text = "No se permite elimnar el remito ya que está asociado a una factura";
+                    pcError.ShowOnPageLoad = true;
+                }
+
+                pcConfirmarEliminarRemito.ShowOnPageLoad = false;
             }
         }
 
@@ -218,7 +228,7 @@ namespace SCF.remitos
             tablaEntrega.Columns.Add("numeroRemito");
             tablaEntrega.Columns.Add("codigoEstado");
             tablaEntrega.Columns.Add("observaciones");
-            
+
             tablaEntrega.Rows.Add(new object[] { codigoEntrega, codigoNotaDePedido, codigoCliente, razonSocialCliente, fechaEmision, numeroRemito, codigoEstado, observaciones });
 
             return tablaEntrega;

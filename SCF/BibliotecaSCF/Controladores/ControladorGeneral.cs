@@ -565,15 +565,21 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void EliminarArticulo(int codigoArticulo)
+        public static string EliminarArticulo(int codigoArticulo)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
             try
             {
-                Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+                List<NotaDePedido> listaNP = CatalogoNotaDePedido.RecuperarPorArticulo(codigoArticulo, nhSesion);
 
+                if (listaNP.Count > 0)
+                {
+                    return "NotaDePedido";
+                }
+
+                Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
                 CatalogoArticulo.Eliminar(articulo, nhSesion);
+                return "ok";
             }
             catch (Exception ex)
             {
@@ -948,7 +954,7 @@ namespace BibliotecaSCF.Controladores
                     listaNotasDePedido = CatalogoNotaDePedido.RecuperarTodos(nhSesion);
                 }
 
-                foreach (NotaDePedido notaPedido in listaNotasDePedido)
+                foreach (NotaDePedido notaPedido in listaNotasDePedido.OrderByDescending(x => x.CodigoEstado))
                 {
                     int codigoEstado = 0;
                     DateTime fechaHoraProximaEntrega = DateTime.MinValue;
@@ -1185,7 +1191,7 @@ namespace BibliotecaSCF.Controladores
                     int cantidadEntregada = (from e in listaEntregas select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == item.Codigo select i.CantidadAEntregar).SingleOrDefault()).Sum();
 
                     tablaItemsNotaDePedido.Rows.Add(item.Codigo, item.Articulo.Codigo, item.Articulo.DescripcionCorta, item.Articulo.DescripcionLarga, item.Articulo.Marca,
-                    item.Articulo.RecuperarHistorialPrecioActual().Precio, item.CantidadPedida, item.FechaEntrega, cantidadEntregada, item.Articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
+                    item.Articulo.RecuperarHistorialPrecioActual().Precio, item.CantidadPedida, item.FechaEntrega.ToString("dd/MM/yyyy"), cantidadEntregada, item.Articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
                     item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, item.Posicion);
                 }
 
@@ -1474,7 +1480,7 @@ namespace BibliotecaSCF.Controladores
 
         #endregion
 
-        #region Entregas
+        #region Entregas/Remitos
 
         public static DataTable RecuperarTodasEntregas()
         {
@@ -1495,15 +1501,17 @@ namespace BibliotecaSCF.Controladores
                 tablaEntrega.Columns.Add("numeroRemito");
                 tablaEntrega.Columns.Add("codigoEstado");
                 tablaEntrega.Columns.Add("observaciones");
+                tablaEntrega.Columns.Add("codigoTransporte");
+                tablaEntrega.Columns.Add("razonSocialTransporte");
 
                 List<Entrega> listaEntregas = CatalogoEntrega.RecuperarTodos(nhSesion);
 
-                listaEntregas.Aggregate(tablaEntrega, (dt, r) =>
+                listaEntregas.OrderByDescending(x => x.CodigoEstado).Aggregate(tablaEntrega, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo,
                         r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.NotaDePedido.Cliente.CodigoSCF,
                         r.NotaDePedido.Cliente.Direccion, r.FechaEmision.ToString("dd/MM/yyyy"), r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
-                        r.CodigoEstado, r.Observaciones); return dt;
+                        r.CodigoEstado, r.Observaciones, r.Transporte.Codigo, r.Transporte.RazonSocial); return dt;
                 });
 
                 return tablaEntrega;
@@ -1552,7 +1560,7 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void InsertarActualizarEntrega(int codigoEntrega, DateTime fechaEmision, int codigoNotaPedido, int numeroRemito, string observaciones, DataTable tablaItemsEntrega)
+        public static void InsertarActualizarEntrega(int codigoEntrega, DateTime fechaEmision, int codigoNotaPedido, int numeroRemito, string observaciones, DataTable tablaItemsEntrega, int codigoTransporte)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
             ITransaction tran = nhSesion.BeginTransaction();
@@ -1576,6 +1584,7 @@ namespace BibliotecaSCF.Controladores
                 entrega.NotaDePedido = notaDePedido;
                 entrega.NumeroRemito = numeroRemito;
                 entrega.Observaciones = observaciones;
+                entrega.Transporte = CatalogoTransporte.RecuperarPorCodigo(codigoTransporte, nhSesion);
 
                 foreach (DataRow filaItem in tablaItemsEntrega.Rows)
                 {
@@ -1717,6 +1726,40 @@ namespace BibliotecaSCF.Controladores
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static string EliminarEntrega(int codigoEntrega)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            ITransaction trans = nhSesion.BeginTransaction();
+
+            try
+            {
+                List<Factura> listaFacturas = CatalogoFactura.RecuperarPorEntrega(codigoEntrega, nhSesion);
+
+                if (listaFacturas.Count > 0)
+                {
+                    return "Factura";
+                }
+                else
+                {
+                    Entrega entrega = CatalogoEntrega.RecuperarPorCodigo(codigoEntrega, nhSesion);
+                    ValidarNotaDePedido(entrega.NotaDePedido, nhSesion);
+                    CatalogoEntrega.Eliminar(entrega, nhSesion);
+                    trans.Commit();
+                    return "ok";
+                }
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
                 throw ex;
             }
             finally
@@ -2000,6 +2043,7 @@ namespace BibliotecaSCF.Controladores
                 tablaFacturas.Columns.Add("total");
                 tablaFacturas.Columns.Add("cae");
                 tablaFacturas.Columns.Add("fechaVencimientoCAE");
+                tablaFacturas.Columns.Add("remitos");
 
 
                 List<Factura> listaFacturas = CatalogoFactura.RecuperarTodos(nhSesion);
@@ -2007,7 +2051,7 @@ namespace BibliotecaSCF.Controladores
                 listaFacturas.Aggregate(tablaFacturas, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion, r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
-                        r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento); return dt;
+                        r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento, string.Join(", ", r.Entregas.Select(x => x.NumeroRemito))); return dt;
                 });
 
                 return tablaFacturas;
@@ -2179,7 +2223,7 @@ namespace BibliotecaSCF.Controladores
             return string.Format("{0}{1}{2}", fecha.Year.ToString("0000"), fecha.Month.ToString("00"), fecha.Day.ToString("00"));
         }
 
-        public static string ConvertirBarCode(string nroCae,DateTime fechaFactura)
+        public static string ConvertirBarCode(string nroCae, DateTime fechaFactura)
         {
             string nroCodeBar = "30711039704010002" + nroCae + fechaFactura.Year + fechaFactura.Month + fechaFactura.Day + "0";
             return nroCodeBar;

@@ -74,7 +74,7 @@
                             <div class="form-body" style="height: 600px">
                                 <dx:ASPxGridView ID="gvArticulos" ClientInstanceName="gvArticulos" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo" Theme="Metropolis">
                                     <Columns>
-                                        <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                        <dx:GridViewDataTextColumn FieldName="codigoArticulo" ReadOnly="True" Visible="true" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="codigoArticuloCliente" Visible="false" Caption="Codigo interno" VisibleIndex="1">
@@ -99,6 +99,12 @@
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="razonSocialCliente" Caption="Cliente" VisibleIndex="7" Visible="false">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="codigoUnidadMedida" VisibleIndex="7" Visible="false">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="unidadMedidad" Caption="Unidad de Medida" VisibleIndex="7" Visible="false">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
@@ -193,7 +199,7 @@
                                                             <label class="control-label col-md-3">Marca</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtMarca" placeholder="Marca" runat="server" class="form-control">
-                                                           </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -201,7 +207,7 @@
                                                             <label class="control-label col-md-3">Unidad</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
-                                                           </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -214,7 +220,7 @@
                                                                 <span class="input-group-btn">
                                                                     <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
                                                                         <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
-                                                                </span>                                                         
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -223,7 +229,7 @@
                                                             <label class="control-label col-md-3">Moneda</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTipoDeCambio" placeholder="Tipo de Cambio" runat="server" class="form-control">
-                                                           </div>
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -289,7 +295,7 @@
                                                                     <dx:GridViewDataTextColumn FieldName="codigoArticuloProveedor" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" Caption="Razon Social" VisibleIndex="1">
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" Caption="Proveedor" VisibleIndex="1">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="codigoProveedor" Visible="false" VisibleIndex="2">
@@ -420,7 +426,7 @@
 
     <dx:ASPxPopupControl ID="pcRelacionArticuloCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcRelacionArticuloCliente"
-        HeaderText="Relacion Articulo Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
+        HeaderText="Relación Artículo Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
         EnableViewState="False" Theme="Metropolis">
         <ClientSideEvents PopUp="function(s, e) {  pcRelacionArticuloCliente.Focus(); }" />
         <ContentCollection>
@@ -454,7 +460,7 @@
                                                                     <dx:GridViewDataTextColumn FieldName="codigoCliente" Caption="Codigo Cliente" VisibleIndex="1" Visible="false">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialCliente" Caption="Razon Social Cliente" VisibleIndex="1">
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialCliente" Caption="Cliente" VisibleIndex="1">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                 </Columns>
@@ -575,7 +581,7 @@
     <!--END POPUP RELACION ARTICULO - PROVEEDOR-->
     <dx:ASPxPopupControl ID="pcRelacionArticuloProveedor" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcRelacionArticuloProveedor"
-        HeaderText="Relacion Articulo Proveedor" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
+        HeaderText="Relación Artículo Proveedor" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
         EnableViewState="False" Theme="Metropolis">
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl8" runat="server">
@@ -605,7 +611,7 @@
                                                                     <dx:GridViewDataTextColumn FieldName="codigoProveedor" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" Caption="Razon Social Proveedor" VisibleIndex="1">
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialProveedor" Caption="Proveedor" VisibleIndex="1">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="tipoMoneda" Caption="Moneda" VisibleIndex="1">
@@ -751,6 +757,34 @@
 
     <!--END POPUP RELACION ARTICULO - CLIENTE-->
 
+    <!-- BEGIN POPUP ELIMINAR ARTICULO -->
+    <dx:ASPxPopupControl ID="pcError" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcError"
+        HeaderText="Mensaje" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        EnableViewState="False" Theme="Metropolis">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl11" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel9" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent11" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <dx:ASPxLabel ID="lblMensaje" runat="server" Text=""></dx:ASPxLabel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+    <!--END POPUP-->
 
     <script lang="javascript" type="text/javascript">
         function ShowConfirmarEliminarArticulo() {

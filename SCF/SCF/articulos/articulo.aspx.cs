@@ -64,7 +64,7 @@ namespace SCF.articulos
             txtPrecio.Value = dtPrecioHistrialArticulo.Rows[dtPrecioHistrialArticulo.Rows.Count - 1]["precio"].ToString();
             cbMonedaPrecio.Text = dtPrecioHistrialArticulo.Rows[dtPrecioHistrialArticulo.Rows.Count - 1]["descripcionMoneda"].ToString();
             //cbUnidadMedida.Text = oArticuloActual.UnidadMedida.Descripcion;
-            //ddlTipoMonedaPrecio.SelectedItem.Value = oArticuloActual.t;
+            cbUnidadMedida.SelectedItem = cbUnidadMedida.Items.FindByValue(oArticuloActual.UnidadMedida.Codigo);
 
         }
 
@@ -136,8 +136,8 @@ namespace SCF.articulos
 
         protected void btnNuevoArticuloProveedor_Click(object sender, EventArgs e)
         {
-           // CargarComboProveedores();
-           // pcArticuloProveedor.ShowOnPageLoad = true;
+            // CargarComboProveedores();
+            // pcArticuloProveedor.ShowOnPageLoad = true;
         }
 
         private void CargarComboProveedores()

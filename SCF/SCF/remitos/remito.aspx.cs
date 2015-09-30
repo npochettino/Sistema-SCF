@@ -15,10 +15,13 @@ namespace SCF.remitos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            cbTransporte.DataSource = ControladorGeneral.RecuperarTodosTransportes(false);
+            cbTransporte.DataBind();
+
             if (!IsPostBack)
             {
                 CargarGrillaItemsEntrega(false);
-
+                txtFechaEmision.Value = DateTime.Now.Date;
                 if (Session["tablaEntrega"] != null)
                 {
                     cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(false);
@@ -48,7 +51,7 @@ namespace SCF.remitos
                     cbNotaDePedido.DataBind();
 
                     DataTable tablaUltimaEntrega = ControladorGeneral.RecuperarUltimaEntrega();
-                    txtCodigoRemito.Text = tablaUltimaEntrega.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaEntrega.Rows[0]["numeroRemito"]) + 1).ToString() : string.Empty;
+                    txtCodigoRemito.Text = tablaUltimaEntrega.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaEntrega.Rows[0]["numeroRemito"]) + 1).ToString() : "1";
                 }
             }
             else
@@ -166,14 +169,14 @@ namespace SCF.remitos
                 codigoEntrega = Convert.ToInt32(tablaEntrega.Rows[0]["codigoEntrega"]);
             }
 
-            if (txtFechaEmision.Value.ToString() == "" || cbNotaDePedido.SelectedIndex < 0 || txtCodigoRemito.Text == "" || tablaItemsEntrega.Rows.Count == 0)
+            if (txtFechaEmision.Value.ToString() == "" || cbNotaDePedido.SelectedIndex < 0 || txtCodigoRemito.Text == "" || tablaItemsEntrega.Rows.Count == 0 || cbTransporte.SelectedIndex < 0)
             {
                 pcError.ShowOnPageLoad = true;
-                lblError.Text = "Debe completar todos los campos.";
+                lblError.Text = "Debe completar todos los campos y elegir al menos un artículo";
             }
             else
             {
-                ControladorGeneral.InsertarActualizarEntrega(codigoEntrega, Convert.ToDateTime(txtFechaEmision.Value), Convert.ToInt32(cbNotaDePedido.Value), Convert.ToInt32(txtCodigoRemito.Text), txtObservacion.InnerText, tablaItemsEntrega);
+                ControladorGeneral.InsertarActualizarEntrega(codigoEntrega, Convert.ToDateTime(txtFechaEmision.Value), Convert.ToInt32(cbNotaDePedido.Value), Convert.ToInt32(txtCodigoRemito.Text), txtObservacion.InnerText, tablaItemsEntrega, Convert.ToInt32(cbTransporte.Value));
 
                 Response.Redirect("listado.aspx");
             }

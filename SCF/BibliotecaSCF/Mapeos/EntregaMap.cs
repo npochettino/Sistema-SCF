@@ -20,6 +20,7 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.Observaciones).Column("observaciones");
 
             References(x => x.NotaDePedido).Column("codigoNotaDePedido").Cascade.None().LazyLoad(Laziness.Proxy);
+            References(x => x.Transporte).Column("codigoTransporte").Cascade.None().LazyLoad(Laziness.Proxy);
             HasMany<ItemEntrega>(x => x.ItemsEntrega).KeyColumn("codigoEntrega").Not.KeyNullable().Cascade.AllDeleteOrphan();
         }
     }

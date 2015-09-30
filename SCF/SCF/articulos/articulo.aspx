@@ -55,7 +55,7 @@
                                         <div class="col-md-12 ">
                                             <div class="form-group">
                                                 <label>Descripción Corta</label>
-                                                <textarea type="text" id="txtDescripcionCorta" style="resize: none" placeholder="Descripción Corta" runat="server" class="form-control" required rows="2"></textarea>
+                                                <textarea type="text" id="txtDescripcionCorta" style="resize: none" placeholder="Descripción Corta" runat="server" class="form-control" required rows="2" aria-required="true"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -79,6 +79,9 @@
                                                 <label>Unidad de Medida</label>
                                                 <dx:ASPxComboBox ID="cbUnidadMedida" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
                                                     ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" TextField="descripcion">
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
@@ -87,7 +90,7 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <label>Precio</label>
-                                                <input type="text" id="txtPrecio" placeholder="Precio" runat="server" class="form-control">
+                                                <input type="text" id="txtPrecio" placeholder="Precio" runat="server" class="form-control" required="required">
                                             </div>
                                         </div>
                                         <div class="col-md-6 ">
@@ -95,6 +98,9 @@
                                                 <label>Tipo de Moneda</label>
                                                 <dx:ASPxComboBox ID="cbMonedaPrecio" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
                                                     ValueField="codigo" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis" TextField="descripcion">
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
