@@ -16,6 +16,7 @@ namespace SCF.contrato_marco
             {
 
             }
+            Session["tablaItemsContratoMarco"] = null; 
 
             gvContratosMarco.DataSource = ControladorGeneral.RecuperarTodosContratosMarcos(true);
             gvContratosMarco.DataBind();

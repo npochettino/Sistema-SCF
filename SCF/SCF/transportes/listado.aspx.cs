@@ -70,7 +70,7 @@ namespace SCF.transportes
             Transporte transporteActual = new Transporte();
 
             transporteActual.Codigo = int.Parse(gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "codigoTransporte").ToString());
-            transporteActual.NumeroDocumento = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "nroDocumento").ToString();
+            transporteActual.NumeroDocumento = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "numeroDocumento").ToString();
             transporteActual.Direccion = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "direccion").ToString();
             transporteActual.Localidad = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "localidad").ToString();
             transporteActual.Mail = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "mail").ToString();

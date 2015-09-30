@@ -41,13 +41,13 @@ namespace SCF.facturas
             ReportParameter txtLocalidad = new ReportParameter("txtLocalidad", Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]));
             ReportParameter txtNroDocumento = new ReportParameter("txtNroDocumento", Convert.ToString(dtItemsFacturaActual.Rows[0]["nroDocumentoCliente"]));
             ReportParameter txtNroRemitos = new ReportParameter("txtNroRemitos", remitos);
-            ReportParameter txtCondicionVenta = new ReportParameter("txtCondicionVenta", "15 días");
+            ReportParameter txtCondicionVenta = new ReportParameter("txtCondicionVenta", Convert.ToString(dtFacturaActual.Rows[0]["condicionVenta"]));
             ReportParameter txtSubtotal = new ReportParameter("txtSubtotal", Convert.ToString(dtFacturaActual.Rows[0]["subtotal"]));
             ReportParameter txtIVA = new ReportParameter("txtIVA", Convert.ToString(Convert.ToDouble(dtFacturaActual.Rows[0]["subtotal"])*0.21));
             ReportParameter txtTotal = new ReportParameter("txtTotal", Convert.ToString(dtFacturaActual.Rows[0]["total"]));
             ReportParameter txtCAE = new ReportParameter("txtCAE", Convert.ToString(dtFacturaActual.Rows[0]["cae"]));
-            ReportParameter txtFechaVencimientoCAE = new ReportParameter("txtFechaVencimientoCAE", Convert.ToString(dtFacturaActual.Rows[0]["fechaVencimientoCAE"]).Remove(10,9));
-            ReportParameter txtFechaFacturacion = new ReportParameter("txtFechaFacturacion", Convert.ToString(dtFacturaActual.Rows[0]["fechaFacturacion"]).Remove(10,9));
+            ReportParameter txtFechaVencimientoCAE = new ReportParameter("txtFechaVencimientoCAE", Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaVencimientoCAE"]).ToString("dd/MM/yyyy"));
+            ReportParameter txtFechaFacturacion = new ReportParameter("txtFechaFacturacion", Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaFacturacion"]).ToString("dd/MM/yyyy"));
 
             // Create and setup an instance of Bytescout Barcode SDK
             Barcode bc = new Barcode(SymbologyType.Code128);

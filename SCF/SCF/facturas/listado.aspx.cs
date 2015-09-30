@@ -48,7 +48,8 @@ namespace SCF.facturas
             Double total = Convert.ToDouble(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "total"));
             string cae = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString();
             DateTime fechaVencimientoCAE = Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE"));
-            
+            string condicionVenta = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "condicionVenta").ToString();
+
             DataTable tablaFactura = new DataTable();
             tablaFactura.Columns.Add("codigoFactura");
             tablaFactura.Columns.Add("numeroFactura");
@@ -61,9 +62,10 @@ namespace SCF.facturas
             tablaFactura.Columns.Add("total");
             tablaFactura.Columns.Add("cae");
             tablaFactura.Columns.Add("fechaVencimientoCAE");
+            tablaFactura.Columns.Add("condicionVenta");
 
             tablaFactura.Rows.Add(new object[] { codigoFactura, numeroFactura, fechaFacturacion, descripcionTipoComprobante, descripcionTipoMoneda, descripcionConcepto, descripcionIVA, subtotal,
-            total,cae,fechaVencimientoCAE});
+            total,cae,fechaVencimientoCAE,condicionVenta});
 
             return tablaFactura;
         }
@@ -97,7 +99,7 @@ namespace SCF.facturas
                     remitos = dtItemsFacturaActual.Rows[0]["nroRemito"] + ", ";
                 }
                 lblNroRemitos.Text = remitos;
-                //lblCondicionVenta.Text = cbCondicionVenta.Text;
+                lblCondicionVenta.Text = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex,"condicionVenta")).ToString();;
                 lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
                 lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
                 lblNombreApellidoCliente.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialCliente"]);

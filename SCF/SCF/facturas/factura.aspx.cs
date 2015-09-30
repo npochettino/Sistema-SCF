@@ -36,15 +36,14 @@ namespace SCF.facturas
             CargarComboTipoComprobante();
             CargarComboConcepto();
             CargarComboTipoMoneda();
-            CargarNumeroDeFactura();
         }
 
         private void CargarNumeroDeFactura()
         {
             //Obtengo el Ultimo numero de factura y le sumo 1.
-            //DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
-            //txtNroFactura.Text = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["numeroFactura"]) + 1).ToString() : string.Empty;
-            txtNroFactura.Text = "6";
+            DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
+            txtNroFactura.Value = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["numeroFactura"]) + 1).ToString() : string.Empty;
+            //txtNroFactura.Text = "6";
         }
 
         private void CargarComboTipoMoneda()
@@ -89,26 +88,35 @@ namespace SCF.facturas
 
         protected void btnEmitir_Click(object sender, EventArgs e)
         {
-            DataTable dtItemsFacturaActual = (DataTable)Session["dtItemsFacturaActual"];
-            if (dtItemsFacturaActual != null)
+            if (txtFechaFacturacion.Value.ToString() == "" || cbConcepto.SelectedIndex < 0 || cbCondicionIVA.SelectedIndex < 0 || cbCondicionVenta.SelectedIndex < 0 ||
+                cbTipoComprobante.SelectedIndex < 0 || cbTipoMoneda.SelectedIndex < 0 || gluRemito.Text == "")
             {
-                gvDetalleFactura.DataSource = dtItemsFacturaActual;
-                gvDetalleFactura.DataBind();
+                lblError.Text = "Debe completar todos los campos y elegir al menos un remito";
+                pcError.ShowOnPageLoad = true;
+            }
+            else
+            {
+                DataTable dtItemsFacturaActual = (DataTable)Session["dtItemsFacturaActual"];
+                if (dtItemsFacturaActual != null)
+                {
+                    gvDetalleFactura.DataSource = dtItemsFacturaActual;
+                    gvDetalleFactura.DataBind();
 
-                lblNroFacturaAEmitir.Text = "002 - " + (Convert.ToInt32(txtNroFactura.Value)).ToString("D8");
-                lblCondicionVenta.Text = cbCondicionVenta.Text;
-                lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
-                lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
-                lblNombreApellidoCliente.Text = txtRazonSocial.Text;
-                lblNroRemitos.Text = gluRemito.Text;
-                lblNumeroDocumento.Text = txtNroDocumento.Text;
-                lblFechaVencimientoCAE.Text = "NO FACTURADO";
-                lblNroCAE.Text = "NO FACTURADO";
-                lblSubtotal.Text = txtSubtotal.Text;
-                lblImporteIVA.Text = txtImporteIVA.Text;
-                lblImporteTotal.Text = txtTotal.Text;
+                    lblNroFacturaAEmitir.Text = "002 - " + (Convert.ToInt32(txtNroFactura.Value)).ToString("D8");
+                    lblCondicionVenta.Text = cbCondicionVenta.Text;
+                    lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
+                    lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
+                    lblNombreApellidoCliente.Text = txtRazonSocial.Text;
+                    lblNroRemitos.Text = gluRemito.Text;
+                    lblNumeroDocumento.Text = txtNroDocumento.Text;
+                    lblFechaVencimientoCAE.Text = "NO FACTURADO";
+                    lblNroCAE.Text = "NO FACTURADO";
+                    lblSubtotal.Text = txtSubtotal.Text;
+                    lblImporteIVA.Text = txtImporteIVA.Text;
+                    lblImporteTotal.Text = txtTotal.Text;
 
-                pcValidarComprobante.ShowOnPageLoad = true;
+                    pcValidarComprobante.ShowOnPageLoad = true;
+                }
             }
         }
         
@@ -124,7 +132,7 @@ namespace SCF.facturas
             }
 
             ControladorGeneral.InsertarActualizarFactura(0, Convert.ToInt32(txtNroFactura.Text), Convert.ToDateTime(txtFechaFacturacion.Text), codigoRemitos, Convert.ToInt32(cbTipoMoneda.Value), Convert.ToInt32(cbConcepto.Value),
-               Convert.ToInt32(cbCondicionIVA.Value), Convert.ToDouble(txtSubtotal.Text), Convert.ToDouble(txtTotal.Text), "condicion Venta");
+               Convert.ToInt32(cbCondicionIVA.Value), Convert.ToDouble(txtSubtotal.Text), Convert.ToDouble(txtTotal.Text), Convert.ToString(cbCondicionVenta.Text));
 
             //Obtengo ultimo codigo de factura y emito la factura
             DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();

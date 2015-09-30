@@ -67,7 +67,7 @@
                                         <dx:GridViewDataTextColumn FieldName="codigoTransporte" ReadOnly="True" Visible="false" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="nroDocumento" Caption="CUIL" VisibleIndex="1">
+                                        <dx:GridViewDataTextColumn FieldName="numeroDocumento" Caption="CUIL" VisibleIndex="1">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="2">

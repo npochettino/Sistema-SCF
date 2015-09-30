@@ -96,6 +96,9 @@
                                         <dx:GridViewDataDateColumn FieldName="fechaVencimientoCAE" VisibleIndex="10" Caption="Fecha Venc. CAE" Visible="true">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="condicionVenta" Visible="false" VisibleIndex="9" Caption="Condición Venta">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />
@@ -193,11 +196,6 @@
                                     <div class="portlet-body form">
                                         <!-- BEGIN FORM-->
                                         <form action="#" class="horizontal-form">
-                                            <div class="form-actions top">
-                                                <div class="btn-set pull-right">
-                                                    <asp:Button type="button" ID="btnGenerarPDF" runat="server" OnClick="btnGenerarPDF_Click" UseSubmitBehavior="false" class="btn red" Text="PDF" />
-                                                </div>
-                                            </div>
                                             <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-md-12">
