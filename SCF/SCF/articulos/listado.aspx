@@ -157,7 +157,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-    <dx:ASPxPopupControl ID="pcShowDetalleArticulo" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="True" Modal="True"
+    <dx:ASPxPopupControl ID="pcShowDetalleArticulo" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleArticulo"
         HeaderText="Detalle del Artículo" AllowDragging="True" EnableViewState="False" Width="800px"
         PopupAnimationType="Fade" Theme="Metropolis">
@@ -263,9 +263,6 @@
                                                                     <dx:GridViewDataTextColumn FieldName="codigoCliente" Visible="false" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <%--<dx:GridViewDataTextColumn FieldName="costo" Caption="Costo" VisibleIndex="3">
-                                                                        <Settings AutoFilterCondition="Contains" />
-                                                                    </dx:GridViewDataTextColumn>--%>
                                                                 </Columns>
                                                             </dx:ASPxGridView>
                                                         </div>
@@ -286,7 +283,8 @@
                                                     <div class="col-md-12 ">
                                                         <div>
                                                             <div class="btn-set pull-right" style="padding-bottom: 3px">
-                                                                <button class="btn blue" type="button" onclick="ShowHistoricoCosto()">Ver</button>
+                                                               <%-- <button class="btn blue" type="button" onclick="ShowHistoricoCosto()">Ver</button>--%>
+                                                                <asp:Button class="btn blue" type="button" runat="server" ID="btnShowHistoricoCosto" UseSubmitBehavior="false" OnClick="btnShowHistoricoCosto_Click" Text="Ver"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -301,9 +299,6 @@
                                                                     <dx:GridViewDataTextColumn FieldName="codigoProveedor" Visible="false" VisibleIndex="2">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <%--<dx:GridViewDataTextColumn FieldName="cantidad" Caption="Cantidad" VisibleIndex="3">
-                                                                        <Settings AutoFilterCondition="Contains" />
-                                                                    </dx:GridViewDataTextColumn>--%>
                                                                     <dx:GridViewDataTextColumn FieldName="costoActual" Caption="Costo" VisibleIndex="3">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
@@ -351,6 +346,9 @@
                                                                     <dx:GridViewDataTextColumn FieldName="precio" Caption="Precio" VisibleIndex="1">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="descripcionMoneda" Caption="Moneda" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="fechaDesde" Caption="Fec. Desde" VisibleIndex="2">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
@@ -393,12 +391,12 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView ID="gvHistoricoCosto" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                            <dx:ASPxGridView ID="gvHistoricoCosto" runat="server" Width="100%" Theme="Metropolis" KeyFieldName="codigoHistorialCosto" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoHistorialCosto" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="precio" Caption="Precio" VisibleIndex="1">
+                                                                    <dx:GridViewDataTextColumn FieldName="costo" Caption="Precio" VisibleIndex="1">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="fechaDesde" Caption="Fec. Desde" VisibleIndex="2">

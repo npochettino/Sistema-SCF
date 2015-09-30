@@ -176,6 +176,9 @@ namespace SCF.articulos
             gvCliente.DataBind();
             gvArticuloProveedores.DataSource = ControladorGeneral.RecuperarArticulosProveedoresPorArticulo(codigoArticulo);
             gvArticuloProveedores.DataBind();
+
+            gvHistoricoPrecio.DataSource = ControladorGeneral.RecuperarHistorialPreciosPorArticulo(codigoArticulo);
+            gvHistoricoPrecio.DataBind();
         }
 
 
@@ -254,6 +257,13 @@ namespace SCF.articulos
             {
                 throw ex;
             }
+        }
+
+        protected void btnShowHistoricoCosto_Click(object sender, EventArgs e)
+        {
+            gvHistoricoCosto.DataSource = ControladorGeneral.RecuperarHistorialCostosPorArticuloProveedor(int.Parse(gvArticuloProveedores.GetRowValues(gvArticuloProveedores.FocusedRowIndex, "codigoArticuloProveedor").ToString()));
+            gvHistoricoCosto.DataBind();
+            pcHistoricoCosto.ShowOnPageLoad = true;
         }
     }
 }
