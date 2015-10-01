@@ -22,5 +22,19 @@ namespace BibliotecaSCF.Catalogos
                 throw ex;
             }
         }
+
+
+        public static NotaDePedido RecuperarUltima(NHibernate.ISession nhSesion)
+        {
+            try
+            {
+                NotaDePedido notaDePedido = nhSesion.QueryOver<NotaDePedido>().OrderBy(x => x.Codigo).Desc.Take(1).SingleOrDefault();
+                return notaDePedido;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

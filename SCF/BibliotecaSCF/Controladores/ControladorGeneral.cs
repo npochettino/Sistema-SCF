@@ -1593,6 +1593,40 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
+        public static DataTable RecuperarUltimaNotaDePedido()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaNotaDePedido = new DataTable();
+                tablaNotaDePedido.Columns.Add("codigoNotaDePedido");
+                tablaNotaDePedido.Columns.Add("numeroInternoCliente");
+                tablaNotaDePedido.Columns.Add("fechaEmision");
+                tablaNotaDePedido.Columns.Add("codigoEstado");
+                tablaNotaDePedido.Columns.Add("observaciones");
+
+
+                NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarUltima(nhSesion);
+
+                if (notaDePedido != null)
+                {
+                    tablaNotaDePedido.Rows.Add(new object[] { notaDePedido.Codigo, notaDePedido.NumeroInternoCliente, notaDePedido.FechaEmision, notaDePedido.CodigoEstado, notaDePedido.Observaciones });
+                }
+
+                return tablaNotaDePedido;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
         public static void InsertarActualizarEntrega(int codigoEntrega, DateTime fechaEmision, int codigoNotaPedido, int numeroRemito, string observaciones, DataTable tablaItemsEntrega, int codigoTransporte)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();

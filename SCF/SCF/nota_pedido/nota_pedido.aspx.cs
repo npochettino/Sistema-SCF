@@ -65,6 +65,12 @@ namespace SCF.nota_pedido
 
 
                 }
+                else
+                {
+                    DataTable tablaNotaDePedido = ControladorGeneral.RecuperarUltimaNotaDePedido();
+                    txtNroInternoCliente.Text = tablaNotaDePedido.Rows.Count > 0 ? (Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoNotaDePedido"]) + 1).ToString() : "1";
+                }
+
 
 
             }
@@ -213,7 +219,8 @@ namespace SCF.nota_pedido
             }
             else
             {
-                Response.Write("<script>window.alert('Hay campos que deben completarse');</script>");
+                pcError.ShowOnPageLoad = true;
+                lblError.Text = "Hay campos que deben completarse";
             }
         }
 
