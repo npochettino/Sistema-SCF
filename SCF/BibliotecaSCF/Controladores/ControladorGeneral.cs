@@ -1096,12 +1096,16 @@ namespace BibliotecaSCF.Controladores
                 foreach (DataRow filaItemNotaDePedido in tablaItemsNotaDePedido.Rows)
                 {
                     int codigoItemNotaDePedido = Convert.ToInt32(filaItemNotaDePedido["codigoItemNotaDePedido"]);
-                    ItemNotaDePedido item = new ItemNotaDePedido();
+                    ItemNotaDePedido item;
 
                     if (codigoItemNotaDePedido < 1)
                     {
                         item = new ItemNotaDePedido();
                         notaDePedido.ItemsNotaDePedido.Add(item);
+                    }
+                    else
+                    {
+                        item = (from n in notaDePedido.ItemsNotaDePedido where n.Codigo == codigoItemNotaDePedido select n).SingleOrDefault();
                     }
 
                     item.Articulo = CatalogoArticulo.RecuperarPorCodigo(Convert.ToInt32(filaItemNotaDePedido["codigoArticulo"]), nhSesion);
