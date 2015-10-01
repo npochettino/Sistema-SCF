@@ -79,6 +79,10 @@
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="codigoEstado" VisibleIndex="7" Visible="false">
                                         </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="razonSocialTransporte" VisibleIndex="7" Visible="true" Caption="Transporte">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="codigoTransporte" VisibleIndex="7" Visible="false">
+                                        </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="8" Caption="Observaciones">
                                         </dx:GridViewDataTextColumn>
                                     </Columns>

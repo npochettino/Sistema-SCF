@@ -1272,14 +1272,14 @@ namespace BibliotecaSCF.Controladores
                             return "No existe la unidad de medida: " + fila["MEDIDA"].ToString();
                         }
                     }
-
+                    TipoMoneda moneda = CatalogoMoneda.RecuperarPor(x => x.Abreviatura == fila["MONEDA"].ToString(), nhSesion);
                     HistorialPrecio hist = (from h in articulo.HistorialesPrecio where h.FechaHasta == null select h).SingleOrDefault();
                     if (hist == null)
                     {
                         hist = new HistorialPrecio();
                         hist.FechaDesde = DateTime.Now;
                         hist.FechaHasta = null;
-                        hist.Moneda = CatalogoMoneda.RecuperarPor(x => x.Abreviatura == fila["MONEDA"].ToString(), nhSesion);
+                        hist.Moneda = moneda;
                         hist.Precio = Convert.ToDouble(fila["PRECIO"]);
 
                         articulo.HistorialesPrecio.Add(hist);
@@ -1306,7 +1306,7 @@ namespace BibliotecaSCF.Controladores
 
                     itemCM.Precio = Convert.ToDouble(fila["PRECIO"]);
                     itemCM.Posicion = Convert.ToInt32(fila["POSICION"]);
-                    itemCM.TipoMoneda = CatalogoMoneda.RecuperarPor(x => x.Abreviatura == fila["MONEDA"].ToString(), nhSesion);
+                    itemCM.TipoMoneda = moneda;
 
                     if (itemCM.TipoMoneda == null)
                     {
@@ -1422,6 +1422,7 @@ namespace BibliotecaSCF.Controladores
                 tablaContratosMarco.Columns.Add("codigoCliente");
                 tablaContratosMarco.Columns.Add("cuilCliente");
                 tablaContratosMarco.Columns.Add("razonSocialCliente");
+                tablaContratosMarco.Columns.Add("comprador");
 
                 List<ContratoMarco> listaContratosMarco = new List<ContratoMarco>();
 
@@ -1434,7 +1435,11 @@ namespace BibliotecaSCF.Controladores
                     listaContratosMarco = CatalogoContratoMarco.RecuperarLista(x => x.FechaFin <= DateTime.Now, nhSesion);
                 }
 
-                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.FechaInicio, r.FechaFin, r.Cliente.Codigo, r.Cliente.NumeroDocumento, r.Cliente.RazonSocial); return dt; });
+                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.Descripcion, r.FechaInicio, r.FechaFin, r.Cliente.Codigo,
+                        r.Cliente.NumeroDocumento, r.Cliente.RazonSocial, r.Comprador); return dt;
+                });
 
                 return tablaContratosMarco;
             }
@@ -1475,6 +1480,30 @@ namespace BibliotecaSCF.Controladores
             {
                 nhSesion.Close();
                 nhSesion.Dispose();
+            }
+        }
+
+        public static string EliminarContratoMarco(int codigoContratoMarco)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                List<NotaDePedido> listaNP = CatalogoNotaDePedido.RecuperarLista(x => x.ContratoMarco.Codigo == codigoContratoMarco, nhSesion);
+                if (listaNP.Count > 0)
+                {
+                    return "NotaDePedido";
+                }
+                else
+                {
+                    ContratoMarco cm = CatalogoContratoMarco.RecuperarPorCodigo(codigoContratoMarco, nhSesion);
+                    CatalogoContratoMarco.Eliminar(cm, nhSesion);
+                    return "ok";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -2266,7 +2295,7 @@ namespace BibliotecaSCF.Controladores
             int total = (sumaImpar * 3) + sumaPar;
             for (int i = 0; i < 10; i++)
                 if (((total + i) % 10) == 0)
-                {digitoVerificador = Convert.ToString(i); break; }
+                { digitoVerificador = Convert.ToString(i); break; }
             return digitoVerificador;
         }
 
@@ -2620,6 +2649,49 @@ namespace BibliotecaSCF.Controladores
                 nhSesion.Dispose();
             }
         }
+
+        #endregion
+
+        #region ItemContratoMarco
+
+        public static DataTable RecuperarItemsContratoMarco(int codigoContratoMarco)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaItemsContratoMarco = new DataTable();
+                tablaItemsContratoMarco.Columns.Add("codigoItemCM");
+                tablaItemsContratoMarco.Columns.Add("posicion");
+                tablaItemsContratoMarco.Columns.Add("codigoArticuloCliente");
+                tablaItemsContratoMarco.Columns.Add("descripcionCorta");
+                tablaItemsContratoMarco.Columns.Add("codigoArticulo");
+                tablaItemsContratoMarco.Columns.Add("precio");
+                tablaItemsContratoMarco.Columns.Add("moneda");
+                tablaItemsContratoMarco.Columns.Add("unidadMedida");
+
+                ContratoMarco contratoMarco = CatalogoContratoMarco.RecuperarPorCodigo(codigoContratoMarco, nhSesion);
+
+                contratoMarco.ItemsContratoMarco.Aggregate(tablaItemsContratoMarco, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.Posicion, r.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == contratoMarco.Cliente.Codigo).SingleOrDefault() != null ?
+                        r.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == contratoMarco.Cliente.Codigo).SingleOrDefault().CodigoInterno.ToString() : string.Empty,
+                        r.Articulo.DescripcionCorta, r.Articulo.Codigo, r.Precio, r.TipoMoneda.Abreviatura, r.Articulo.UnidadMedida.Descripcion); return dt;
+                });
+
+                return tablaItemsContratoMarco;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
 
         #endregion
     }

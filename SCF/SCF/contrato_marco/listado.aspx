@@ -83,6 +83,10 @@
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="5" Caption="Cliente">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="comprador" VisibleIndex="5" Caption="Comprador">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="true" />
@@ -178,7 +182,7 @@
                                                             <label class="control-label col-md-3">Fecha Inicio</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtFechaInicio" placeholder="Fecha Inicio" runat="server" class="form-control">
-                                                           </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -186,7 +190,15 @@
                                                             <label class="control-label col-md-3">Fecha Fin</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtFechaFin" placeholder="Fecha Fin" runat="server" class="form-control">
-                                                           </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Comprador</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" id="txtComprador" placeholder="Comprador" runat="server" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -205,47 +217,38 @@
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView ID="gvItemsContratoMarco" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="PLANTA" Theme="Metropolis" Width="100%">
-                                                            <Columns>
-                                                                <dx:GridViewDataTextColumn FieldName="CM" VisibleIndex="1" Caption="Contrato Marco">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="POSICION" VisibleIndex="2" Caption="Posición">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="CLIENTE" VisibleIndex="3" Caption="Cliente">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="COMPRADOR" VisibleIndex="4" Caption="Comprador">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="INICIO" VisibleIndex="5" Caption="Fecha inicio">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="FIN" VisibleIndex="6" Caption="Fecha fin">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="PLANTA" VisibleIndex="7" Caption="Codigo articulo cliente">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="DESCRIPCION" VisibleIndex="8" Caption="Desc. Corta">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="PRECIO" Caption="Precio" VisibleIndex="9">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="MEDIDA" Caption="Unidad de medida" VisibleIndex="10">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="MONEDA" Caption="Moneda" VisibleIndex="11">
-                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                </dx:GridViewDataTextColumn>
-                                                            </Columns>
-                                                            <SettingsBehavior AllowFocusedRow="True" />
-                                                            <SettingsPager PageSize="10">
-                                                            </SettingsPager>
-                                                            <Settings ShowFilterRow="True" />
-                                                        </dx:ASPxGridView>
+                                                            <dx:ASPxGridView ID="gvItemsContratoMarco" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoItemCM" Theme="Metropolis" Width="100%">
+                                                                <Columns>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoItemCM" VisibleIndex="1" Visible="false">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="posicion" VisibleIndex="2" Caption="Posición">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticulo" VisibleIndex="7" Visible="false">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="descripcionCorta" VisibleIndex="8" Caption="Desc. Corta">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticuloCliente" Caption="Codigo articulo cliente" VisibleIndex="9">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="precio" Caption="Precio" VisibleIndex="10">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="moneda" Caption="Moneda" VisibleIndex="11">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="unidadMedida" Caption="Unidad de medida" VisibleIndex="11">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
+                                                                <SettingsBehavior AllowFocusedRow="True" />
+                                                                <SettingsPager PageSize="10">
+                                                                </SettingsPager>
+                                                                <Settings ShowFilterRow="True" />
+                                                            </dx:ASPxGridView>
                                                         </div>
                                                     </div>
                                                 </div>

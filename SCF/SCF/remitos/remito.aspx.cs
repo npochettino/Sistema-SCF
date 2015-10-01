@@ -37,7 +37,9 @@ namespace SCF.remitos
                     gvItemsNotaDePedido.DataBind();
 
                     cbNotaDePedido.SelectedItem = cbNotaDePedido.Items.FindByValue(Convert.ToInt32(tablaEntrega.Rows[0]["codigoNotaDePedido"]));
-
+                    cbNotaDePedido.Value = Convert.ToInt32(tablaEntrega.Rows[0]["codigoNotaDePedido"]);
+                    cbTransporte.SelectedItem = cbTransporte.Items.FindByValue(Convert.ToInt32(tablaEntrega.Rows[0]["codigoTransporte"]));
+                    cbTransporte.Value = Convert.ToInt32(tablaEntrega.Rows[0]["codigoTransporte"]);
 
                     int codigoEntrega = Convert.ToInt32(tablaEntrega.Rows[0]["codigoEntrega"]);
                     DataTable tablaItemsEntrega = ControladorGeneral.RecuperarItemsEntrega(codigoEntrega);
@@ -58,8 +60,22 @@ namespace SCF.remitos
             }
             else
             {
-                cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(true);
-                cbNotaDePedido.DataBind();
+                if (Session["tablaEntrega"] != null)
+                {
+                    cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(false);
+                    cbNotaDePedido.DataBind();
+
+                    DataTable tablaEntrega = (DataTable)Session["tablaEntrega"];
+                    cbNotaDePedido.SelectedItem = cbNotaDePedido.Items.FindByValue(Convert.ToInt32(tablaEntrega.Rows[0]["codigoNotaDePedido"]));
+                    cbNotaDePedido.Value = Convert.ToInt32(tablaEntrega.Rows[0]["codigoNotaDePedido"]);
+                    cbTransporte.SelectedItem = cbTransporte.Items.FindByValue(Convert.ToInt32(tablaEntrega.Rows[0]["codigoTransporte"]));
+                    cbTransporte.Value = Convert.ToInt32(tablaEntrega.Rows[0]["codigoTransporte"]);
+                }
+                else
+                {
+                    cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(true);
+                    cbNotaDePedido.DataBind();
+                }
             }
         }
 
