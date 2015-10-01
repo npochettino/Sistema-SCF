@@ -78,17 +78,23 @@ namespace SCF.clientes
         {
             if (gvClientes.FocusedRowIndex != -1)
             {
+                pcConfirmarEliminarCliente.ShowOnPageLoad = false;
+
                 try
                 {
                     ControladorGeneral.EliminarCliente(int.Parse(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente").ToString()));
                     pcConfirmarEliminarCliente.ShowOnPageLoad = false;
                     loadGridClientes();
-                    //Muestro el mensaje que me devuelve del metodo Eliminar
-                    //lblMensaje.Text = 
-                    //pcMensaje.ShowOnPageLoad = true;
+
                 }
 
-                catch { }
+                catch
+                {
+
+                    //Muestro el mensaje que me devuelve del metodo Eliminar
+                    lblMensaje.Text = "El Cliente está asociado a un artículo o nota de pedido";
+                    pcMensaje.ShowOnPageLoad = true;
+                }
             }
         }
 

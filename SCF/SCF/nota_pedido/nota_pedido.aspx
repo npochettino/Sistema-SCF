@@ -139,7 +139,7 @@
                                                     <div id="chart_8" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ARTICULOS-->
                                                         <dx:ASPxGridView ID="gvArticulos" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticulo"
-                                                            Theme="Metropolis" Width="400">
+                                                            Theme="Metropolis" Width="100%">
                                                             <Columns>
                                                                 <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Caption=" " Width="40">
                                                                 </dx:GridViewCommandColumn>

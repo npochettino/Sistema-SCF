@@ -33,21 +33,21 @@ namespace SCF.transportes
 
         private void CargarDatosParaEditar(Transporte transporte)
         {
-            cbTipoDocumento.SelectedItem = cbTipoDocumento.Items.FindByValue(oTransporteActual.TipoDocumento.Codigo);
+            cbTipoDocumento.SelectedItem = cbTipoDocumento.Items.FindByValue(transporte.TipoDocumento.Codigo);
 
-            txtNroDocumento.Value = oTransporteActual.NumeroDocumento;
-            txtRazonSocial.Value = oTransporteActual.RazonSocial;
-            txtCiudad.Value = oTransporteActual.Localidad;
-            txtDireccion.Value = oTransporteActual.Direccion;
-            txtMail.Value = oTransporteActual.Mail;
-            txtProvincia.Value = oTransporteActual.Provincia;
-            txtTelefono.Value = oTransporteActual.Telefono;
-            txtPersonaContacto.Value = oTransporteActual.PersonaContacto;
-            txtBanco.Value = oTransporteActual.Banco;
-            txtCBU.Value = oTransporteActual.Cbu;
-            txtNroCuentaBancaria.Value = oTransporteActual.NumeroCuenta;
-            txtObservacion.Value = oTransporteActual.Observaciones;
-            txtFax.Value = oTransporteActual.Fax;
+            txtNroDocumento.Value = transporte.NumeroDocumento;
+            txtRazonSocial.Value = transporte.RazonSocial;
+            txtCiudad.Value = transporte.Localidad;
+            txtDireccion.Value = transporte.Direccion;
+            txtMail.Value = transporte.Mail;
+            txtProvincia.Value = transporte.Provincia;
+            txtTelefono.Value = transporte.Telefono;
+            txtPersonaContacto.Value = transporte.PersonaContacto;
+            txtBanco.Value = transporte.Banco;
+            txtCBU.Value = transporte.Cbu;
+            txtNroCuentaBancaria.Value = transporte.NumeroCuenta;
+            txtObservacion.Value = transporte.Observaciones;
+            txtFax.Value = transporte.Fax;
 
         }
 

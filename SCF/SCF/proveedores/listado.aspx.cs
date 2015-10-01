@@ -79,19 +79,18 @@ namespace SCF.proveedores
         {
             if (gvProveedores.FocusedRowIndex != -1)
             {
+                pcConfirmarEliminarProveedor.ShowOnPageLoad = false;
                 try
                 {
                     ControladorGeneral.EliminarProveedor(int.Parse(gvProveedores.GetRowValues(gvProveedores.FocusedRowIndex, "codigoProveedor").ToString()));
                     Response.Redirect("listado.aspx");
-
-                    //Muestro el mensaje que me devuelve del metodo Eliminar
-                    //lblMensaje.Text = 
-                    //pcMensaje.ShowOnPageLoad = true;
                 }
 
                 catch
                 {
-
+                    //Muestro el mensaje que me devuelve del metodo Eliminar
+                    lblMensaje.Text = "El Proveedor está asociado a un artículo";
+                    pcMensaje.ShowOnPageLoad = true;
                 }
             }
         }
