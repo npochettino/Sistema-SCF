@@ -1225,6 +1225,7 @@ namespace BibliotecaSCF.Controladores
             try
             {
                 List<ContratoMarco> listaContratosMarco = new List<ContratoMarco>();
+                List<Articulo> listaArticulos = new List<Articulo>();
 
                 foreach (DataRow fila in tablaItemsContratoMarco.Rows)
                 {
@@ -1264,18 +1265,29 @@ namespace BibliotecaSCF.Controladores
 
                     if (articulo == null)
                     {
-                        articulo = new Articulo();
-                        articulo.DescripcionCorta = descripcionCorta;
-                        articulo.DescripcionLarga = string.Empty;
-                        articulo.Marca = string.Empty;
-                        articulo.NombreImagen = string.Empty;
-                        articulo.UnidadMedida = CatalogoUnidadMedida.RecuperarPor(x => x.Abreviatura == fila["MEDIDA"].ToString(), nhSesion);
+                        articulo = CatalogoArticulo.RecuperarPor(x => x.DescripcionCorta == descripcionCorta, nhSesion);
 
-                        if (articulo.UnidadMedida == null)
+                        if (articulo == null)
                         {
-                            return "No existe la unidad de medida: " + fila["MEDIDA"].ToString();
+                            articulo = (from a in listaArticulos where a.DescripcionCorta == descripcionCorta select a).SingleOrDefault();
+                            if (articulo == null)
+                            {
+                                articulo = new Articulo();
+                                articulo.DescripcionCorta = descripcionCorta;
+                                articulo.DescripcionLarga = string.Empty;
+                                articulo.Marca = string.Empty;
+                                articulo.NombreImagen = string.Empty;
+                                articulo.UnidadMedida = CatalogoUnidadMedida.RecuperarPor(x => x.Abreviatura == fila["MEDIDA"].ToString(), nhSesion);
+                                listaArticulos.Add(articulo);
+
+                                if (articulo.UnidadMedida == null)
+                                {
+                                    return "No existe la unidad de medida: " + fila["MEDIDA"].ToString();
+                                }
+                            }
                         }
                     }
+
                     TipoMoneda moneda = CatalogoMoneda.RecuperarPor(x => x.Abreviatura == fila["MONEDA"].ToString(), nhSesion);
                     HistorialPrecio hist = (from h in articulo.HistorialesPrecio where h.FechaHasta == null select h).SingleOrDefault();
                     if (hist == null)
@@ -1293,13 +1305,18 @@ namespace BibliotecaSCF.Controladores
 
                     if (artCl == null)
                     {
-                        artCl = new ArticuloCliente();
-                        artCl.CodigoInterno = codigoInterno;
-                        artCl.Cliente = cm.Cliente;
-                        articulo.ArticulosClientes.Add(artCl);
+                        artCl = (from a in articulo.ArticulosClientes where a.Cliente.Codigo == cm.Cliente.Codigo select a).SingleOrDefault();
+
+                        if (artCl == null)
+                        {
+                            artCl = new ArticuloCliente();
+                            artCl.CodigoInterno = codigoInterno;
+                            artCl.Cliente = cm.Cliente;
+                            articulo.ArticulosClientes.Add(artCl);
+                        }
                     }
 
-                    ItemContratoMarco itemCM = (from i in cm.ItemsContratoMarco where i.Articulo.Codigo == articulo.Codigo select i).SingleOrDefault();
+                    ItemContratoMarco itemCM = (from i in cm.ItemsContratoMarco where i.Articulo.DescripcionCorta == articulo.DescripcionCorta select i).SingleOrDefault();
 
                     if (itemCM == null)
                     {
@@ -2732,7 +2749,6 @@ namespace BibliotecaSCF.Controladores
                 nhSesion.Dispose();
             }
         }
-
 
         #endregion
     }
