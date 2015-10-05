@@ -482,7 +482,6 @@ namespace BibliotecaSCF.Controladores
                     histPrecio.Precio = precio;
                     histPrecio.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
 
-
                     articulo.HistorialesPrecio.Add(histPrecio);
                 }
                 else
@@ -495,7 +494,7 @@ namespace BibliotecaSCF.Controladores
                         histPrecioNuevo.FechaDesde = DateTime.Now;
                         histPrecioNuevo.FechaHasta = null;
                         histPrecioNuevo.Precio = precio;
-                        histPrecio.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
+                        histPrecioNuevo.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
 
                         articulo.HistorialesPrecio.Add(histPrecioNuevo);
                     }
