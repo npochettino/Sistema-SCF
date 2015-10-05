@@ -1105,6 +1105,13 @@ namespace BibliotecaSCF.Controladores
                     else
                     {
                         item = (from n in notaDePedido.ItemsNotaDePedido where n.Codigo == codigoItemNotaDePedido select n).SingleOrDefault();
+
+                        if (!Convert.IsDBNull(filaItemNotaDePedido["isEliminada"]) && Convert.ToBoolean(filaItemNotaDePedido["isEliminada"]))
+                        {
+                            notaDePedido.ItemsNotaDePedido.Remove(item);
+                        }
+
+
                     }
 
                     item.Articulo = CatalogoArticulo.RecuperarPorCodigo(Convert.ToInt32(filaItemNotaDePedido["codigoArticulo"]), nhSesion);
