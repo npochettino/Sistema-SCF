@@ -47,7 +47,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Razón Social</label>
-                                                <input type="text" id="txtRazonSocial" runat="server" class="form-control" placeholder="Razón Social" >
+                                                <input type="text" id="txtRazonSocial" runat="server" required class="form-control" placeholder="Razón Social" >
                                             </div>
                                         </div>
                                         <!--/span-->

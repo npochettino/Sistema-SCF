@@ -256,6 +256,15 @@ namespace SCF.transportes {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtRazonSocial;
         
         /// <summary>
+        /// Control lblTipoDoc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTipoDoc;
+        
+        /// <summary>
         /// Control txtCUIL.
         /// </summary>
         /// <remarks>

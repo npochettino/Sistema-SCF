@@ -76,13 +76,16 @@ namespace SCF.transportes
             transporteActual.Mail = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "mail").ToString();
             transporteActual.Provincia = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "provincia").ToString();
             transporteActual.RazonSocial = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "razonSocial").ToString();
-            transporteActual.Telefono = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "telefono").ToString() + "/" + gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "fax").ToString();
+            transporteActual.Telefono = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "telefono").ToString();
             transporteActual.Banco = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "banco").ToString();
             transporteActual.Cbu = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "cbu").ToString();
             transporteActual.PersonaContacto = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "personaContacto").ToString();
             transporteActual.NumeroCuenta = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "numeroCuenta").ToString();
             transporteActual.Observaciones = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "observaciones").ToString();
             transporteActual.Fax = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "fax").ToString();
+            transporteActual.TipoDocumento = new TipoDocumento();
+            transporteActual.TipoDocumento.Codigo = Convert.ToInt32(gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "codigoTipoDocumento"));
+            transporteActual.TipoDocumento.Descripcion = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "tipoDocumento").ToString();
 
 
             Session.Add("transporteActual", transporteActual);
@@ -106,10 +109,11 @@ namespace SCF.transportes
         protected void btnVerDetalleTransporte_Click(object sender, EventArgs e)
         {
             pcShowDetalleTransporte.ShowOnPageLoad = true;
+            lblTipoDoc.InnerText = txtBanco.Value = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "tipoDocumento").ToString();
 
             txtRazonSocial.Value = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "razonSocial").ToString();
             txtEmail.Value = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "mail").ToString();
-            txtCUIL.Value = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "nroDocumento").ToString();
+            txtCUIL.Value = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "numeroDocumento").ToString();
             txtTelFax.Value = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "telefono").ToString();
             txtPersonaCantacto.Value = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "personaContacto").ToString();
             txtNroCuenta.Value = gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "numeroCuenta").ToString();

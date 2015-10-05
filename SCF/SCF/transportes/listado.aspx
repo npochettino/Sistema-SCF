@@ -67,28 +67,34 @@
                                         <dx:GridViewDataTextColumn FieldName="codigoTransporte" ReadOnly="True" Visible="false" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="numeroDocumento" Caption="CUIL" VisibleIndex="1">
+                                        <dx:GridViewDataTextColumn FieldName="tipoDocumento" Caption="Tipo Documento" VisibleIndex="1">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="2">
+                                        <dx:GridViewDataTextColumn FieldName="codigoTipoDocumento" Visible="false" VisibleIndex="1">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="provincia" Caption="Provincia" VisibleIndex="3">
+                                        <dx:GridViewDataTextColumn FieldName="numeroDocumento" Caption="Nro Documento" VisibleIndex="2">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="localidad" Caption="Localidad" VisibleIndex="4">
+                                        <dx:GridViewDataTextColumn FieldName="razonSocial" Caption="Razon Social" VisibleIndex="3">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="direccion" Caption="Dirección" VisibleIndex="5">
+                                        <dx:GridViewDataTextColumn FieldName="provincia" Caption="Provincia" VisibleIndex="4">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="telefono" Caption="Teléfono" VisibleIndex="6">
+                                        <dx:GridViewDataTextColumn FieldName="localidad" Caption="Localidad" VisibleIndex="5">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="numeroCuenta" Caption="Teléfono" VisibleIndex="6">
+                                        <dx:GridViewDataTextColumn FieldName="direccion" Caption="Dirección" VisibleIndex="6">
                                             <Settings AutoFilterCondition="Contains" />
                                         </dx:GridViewDataTextColumn>
-                                       
+                                        <dx:GridViewDataTextColumn FieldName="telefono" Caption="Teléfono" VisibleIndex="7">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="numeroCuenta" Caption="Teléfono" VisibleIndex="8">
+                                            <Settings AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataTextColumn>
+
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />
@@ -200,19 +206,21 @@
                                                             <label class="control-label col-md-3">Razon Social</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtRazonSocial" placeholder="Razon Social" runat="server" class="form-control">
-                                                            &nbsp;</input> </input></input>
+                                                            &nbsp;</input>
                                                                 </input>
-                                                                &nbsp;</input></input></input></div>
+&nbsp;</input></input></input>&nbsp;</input></input></input></input></input></input>&nbsp;
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">CUIL</label>
+                                                            <label id="lblTipoDoc" runat="server" class="control-label col-md-3">CUIL</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtCUIL" placeholder="CUIL" runat="server" class="form-control">
-                                                            &nbsp;</input> </input></input>
+                                                            &nbsp;</input>
                                                                 </input>
-                                                                &nbsp;</input></input></input></div>
+&nbsp;</input></input></input>&nbsp;</input></input></input></input></input></input>&nbsp;
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -221,18 +229,20 @@
                                                         <label class="control-label col-md-3">Email</label>
                                                         <div class="col-md-9">
                                                             <input type="text" id="txtEmail" placeholder="Email" runat="server" class="form-control">
-                                                        &nbsp;</input> </input></input>
+                                                        &nbsp;</input>
                                                             </input>
-                                                            &nbsp;</input></input></input></div>
+&nbsp;</input></input></input>&nbsp;</input></input></input></input></input></input>&nbsp;
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Tel. / Fax.</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTelFax" placeholder="Tel. / Fax" runat="server" class="form-control">
-                                                            &nbsp;</input> </input></input>
+                                                            &nbsp;</input>
                                                                 </input>
-                                                                &nbsp;</input></input></input></div>
+&nbsp;</input></input></input>&nbsp;</input></input></input></input></input></input>&nbsp;
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -242,9 +252,10 @@
                                                             <label class="control-label col-md-3">Contacto</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtPersonaCantacto" placeholder="Persona de Contacto" runat="server" class="form-control">
-                                                            &nbsp;</input> </input></input>
+                                                            &nbsp;</input>
                                                                 </input>
-                                                                &nbsp;</input></input></input></div>
+&nbsp;</input></input></input>&nbsp;</input></input></input></input></input></input>&nbsp;
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -256,9 +267,10 @@
                                                             <label class="control-label col-md-3">Banco</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtBanco" placeholder="Banco" runat="server" class="form-control">
-                                                            &nbsp;</input> </input></input>
+                                                            &nbsp;</input>
                                                                 </input>
-                                                                &nbsp;</input></input></input></div>
+&nbsp;</input></input></input>&nbsp;</input></input></input></input></input></input>&nbsp;
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -266,9 +278,10 @@
                                                             <label class="control-label col-md-3">CBU</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtCBU" placeholder="CBU" runat="server" class="form-control">
-                                                            &nbsp;</input> </input></input>
+                                                            &nbsp;</input>
                                                                 </input>
-                                                                &nbsp;</input></input></input></div>
+&nbsp;</input></input></input>&nbsp;</input></input></input></input></input></input>&nbsp;
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -278,9 +291,10 @@
                                                             <label class="control-label col-md-3">Nro. de Cuenta</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtNroCuenta" placeholder="Nro. Cuenta" runat="server" class="form-control">
-                                                            &nbsp;</input> </input></input>
+                                                            &nbsp;</input>
                                                                 </input>
-                                                                &nbsp;</input></input></input></div>
+&nbsp;</input></input></input>&nbsp;</input></input></input></input></input></input>&nbsp;
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -2471,13 +2471,16 @@ namespace BibliotecaSCF.Controladores
                 tablaTransportes.Columns.Add("observaciones");
                 tablaTransportes.Columns.Add("fax");
                 tablaTransportes.Columns.Add("numeroDocumento");
+                tablaTransportes.Columns.Add("tipoDocumento");
+                tablaTransportes.Columns.Add("codigoTipoDocumento");
+
 
                 List<Transporte> listaTransportes = CatalogoTransporte.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
 
                 listaTransportes.Aggregate(tablaTransportes, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento,
-                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax, r.NumeroDocumento); return dt;
+                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax, r.NumeroDocumento,r.TipoDocumento.Descripcion,r.TipoDocumento.Codigo); return dt;
                 });
 
                 return tablaTransportes;
