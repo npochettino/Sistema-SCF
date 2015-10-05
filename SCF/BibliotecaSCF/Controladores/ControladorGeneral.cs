@@ -1195,7 +1195,7 @@ namespace BibliotecaSCF.Controladores
                     int cantidadEntregada = (from e in listaEntregas select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == item.Codigo select i.CantidadAEntregar).SingleOrDefault()).Sum();
 
                     tablaItemsNotaDePedido.Rows.Add(item.Codigo, item.Articulo.Codigo, item.Articulo.DescripcionCorta, item.Articulo.DescripcionLarga, item.Articulo.Marca,
-                    item.Articulo.RecuperarHistorialPrecioActual().Precio, item.CantidadPedida, item.FechaEntrega.ToString("dd/MM/yyyy"), cantidadEntregada, item.Articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
+                    item.Precio, item.CantidadPedida, item.FechaEntrega.ToString("dd/MM/yyyy"), cantidadEntregada, item.Articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
                     item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, item.Posicion);
                 }
 
@@ -2480,7 +2480,7 @@ namespace BibliotecaSCF.Controladores
                 listaTransportes.Aggregate(tablaTransportes, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento,
-                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax, r.NumeroDocumento,r.TipoDocumento.Descripcion,r.TipoDocumento.Codigo); return dt;
+                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax, r.NumeroDocumento, r.TipoDocumento.Descripcion, r.TipoDocumento.Codigo); return dt;
                 });
 
                 return tablaTransportes;
