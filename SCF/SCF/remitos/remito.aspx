@@ -88,7 +88,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label">Codigo</label>
+                                                <label class="control-label">Nro Remito</label>
                                                 <dx:ASPxTextBox ID="txtCodigoRemito" runat="server" CssClass="form-control" Width="100%" placeholder="Codigo">
                                                     <ValidationSettings>
                                                         <RequiredField IsRequired="true" />
