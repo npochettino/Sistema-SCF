@@ -125,6 +125,7 @@ namespace SCF.transportes
         {
             if (gvTransportes.FocusedRowIndex != -1)
             {
+                pcConfirmarEliminarTransporte.ShowOnPageLoad = false;
                 try
                 {
                     ControladorGeneral.EliminarTransporte(int.Parse(gvTransportes.GetRowValues(gvTransportes.FocusedRowIndex, "codigoTransporte").ToString()));
@@ -132,7 +133,11 @@ namespace SCF.transportes
                     loadGridTransportes();
                 }
 
-                catch { }
+                catch
+                {
+                    lblMensaje.Text = "El Transporte está asociado con una o más factura/s";
+                    pcMensaje.ShowOnPageLoad = true;
+                }
             }
         }
 

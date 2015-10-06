@@ -316,6 +316,33 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
+    <dx:ASPxPopupControl ID="pcMensaje" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcMensaje"
+        HeaderText="Mensaje" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        EnableViewState="False" Theme="Metropolis">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl4" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel2" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent4" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <dx:ASPxLabel ID="lblMensaje" runat="server" Text=""></dx:ASPxLabel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
     <!--END POPUP-->
 
     <script lang="javascript" type="text/javascript">
@@ -327,4 +354,6 @@
         }
 
     </script>
+
+
 </asp:Content>
