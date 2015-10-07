@@ -609,6 +609,7 @@ namespace BibliotecaSCF.Controladores
                 tablaArticulo.Columns.Add("razonSocialCliente");
                 tablaArticulo.Columns.Add("codigoMoneda");
                 tablaArticulo.Columns.Add("descripcionMoneda");
+                tablaArticulo.Columns.Add("codigoUnidadMedida");
 
                 List<Articulo> listaArticulos = CatalogoArticulo.RecuperarPorCodigoInternoCliente(codigoInternoCliente, nhSesion);
 
@@ -619,7 +620,7 @@ namespace BibliotecaSCF.Controladores
                         tablaArticulo.Rows.Add(articulo.Codigo, articulo.DescripcionCorta, articulo.DescripcionLarga, articulo.Marca,
                         articulo.RecuperarHistorialPrecioActual().Precio, articulo.NombreImagen,
                         artCli.CodigoInterno, artCli.Codigo, artCli.Cliente.RazonSocial,
-                        articulo.RecuperarHistorialPrecioActual().Moneda.Codigo, articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion);
+                        articulo.RecuperarHistorialPrecioActual().Moneda.Codigo, articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion,articulo.UnidadMedida.Codigo);
                     }
                 }
 
@@ -1899,7 +1900,7 @@ namespace BibliotecaSCF.Controladores
                             r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, r.ItemNotaDePedido.Posicion,
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
-                            entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, r.ItemNotaDePedido.Precio * r.CantidadAEntregar,
+                            entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar),2),
                             entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento, entrega.NotaDePedido.Cliente.Localidad, entrega.NotaDePedido.Cliente.Direccion); return dt;
                     });
                 }
@@ -1957,7 +1958,7 @@ namespace BibliotecaSCF.Controladores
                                 r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, r.ItemNotaDePedido.Posicion,
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
-                                entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, r.ItemNotaDePedido.Precio * r.CantidadAEntregar,
+                                entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar),2),
                             entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento, entrega.NotaDePedido.Cliente.Localidad, entrega.NotaDePedido.Cliente.Direccion); return dt;
                         });
                     }
@@ -2205,7 +2206,7 @@ namespace BibliotecaSCF.Controladores
                 factura.Iva = CatalogoIva.RecuperarPorCodigo(codigoIva, nhSesion);
                 factura.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
                 factura.NumeroFactura = numeroFactura;
-                factura.Subtotal = subtotal;
+                factura.Subtotal = subtotal;// (double)decimal.Round((decimal)subtotal, 2);
                 factura.TipoComprobante = CatalogoTipoComprobante.RecuperarPorCodigo(1, nhSesion);
                 factura.Total = total;
                 factura.FechaVencimiento = null;
@@ -2257,7 +2258,7 @@ namespace BibliotecaSCF.Controladores
                     detalleReq.FchVtoPago = ConvertirFechaAFIP(factura.FechaFacturacion);
                 }
 
-                detalleReq.ImpIVA = factura.Subtotal * 0.21; // VERRR!!!!!!!!!!!
+                detalleReq.ImpIVA = (double)decimal.Round((decimal)(factura.Subtotal * 0.21),2); // VERRR!!!!!!!!!!!
                 detalleReq.ImpNeto = factura.Subtotal;
                 detalleReq.ImpOpEx = 0; //por que??
                 detalleReq.ImpTotal = factura.Total;
@@ -2270,7 +2271,7 @@ namespace BibliotecaSCF.Controladores
                 AlicIva alicIva = new AlicIva();
                 alicIva.Id = factura.Iva.Codigo;
                 alicIva.BaseImp = factura.Subtotal;
-                alicIva.Importe = factura.Subtotal * 0.21;
+                alicIva.Importe =  (double)decimal.Round((decimal)factura.Subtotal * (decimal)0.21,2);
                 ls.Add(alicIva);
 
                 detalleReq.Iva = ls.ToArray();

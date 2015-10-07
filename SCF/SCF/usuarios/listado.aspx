@@ -66,10 +66,10 @@
                                             
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="nombreUsuario" VisibleIndex="1">                                           
+                                        <dx:GridViewDataTextColumn FieldName="nombreUsuario" Caption="Usuario" VisibleIndex="1">                                           
                                             <Settings AutoFilterCondition="Contains" />                                           
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="contraseña" VisibleIndex="2">                                           
+                                        <dx:GridViewDataTextColumn FieldName="contraseña" Caption="Contraseña" VisibleIndex="2">                                           
                                             <Settings AutoFilterCondition="Contains" />                                           
                                         </dx:GridViewDataTextColumn>
                                     </Columns>

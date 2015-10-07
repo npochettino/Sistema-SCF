@@ -4,7 +4,7 @@
     <Cuit>27296804385</Cuit>
     <PtoVta>2</PtoVta>
     <CbteTipo>1</CbteTipo>
-    <FchProceso>20150930142446</FchProceso>
+    <FchProceso>20151003193534</FchProceso>
     <CantReg>1</CantReg>
     <Resultado>A</Resultado>
     <Reproceso>N</Reproceso>
@@ -14,9 +14,9 @@
       <Concepto>1</Concepto>
       <DocTipo>80</DocTipo>
       <DocNro>20111111112</DocNro>
-      <CbteDesde>7</CbteDesde>
-      <CbteHasta>7</CbteHasta>
-      <CbteFch>20150930</CbteFch>
+      <CbteDesde>8</CbteDesde>
+      <CbteHasta>8</CbteHasta>
+      <CbteFch>20151003</CbteFch>
       <Resultado>A</Resultado>
       <Observaciones>
         <Obs>
@@ -24,8 +24,8 @@
           <Msg>Factura individual, DocTipo: 80, DocNro 20111111112 no se encuentra inscripto en condicion ACTIVA en el impuesto.</Msg>
         </Obs>
       </Observaciones>
-      <CAE>65395312399494</CAE>
-      <CAEFchVto>20151010</CAEFchVto>
+      <CAE>65405313288266</CAE>
+      <CAEFchVto>20151013</CAEFchVto>
     </FECAEDetResponse>
   </FeDetResp>
 </FECAEResponse>

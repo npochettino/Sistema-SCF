@@ -78,7 +78,10 @@
                                         <dx:GridViewDataDateColumn FieldName="descripcionTipoMoneda" VisibleIndex="4" Caption="Tipo Moneda" Visible="false">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="descripcionConcepto" VisibleIndex="5" Caption="Concepto" Visible="true">
+                                        <dx:GridViewDataDateColumn FieldName="remitos" VisibleIndex="5" Caption="Remito" Visible="true">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="descripcionConcepto" VisibleIndex="5" Caption="Concepto" Visible="false">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
                                         <dx:GridViewDataDateColumn FieldName="descripcionIVA" VisibleIndex="6" Caption="IVA" Visible="false">

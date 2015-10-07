@@ -88,7 +88,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Dirección</label>
-                                                <input type="text" id="txtDireccion" runat="server" class="form-control" placeholder="Direccion">
+                                                <input type="text" id="txtDireccion" runat="server" class="form-control" placeholder="Direccion" required>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -104,14 +104,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Provincia</label>
-                                                <input type="text" id="txtProvincia" runat="server" class="form-control" placeholder="Provincia">
+                                                <input type="text" id="txtProvincia" runat="server" class="form-control" placeholder="Provincia" required>
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Ciudad</label>
-                                                <input type="text" id="txtCiudad" runat="server" class="form-control" placeholder="Ciudad">
+                                                <input type="text" id="txtCiudad" runat="server" class="form-control" placeholder="Ciudad" required>
                                             </div>
                                         </div>
                                         <!--/span-->

@@ -122,7 +122,7 @@
     <!-- END CONTENT -->
 
     <!-- BEGIN POPUP ELIMINAR ARTICULO -->
-    <dx:ASPxPopupControl ID="pcConfirmarEliminarArticulo" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcConfirmarEliminarArticulo" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarArticulo"
         HeaderText="Eliminar Articulo" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
@@ -157,7 +157,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-    <dx:ASPxPopupControl ID="pcShowDetalleArticulo" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
+    <dx:ASPxPopupControl ID="pcShowDetalleArticulo" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleArticulo"
         HeaderText="Detalle del Artículo" AllowDragging="True" EnableViewState="False" Width="800px"
         PopupAnimationType="Fade" Theme="Metropolis">
@@ -283,8 +283,7 @@
                                                     <div class="col-md-12 ">
                                                         <div>
                                                             <div class="btn-set pull-right" style="padding-bottom: 3px">
-                                                               <%-- <button class="btn blue" type="button" onclick="ShowHistoricoCosto()">Ver</button>--%>
-                                                                <asp:Button class="btn blue" type="button" runat="server" ID="btnShowHistoricoCosto" UseSubmitBehavior="false" OnClick="btnShowHistoricoCosto_Click" Text="Ver"/>
+                                                                <%--<asp:Button class="btn blue" type="button" runat="server" ID="btnShowHistoricoCosto" UseSubmitBehavior="false" OnClick="btnShowHistoricoCosto_Click" Text="Ver"/>--%>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -303,6 +302,7 @@
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                 </Columns>
+                                                                <SettingsBehavior AllowFocusedRow="True" />
                                                             </dx:ASPxGridView>
                                                         </div>
                                                     </div>
@@ -319,7 +319,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-    <dx:ASPxPopupControl ID="pcHistoricoPrecio" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcHistoricoPrecio" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcHistoricoPrecio"
         HeaderText="Historico Precio" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="450"
         EnableViewState="False" Theme="Metropolis">
@@ -372,7 +372,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-    <dx:ASPxPopupControl ID="pcHistoricoCosto" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcHistoricoCosto" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcHistoricoCosto"
         HeaderText="Historico Costo" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="450"
         EnableViewState="False" Theme="Metropolis">
@@ -422,7 +422,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-    <dx:ASPxPopupControl ID="pcRelacionArticuloCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcRelacionArticuloCliente" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcRelacionArticuloCliente"
         HeaderText="Relación Artículo Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
         EnableViewState="False" Theme="Metropolis">
@@ -478,7 +478,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-    <dx:ASPxPopupControl ID="pcNuevaRelacionArticuloCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
+    <dx:ASPxPopupControl ID="pcNuevaRelacionArticuloCliente" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcNuevaRelacionArticuloCliente"
         HeaderText="Nueva Relacion" AllowDragging="True" EnableViewState="False" Width="400px"
         PopupAnimationType="Fade" Theme="Metropolis">
@@ -538,7 +538,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-    <dx:ASPxPopupControl ID="pcConfirmarEliminarRelacionArticuloCliente" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcConfirmarEliminarRelacionArticuloCliente" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarRelacionArticuloCliente"
         HeaderText="Eliminar Relacion Artículo Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
@@ -577,7 +577,7 @@
 
 
     <!--END POPUP RELACION ARTICULO - PROVEEDOR-->
-    <dx:ASPxPopupControl ID="pcRelacionArticuloProveedor" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcRelacionArticuloProveedor" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcRelacionArticuloProveedor"
         HeaderText="Relación Artículo Proveedor" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
         EnableViewState="False" Theme="Metropolis">
@@ -641,7 +641,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-    <dx:ASPxPopupControl ID="pcNuevaRelacionArticuloProveedor" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
+    <dx:ASPxPopupControl ID="pcNuevaRelacionArticuloProveedor" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcNuevaRelacionArticuloProveedor"
         HeaderText="Nueva Relacion" AllowDragging="True" EnableViewState="False" Width="400px"
         PopupAnimationType="Fade" Theme="Metropolis">
@@ -717,7 +717,7 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-    <dx:ASPxPopupControl ID="pcConfirmarEliminarRelacionArticuloProveedor" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcConfirmarEliminarRelacionArticuloProveedor" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarRelacionArticuloProveedor"
         HeaderText="Eliminar Relacion Artículo Proveedor" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">
@@ -756,7 +756,7 @@
     <!--END POPUP RELACION ARTICULO - CLIENTE-->
 
     <!-- BEGIN POPUP ELIMINAR ARTICULO -->
-    <dx:ASPxPopupControl ID="pcError" runat="server" CloseAction="CloseButton" CloseOnEscape="true"
+    <dx:ASPxPopupControl ID="pcError" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcError"
         HeaderText="Mensaje" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
         EnableViewState="False" Theme="Metropolis">

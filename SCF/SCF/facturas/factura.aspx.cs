@@ -18,14 +18,9 @@ namespace SCF.facturas
             if (!IsPostBack)
             {
                 if (Session["tablaFactura"] != null)
-                {
-
-                }
+                { }
                 else
-                {
-                    CargarNumeroDeFactura();
-                }
-
+                {CargarNumeroDeFactura();}
             }
             else
             {
@@ -42,8 +37,7 @@ namespace SCF.facturas
         {
             //Obtengo el Ultimo numero de factura y le sumo 1.
             DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
-            txtNroFactura.Value = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["numeroFactura"]) + 1).ToString() : string.Empty;
-            //txtNroFactura.Text = "6";
+            txtNroFactura.Value = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["numeroFactura"]) + 1).ToString() : "1";
         }
 
         private void CargarComboTipoMoneda()

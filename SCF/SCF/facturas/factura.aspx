@@ -71,9 +71,6 @@
                                                         <dx:GridViewDataColumn FieldName="cuitCliente" Caption="CUIT" Width="100%" />
                                                         <dx:GridViewDataColumn FieldName="codigoSCF" Caption="Codigo conSCF" Width="100%" />
                                                     </Columns>
-<%--                                                    <ValidationSettings SetFocusOnError="true">
-                                                        <RequiredField IsRequired="true" ErrorText="Ingrese un remito" />
-                                                    </ValidationSettings>--%>
                                                     <GridViewProperties>
                                                         <Settings ShowFilterRow="True" ShowStatusBar="Visible" />
                                                     </GridViewProperties>
@@ -90,10 +87,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">Tipo de Comprobante</label>
                                                 <dx:ASPxComboBox ID="cbTipoComprobante" runat="server" ValueField="codigoTipoComprobante" TextField="descripcion" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
-                                                <ValidationSettings>
-                                                        <RequiredField IsRequired="true" />
-                                                    </ValidationSettings>
-                                                </dx:ASPxComboBox>
+                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -101,9 +95,6 @@
                                             <div class="form-group">
                                                 <label class="control-label">Nro. Factura</label>
                                                 <dx:ASPxTextBox ID="txtNroFactura" runat="server" CssClass="form-control" Width="100%" placeholder="Nro Factura">
-                                                    <ValidationSettings>
-                                                        <RequiredField IsRequired="true" />
-                                                    </ValidationSettings>
                                                 </dx:ASPxTextBox>
                                             </div>
                                         </div>
@@ -114,9 +105,6 @@
                                                 <dx:ASPxDateEdit ID="txtFechaFacturacion" runat="server" CssClass="form-control" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
                                                     <TimeSectionProperties Visible="True">
                                                     </TimeSectionProperties>
-                                                    <ValidationSettings>
-                                                        <RequiredField IsRequired="true" />
-                                                    </ValidationSettings>
                                                 </dx:ASPxDateEdit>
                                             </div>
                                         </div>
@@ -130,9 +118,6 @@
                                                         <dx:ListEditItem Selected="true" Text="15 Días" Value="1" />
                                                         <dx:ListEditItem Text="30 Días" Value="2" />
                                                     </Items>
-                                                    <ValidationSettings>
-                                                        <RequiredField IsRequired="true" />
-                                                    </ValidationSettings>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
@@ -147,9 +132,6 @@
                                                         <dx:ListBoxColumn FieldName="descripcion" Width="100px" Caption="Descripción" />
                                                         <dx:ListBoxColumn FieldName="abreviatura" Width="300px" Caption="Abreviatura" />
                                                     </Columns>
-                                                    <ValidationSettings>
-                                                        <RequiredField IsRequired="true" />
-                                                    </ValidationSettings>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
@@ -163,9 +145,6 @@
                                                         <dx:ListBoxColumn FieldName="codigoConcepto" Width="100px" Visible="false" />
                                                         <dx:ListBoxColumn FieldName="descripcion" Width="100px" Caption="Descripción" />
                                                     </Columns>
-                                                    <ValidationSettings>
-                                                        <RequiredField IsRequired="true" />
-                                                    </ValidationSettings>
                                                 </dx:ASPxComboBox>
                                             </div>
                                         </div>
@@ -180,9 +159,6 @@
                                             <div class="form-group">
                                                 <label class="control-label">Razon Social</label>
                                                 <dx:ASPxTextBox ID="txtRazonSocial" runat="server" CssClass="form-control" Width="100%">
-                                                    <ValidationSettings>
-                                                        <RequiredField IsRequired="true" />
-                                                    </ValidationSettings>
                                                 </dx:ASPxTextBox>
                                             </div>
                                         </div>
@@ -191,9 +167,6 @@
                                             <div class="form-group">
                                                 <label class="control-label">CUIT</label>
                                                 <dx:ASPxTextBox runat="server" ID="txtNroDocumento" CssClass="form-control" Width="100%">
-                                                    <ValidationSettings>
-                                                        <RequiredField IsRequired="true" />
-                                                    </ValidationSettings>
                                                 </dx:ASPxTextBox>
                                             </div>
                                         </div>
@@ -202,9 +175,6 @@
                                             <div class="form-group">
                                                 <label class="control-label">Codigo con SCF</label>
                                                 <dx:ASPxTextBox ID="txtCodigoConSCF" runat="server" CssClass="form-control" Width="100%">
-                                                    <ValidationSettings>
-                                                        <RequiredField IsRequired="true" />
-                                                    </ValidationSettings>
                                                 </dx:ASPxTextBox>
                                             </div>
                                         </div>
@@ -593,7 +563,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-12">CUIT Contribuyente: 27-29680438-5</label>
+                                                <label class="control-label col-md-12">CUIT Contribuyente: 30-71103970-4</label>
 
                                             </div>
                                         </div>

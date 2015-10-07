@@ -265,15 +265,6 @@ namespace SCF.articulos {
         protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvCliente;
         
         /// <summary>
-        /// Control btnShowHistoricoCosto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowHistoricoCosto;
-        
-        /// <summary>
         /// Control gvArticuloProveedores.
         /// </summary>
         /// <remarks>

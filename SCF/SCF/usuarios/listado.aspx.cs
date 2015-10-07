@@ -18,8 +18,8 @@ namespace SCF.usuarios
                 
             }
             loadGridUsuarios();
-            
-            Session["usuariosActual"] = null;
+
+            Session["usuarioActual"] = null;
             Session["codigoOperacion"] = null;
         }
 
@@ -52,7 +52,7 @@ namespace SCF.usuarios
             usuariosActual.NombreUsuario = gvUsuarios.GetRowValues(gvUsuarios.FocusedRowIndex, "nombreUsuario").ToString();
             usuariosActual.Contraseña = gvUsuarios.GetRowValues(gvUsuarios.FocusedRowIndex, "contraseña").ToString();
             
-            Session.Add("usuariosActual", usuariosActual);
+            Session.Add("usuarioActual", usuariosActual);
 
             Response.Redirect("usuario.aspx");
         }
