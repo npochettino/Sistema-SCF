@@ -191,13 +191,14 @@ namespace SCF.facturas
             DataTable dtItemsFacturaActual = (DataTable)Session["dtItemsFacturaActual"];
             Double subtotal = 0;
             Double total = 0;
+
             for (int i = 0; i < dtItemsFacturaActual.Rows.Count; i++)
             {
                 subtotal = subtotal + Convert.ToDouble(dtItemsFacturaActual.Rows[i]["precioTotal"].ToString());
             }
-            txtSubtotal.Text = Convert.ToString(subtotal);
-            txtImporteIVA.Text = Convert.ToString(subtotal * 0.21);
-            txtTotal.Text = Convert.ToString(subtotal * 1.21);
+            txtSubtotal.Text = Convert.ToString((double)decimal.Round((decimal)subtotal,2));
+            txtImporteIVA.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 0.21),2));
+            txtTotal.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 1.21),2));
         }
 
         protected void gvItemsFactura_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
