@@ -5041,6 +5041,7 @@ Portlets
   font-size: 15px;
   font-weight: 300;
   margin-top: 3px;
+    width: 9px;
 }
 .portlet.light > .portlet-title > .caption.caption-md > .caption-subject {
   font-size: 15px;

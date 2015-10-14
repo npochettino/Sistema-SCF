@@ -24,7 +24,7 @@ namespace SCF.facturas
             }
             else
             {
-                
+
             }
             txtFechaFacturacion.Value = DateTime.Now;
             CargarComboRemito();
@@ -113,14 +113,14 @@ namespace SCF.facturas
                 }
             }
         }
-        
+
         protected void btnEmitirComprobante_Click(object sender, EventArgs e)
         {
             pcValidarComprobante.ShowOnPageLoad = false;
 
             List<object> arrayListRemitos = (List<object>)Session["listRemitos"];
             List<int> codigoRemitos = new List<int>();
-            foreach(object[] itmes in arrayListRemitos)
+            foreach (object[] itmes in arrayListRemitos)
             {
                 codigoRemitos.Add(Convert.ToInt32(itmes[0].ToString()));
             }
@@ -131,18 +131,18 @@ namespace SCF.facturas
             //Obtengo ultimo codigo de factura y emito la factura
             DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
             string codigoFactura = tablaUltimaFactura.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaFactura.Rows[0]["codigoFactura"])).ToString() : string.Empty;
-            try 
+            try
             {
                 string status = ControladorGeneral.EmitirFactura(Convert.ToInt32(codigoFactura));
                 lblError.Text = status;
                 pcError.ShowOnPageLoad = true;
             }
-            catch 
+            catch
             {
                 lblError.Text = "Ha ocurrido un error. No hay conexion con los servidor de AFIP, vuelva a intentar.";
                 pcError.ShowOnPageLoad = true;
             }
-            
+
         }
 
         protected void btnObtenerDatosRemito_Click(object sender, EventArgs e)
@@ -162,7 +162,7 @@ namespace SCF.facturas
                 {
                     txtRazonSocial.Text = item[2].ToString();
                     txtNroDocumento.Text = item[3].ToString();
-                    txtCodigoConSCF.Text = item[4].ToString(); 
+                    txtCodigoConSCF.Text = item[4].ToString();
                 }
             }
 
@@ -196,22 +196,34 @@ namespace SCF.facturas
             {
                 subtotal = subtotal + Convert.ToDouble(dtItemsFacturaActual.Rows[i]["precioTotal"].ToString());
             }
+
             txtSubtotal.Text = Convert.ToString((double)decimal.Round((decimal)subtotal,2));
             txtImporteIVA.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 0.21),2));
             txtTotal.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 1.21),2));
+
         }
 
         protected void gvItemsFactura_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
         {
-            //Double subtotalEditado = 0;
-            //for (int i = 0; i <= gvItemsFactura.VisibleRowCount; i++)
-            //{
-            //    subtotalEditado = subtotalEditado + Convert.ToDouble(gvItemsFactura.GetRowValues(i, "total"));
-            //    string test = Convert.ToString(gvItemsFactura.GetRowValues(i, "total"));
-            //}
-            //txtSubtotal.Text = Convert.ToString(subtotalEditado);
-            //txtImporteIVA.Text = Convert.ToString(subtotalEditado * 0.21);
-            //txtTotal.Text = Convert.ToString(subtotalEditado * 1.21);
+
+            DataTable tablaItemFactura = (DataTable)Session["dtItemsFacturaActual"];
+            int codigoItemNotaPedido = Convert.ToInt32(e.Keys["codigoItemEntrega"]);
+            DataRow fila = (from t in tablaItemFactura.AsEnumerable() where Convert.ToInt32(t["codigoItemEntrega"]) == codigoItemNotaPedido select t).SingleOrDefault();
+
+            fila["precioUnitario"] = Convert.ToInt32(e.NewValues["precioUnitario"]);
+
+            fila["precioTotal"] = int.Parse(fila.ItemArray[3].ToString()) * Convert.ToInt32(e.NewValues["precioUnitario"]);
+
+            Session["dtItemsFacturaActual"] = tablaItemFactura;
+
+            e.Cancel = true;
+            gvItemsFactura.CancelEdit();
+            gvItemsFactura.DataSource = tablaItemFactura;
+            gvItemsFactura.DataBind();
+
+            CalcularImporteTotal();
+
+
         }
     }
 }

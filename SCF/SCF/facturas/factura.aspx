@@ -213,7 +213,7 @@
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="cantidad" VisibleIndex="2" Visible="true" Caption="Cantidad">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False" />
+                                                                    <EditFormSettings Visible="False"  />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="codigoProveedor" VisibleIndex="2" Visible="true" Caption="Cod. Prov">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
@@ -248,6 +248,7 @@
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="precioTotal" VisibleIndex="2" Width="150px" Visible="true" Caption="Precio Total">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="8" />
                                                             </Columns>
