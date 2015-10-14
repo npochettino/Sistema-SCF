@@ -277,6 +277,9 @@
                                                                     <dx:GridViewDataTextColumn FieldName="precio" VisibleIndex="9" Visible="true" Caption="Precio">
                                                                         <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
                                                                     </dx:GridViewDataTextColumn>
+                                                                     <dx:GridViewDataTextColumn FieldName="subtotal" VisibleIndex="10" Visible="true" Caption="Subtotal">
+                                                                        <Settings AllowSort="True" AutoFilterCondition="Contains" FilterMode="DisplayText" />
+                                                                    </dx:GridViewDataTextColumn>
                                                                 </Columns>
                                                             </dx:ASPxGridView>
                                                         </div>

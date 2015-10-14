@@ -1192,7 +1192,7 @@ namespace BibliotecaSCF.Controladores
                 tablaItemsNotaDePedido.Columns.Add("codigoMoneda");
                 tablaItemsNotaDePedido.Columns.Add("descripcionMoneda");
                 tablaItemsNotaDePedido.Columns.Add("posicion");
-
+                tablaItemsNotaDePedido.Columns.Add("subtotal");
                 NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
 
                 List<Entrega> listaEntregas = CatalogoEntrega.RecuperarLista(x => x.NotaDePedido.Codigo == codigoNotaDePedido, nhSesion);
@@ -1203,7 +1203,7 @@ namespace BibliotecaSCF.Controladores
 
                     tablaItemsNotaDePedido.Rows.Add(item.Codigo, item.Articulo.Codigo, item.Articulo.DescripcionCorta, item.Articulo.DescripcionLarga, item.Articulo.Marca,
                     item.Precio, item.CantidadPedida, item.FechaEntrega.ToString("dd/MM/yyyy"), cantidadEntregada, item.Articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
-                    item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, item.Posicion);
+                    item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, item.Posicion,item.CantidadPedida*item.Precio);
                 }
 
 
