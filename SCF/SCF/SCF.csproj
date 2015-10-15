@@ -4653,6 +4653,7 @@
     <Content Include="dsItemsRemito.xss">
       <DependentUpon>dsItemsRemito.xsd</DependentUpon>
     </Content>
+    <Content Include="facturas\Comprobantes_AFIP\SCF_PRODUCCION.pfx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4672,6 +4673,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="reportes\facturaA_Obs.rdlc" />
     <EmbeddedResource Include="reportes\facturaA.rdlc" />
     <EmbeddedResource Include="reportes\remito.rdlc" />
   </ItemGroup>
