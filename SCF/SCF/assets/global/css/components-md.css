@@ -10655,7 +10655,7 @@ Red Default
 .red.btn {
   color: #FFFFFF;
   background-color: #cb5a5e;
-    top: 0px;
+    top: 1px;
     left: 0px;
 }
 .red.btn:hover, .red.btn:focus, .red.btn:active, .red.btn.active {

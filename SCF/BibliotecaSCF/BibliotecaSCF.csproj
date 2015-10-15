@@ -35,12 +35,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bytescout.BarCode">
-      <HintPath>..\SCF\bin\Bytescout.BarCode.dll</HintPath>
-    </Reference>
-    <Reference Include="Bytescout.BarCode.WPF">
-      <HintPath>..\SCF\bin\Bytescout.BarCode.WPF.dll</HintPath>
-    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -59,19 +53,19 @@
     <Reference Include="System.Xml" />
     <Reference Include="WSAA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WSAA.dll</HintPath>
+      <HintPath>..\SCF\bin\WSAA.dll</HintPath>
     </Reference>
     <Reference Include="WSFEv1, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WSFEv1.dll</HintPath>
+      <HintPath>..\SCF\bin\WSFEv1.dll</HintPath>
     </Reference>
     <Reference Include="WSFEv1.Logica, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WSFEv1.Logica.dll</HintPath>
+      <HintPath>..\SCF\bin\WSFEv1.Logica.dll</HintPath>
     </Reference>
     <Reference Include="WSFEv1.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WSFEv1.Service.dll</HintPath>
+      <HintPath>..\SCF\bin\WSFEv1.Service.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -4629,7 +4629,6 @@
     <Content Include="assets\admin\pages\media\blog\Thumbs.db" />
     <Content Include="assets\admin\pages\media\pages\Thumbs.db" />
     <Content Include="facturas\Comprobantes_AFIP\SCF_Prueba.pfx" />
-    <Content Include="facturas\Comprobantes_AFIP\sempait.pfx" />
     <Content Include="assets\Factura_SCF_limpia.pdf" />
     <Content Include="assets\Remito_SCF_limpia.pdf" />
     <Content Include="dsItemsFacturaA.xsc">

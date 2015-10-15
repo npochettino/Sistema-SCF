@@ -78,7 +78,19 @@ namespace SCF.nota_pedido
         {
             if (gvNotasPedido.FocusedRowIndex != -1)
             {
-                //ControladorGeneral.EliminarRemito(int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "codigoEntrega").ToString()));
+                pcConfirmarEliminarNotaPedido.ShowOnPageLoad = false;
+                try
+                {
+                    ControladorGeneral.EliminarNotaDePedido(int.Parse(gvNotasPedido.GetRowValues(gvNotasPedido.FocusedRowIndex, "codigoNotaDePedido").ToString()));
+                    Response.Redirect("listado.aspx");
+                }
+
+                catch
+                {
+                    //Muestro el mensaje que me devuelve del metodo Eliminar
+                    lblMensaje.Text = "La nota de pedido está asociado a uno o varios remito/s";
+                    pcMensaje.ShowOnPageLoad = true;
+                }
             }
         }
 
@@ -154,6 +166,11 @@ namespace SCF.nota_pedido
 
             gvDetalleNotaPedido.DataSource = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
             gvDetalleNotaPedido.DataBind();
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

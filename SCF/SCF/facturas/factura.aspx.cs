@@ -20,7 +20,7 @@ namespace SCF.facturas
                 if (Session["tablaFactura"] != null)
                 { }
                 else
-                {CargarNumeroDeFactura();}
+                { CargarNumeroDeFactura(); }
             }
             else
             {
@@ -197,10 +197,9 @@ namespace SCF.facturas
                 subtotal = subtotal + Convert.ToDouble(dtItemsFacturaActual.Rows[i]["precioTotal"].ToString());
             }
 
-            txtSubtotal.Text = Convert.ToString((double)decimal.Round((decimal)subtotal,2));
-            txtImporteIVA.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 0.21),2));
-            txtTotal.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 1.21),2));
-
+            txtSubtotal.Text = Convert.ToString((double)decimal.Round((decimal)subtotal, 2));
+            txtImporteIVA.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 0.21), 2));
+            txtTotal.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 1.21), 2));
         }
 
         protected void gvItemsFactura_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
@@ -222,7 +221,6 @@ namespace SCF.facturas
             gvItemsFactura.DataBind();
 
             CalcularImporteTotal();
-
 
         }
     }
