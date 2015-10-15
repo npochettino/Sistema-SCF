@@ -168,5 +168,10 @@ namespace SCF.clientes
             txtCBU.Value = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "cbu").ToString();
 
         }
+
+        protected void btnDireccionCliente_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -220,6 +220,7 @@ namespace SCF.remitos
             int numeroRemito = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "numeroRemito"));
             int codigoEstado = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoEstado"));
             string observaciones = gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "observaciones").ToString();
+            string razonSocialTransporte = gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "razonSocialTransporte").ToString();
 
             DataTable tablaEntrega = new DataTable();
             tablaEntrega.Columns.Add("codigoEntrega");
@@ -230,8 +231,9 @@ namespace SCF.remitos
             tablaEntrega.Columns.Add("numeroRemito");
             tablaEntrega.Columns.Add("codigoEstado");
             tablaEntrega.Columns.Add("observaciones");
+            tablaEntrega.Columns.Add("razonSocialTransporte");
 
-            tablaEntrega.Rows.Add(new object[] { codigoEntrega, codigoNotaDePedido, codigoCliente, razonSocialCliente, fechaEmision, numeroRemito, codigoEstado, observaciones });
+            tablaEntrega.Rows.Add(new object[] { codigoEntrega, codigoNotaDePedido, codigoCliente, razonSocialCliente, fechaEmision, numeroRemito, codigoEstado, observaciones, razonSocialTransporte });
 
             return tablaEntrega;
         }

@@ -35,9 +35,11 @@ namespace SCF.remitos
             ReportParameter txtNroDocumento = new ReportParameter("txtNroDocumento", Convert.ToString(dtItemsRemitoActual.Rows[0]["nroDocumentoCliente"]));
             ReportParameter txtCondicionVenta = new ReportParameter("txtCondicionVenta", "15 días");
             ReportParameter txtFechaRemito = new ReportParameter("txtFechaRemito", Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaEmision"]).ToString("dd/MM/yyyy"));
+            ReportParameter txtRespInsc = new ReportParameter("txtRespInsc", "X");
+            ReportParameter txtTransporte = new ReportParameter("txtTransporte", Convert.ToString(dtRemitoActual.Rows[0]["razonSocialTransporte"]));
 
             this.rvRemito.LocalReport.SetParameters(new ReportParameter[] { txtNroRemito,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,
-            txtCondicionVenta,txtFechaRemito});
+            txtCondicionVenta,txtFechaRemito,txtRespInsc, txtTransporte});
 
             dsReporte.DataTable1.Clear();
             tablaReporte = dtItemsRemitoActual;

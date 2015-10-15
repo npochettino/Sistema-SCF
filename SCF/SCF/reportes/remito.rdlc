@@ -47,7 +47,7 @@
         <Top>6.18891cm</Top>
         <Left>2.7485cm</Left>
         <Height>0.57354cm</Height>
-        <Width>4.43146cm</Width>
+        <Width>10.09353cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -105,7 +105,7 @@
         <Top>6.76246cm</Top>
         <Left>2.7485cm</Left>
         <Height>0.57326cm</Height>
-        <Width>4.43146cm</Width>
+        <Width>10.09353cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -345,6 +345,67 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="txtTransporte">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!txtTransporte.Value</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>txtTransporte</rd:DefaultName>
+        <Top>20.81953cm</Top>
+        <Left>3.59516cm</Left>
+        <Height>0.70583cm</Height>
+        <Width>8.61187cm</Width>
+        <ZIndex>8</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="txtRespInsc">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!txtRespInsc.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>txtRespInsc</rd:DefaultName>
+        <Top>7.26489cm</Top>
+        <Left>5.57953cm</Left>
+        <Height>0.6cm</Height>
+        <Width>0.48917cm</Width>
+        <ZIndex>9</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>9.92708in</Height>
     <Style>
@@ -435,6 +496,18 @@
     </ReportParameter>
     <ReportParameter Name="txtDomicilio">
       <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="txtTransporte">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="txtRespInsc">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>

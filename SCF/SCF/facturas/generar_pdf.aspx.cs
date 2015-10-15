@@ -34,7 +34,8 @@ namespace SCF.facturas
             { rvFacturaA.LocalReport.ReportPath = Server.MapPath("..") + "\\reportes\\facturaA_Obs.rdlc"; }
             else { rvFacturaA.LocalReport.ReportPath = Server.MapPath("..") + "\\reportes\\facturaA.rdlc"; }
             rvFacturaA.LocalReport.EnableExternalImages = true;
-   
+
+            ReportParameter txtRespInsc = new ReportParameter("txtRespInsc", "X");
             ReportParameter txtNroFactura = new ReportParameter("txtNroFactura", "002 - " + Convert.ToInt32(dtFacturaActual.Rows[0]["numeroFactura"]).ToString("D8").Trim());
             ReportParameter txtCliente = new ReportParameter("txtCliente", Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialCliente"]).Trim());
             ReportParameter txtDomicilio = new ReportParameter("txtDomicilio", Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]).Trim());
@@ -67,7 +68,8 @@ namespace SCF.facturas
             ReportParameter txtNumeroCodigoBarra = new ReportParameter("txtNumeroCodigoBarra", NumeroCodigoBarra);
 
             this.rvFacturaA.LocalReport.SetParameters(new ReportParameter[] { txtNroFactura,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,txtNroRemitos,
-            txtCondicionVenta,txtSubtotal,txtIVA,txtTotal,txtCAE,txtFechaVencimientoCAE,txtFechaFacturacion,imgBarCode,txtNumeroCodigoBarra});
+            txtCondicionVenta,txtSubtotal,txtIVA,txtTotal,txtCAE,txtFechaVencimientoCAE,txtFechaFacturacion,imgBarCode,txtNumeroCodigoBarra,txtRespInsc});
+            
 
             dsReporte.DataTable1.Clear();
             tablaReporte = dtItemsFacturaActual;

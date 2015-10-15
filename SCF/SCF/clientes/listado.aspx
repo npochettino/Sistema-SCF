@@ -51,6 +51,7 @@
                                     <asp:Button type="button" ID="btnEliminar" runat="server" OnClientClick="ShowConfirmarEliminarCliente()" class="btn red" Text="Eliminar" />
                                 </div>
                                 <div class="btn-set pull-right">
+                                    <asp:Button type="button" ID="btnDireccionCliente" runat="server" OnClick="btnDireccionCliente_Click" UseSubmitBehavior="false" class="btn blue" Text="Direcciones" />
                                     <asp:Button type="button" ID="btnInactivarCliente" runat="server" OnClientClick="ShowInactivarCliente()" class="btn red-intense" Text="Inactivar" />
                                     <asp:Button type="button" ID="btnActivarCliente" runat="server" OnClick="btnActivarCliente_Click" UseSubmitBehavior="false" class="btn blue" Text="Activar" />
                                     <asp:Button type="button" ID="btnVerDetalleCliente" runat="server" OnClick="btnVerDetalleCliente_Click" UseSubmitBehavior="false" CssClass="btn green" Text="Detalle" />
