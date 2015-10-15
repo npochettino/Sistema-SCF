@@ -21,7 +21,7 @@ namespace SCF.nota_pedido
             CargarComboClientes();
             CargarGrillaArticulos();
             //Hacer metodo y llamarlo aca para que traiga todos los contratos vigentes 
-            CargarComboContratoMarco(26);
+             CargarComboContratoMarco();
             //Hacer un metodo que devuelva todos los arituclos y los que tiene una 
             //realacion con ese codigo pero no solo los que tiene como relacion
             CargarGrillaArticulosPorCliente();
@@ -53,7 +53,7 @@ namespace SCF.nota_pedido
                     txtNroInternoCliente.Text = numeroInternoCliente;
                     txtObservacion.InnerText = observaciones;
                     cbClientes.SelectedItem = cbClientes.Items.FindByValue(Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoCliente"]));
-                    CargarComboContratoMarco(Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoCliente"]));
+                    CargarComboContratoMarcoPorCliente(Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoCliente"]));
                     cbContratoMarco.SelectedItem = cbContratoMarco.Items.FindByValue(Convert.ToInt32(tablaNotaDePedido.Rows[0]["codigoContratoMarco"]));
 
                     DataTable tablaItemsNotaDePedido = ControladorGeneral.RecuperarItemsNotaDePedido(codigoNotaDePedido);
@@ -195,9 +195,9 @@ namespace SCF.nota_pedido
             cbContratoMarco.DataBind();
         }
 
-        private void CargarComboContratoMarco(int codigoCliente)
+        private void CargarComboContratoMarco()
         {
-            cbContratoMarco.DataSource = ControladorGeneral.RecuperarContratosMarcoVigentePorCliente(codigoCliente);
+            cbContratoMarco.DataSource = ControladorGeneral.RecuperarContratosMarcoVigente();
             cbContratoMarco.DataBind();
         }
 
@@ -296,7 +296,7 @@ namespace SCF.nota_pedido
         protected void cbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarGrillaArticulosPorCliente();
-            CargarComboContratoMarco((int)cbClientes.SelectedItem.Value);
+            CargarComboContratoMarcoPorCliente((int)cbClientes.SelectedItem.Value);
         }
     }
 }

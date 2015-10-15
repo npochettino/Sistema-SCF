@@ -1442,6 +1442,35 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
+        public static DataTable RecuperarContratosMarcoVigente()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaContratosMarco = new DataTable();
+                tablaContratosMarco.Columns.Add("codigoContratoMarco");
+                tablaContratosMarco.Columns.Add("fechaInicio");
+                tablaContratosMarco.Columns.Add("fechaFin");
+                tablaContratosMarco.Columns.Add("descripcion");
+
+                List<ContratoMarco> listaContratosMarco = CatalogoContratoMarco.RecuperarLista(x => x.FechaInicio < DateTime.Now, nhSesion);
+
+                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaInicio, r.FechaFin, r.Descripcion); return dt; });
+
+                return tablaContratosMarco;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
         public static DataTable RecuperarContratosMarcoVigentePorCliente(int codigoCliente)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
