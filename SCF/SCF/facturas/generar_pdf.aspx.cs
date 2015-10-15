@@ -19,7 +19,7 @@ namespace SCF.facturas
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
                 LoadReporte();
         }
 
@@ -28,20 +28,24 @@ namespace SCF.facturas
             DataTable dtFacturaActual = (DataTable)Session["tablaFactura"];
             DataTable dtItemsFacturaActual = ControladorGeneral.RecuperarItemsEntregaPorFactura(Convert.ToInt32(dtFacturaActual.Rows[0]["codigoFactura"]));
 
+            string remitos = "";
+            for (int i = 0; i < dtItemsFacturaActual.Rows.Count; i++)
+            { remitos = dtItemsFacturaActual.Rows[0]["nroRemito"] + ", "; }
+
             rvFacturaA.ProcessingMode = ProcessingMode.Local;
             rvFacturaA.LocalReport.ReportPath = Server.MapPath("..") + "\\reportes\\facturaA.rdlc";
             rvFacturaA.LocalReport.EnableExternalImages = true;
-            ReportParameter txtNroFactura = new ReportParameter("txtNroFactura", "002 - " + Convert.ToInt32(dtFacturaActual.Rows[0]["numeroFactura"]).ToString("D8").Trim());
-            ReportParameter txtCliente = new ReportParameter("txtCliente", Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialCliente"]).Trim());
-            ReportParameter txtDomicilio = new ReportParameter("txtDomicilio", Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]).Trim());
-            ReportParameter txtLocalidad = new ReportParameter("txtLocalidad", Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]).Trim());
-            ReportParameter txtNroDocumento = new ReportParameter("txtNroDocumento", Convert.ToString(dtItemsFacturaActual.Rows[0]["nroDocumentoCliente"]).Trim());
-            ReportParameter txtNroRemitos = new ReportParameter("txtNroRemitos", Convert.ToString(dtFacturaActual.Rows[0]["remitos"]).Trim());
-            ReportParameter txtCondicionVenta = new ReportParameter("txtCondicionVenta", Convert.ToString(dtFacturaActual.Rows[0]["condicionVenta"]).Trim());
-            ReportParameter txtSubtotal = new ReportParameter("txtSubtotal", Convert.ToString(dtFacturaActual.Rows[0]["subtotal"]).Trim());
-            ReportParameter txtIVA = new ReportParameter("txtIVA", Convert.ToString(Convert.ToDouble(dtFacturaActual.Rows[0]["subtotal"]) * 0.21).Trim());
-            ReportParameter txtTotal = new ReportParameter("txtTotal", Convert.ToString(dtFacturaActual.Rows[0]["total"]).Trim());
-            ReportParameter txtCAE = new ReportParameter("txtCAE", Convert.ToString(dtFacturaActual.Rows[0]["cae"]).Trim());
+            ReportParameter txtNroFactura = new ReportParameter("txtNroFactura", "002 - " + Convert.ToInt32(dtFacturaActual.Rows[0]["numeroFactura"]).ToString("D8"));
+            ReportParameter txtCliente = new ReportParameter("txtCliente", Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialCliente"]));
+            ReportParameter txtDomicilio = new ReportParameter("txtDomicilio", Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]));
+            ReportParameter txtLocalidad = new ReportParameter("txtLocalidad", Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]));
+            ReportParameter txtNroDocumento = new ReportParameter("txtNroDocumento", Convert.ToString(dtItemsFacturaActual.Rows[0]["nroDocumentoCliente"]));
+            ReportParameter txtNroRemitos = new ReportParameter("txtNroRemitos", remitos);
+            ReportParameter txtCondicionVenta = new ReportParameter("txtCondicionVenta", Convert.ToString(dtFacturaActual.Rows[0]["condicionVenta"]));
+            ReportParameter txtSubtotal = new ReportParameter("txtSubtotal", Convert.ToString(dtFacturaActual.Rows[0]["subtotal"]));
+            ReportParameter txtIVA = new ReportParameter("txtIVA", Convert.ToString(Convert.ToDouble(dtFacturaActual.Rows[0]["subtotal"]) * 0.21));
+            ReportParameter txtTotal = new ReportParameter("txtTotal", Convert.ToString(dtFacturaActual.Rows[0]["total"]));
+            ReportParameter txtCAE = new ReportParameter("txtCAE", Convert.ToString(dtFacturaActual.Rows[0]["cae"]));
             ReportParameter txtFechaVencimientoCAE = new ReportParameter("txtFechaVencimientoCAE", Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaVencimientoCAE"]).ToString("dd/MM/yyyy"));
             ReportParameter txtFechaFacturacion = new ReportParameter("txtFechaFacturacion", Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaFacturacion"]).ToString("dd/MM/yyyy"));
 
@@ -64,11 +68,11 @@ namespace SCF.facturas
 
             this.rvFacturaA.LocalReport.SetParameters(new ReportParameter[] { txtNroFactura,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,txtNroRemitos,
             txtCondicionVenta,txtSubtotal,txtIVA,txtTotal,txtCAE,txtFechaVencimientoCAE,txtFechaFacturacion,imgBarCode,txtNumeroCodigoBarra});
-            
+
             dsReporte.DataTable1.Clear();
             tablaReporte = dtItemsFacturaActual;
 
-            
+
 
             foreach (DataRow fila in tablaReporte.Rows)
             {
@@ -78,11 +82,11 @@ namespace SCF.facturas
                 filaReporte["cantidad"] = fila["cantidad"];
                 filaReporte["precioUnitario"] = fila["precioUnitario"];
                 filaReporte["precioTotal"] = fila["precioTotal"];
-                
+
                 dsReporte.DataTable1.Rows.Add(filaReporte);
             }
 
-            for(int i = 0; i < (5 - tablaReporte.Rows.Count); i ++)
+            for (int i = 0; i < (5 - tablaReporte.Rows.Count); i++)
             {
                 DataRow filaReporte = dsReporte.DataTable1.NewRow();
                 dsReporte.DataTable1.Rows.Add(filaReporte);
@@ -91,7 +95,7 @@ namespace SCF.facturas
 
             ReportDataSource datasource = new ReportDataSource("dsItemsFacturaA", dsReporte1.Tables[0]);
             rvFacturaA.LocalReport.DataSources.Clear();
-            rvFacturaA.LocalReport.DataSources.Add(datasource);            
+            rvFacturaA.LocalReport.DataSources.Add(datasource);
         }
     }
 }

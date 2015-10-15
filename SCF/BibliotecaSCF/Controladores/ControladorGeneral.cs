@@ -266,7 +266,7 @@ namespace BibliotecaSCF.Controladores
 
         #region Cliente
 
-        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno, int codigoTipoDocumento, string codigoSCF)
+        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno, int codigoTipoDocumento, string codigoSCF)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -286,7 +286,6 @@ namespace BibliotecaSCF.Controladores
                 cliente.RazonSocial = razonSocial;
                 cliente.Provincia = provincia;
                 cliente.Localidad = localidad;
-                cliente.Direccion = direccion;
                 cliente.Telefono = telefono;
                 cliente.Fax = fax;
                 cliente.Mail = mail;
@@ -343,7 +342,7 @@ namespace BibliotecaSCF.Controladores
 
                 listaClientes.Aggregate(tablaClientes, (dt, r) =>
                 {
-                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento, r.TipoDocumento.Descripcion,
+                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direcciones.Count > 0 ? r.Direcciones[0].Descripcion : string.Empty, r.Telefono, r.Mail, r.NumeroDocumento, r.TipoDocumento.Descripcion,
                         r.TipoDocumento.Codigo, r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax, r.CodigoSCF); return dt;
                 });
 
@@ -434,7 +433,7 @@ namespace BibliotecaSCF.Controladores
                 ContratoMarco contratoMarco = CatalogoContratoMarco.RecuperarPorCodigo(codigoContratoMarco, nhSesion);
 
                 tablaCliente.Rows.Add(new object[] { contratoMarco.Cliente.Codigo, contratoMarco.Cliente.RazonSocial, contratoMarco.Cliente.Provincia, contratoMarco.Cliente.Localidad,
-                contratoMarco.Cliente.Direccion, contratoMarco.Cliente.Telefono, contratoMarco.Cliente.Mail, contratoMarco.Cliente.NumeroDocumento, contratoMarco.Cliente.PersonaContacto,
+                contratoMarco.Cliente.Direcciones.Count > 0 ? contratoMarco.Cliente.Direcciones[0].Descripcion : string.Empty, contratoMarco.Cliente.Telefono, contratoMarco.Cliente.Mail, contratoMarco.Cliente.NumeroDocumento, contratoMarco.Cliente.PersonaContacto,
                 contratoMarco.Cliente.NumeroCuenta, contratoMarco.Cliente.Banco, contratoMarco.Cliente.Cbu, contratoMarco.Cliente.Observaciones});
 
                 return tablaCliente;
@@ -620,7 +619,7 @@ namespace BibliotecaSCF.Controladores
                         tablaArticulo.Rows.Add(articulo.Codigo, articulo.DescripcionCorta, articulo.DescripcionLarga, articulo.Marca,
                         articulo.RecuperarHistorialPrecioActual().Precio, articulo.NombreImagen,
                         artCli.CodigoInterno, artCli.Codigo, artCli.Cliente.RazonSocial,
-                        articulo.RecuperarHistorialPrecioActual().Moneda.Codigo, articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion,articulo.UnidadMedida.Codigo);
+                        articulo.RecuperarHistorialPrecioActual().Moneda.Codigo, articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, articulo.UnidadMedida.Codigo);
                     }
                 }
 
@@ -922,6 +921,50 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
+        public static void EliminarArticuloCliente(int codigoArticuloCliente, int codigoArticulo)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Articulo art = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+                ArticuloCliente artCl = art.ArticulosClientes.Where(x => x.Codigo == codigoArticuloCliente).SingleOrDefault();
+                art.ArticulosClientes.Remove(artCl);
+                CatalogoArticulo.InsertarActualizar(art, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void EliminarArticuloProveedor(int codigoArticuloProveedor, int codigoArticulo)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Articulo art = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+                ArticuloProveedor artProv = art.ArticulosProveedor.Where(x => x.Codigo == codigoArticuloProveedor).SingleOrDefault();
+                art.ArticulosProveedor.Remove(artProv);
+                CatalogoArticulo.InsertarActualizar(art, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
         #endregion
 
         #region NotaDePedido
@@ -1203,7 +1246,7 @@ namespace BibliotecaSCF.Controladores
 
                     tablaItemsNotaDePedido.Rows.Add(item.Codigo, item.Articulo.Codigo, item.Articulo.DescripcionCorta, item.Articulo.DescripcionLarga, item.Articulo.Marca,
                     item.Precio, item.CantidadPedida, item.FechaEntrega.ToString("dd/MM/yyyy"), cantidadEntregada, item.Articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
-                    item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, item.Posicion,item.CantidadPedida*item.Precio);
+                    item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, item.Posicion, item.CantidadPedida * item.Precio);
                 }
 
 
@@ -1567,7 +1610,7 @@ namespace BibliotecaSCF.Controladores
                 {
                     dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo,
                         r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.NotaDePedido.Cliente.CodigoSCF,
-                        r.NotaDePedido.Cliente.Direccion, r.FechaEmision.ToString("dd/MM/yyyy"), r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
+                        r.NotaDePedido.Cliente.Direcciones.Count > 0 ? r.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty, r.FechaEmision.ToString("dd/MM/yyyy"), r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
                         r.CodigoEstado, r.Observaciones, r.Transporte.Codigo, r.Transporte.RazonSocial); return dt;
                 });
 
@@ -1900,8 +1943,9 @@ namespace BibliotecaSCF.Controladores
                             r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, r.ItemNotaDePedido.Posicion,
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
-                            entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar),2),
-                            entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento, entrega.NotaDePedido.Cliente.Localidad, entrega.NotaDePedido.Cliente.Direccion); return dt;
+                            entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar), 2),
+                            entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento, entrega.NotaDePedido.Cliente.Localidad,
+                            entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty); return dt;
                     });
                 }
 
@@ -1958,8 +2002,9 @@ namespace BibliotecaSCF.Controladores
                                 r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, r.ItemNotaDePedido.Posicion,
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
-                                entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar),2),
-                            entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento, entrega.NotaDePedido.Cliente.Localidad, entrega.NotaDePedido.Cliente.Direccion); return dt;
+                                entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar), 2),
+                                entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento, entrega.NotaDePedido.Cliente.Localidad,
+                                entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty); return dt;
                         });
                     }
                 }
@@ -2258,7 +2303,7 @@ namespace BibliotecaSCF.Controladores
                     detalleReq.FchVtoPago = ConvertirFechaAFIP(factura.FechaFacturacion);
                 }
 
-                detalleReq.ImpIVA = (double)decimal.Round((decimal)(factura.Subtotal * 0.21),2); // VERRR!!!!!!!!!!!
+                detalleReq.ImpIVA = (double)decimal.Round((decimal)(factura.Subtotal * 0.21), 2); // VERRR!!!!!!!!!!!
                 detalleReq.ImpNeto = factura.Subtotal;
                 detalleReq.ImpOpEx = 0; //por que??
                 detalleReq.ImpTotal = factura.Total;
@@ -2271,7 +2316,7 @@ namespace BibliotecaSCF.Controladores
                 AlicIva alicIva = new AlicIva();
                 alicIva.Id = factura.Iva.Codigo;
                 alicIva.BaseImp = factura.Subtotal;
-                alicIva.Importe =  (double)decimal.Round((decimal)factura.Subtotal * (decimal)0.21,2);
+                alicIva.Importe = (double)decimal.Round((decimal)factura.Subtotal * (decimal)0.21, 2);
                 ls.Add(alicIva);
 
                 detalleReq.Iva = ls.ToArray();
@@ -2745,6 +2790,88 @@ namespace BibliotecaSCF.Controladores
                 });
 
                 return tablaItemsContratoMarco;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region Direccion
+
+        public static DataTable RecuperarDireccionesPorCliente(int codigoCliente)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaDirecciones = new DataTable();
+                tablaDirecciones.Columns.Add("codigoDireccion");
+                tablaDirecciones.Columns.Add("descripcion");
+
+                Cliente cl = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+
+                cl.Direcciones.Aggregate(tablaDirecciones, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion); return dt; });
+
+                return tablaDirecciones;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void InsertarDireccionPorCliente(int codigoCliente, string direccion)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Cliente cl = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+
+                Direccion dir = new Direccion();
+                dir.Descripcion = direccion;
+
+                cl.Direcciones.Add(dir);
+
+                CatalogoCliente.InsertarActualizar(cl, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void EliminarDireccionPorCliente(int codigoCliente, int codigoDireccion)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Cliente cl = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+
+                Direccion dir = cl.Direcciones.Where(x => x.Codigo == codigoDireccion).SingleOrDefault();
+
+                cl.Direcciones.Remove(dir);
+
+                CatalogoCliente.InsertarActualizar(cl, nhSesion);
             }
             catch (Exception ex)
             {

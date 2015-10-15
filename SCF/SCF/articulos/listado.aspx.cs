@@ -16,7 +16,7 @@ namespace SCF.articulos
         {
             if (!IsPostBack)
             {
-
+                Session["articuloActual"] = null;
             }
 
             if (string.IsNullOrEmpty(txtCodigoCliente.Text))
@@ -31,7 +31,14 @@ namespace SCF.articulos
                 gvArticulos.Columns["codigoArticuloCliente"].Visible = true;
             }
 
-            Session["articuloActual"] = null;
+            if (Session["articuloActual"] != null)
+            {
+                cargarGrillaRelacionArticuloCliente();
+                int codigoArticulo = ((Articulo)Session["articuloActual"]).Codigo;
+                gvArticuloProveedor.DataSource = ControladorGeneral.RecuperarArticulosProveedoresPorArticulo(codigoArticulo);
+                gvArticuloProveedor.DataBind();
+            }
+
             Session["codigoOperacion"] = null;
         }
 
@@ -43,6 +50,7 @@ namespace SCF.articulos
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
+            Session["articuloActual"] = null;
             NuevoArticulo();
         }
 
@@ -98,8 +106,8 @@ namespace SCF.articulos
 
                     loadGridArticulos();
                 }
-                catch 
-                { 
+                catch
+                {
 
                 }
             }
@@ -137,7 +145,7 @@ namespace SCF.articulos
 
         protected void btnEliminarRelacionArticuloCliente_Click(object sender, EventArgs e)
         {
-
+            pcConfirmarEliminarRelacionArticuloCliente.ShowOnPageLoad = true;
         }
 
         protected void pcRelacionArticuloCliente_Unload(object sender, EventArgs e)
@@ -163,7 +171,6 @@ namespace SCF.articulos
         {
             pcShowDetalleArticulo.ShowOnPageLoad = true;
 
-
             int codigoArticulo = int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString());
             txtDescripcionCorta.InnerText = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionCorta").ToString();
             txtDescripcionLarga.InnerText = gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "descripcionLarga").ToString();
@@ -184,7 +191,13 @@ namespace SCF.articulos
 
         protected void btnConfirmarEliminarRelacionArticuloCliente_Click(object sender, EventArgs e)
         {
+            int codigoArticuloCliente = Convert.ToInt32(gvArticuloCliente.GetRowValues(gvArticuloCliente.FocusedRowIndex, "codigoArticuloCliente").ToString());
+            int codigoArticulo = ((Articulo)Session["articuloActual"]).Codigo;
 
+            ControladorGeneral.EliminarArticuloCliente(codigoArticuloCliente, codigoArticulo);
+
+            gvArticuloCliente.DataSource = ControladorGeneral.RecuperarArticulosClientesPorArticulo(codigoArticulo);
+            gvArticuloCliente.DataBind();
         }
 
         protected void btnBorrar_Click(object sender, EventArgs e)
@@ -194,7 +207,6 @@ namespace SCF.articulos
             gvArticulos.Columns["razonSocialCliente"].Visible = false;
             gvArticulos.Columns["codigoArticuloCliente"].Visible = false;
         }
-
 
         #region Relacion Articulo Proveedor
 
@@ -213,20 +225,13 @@ namespace SCF.articulos
 
         protected void btnConfirmarEliminarRelacionArticuloProveedor_Click(object sender, EventArgs e)
         {
+            int codigoArticuloProveedor = Convert.ToInt32(gvArticuloProveedor.GetRowValues(gvArticuloProveedor.FocusedRowIndex, "codigoArticuloProveedor").ToString());
+            int codigoArticulo = ((Articulo)Session["articuloActual"]).Codigo;
 
-        }
+            ControladorGeneral.EliminarArticuloProveedor(codigoArticuloProveedor, codigoArticulo);
 
-        protected void btnGuardarRelacionArticuloProveedor_Click(object sender, EventArgs e)
-        {
-            //int test = int.Parse(gvArticulos.GetRowValues(gvArticulos.FocusedRowIndex, "codigoArticulo").ToString());
-            //cargarArticuloEnVariableSession();
-            //Articulo mArticulo = (Articulo)Session["articuloActual"];
-            //if (!txtCosto.Text.Equals(""))
-            //    ControladorGeneral.InsertarActualizarArticuloProveedor(0, mArticulo.Codigo, (int)cbProveedores.SelectedItem.Value, Double.Parse(txtCosto.Text), (int)cbMonedaCosto.SelectedItem.Value);
-
-
-            //pcNuevaRelacionArticuloCliente.ShowOnPageLoad = false;
-            //cargarGrillaRelacionArticuloCliente();
+            gvArticuloProveedor.DataSource = ControladorGeneral.RecuperarArticulosProveedoresPorArticulo(codigoArticulo);
+            gvArticuloProveedor.DataBind();
         }
 
         #endregion

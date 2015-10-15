@@ -18,7 +18,6 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.RazonSocial).Column("razonSocial");
             Map(x => x.Provincia).Column("provincia");
             Map(x => x.Localidad).Column("localidad");
-            Map(x => x.Direccion).Column("direccion");
             Map(x => x.Telefono).Column("telefono");
             Map(x => x.Fax).Column("fax");
             Map(x => x.Mail).Column("mail");
@@ -32,6 +31,7 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.CodigoSCF).Column("codigoSCF");
 
             References(x => x.TipoDocumento).Column("codigoTipoDocumento").Cascade.None().LazyLoad(Laziness.Proxy);
+            HasMany<Direccion>(x => x.Direcciones).KeyColumn("codigoCliente").Not.KeyNullable().Cascade.AllDeleteOrphan();
         }
     }
 }

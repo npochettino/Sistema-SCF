@@ -8,12 +8,16 @@ namespace BibliotecaSCF.Clases
 {
     public class Cliente
     {
+        public Cliente()
+        {
+            Direcciones = new List<Direccion>();
+        }
+
         public virtual int Codigo { get; set; }
         public virtual int NumeroInterno { get; set; }
         public virtual string RazonSocial { get; set; }
         public virtual string Provincia { get; set; }
         public virtual string Localidad { get; set; }
-        public virtual string Direccion { get; set; }
         public virtual string Telefono { get; set; }
         public virtual string Fax { get; set; }
         public virtual string Mail { get; set; }
@@ -27,5 +31,6 @@ namespace BibliotecaSCF.Clases
         public virtual string CodigoSCF { get; set; }
 
         public virtual TipoDocumento TipoDocumento { get; set; }
+        public virtual IList<Direccion> Direcciones { get; set; }
     }
 }

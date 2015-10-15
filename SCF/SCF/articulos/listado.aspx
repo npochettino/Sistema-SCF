@@ -199,6 +199,13 @@
                                                             <label class="control-label col-md-3">Marca</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtMarca" placeholder="Marca" runat="server" class="form-control">
+                                                            &nbsp;</input>
+                                                                </input>
+&nbsp;</input>&nbsp;</input></input></input></input></input></input></input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input></input></input></input></input>
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -207,6 +214,13 @@
                                                             <label class="control-label col-md-3">Unidad</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtUnidadDeMedida" placeholder="Unidad de Medida" runat="server" class="form-control">
+                                                            &nbsp;</input>
+                                                                </input>
+&nbsp;</input>&nbsp;</input></input></input></input></input></input></input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input></input></input></input></input>
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -217,9 +231,41 @@
                                                         <div class="col-md-9">
                                                             <div class="input-group">
                                                                 <input type="text" id="txtPrecioActual" placeholder="Precio" runat="server" class="form-control">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
+                                                                            <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
+                                                                    </span>
+                                                                    &nbsp;</input>
+                                                                </input>
+&nbsp;</input></input></input></input></input><span class="input-group-btn">
+                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                    </button>
+                                                                </span></input> </input>
+                                                                </input>
+                                                                </input>
                                                                 <span class="input-group-btn">
-                                                                    <button class="btn blue" type="button" onclick="ShowHistoricoPrecio()">
-                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver</button>
+                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                </button>
+                                                                </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
+                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                </button>
+                                                                </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
+                                                                <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                    <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                </button>
+                                                                </span>&nbsp; </input></input>
+                                                                </input>
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                    </button>
+                                                                </span>&nbsp;&nbsp;</input></input></input><span class="input-group-btn">
+                                                                    <button class="btn blue" onclick="ShowHistoricoPrecio()" type="button">
+                                                                        <span class="md-click-circle md-click-animate" style="height: 49px; width: 49px; top: -8.5px; left: -20.5px;"></span>Ver
+                                                                    </button>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -229,6 +275,13 @@
                                                             <label class="control-label col-md-3">Moneda</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTipoDeCambio" placeholder="Tipo de Cambio" runat="server" class="form-control">
+                                                            &nbsp;</input>
+                                                                </input>
+&nbsp;</input>&nbsp;</input></input></input></input></input></input></input></input>&nbsp;&nbsp;</input></input></input></input></input></input></input></input></input></input></input></input>
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
                                                             </div>
                                                         </div>
 
@@ -443,13 +496,13 @@
                                                         <div class="btn-set pull-left" style="padding-bottom: 5px">
                                                             <%--<asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />--%>
                                                             <button type="button" onclick="ShowNuevaRelacionArticuloCliente()" class="btn blue">Nuevo</button>
-                                                            <button type="button" onclick="ShowEliminarRelacionArticuloCliente()" class="btn red" style="visibility: hidden">Eliminar</button>
-                                                            <%--<asp:Button type="button" ID="BtnNuevaRelacionCliente" runat="server" UseSubmitBehavior="false" class="btn blue" Text="Nuevo" OnClick="BtnNuevaRelacionCliente_Click" />--%>
+                                                            <%--<button type="button" onclick="ShowEliminarRelacionArticuloCliente()" class="btn red">Eliminar</button>--%>
+                                                            <asp:Button type="button" ID="btnEliminarRelacionArticuloCliente" runat="server" UseSubmitBehavior="false" CssClass="btn red" Text="Eliminar" OnClick="btnEliminarRelacionArticuloCliente_Click" />
                                                         </div>
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView ID="gvArticuloCliente" ClientInstanceName="gvArticuloCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                            <dx:ASPxGridView ID="gvArticuloCliente" ClientInstanceName="gvArticuloCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticuloCliente">
                                                                 <Columns>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoArticuloCliente" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="codigoInterno" Caption="Codigo Interno" VisibleIndex="1">
@@ -462,6 +515,7 @@
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                 </Columns>
+                                                                <SettingsBehavior AllowFocusedRow="True" AllowSelectByRowClick="True" />
                                                             </dx:ASPxGridView>
                                                         </div>
                                                     </div>
@@ -526,6 +580,7 @@
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
                                         <dx:ASPxButton ID="btnGuardarRelacionArticuloCliente" runat="server" Text="Aceptar" AutoPostBack="False" CssClass="btn blue" class="btn blue" ClientSideEvents-Click="OnClickAceptarCliente">
+                                            <ClientSideEvents Click="OnClickAceptarCliente"></ClientSideEvents>
                                         </dx:ASPxButton>
                                         <%--<asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" runat="server" UseSubmitBehavior="false" OnClick="OnClickAceptarCliente" OnClientClick="OnClickAceptarCliente" class="btn blue" Text="Aceptar" />--%>
                                     </div>
@@ -597,11 +652,11 @@
                                                         <div class="btn-set pull-left" style="padding-bottom: 5px">
                                                             <%--<asp:Button type="button" ID="btnNuevaRelacionArticuloCliente" runat="server" OnClientClick="ShowNuevaRelacionArticuloCliente()" class="btn blue" Text="Nuevo" UseSubmitBehavior="false" />--%>
                                                             <button type="button" onclick="ShowNuevaRelacionArticuloProveedor()" class="btn blue">Nuevo</button>
-                                                            <button type="button" onclick="ShowEliminarRelacionArticuloProveedor()" class="btn red" style="visibility: hidden">Eliminar</button>
+                                                            <button type="button" onclick="ShowEliminarRelacionArticuloProveedor()" class="btn red">Eliminar</button>
 
                                                         </div>
                                                         <div class="form-group">
-                                                            <dx:ASPxGridView ID="gvArticuloProveedor" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticuloProveedor">
+                                                            <dx:ASPxGridView ID="gvArticuloProveedor" runat="server" SettingsBehavior-AllowFocusedRow="true" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoArticuloProveedor">
                                                                 <Columns>
                                                                     <dx:GridViewDataTextColumn FieldName="codigoArticuloProveedor" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
@@ -706,6 +761,7 @@
                                 <div class="modal-footer">
                                     <div class="btn-set pull-right">
                                         <dx:ASPxButton ID="btnGuardarRelacionArticuloProveedor" runat="server" Text="Aceptar" AutoPostBack="False" CssClass="btn blue" class="btn blue" ClientSideEvents-Click="OnClickAceptarProveedor">
+                                            <ClientSideEvents Click="OnClickAceptarProveedor"></ClientSideEvents>
                                         </dx:ASPxButton>
                                     </div>
                                 </div>

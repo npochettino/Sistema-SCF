@@ -103,6 +103,7 @@
     <Compile Include="Clases\Concepto.cs" />
     <Compile Include="Clases\ContratoMarco.cs" />
     <Compile Include="Clases\DatosEmpresa.cs" />
+    <Compile Include="Clases\Direccion.cs" />
     <Compile Include="Clases\Entrega.cs" />
     <Compile Include="Clases\Factura.cs" />
     <Compile Include="Clases\HistorialCosto.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Mapeos\ConceptoMap.cs" />
     <Compile Include="Mapeos\ContratoMarcoMap.cs" />
     <Compile Include="Mapeos\DatosEmpresaMap.cs" />
+    <Compile Include="Mapeos\DireccionMap.cs" />
     <Compile Include="Mapeos\EntregaMap.cs" />
     <Compile Include="Mapeos\FacturaMap.cs" />
     <Compile Include="Mapeos\HistorialCostoMap.cs" />
