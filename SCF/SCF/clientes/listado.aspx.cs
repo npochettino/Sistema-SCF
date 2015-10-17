@@ -196,11 +196,11 @@ namespace SCF.clientes
 
                     if (rta == "ok")
                     {
-                        lblMensaje.Text = "El articulo se eliminó correctamente.";
+                        lblMensaje.Text = "La dirección se eliminó correctamente.";
                     }
                     else
                     {
-                        lblMensaje.Text = "No se pudo eliminar el articulo ya que esta asociado a una nota de pedido.";
+                        lblMensaje.Text = "No se pudo eliminar la dirección.";
                     }
 
                     loadGridClientes();
