@@ -157,6 +157,8 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
+    <!-- BEGIN POPUP DETALLE ARTICULO -->
+
     <dx:ASPxPopupControl ID="pcShowDetalleArticulo" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcShowDetalleArticulo"
         HeaderText="Detalle del Artículo" AllowDragging="True" EnableViewState="False" Width="800px"
@@ -336,7 +338,10 @@
                                                     <div class="col-md-12 ">
                                                         <div>
                                                             <div class="btn-set pull-right" style="padding-bottom: 3px">
-                                                                <%--<asp:Button class="btn blue" type="button" runat="server" ID="btnShowHistoricoCosto" UseSubmitBehavior="false" OnClick="btnShowHistoricoCosto_Click" Text="Ver"/>--%>
+                                                                <%--<asp:Button class="btn blue" type="button" runat="server" ID="btnShowHistoricoCosto" UseSubmitBehavior="false" OnClick="btnShowHistoricoCosto_Click" Text="Ver" />--%>
+                                                                <dx:ASPxButton ID="btnShowHistoricoCosto" runat="server" Text="Aceptar" AutoPostBack="False" CssClass="btn blue" class="btn blue" ClientSideEvents-Click="OnClickShowHistoricoCosto">
+                                                                </dx:ASPxButton>
+
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -355,6 +360,7 @@
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                 </Columns>
+                                                                <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                                                 <SettingsBehavior AllowFocusedRow="True" />
                                                             </dx:ASPxGridView>
                                                         </div>
@@ -475,6 +481,8 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
+    <!--END POPUP RELACION ARTICULO - CLIENTE-->
+
     <dx:ASPxPopupControl ID="pcRelacionArticuloCliente" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcRelacionArticuloCliente"
         HeaderText="Relación Artículo Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
@@ -569,7 +577,6 @@
                                                         <div class="form-group">
                                                             <label>Codigo Articulo</label>
                                                             <dx:ASPxTextBox ID="txtCodigoClienteArticuloPopUp" ClientInstanceName="txtCodigoClienteArticuloPopUp" runat="server" CssClass="form-control" Width="100%"></dx:ASPxTextBox>
-                                                            <%--<asp:TextBox ID="txtCodigoClienteArticulo" runat="server" placeholder="Codigo Articulo"></asp:TextBox>--%>
                                                         </div>
                                                     </div>
                                                 </div>

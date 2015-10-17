@@ -264,6 +264,15 @@ namespace SCF.articulos
             }
         }
 
+        [WebMethod]
+        public static string MostrarHistoricoCosto(string codigoProveedor)
+        {
+            
+            gvHistoricoCosto.DataSource = ControladorGeneral.RecuperarHistorialCostosPorArticuloProveedor(int.Parse(gvArticuloProveedores.GetRowValues(gvArticuloProveedores.FocusedRowIndex, "codigoArticuloProveedor").ToString()));
+            gvHistoricoCosto.DataBind();
+            pcHistoricoCosto.ShowOnPageLoad = true;
+        }
+
         protected void btnShowHistoricoCosto_Click(object sender, EventArgs e)
         {
             gvHistoricoCosto.DataSource = ControladorGeneral.RecuperarHistorialCostosPorArticuloProveedor(int.Parse(gvArticuloProveedores.GetRowValues(gvArticuloProveedores.FocusedRowIndex, "codigoArticuloProveedor").ToString()));

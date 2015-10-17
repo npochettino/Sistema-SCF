@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BibliotecaSCF.Clases;
@@ -171,7 +172,59 @@ namespace SCF.clientes
 
         protected void btnDireccionCliente_Click(object sender, EventArgs e)
         {
-
+           cargarGrillaRelacionDireccionCliente();
         }
+
+        private void cargarGrillaRelacionDireccionCliente()
+        {
+            if (gvClientes.FocusedRowIndex != -1)
+            {
+                //gvDireccionCliente.DataSource = ControladorGeneral.Recuperar(int.Parse(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente").ToString()));
+                gvDireccionCliente.DataBind();
+            }
+            pcRelacionDireccionCliente.ShowOnPageLoad = true;
+        }
+
+        protected void btnConfirmarEliminarRelacionDireccionCliente_Click(object sender, EventArgs e)
+        {
+            if (gvDireccionCliente.FocusedRowIndex != -1)
+            {
+                try
+                {
+                    string rta = "";// ControladorGeneral.EliminarDireccion(int.Parse(gvDireccionCliente.GetRowValues(gvDireccionCliente.FocusedRowIndex, "codigoDireccionCliente").ToString()));
+                    pcError.ShowOnPageLoad = true;
+
+                    if (rta == "ok")
+                    {
+                        lblMensaje.Text = "El articulo se eliminó correctamente.";
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "No se pudo eliminar el articulo ya que esta asociado a una nota de pedido.";
+                    }
+
+                    loadGridClientes();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        [WebMethod]
+        public static string InsertarActualizarDireccionCliente(string codigoArticulo, string codigoArticuloCliente, int codigoCliente)
+        {
+            try
+            {
+                ControladorGeneral.InsertarActualizarArticuloCliente(0, Convert.ToInt32(codigoArticulo), codigoArticuloCliente, codigoCliente);
+                return "ok";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

@@ -4050,6 +4050,7 @@
     <Content Include="assets\sweetalert-dev.js" />
     <Content Include="assets\sweetalert.css" />
     <Content Include="assets\sweetalert.min.js" />
+    <Content Include="clientes\cliente.js" />
     <Content Include="facturas\generar_pdf.aspx" />
     <Content Include="facturas\tipo_comprobante.aspx" />
     <Content Include="remitos\generar_pdf.aspx" />

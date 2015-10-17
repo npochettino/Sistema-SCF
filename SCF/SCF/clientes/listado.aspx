@@ -228,8 +228,6 @@
                                                             <label class="control-label col-md-3">Razon Social</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtRazonSocial" placeholder="Razon Social" runat="server" class="form-control">
-                                                            &nbsp;</input></input></input></input>&nbsp;</input></input></input>
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -238,8 +236,6 @@
                                                             <label id="lblTipoDoc" runat="server" class="control-label col-md-3">CUIL</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtCUIL" placeholder="CUIL" runat="server" class="form-control">
-                                                            &nbsp;</input></input></input></input>&nbsp;</input></input></input>
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -249,8 +245,6 @@
                                                         <label class="control-label col-md-3">Email</label>
                                                         <div class="col-md-9">
                                                             <input type="text" id="txtEmail" placeholder="Email" runat="server" class="form-control">
-                                                        &nbsp;</input></input></input></input>&nbsp;</input></input></input>
-                                                        &nbsp;
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -258,8 +252,6 @@
                                                             <label class="control-label col-md-3">Tel. / Fax.</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtTelFax" placeholder="Tel. / Fax" runat="server" class="form-control">
-                                                            &nbsp;</input></input></input></input>&nbsp;</input></input></input>
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -270,8 +262,6 @@
                                                             <label class="control-label col-md-3">Contacto</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtPersonaCantacto" placeholder="Persona de Contacto" runat="server" class="form-control">
-                                                            &nbsp;</input></input></input></input>&nbsp;</input></input></input>
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -284,8 +274,6 @@
                                                             <label class="control-label col-md-3">Banco</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtBanco" placeholder="Banco" runat="server" class="form-control">
-                                                            &nbsp;</input></input></input></input>&nbsp;</input></input></input>
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -294,8 +282,6 @@
                                                             <label class="control-label col-md-3">CBU</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtCBU" placeholder="CBU" runat="server" class="form-control">
-                                                            &nbsp;</input></input></input></input>&nbsp;</input></input></input>
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -306,8 +292,6 @@
                                                             <label class="control-label col-md-3">Nro. de Cuenta</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" id="txtNroCuenta" placeholder="Nro. Cuenta" runat="server" class="form-control">
-                                                            &nbsp;</input></input></input></input>&nbsp;</input></input></input>
-                                                            &nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -329,7 +313,6 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
-
 
     <!--Inicio PopUp Mensaje-->
     <dx:ASPxPopupControl ID="pcMensaje" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
@@ -358,8 +341,187 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
+    <!--END POPUP-->
 
     <!--END POPUP-->
+    <dx:ASPxPopupControl ID="pcRelacionDireccionCliente" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcRelacionDireccionCliente"
+        HeaderText="Dirección Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
+        EnableViewState="False" Theme="Metropolis">
+        <ClientSideEvents PopUp="function(s, e) {  pcRelacionDireccionCliente.Focus(); }" />
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl5" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel3" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent5" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="btn-set pull-left" style="padding-bottom: 5px">
+                                                            <button type="button" onclick="ShowNuevaRelacionDireccionCliente()" class="btn blue">Nuevo</button>
+                                                            <button type="button" onclick="ShowEliminarRelacionDireccionCliente()" class="btn red">Eliminar</button>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <dx:ASPxGridView ID="gvDireccionCliente" ClientInstanceName="gvDireccionCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
+                                                                <Columns>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigo" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                        <EditFormSettings Visible="False" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoInterno" Caption="Codigo Interno" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoCliente" Caption="Codigo Cliente" VisibleIndex="1" Visible="false">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataTextColumn FieldName="razonSocialCliente" Caption="Cliente" VisibleIndex="1">
+                                                                        <Settings AutoFilterCondition="Contains" />
+                                                                    </dx:GridViewDataTextColumn>
+                                                                </Columns>
+                                                            </dx:ASPxGridView>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ID="pcNuevaRelacionDireccionCliente" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="True" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcNuevaRelacionDireccionCliente"
+        HeaderText="Nueva Direccion" AllowDragging="True" EnableViewState="False" Width="400px"
+        PopupAnimationType="Fade" Theme="Metropolis">
+        <ClientSideEvents PopUp="function(s, e) {  pcNuevaRelacionDireccionCliente.Focus(); }" />
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl6" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel4" runat="server" DefaultButton="btnGuardarDireccionCliente">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent6" runat="server">
+                            <div data-width="760">
+                                <div class="modal-body">
+
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <div class="form-group">
+                                                            <label>Provincia</label>
+                                                            <dx:ASPxTextBox ID="txtProvincia" ClientInstanceName="txtProvincia" runat="server" CssClass="form-control" Width="100%"></dx:ASPxTextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <div class="form-group">
+                                                            <label>Ciudad</label>
+                                                            <dx:ASPxTextBox ID="txtCiudad" ClientInstanceName="txtCiudad" runat="server" CssClass="form-control" Width="100%"></dx:ASPxTextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <div class="form-group">
+                                                            <label>Dirección</label>
+                                                            <dx:ASPxTextBox ID="txtDireccion" ClientInstanceName="txtDireccion" runat="server" CssClass="form-control" Width="100%"></dx:ASPxTextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="btn-set pull-right">
+                                        <dx:ASPxButton ID="btnGuardarRelacionDireccionCliente" runat="server" Text="Aceptar" AutoPostBack="False" CssClass="btn blue" class="btn blue" ClientSideEvents-Click="OnClickAceptarDireccion">
+                                        </dx:ASPxButton>
+                                        <%--<asp:Button type="button" ID="btnGuardarRelacionArticuloCliente" runat="server" UseSubmitBehavior="false" OnClick="OnClickAceptarCliente" OnClientClick="OnClickAceptarCliente" class="btn blue" Text="Aceptar" />--%>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ID="pcConfirmarEliminarRelacionDireccionCliente" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcConfirmarEliminarRelacionDireccionCliente"
+        HeaderText="Eliminar Dirección Cliente" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        EnableViewState="False" Theme="Metropolis">
+        <ClientSideEvents PopUp="function(s, e) {  pcConfirmarEliminarRelacionDireccionCliente.Focus(); }" />
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl7" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel5" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent7" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                ¿Desea eliminar la dirección del cliente?
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="btn-set pull-right">
+                                        <button type="button" onclick="pcConfirmarEliminarRelacionDireccionCliente.Hide();" class="btn default">Cerrar</button>
+                                        <asp:Button type="button" ID="btnConfirmarEliminarRelacionDireccionCliente" runat="server" OnClick="btnConfirmarEliminarRelacionDireccionCliente_Click" UseSubmitBehavior="false" class="btn blue" Text="Aceptar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+    <!--END POPUP-->
+
+    <!-- BEGIN POPUP Mensaje -->
+    <dx:ASPxPopupControl ID="pcError" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcError"
+        HeaderText="Mensaje" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="300"
+        EnableViewState="False" Theme="Metropolis">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl11" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel9" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent11" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text=""></dx:ASPxLabel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
     <!--END POPUP-->
 
     <script lang="javascript" type="text/javascript">
@@ -368,6 +530,13 @@
         }
         function ShowInactivarCliente() {
             pcShowInactivarCliente.Show();
+        }
+        function ShowNuevaRelacionDireccionCliente() {
+            pcNuevaRelacionDireccionCliente.Show();
+
+        }
+        function ShowEliminarRelacionDireccionCliente() {
+            pcConfirmarEliminarRelacionDireccionCliente.Show();
         }
     </script>
 </asp:Content>
