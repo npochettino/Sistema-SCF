@@ -86,10 +86,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <%--<div class="form-group">
                                                 <label class="control-label">Dirección</label>
                                                 <input type="text" id="txtDireccion" runat="server" class="form-control" placeholder="Direccion" required>
-                                            </div>
+                                            </div>--%>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
@@ -100,7 +100,7 @@
                                         </div>
                                     </div>
                                     <!--/row-->
-                                    <div class="row">
+                                    <%--<div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Provincia</label>
@@ -115,7 +115,7 @@
                                             </div>
                                         </div>
                                         <!--/span-->
-                                    </div>
+                                    </div>--%>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">

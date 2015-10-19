@@ -15,6 +15,8 @@ namespace BibliotecaSCF.Mapeos
             Table("Direcciones");
             Id(x => x.Codigo).Column("codigoDireccion").GeneratedBy.Identity();
             Map(x => x.Descripcion).Column("descripcion");
+            Map(x => x.Provincia).Column("provincia");
+            Map(x => x.Localidad).Column("localidad");
         }
     }
 }

@@ -54,9 +54,7 @@ namespace SCF.clientes
 
             clienteActual.Codigo = int.Parse(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente").ToString());
             clienteActual.NumeroDocumento = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "cuil").ToString();
-            clienteActual.Localidad = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "localidad").ToString();
             clienteActual.Mail = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "mail").ToString();
-            clienteActual.Provincia = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "provincia").ToString();
             clienteActual.RazonSocial = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "razonSocial").ToString();
             clienteActual.Telefono = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "telefono").ToString();
             clienteActual.Banco = gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "banco").ToString();
@@ -97,7 +95,6 @@ namespace SCF.clientes
                 }
             }
         }
-
 
         protected void rbActivoSi_CheckedChanged(object sender, EventArgs e)
         {
@@ -172,14 +169,14 @@ namespace SCF.clientes
 
         protected void btnDireccionCliente_Click(object sender, EventArgs e)
         {
-           cargarGrillaRelacionDireccionCliente();
+            cargarGrillaRelacionDireccionCliente();
         }
 
         private void cargarGrillaRelacionDireccionCliente()
         {
             if (gvClientes.FocusedRowIndex != -1)
             {
-                //gvDireccionCliente.DataSource = ControladorGeneral.Recuperar(int.Parse(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente").ToString()));
+                gvDireccionCliente.DataSource = ControladorGeneral.RecuperarDireccionesPorCliente(Convert.ToInt32(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente")));
                 gvDireccionCliente.DataBind();
             }
             pcRelacionDireccionCliente.ShowOnPageLoad = true;
@@ -213,11 +210,11 @@ namespace SCF.clientes
         }
 
         [WebMethod]
-        public static string InsertarActualizarDireccionCliente(string codigoArticulo, string codigoArticuloCliente, int codigoCliente)
+        public static string InsertarActualizarDireccionCliente(string provincia, string localidad, string direccion, string codigoCliente)
         {
             try
             {
-                ControladorGeneral.InsertarActualizarArticuloCliente(0, Convert.ToInt32(codigoArticulo), codigoArticuloCliente, codigoCliente);
+                ControladorGeneral.InsertarDireccionPorCliente(Convert.ToInt32(codigoCliente), direccion, localidad, provincia);
                 return "ok";
             }
             catch (Exception ex)

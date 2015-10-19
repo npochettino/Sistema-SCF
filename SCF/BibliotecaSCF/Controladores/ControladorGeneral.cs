@@ -16,441 +16,6 @@ namespace BibliotecaSCF.Controladores
 {
     public class ControladorGeneral
     {
-        #region Proveedores
-
-        public static void InsertarActualizarProveedor(int codigoProveedor, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno, int codigoTipoDocumento)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                Proveedor proveedor;
-
-                if (codigoProveedor == 0)
-                {
-                    proveedor = new Proveedor();
-                }
-                else
-                {
-                    proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
-                }
-
-                proveedor.RazonSocial = razonSocial;
-                proveedor.Provincia = provincia;
-                proveedor.Localidad = localidad;
-                proveedor.Direccion = direccion;
-                proveedor.Telefono = telefono;
-                proveedor.Mail = mail;
-                proveedor.NumeroDocumento = numeroDocumento;
-                proveedor.PersonaContacto = personaContacto;
-                proveedor.NumeroCuenta = numeroCuenta;
-                proveedor.Banco = banco;
-                proveedor.Fax = fax;
-                proveedor.Cbu = cbu;
-                proveedor.Observaciones = observaciones;
-                proveedor.IsInactivo = false;
-                proveedor.NumeroInterno = numeroInterno;
-                proveedor.TipoDocumento = CatalogoTipoDocumento.RecuperarPorCodigo(codigoTipoDocumento, nhSesion);
-
-                CatalogoProveedor.InsertarActualizar(proveedor, nhSesion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static DataTable RecuperarTodosProveedores(bool isInactivos)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaProveedores = new DataTable();
-                tablaProveedores.Columns.Add("codigoProveedor");
-                tablaProveedores.Columns.Add("razonSocial");
-                tablaProveedores.Columns.Add("provincia");
-                tablaProveedores.Columns.Add("localidad");
-                tablaProveedores.Columns.Add("direccion");
-                tablaProveedores.Columns.Add("telefono");
-                tablaProveedores.Columns.Add("mail");
-                tablaProveedores.Columns.Add("cuil");
-                tablaProveedores.Columns.Add("tipoDocumento");
-                tablaProveedores.Columns.Add("codigoTipoDocumento");
-                tablaProveedores.Columns.Add("personaContacto");
-                tablaProveedores.Columns.Add("numeroCuenta");
-                tablaProveedores.Columns.Add("banco");
-                tablaProveedores.Columns.Add("cbu");
-                tablaProveedores.Columns.Add("observaciones");
-                tablaProveedores.Columns.Add("fax");
-
-                List<Proveedor> listaProveedores = CatalogoProveedor.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
-
-                listaProveedores.Aggregate(tablaProveedores, (dt, r) =>
-                {
-                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento,
-                        r.TipoDocumento.Descripcion, r.TipoDocumento.Codigo,
-                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax); return dt;
-                });
-
-                return tablaProveedores;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static void ActivarInactivarProveedor(int codigoProveedor)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                Proveedor proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
-
-                if (proveedor.IsInactivo)
-                {
-                    proveedor.IsInactivo = false;
-                }
-                else
-                {
-                    proveedor.IsInactivo = true;
-                }
-
-                CatalogoProveedor.InsertarActualizar(proveedor, nhSesion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static void EliminarProveedor(int codigoProveedor)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                Proveedor proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
-
-                CatalogoProveedor.Eliminar(proveedor, nhSesion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        #endregion
-
-        #region Usuarios
-
-        public static void InsertarActualizarUsuario(int codigoUsuario, string nombreUsuario, string contraseña)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                Usuario usuario;
-
-                if (codigoUsuario == 0)
-                {
-                    usuario = new Usuario();
-                }
-                else
-                {
-                    usuario = CatalogoUsuario.RecuperarPorCodigo(codigoUsuario, nhSesion);
-                }
-
-                usuario.NombreUsuario = nombreUsuario;
-                usuario.Contraseña = contraseña;
-
-                CatalogoUsuario.InsertarActualizar(usuario, nhSesion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static DataTable RecuperarLogueoUsuario(string nombreUsuario, string contraseña)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaUsuario = new DataTable();
-                tablaUsuario.Columns.Add("codigoUsuario");
-                tablaUsuario.Columns.Add("nombreUsuario");
-                tablaUsuario.Columns.Add("contraseña");
-
-                Usuario usuarioActual = CatalogoUsuario.RecuperarPorUsuarioYContraseña(nombreUsuario, contraseña, nhSesion);
-
-                if (usuarioActual == null)
-                {
-                    tablaUsuario = null;
-                }
-                else
-                {
-                    tablaUsuario.Rows.Add(new object[] { usuarioActual.Codigo, usuarioActual.NombreUsuario, usuarioActual.Contraseña });
-                }
-
-                return tablaUsuario;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static DataTable RecuperarTodosUsuarios()
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaUsuarios = new DataTable();
-                tablaUsuarios.Columns.Add("codigoUsuario");
-                tablaUsuarios.Columns.Add("nombreUsuario");
-                tablaUsuarios.Columns.Add("contraseña");
-
-                List<Usuario> listaUsuarios = CatalogoUsuario.RecuperarTodos(nhSesion);
-
-                listaUsuarios.Aggregate(tablaUsuarios, (dt, r) => { dt.Rows.Add(r.Codigo, r.NombreUsuario, r.Contraseña); return dt; });
-
-                return tablaUsuarios;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        #endregion
-
-        #region Cliente
-
-        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string provincia, string localidad, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno, int codigoTipoDocumento, string codigoSCF)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                Cliente cliente;
-
-                if (codigoUsuario == 0)
-                {
-                    cliente = new Cliente();
-                }
-                else
-                {
-                    cliente = CatalogoCliente.RecuperarPorCodigo(codigoUsuario, nhSesion);
-                }
-
-                cliente.RazonSocial = razonSocial;
-                cliente.Provincia = provincia;
-                cliente.Localidad = localidad;
-                cliente.Telefono = telefono;
-                cliente.Fax = fax;
-                cliente.Mail = mail;
-                cliente.NumeroDocumento = numeroDocumento;
-                cliente.PersonaContacto = personaContacto;
-                cliente.NumeroCuenta = numeroCuenta;
-                cliente.Banco = banco;
-                cliente.Cbu = cbu;
-                cliente.Observaciones = observaciones;
-                cliente.IsInactivo = false;
-                cliente.NumeroInterno = numeroInterno;
-                cliente.TipoDocumento = CatalogoTipoDocumento.RecuperarPorCodigo(codigoTipoDocumento, nhSesion);
-                cliente.CodigoSCF = codigoSCF;
-
-                CatalogoCliente.InsertarActualizar(cliente, nhSesion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static DataTable RecuperarTodosClientes(bool isInactivos)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaClientes = new DataTable();
-                tablaClientes.Columns.Add("codigoCliente");
-                tablaClientes.Columns.Add("razonSocial");
-                tablaClientes.Columns.Add("provincia");
-                tablaClientes.Columns.Add("localidad");
-                tablaClientes.Columns.Add("direccion");
-                tablaClientes.Columns.Add("telefono");
-                tablaClientes.Columns.Add("mail");
-                tablaClientes.Columns.Add("cuil");
-                tablaClientes.Columns.Add("tipoDocumento");
-                tablaClientes.Columns.Add("codigoTipoDocumento");
-                tablaClientes.Columns.Add("personaContacto");
-                tablaClientes.Columns.Add("numeroCuenta");
-                tablaClientes.Columns.Add("banco");
-                tablaClientes.Columns.Add("cbu");
-                tablaClientes.Columns.Add("observaciones");
-                tablaClientes.Columns.Add("fax");
-                tablaClientes.Columns.Add("codigoSCF");
-
-                List<Cliente> listaClientes = CatalogoCliente.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
-
-                listaClientes.Aggregate(tablaClientes, (dt, r) =>
-                {
-                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direcciones.Count > 0 ? r.Direcciones[0].Descripcion : string.Empty, r.Telefono, r.Mail, r.NumeroDocumento, r.TipoDocumento.Descripcion,
-                        r.TipoDocumento.Codigo, r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax, r.CodigoSCF); return dt;
-                });
-
-                return tablaClientes;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static void ActivarInactivarCliente(int codigoCliente)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
-
-                if (cliente.IsInactivo)
-                {
-                    cliente.IsInactivo = false;
-                }
-                else
-                {
-                    cliente.IsInactivo = true;
-                }
-
-                CatalogoCliente.InsertarActualizar(cliente, nhSesion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static void EliminarCliente(int codigoCliente)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
-
-                CatalogoCliente.Eliminar(cliente, nhSesion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static DataTable RecuperarClientePorContratoMarco(int codigoContratoMarco)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-            try
-            {
-                DataTable tablaCliente = new DataTable();
-                tablaCliente.Columns.Add("codigoCliente");
-                tablaCliente.Columns.Add("razonSocial");
-                tablaCliente.Columns.Add("provincia");
-                tablaCliente.Columns.Add("localidad");
-                tablaCliente.Columns.Add("direccion");
-                tablaCliente.Columns.Add("telefono");
-                tablaCliente.Columns.Add("mail");
-                tablaCliente.Columns.Add("cuil");
-                tablaCliente.Columns.Add("personaContacto");
-                tablaCliente.Columns.Add("numeroCuenta");
-                tablaCliente.Columns.Add("banco");
-                tablaCliente.Columns.Add("cbu");
-                tablaCliente.Columns.Add("observaciones");
-
-                ContratoMarco contratoMarco = CatalogoContratoMarco.RecuperarPorCodigo(codigoContratoMarco, nhSesion);
-
-                tablaCliente.Rows.Add(new object[] { contratoMarco.Cliente.Codigo, contratoMarco.Cliente.RazonSocial, contratoMarco.Cliente.Provincia, contratoMarco.Cliente.Localidad,
-                contratoMarco.Cliente.Direcciones.Count > 0 ? contratoMarco.Cliente.Direcciones[0].Descripcion : string.Empty, contratoMarco.Cliente.Telefono, contratoMarco.Cliente.Mail, contratoMarco.Cliente.NumeroDocumento, contratoMarco.Cliente.PersonaContacto,
-                contratoMarco.Cliente.NumeroCuenta, contratoMarco.Cliente.Banco, contratoMarco.Cliente.Cbu, contratoMarco.Cliente.Observaciones});
-
-                return tablaCliente;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        #endregion
-
         #region Articulo
 
         public static void InsertarActualizarArticulo(int codigoArticulo, string descripcionCorta, string descripcionLarga, string marca, string nombreImagen, double precio, int codigoMoneda, int codigoUnidadMedida)
@@ -685,144 +250,6 @@ namespace BibliotecaSCF.Controladores
 
         #endregion
 
-        #region ArticuloProveedor
-
-        public static DataTable RecuperarArticulosProveedoresPorArticulo(int codigoArticulo)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaArticulosProveedores = new DataTable();
-                tablaArticulosProveedores.Columns.Add("codigoArticuloProveedor");
-                tablaArticulosProveedores.Columns.Add("codigoProveedor");
-                tablaArticulosProveedores.Columns.Add("razonSocialProveedor");
-                tablaArticulosProveedores.Columns.Add("costoActual");
-                tablaArticulosProveedores.Columns.Add("tipoDocumento");
-                tablaArticulosProveedores.Columns.Add("tipoMoneda");
-                tablaArticulosProveedores.Columns.Add("nroDocumento");
-
-                Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
-
-                articulo.ArticulosProveedor.Aggregate(tablaArticulosProveedores, (dt, r) =>
-                {
-                    dt.Rows.Add(r.Codigo, r.Proveedor.Codigo, r.Proveedor.RazonSocial,
-                        r.HistorialesCosto.Where(x => x.FechaHasta == null).Select(x => x.Costo).SingleOrDefault(),
-                        r.Proveedor.TipoDocumento.Descripcion, r.HistorialesCosto.Where(x => x.FechaHasta == null).Select(x => x.Moneda.Descripcion).SingleOrDefault(),
-                        r.Proveedor.NumeroDocumento); return dt;
-                });
-
-                return tablaArticulosProveedores;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static DataTable RecuperarHistorialCostosPorArticuloProveedor(int codigoArticuloProveedor)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaHistorialPrecio = new DataTable();
-                tablaHistorialPrecio.Columns.Add("codigoHistorialCosto");
-                tablaHistorialPrecio.Columns.Add("fechaDesde");
-                tablaHistorialPrecio.Columns.Add("fechaHasta");
-                tablaHistorialPrecio.Columns.Add("costo");
-
-                ArticuloProveedor artProv = CatalogoArticuloProveedor.RecuperarPorCodigo(codigoArticuloProveedor, nhSesion);
-
-                artProv.HistorialesCosto.Aggregate(tablaHistorialPrecio, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Costo); return dt; });
-
-                return tablaHistorialPrecio;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        public static void InsertarActualizarArticuloProveedor(int codigoArticuloProveedor, int codigoArticulo, int codigoProveedor, double costo, int codigoMoneda)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-            ITransaction transaccion = nhSesion.BeginTransaction();
-
-            try
-            {
-                Articulo articulo;
-                articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
-
-                ArticuloProveedor articuloProveedor;
-
-                if (codigoArticuloProveedor == 0)
-                {
-                    articuloProveedor = new ArticuloProveedor();
-                    articulo.ArticulosProveedor.Add(articuloProveedor);
-                }
-                else
-                {
-                    articuloProveedor = (from ap in articulo.ArticulosProveedor where ap.Codigo == codigoArticuloProveedor select ap).SingleOrDefault();
-                }
-
-                articuloProveedor.Proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
-
-                HistorialCosto histPrecio = (from h in articuloProveedor.HistorialesCosto where h.FechaHasta == null select h).SingleOrDefault();
-
-                if (histPrecio == null)
-                {
-                    histPrecio = new HistorialCosto();
-                    histPrecio.FechaDesde = DateTime.Now;
-                    histPrecio.FechaHasta = null;
-                    histPrecio.Costo = costo;
-                    histPrecio.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
-
-                    articuloProveedor.HistorialesCosto.Add(histPrecio);
-                }
-                else
-                {
-                    if (histPrecio.Costo != costo || histPrecio.Moneda.Codigo != codigoMoneda)
-                    {
-                        histPrecio.FechaHasta = DateTime.Now.AddSeconds(-1);
-
-                        HistorialCosto histPrecioNuevo = new HistorialCosto();
-                        histPrecioNuevo.FechaDesde = DateTime.Now;
-                        histPrecioNuevo.FechaHasta = null;
-                        histPrecioNuevo.Costo = costo;
-                        histPrecio.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
-
-                        articuloProveedor.HistorialesCosto.Add(histPrecioNuevo);
-                    }
-                }
-
-                CatalogoArticulo.InsertarActualizar(articulo, nhSesion);
-                transaccion.Commit();
-            }
-            catch (Exception ex)
-            {
-                transaccion.Rollback();
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
-
-        #endregion
-
         #region ArticuloCliente
 
         public static DataTable RecuperarArticulosClientesPorArticulo(int codigoArticulo)
@@ -967,135 +394,34 @@ namespace BibliotecaSCF.Controladores
 
         #endregion
 
-        #region NotaDePedido
+        #region ArticuloProveedor
 
-        public static DataTable RecuperarTodasNotasDePedido(bool soloVigentes)
+        public static DataTable RecuperarArticulosProveedoresPorArticulo(int codigoArticulo)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
             try
             {
-                DataTable tablaNotasDePedido = new DataTable();
-                tablaNotasDePedido.Columns.Add("codigoNotaDePedido");
-                tablaNotasDePedido.Columns.Add("numeroInternoCliente");
-                tablaNotasDePedido.Columns.Add("fechaEmision");
-                tablaNotasDePedido.Columns.Add("codigoEstado");
-                tablaNotasDePedido.Columns.Add("codigoContratoMarco");
-                tablaNotasDePedido.Columns.Add("descripcionContratoMarco");
-                tablaNotasDePedido.Columns.Add("codigoCliente");
-                tablaNotasDePedido.Columns.Add("razonSocialCliente");
-                tablaNotasDePedido.Columns.Add("fechaHoraProximaEntrega");
-                tablaNotasDePedido.Columns.Add("observaciones");
+                DataTable tablaArticulosProveedores = new DataTable();
+                tablaArticulosProveedores.Columns.Add("codigoArticuloProveedor");
+                tablaArticulosProveedores.Columns.Add("codigoProveedor");
+                tablaArticulosProveedores.Columns.Add("razonSocialProveedor");
+                tablaArticulosProveedores.Columns.Add("costoActual");
+                tablaArticulosProveedores.Columns.Add("tipoDocumento");
+                tablaArticulosProveedores.Columns.Add("tipoMoneda");
+                tablaArticulosProveedores.Columns.Add("nroDocumento");
 
-                List<NotaDePedido> listaNotasDePedido;
-                if (soloVigentes)
+                Articulo articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
+
+                articulo.ArticulosProveedor.Aggregate(tablaArticulosProveedores, (dt, r) =>
                 {
-                    listaNotasDePedido = CatalogoNotaDePedido.RecuperarLista(x => x.CodigoEstado == Constantes.Estados.VIGENTE, nhSesion);
-                }
-                else
-                {
-                    listaNotasDePedido = CatalogoNotaDePedido.RecuperarTodos(nhSesion);
-                }
+                    dt.Rows.Add(r.Codigo, r.Proveedor.Codigo, r.Proveedor.RazonSocial,
+                        r.HistorialesCosto.Where(x => x.FechaHasta == null).Select(x => x.Costo).SingleOrDefault(),
+                        r.Proveedor.TipoDocumento.Descripcion, r.HistorialesCosto.Where(x => x.FechaHasta == null).Select(x => x.Moneda.Descripcion).SingleOrDefault(),
+                        r.Proveedor.NumeroDocumento); return dt;
+                });
 
-                foreach (NotaDePedido notaPedido in listaNotasDePedido.OrderByDescending(x => x.CodigoEstado))
-                {
-                    int codigoEstado = 0;
-                    DateTime fechaHoraProximaEntrega = DateTime.MinValue;
-
-                    if (notaPedido.ItemsNotaDePedido.Count > 0)
-                    {
-                        List<Entrega> listaEntregas = CatalogoEntrega.RecuperarLista(x => x.NotaDePedido.Codigo == notaPedido.Codigo && x.CodigoEstado != Constantes.Estados.ANULADA, nhSesion);
-
-                        switch (notaPedido.CodigoEstado)
-                        {
-                            case Constantes.Estados.VIGENTE:
-                                List<ItemNotaDePedido> listaItemsNotaDePedidoVencidos = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now select n).ToList();
-
-                                if (listaEntregas.Count > 0) //valido que no haya alguna entrega que cumpla el item nota de pedido
-                                {
-                                    List<ItemNotaDePedido> listaBorrar = new List<ItemNotaDePedido>();
-
-                                    foreach (ItemNotaDePedido itemNP in listaItemsNotaDePedidoVencidos)
-                                    {
-                                        List<ItemEntrega> listaItemsEntrega = (from e in listaEntregas where (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault() != null select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault()).ToList();
-                                        int cantidadAEntregarTotal = (from e in listaItemsEntrega select e.CantidadAEntregar).Sum();
-
-                                        if (cantidadAEntregarTotal >= itemNP.CantidadPedida)
-                                        {
-                                            listaBorrar.Add(itemNP);
-                                        }
-                                    }
-
-                                    foreach (ItemNotaDePedido itemBorrar in listaBorrar)
-                                    {
-                                        listaItemsNotaDePedidoVencidos.Remove(itemBorrar);
-                                    }
-                                }
-
-                                if (listaItemsNotaDePedidoVencidos.Count > 0)
-                                {
-                                    codigoEstado = Constantes.Estados.VENCIDA;
-                                    fechaHoraProximaEntrega = listaItemsNotaDePedidoVencidos.OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
-                                }
-                                else
-                                {
-                                    List<ItemNotaDePedido> listaItemsNotaDePedidoProximosAVencer = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now.AddDays(5) select n).ToList();
-
-                                    if (listaEntregas.Count > 0) //valido que no haya alguna entrega que cumpla el item nota de pedido
-                                    {
-                                        List<ItemNotaDePedido> listaBorrar = new List<ItemNotaDePedido>();
-
-                                        foreach (ItemNotaDePedido itemNP in listaItemsNotaDePedidoProximosAVencer)
-                                        {
-                                            List<ItemEntrega> listaItemsEntrega = (from e in listaEntregas where (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault() != null select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault()).ToList();
-                                            int cantidadAEntregarTotal = (from e in listaItemsEntrega select e.CantidadAEntregar).Sum();
-
-                                            if (cantidadAEntregarTotal >= itemNP.CantidadPedida)
-                                            {
-                                                listaBorrar.Add(itemNP);
-                                            }
-                                        }
-
-                                        foreach (ItemNotaDePedido itemBorrar in listaBorrar)
-                                        {
-                                            listaItemsNotaDePedidoProximosAVencer.Remove(itemBorrar);
-                                        }
-                                    }
-
-                                    if (listaItemsNotaDePedidoProximosAVencer.Count > 0)
-                                    {
-                                        codigoEstado = Constantes.Estados.PROXIMA_VENCER;
-                                        fechaHoraProximaEntrega = listaItemsNotaDePedidoProximosAVencer.OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
-                                    }
-                                    else
-                                    {
-                                        codigoEstado = Constantes.Estados.VIGENTE;
-                                        List<ItemNotaDePedido> listaEntregadas = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now.AddDays(5) select n).ToList();
-                                        listaEntregadas.AddRange((from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now select n).ToList());
-
-                                        fechaHoraProximaEntrega = notaPedido.ItemsNotaDePedido.Where(x => !listaEntregadas.Select(c => c.Codigo).ToList().Contains(x.Codigo)).OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
-                                    }
-                                }
-
-                                break;
-                            case Constantes.Estados.ANULADA:
-                                codigoEstado = Constantes.Estados.ANULADA;
-                                break;
-
-                            case Constantes.Estados.ENTREGADA:
-                                codigoEstado = Constantes.Estados.ENTREGADA;
-                                break;
-                        }
-                    }
-
-                    tablaNotasDePedido.Rows.Add(new object[] { notaPedido.Codigo, notaPedido.NumeroInternoCliente, notaPedido.FechaEmision, codigoEstado, notaPedido.ContratoMarco != null ? notaPedido.ContratoMarco.Codigo : 0, 
-                        notaPedido.ContratoMarco != null ? notaPedido.ContratoMarco.Descripcion : "", notaPedido.Cliente.Codigo, notaPedido.Cliente.RazonSocial, fechaHoraProximaEntrega == DateTime.MinValue ? "" : fechaHoraProximaEntrega.ToString(), notaPedido.Observaciones});
-                }
-
-                DataView dv = tablaNotasDePedido.DefaultView;
-                dv.Sort = "codigoEstado desc";
-
-                return dv.ToTable();
+                return tablaArticulosProveedores;
             }
             catch (Exception ex)
             {
@@ -1108,64 +434,88 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        /// <summary>
-        /// Columnas del DataTabla tablaItemsNotaDePedido: codigoItemNotaDePedido, codigoArticulo, cantidad, fechaEntrega
-        /// </summary>
-        public static void InsertarActualizarNotaDePedido(int codigoNotaDePedido, string numeroInternoCliente, DateTime fechaEmision, string observaciones, int codigoContratoMarco, int codigoCliente, DataTable tablaItemsNotaDePedido)
+        public static DataTable RecuperarHistorialCostosPorArticuloProveedor(int codigoArticuloProveedor)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaHistorialPrecio = new DataTable();
+                tablaHistorialPrecio.Columns.Add("codigoHistorialCosto");
+                tablaHistorialPrecio.Columns.Add("fechaDesde");
+                tablaHistorialPrecio.Columns.Add("fechaHasta");
+                tablaHistorialPrecio.Columns.Add("costo");
+
+                ArticuloProveedor artProv = CatalogoArticuloProveedor.RecuperarPorCodigo(codigoArticuloProveedor, nhSesion);
+
+                artProv.HistorialesCosto.Aggregate(tablaHistorialPrecio, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Costo); return dt; });
+
+                return tablaHistorialPrecio;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void InsertarActualizarArticuloProveedor(int codigoArticuloProveedor, int codigoArticulo, int codigoProveedor, double costo, int codigoMoneda)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
             ITransaction transaccion = nhSesion.BeginTransaction();
 
             try
             {
-                NotaDePedido notaDePedido;
+                Articulo articulo;
+                articulo = CatalogoArticulo.RecuperarPorCodigo(codigoArticulo, nhSesion);
 
-                if (codigoNotaDePedido == 0)
+                ArticuloProveedor articuloProveedor;
+
+                if (codigoArticuloProveedor == 0)
                 {
-                    notaDePedido = new NotaDePedido();
-                    notaDePedido.CodigoEstado = Constantes.Estados.VIGENTE;
+                    articuloProveedor = new ArticuloProveedor();
+                    articulo.ArticulosProveedor.Add(articuloProveedor);
                 }
                 else
                 {
-                    notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
+                    articuloProveedor = (from ap in articulo.ArticulosProveedor where ap.Codigo == codigoArticuloProveedor select ap).SingleOrDefault();
                 }
 
-                notaDePedido.Cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
-                notaDePedido.ContratoMarco = codigoContratoMarco == 0 ? null : CatalogoContratoMarco.RecuperarPorCodigo(codigoContratoMarco, nhSesion);
-                notaDePedido.FechaEmision = fechaEmision;
-                notaDePedido.NumeroInternoCliente = numeroInternoCliente;
-                notaDePedido.Observaciones = observaciones;
+                articuloProveedor.Proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
 
-                foreach (DataRow filaItemNotaDePedido in tablaItemsNotaDePedido.Rows)
+                HistorialCosto histPrecio = (from h in articuloProveedor.HistorialesCosto where h.FechaHasta == null select h).SingleOrDefault();
+
+                if (histPrecio == null)
                 {
-                    int codigoItemNotaDePedido = Convert.ToInt32(filaItemNotaDePedido["codigoItemNotaDePedido"]);
-                    ItemNotaDePedido item;
+                    histPrecio = new HistorialCosto();
+                    histPrecio.FechaDesde = DateTime.Now;
+                    histPrecio.FechaHasta = null;
+                    histPrecio.Costo = costo;
+                    histPrecio.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
 
-                    if (codigoItemNotaDePedido < 1)
+                    articuloProveedor.HistorialesCosto.Add(histPrecio);
+                }
+                else
+                {
+                    if (histPrecio.Costo != costo || histPrecio.Moneda.Codigo != codigoMoneda)
                     {
-                        item = new ItemNotaDePedido();
-                        notaDePedido.ItemsNotaDePedido.Add(item);
+                        histPrecio.FechaHasta = DateTime.Now.AddSeconds(-1);
+
+                        HistorialCosto histPrecioNuevo = new HistorialCosto();
+                        histPrecioNuevo.FechaDesde = DateTime.Now;
+                        histPrecioNuevo.FechaHasta = null;
+                        histPrecioNuevo.Costo = costo;
+                        histPrecio.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
+
+                        articuloProveedor.HistorialesCosto.Add(histPrecioNuevo);
                     }
-                    else
-                    {
-                        item = (from n in notaDePedido.ItemsNotaDePedido where n.Codigo == codigoItemNotaDePedido select n).SingleOrDefault();
-
-                        if (!Convert.IsDBNull(filaItemNotaDePedido["isEliminada"]) && Convert.ToBoolean(filaItemNotaDePedido["isEliminada"]))
-                        {
-                            notaDePedido.ItemsNotaDePedido.Remove(item);
-                        }
-
-
-                    }
-
-                    item.Articulo = CatalogoArticulo.RecuperarPorCodigo(Convert.ToInt32(filaItemNotaDePedido["codigoArticulo"]), nhSesion);
-                    item.CantidadPedida = Convert.ToInt32(filaItemNotaDePedido["cantidad"]);
-                    item.FechaEntrega = Convert.ToDateTime(filaItemNotaDePedido["fechaEntrega"]);
-                    item.Precio = Convert.ToDouble(filaItemNotaDePedido["precio"]);
-                    item.Posicion = Convert.ToInt32(filaItemNotaDePedido["posicion"]);
                 }
 
-                CatalogoNotaDePedido.InsertarActualizar(notaDePedido, nhSesion);
+                CatalogoArticulo.InsertarActualizar(articulo, nhSesion);
                 transaccion.Commit();
             }
             catch (Exception ex)
@@ -1180,26 +530,43 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void ActivarAnularNotaDePedido(int codigoNotaDePedido, string observaciones)
+        #endregion
+
+        #region Cliente
+
+        public static void InsertarActualizarCliente(int codigoUsuario, string razonSocial, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno, int codigoTipoDocumento, string codigoSCF)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
             try
             {
-                NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
+                Cliente cliente;
 
-                if (notaDePedido.CodigoEstado == Constantes.Estados.ANULADA)
+                if (codigoUsuario == 0)
                 {
-                    notaDePedido.CodigoEstado = Constantes.Estados.VIGENTE;
+                    cliente = new Cliente();
                 }
                 else
                 {
-                    notaDePedido.CodigoEstado = Constantes.Estados.ANULADA;
+                    cliente = CatalogoCliente.RecuperarPorCodigo(codigoUsuario, nhSesion);
                 }
 
-                notaDePedido.Observaciones = observaciones;
+                cliente.RazonSocial = razonSocial;
+                cliente.Telefono = telefono;
+                cliente.Fax = fax;
+                cliente.Mail = mail;
+                cliente.NumeroDocumento = numeroDocumento;
+                cliente.PersonaContacto = personaContacto;
+                cliente.NumeroCuenta = numeroCuenta;
+                cliente.Banco = banco;
+                cliente.Cbu = cbu;
+                cliente.Observaciones = observaciones;
+                cliente.IsInactivo = false;
+                cliente.NumeroInterno = numeroInterno;
+                cliente.TipoDocumento = CatalogoTipoDocumento.RecuperarPorCodigo(codigoTipoDocumento, nhSesion);
+                cliente.CodigoSCF = codigoSCF;
 
-                CatalogoNotaDePedido.InsertarActualizar(notaDePedido, nhSesion);
+                CatalogoCliente.InsertarActualizar(cliente, nhSesion);
             }
             catch (Exception ex)
             {
@@ -1212,66 +579,134 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void EliminarNotaDePedido(int codigoNotaDePedido)
+        public static DataTable RecuperarTodosClientes(bool isInactivos)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
             try
             {
-                NotaDePedido notadePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
+                DataTable tablaClientes = new DataTable();
+                tablaClientes.Columns.Add("codigoCliente");
+                tablaClientes.Columns.Add("razonSocial");
+                tablaClientes.Columns.Add("provincia");
+                tablaClientes.Columns.Add("localidad");
+                tablaClientes.Columns.Add("direccion");
+                tablaClientes.Columns.Add("telefono");
+                tablaClientes.Columns.Add("mail");
+                tablaClientes.Columns.Add("cuil");
+                tablaClientes.Columns.Add("tipoDocumento");
+                tablaClientes.Columns.Add("codigoTipoDocumento");
+                tablaClientes.Columns.Add("personaContacto");
+                tablaClientes.Columns.Add("numeroCuenta");
+                tablaClientes.Columns.Add("banco");
+                tablaClientes.Columns.Add("cbu");
+                tablaClientes.Columns.Add("observaciones");
+                tablaClientes.Columns.Add("fax");
+                tablaClientes.Columns.Add("codigoSCF");
 
-                CatalogoNotaDePedido.Eliminar(notadePedido, nhSesion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
-            }
-        }
+                List<Cliente> listaClientes = CatalogoCliente.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
 
-        #endregion
-
-        #region ItemNotaDePedido
-
-        public static DataTable RecuperarItemsNotaDePedido(int codigoNotaDePedido)
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaItemsNotaDePedido = new DataTable();
-                tablaItemsNotaDePedido.Columns.Add("codigoItemNotaDePedido");
-                tablaItemsNotaDePedido.Columns.Add("codigoArticulo");
-                tablaItemsNotaDePedido.Columns.Add("descripcionCorta");
-                tablaItemsNotaDePedido.Columns.Add("descripcionLarga");
-                tablaItemsNotaDePedido.Columns.Add("marca");
-                tablaItemsNotaDePedido.Columns.Add("precio");
-                tablaItemsNotaDePedido.Columns.Add("cantidad");
-                tablaItemsNotaDePedido.Columns.Add("fechaEntrega");
-                tablaItemsNotaDePedido.Columns.Add("cantidadEntregada");
-                tablaItemsNotaDePedido.Columns.Add("codigoMoneda");
-                tablaItemsNotaDePedido.Columns.Add("descripcionMoneda");
-                tablaItemsNotaDePedido.Columns.Add("posicion");
-                tablaItemsNotaDePedido.Columns.Add("subtotal");
-                NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
-
-                List<Entrega> listaEntregas = CatalogoEntrega.RecuperarLista(x => x.NotaDePedido.Codigo == codigoNotaDePedido, nhSesion);
-
-                foreach (ItemNotaDePedido item in notaDePedido.ItemsNotaDePedido)
+                listaClientes.Aggregate(tablaClientes, (dt, r) =>
                 {
-                    int cantidadEntregada = (from e in listaEntregas select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == item.Codigo select i.CantidadAEntregar).SingleOrDefault()).Sum();
+                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Direcciones.Count > 0 ? r.Direcciones[0].Provincia : string.Empty,
+                        r.Direcciones.Count > 0 ? r.Direcciones[0].Localidad : string.Empty, r.Direcciones.Count > 0 ? r.Direcciones[0].Descripcion : string.Empty,
+                        r.Telefono, r.Mail, r.NumeroDocumento, r.TipoDocumento.Descripcion,
+                        r.TipoDocumento.Codigo, r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax, r.CodigoSCF); return dt;
+                });
 
-                    tablaItemsNotaDePedido.Rows.Add(item.Codigo, item.Articulo.Codigo, item.Articulo.DescripcionCorta, item.Articulo.DescripcionLarga, item.Articulo.Marca,
-                    item.Precio, item.CantidadPedida, item.FechaEntrega.ToString("dd/MM/yyyy"), cantidadEntregada, item.Articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
-                    item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, item.Posicion, item.CantidadPedida * item.Precio);
+                return tablaClientes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void ActivarInactivarCliente(int codigoCliente)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+
+                if (cliente.IsInactivo)
+                {
+                    cliente.IsInactivo = false;
+                }
+                else
+                {
+                    cliente.IsInactivo = true;
                 }
 
+                CatalogoCliente.InsertarActualizar(cliente, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
 
-                return tablaItemsNotaDePedido;
+        public static void EliminarCliente(int codigoCliente)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Cliente cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+
+                CatalogoCliente.Eliminar(cliente, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarClientePorContratoMarco(int codigoContratoMarco)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            try
+            {
+                DataTable tablaCliente = new DataTable();
+                tablaCliente.Columns.Add("codigoCliente");
+                tablaCliente.Columns.Add("razonSocial");
+                tablaCliente.Columns.Add("provincia");
+                tablaCliente.Columns.Add("localidad");
+                tablaCliente.Columns.Add("direccion");
+                tablaCliente.Columns.Add("telefono");
+                tablaCliente.Columns.Add("mail");
+                tablaCliente.Columns.Add("cuil");
+                tablaCliente.Columns.Add("personaContacto");
+                tablaCliente.Columns.Add("numeroCuenta");
+                tablaCliente.Columns.Add("banco");
+                tablaCliente.Columns.Add("cbu");
+                tablaCliente.Columns.Add("observaciones");
+
+                ContratoMarco contratoMarco = CatalogoContratoMarco.RecuperarPorCodigo(codigoContratoMarco, nhSesion);
+
+                tablaCliente.Rows.Add(new object[] { contratoMarco.Cliente.Codigo, contratoMarco.Cliente.RazonSocial, 
+                    contratoMarco.Cliente.Direcciones.Count > 0 ? contratoMarco.Cliente.Direcciones[0].Provincia : string.Empty, 
+                    contratoMarco.Cliente.Direcciones.Count > 0 ? contratoMarco.Cliente.Direcciones[0].Localidad : string.Empty,
+                    contratoMarco.Cliente.Direcciones.Count > 0 ? contratoMarco.Cliente.Direcciones[0].Descripcion : string.Empty, contratoMarco.Cliente.Telefono, contratoMarco.Cliente.Mail, contratoMarco.Cliente.NumeroDocumento, contratoMarco.Cliente.PersonaContacto,
+                    contratoMarco.Cliente.NumeroCuenta, contratoMarco.Cliente.Banco, contratoMarco.Cliente.Cbu, contratoMarco.Cliente.Observaciones});
+
+                return tablaCliente;
             }
             catch (Exception ex)
             {
@@ -1439,35 +874,6 @@ namespace BibliotecaSCF.Controladores
                 default:
                     return 1;
                     break;
-            }
-        }
-
-        public static DataTable RecuperarContratosMarcoVigente()
-        {
-            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
-
-            try
-            {
-                DataTable tablaContratosMarco = new DataTable();
-                tablaContratosMarco.Columns.Add("codigoContratoMarco");
-                tablaContratosMarco.Columns.Add("fechaInicio");
-                tablaContratosMarco.Columns.Add("fechaFin");
-                tablaContratosMarco.Columns.Add("descripcion");
-
-                List<ContratoMarco> listaContratosMarco = CatalogoContratoMarco.RecuperarLista(x => x.FechaInicio < DateTime.Now, nhSesion);
-
-                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaInicio, r.FechaFin, r.Descripcion); return dt; });
-
-                return tablaContratosMarco;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                nhSesion.Close();
-                nhSesion.Dispose();
             }
         }
 
@@ -1660,7 +1066,8 @@ namespace BibliotecaSCF.Controladores
                 {
                     dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo,
                         r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.NotaDePedido.Cliente.CodigoSCF,
-                        r.NotaDePedido.Cliente.Direcciones.Count > 0 ? r.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty, r.FechaEmision.ToString("dd/MM/yyyy"), r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
+                        r.NotaDePedido.Cliente.Direcciones.Count > 0 ? r.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty, 
+                        r.FechaEmision.ToString("dd/MM/yyyy"), r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
                         r.CodigoEstado, r.Observaciones, r.Transporte.Codigo, r.Transporte.RazonSocial); return dt;
                 });
 
@@ -1994,10 +1401,9 @@ namespace BibliotecaSCF.Controladores
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
                             entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar), 2),
-
-                            entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento, entrega.NotaDePedido.Cliente.Localidad,
+                            entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento,
+                            entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Localidad : string.Empty,
                             entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty); return dt;
-
                     });
                 }
 
@@ -2055,10 +1461,9 @@ namespace BibliotecaSCF.Controladores
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
                                 entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar), 2),
-
-                                entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento, entrega.NotaDePedido.Cliente.Localidad,
+                                entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento,
+                                entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Localidad : string.Empty,
                                 entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty); return dt;
-
                         });
                     }
                 }
@@ -2076,26 +1481,66 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        #endregion
-
-        #region UnidadMediad
-
-        public static DataTable RecuperarTodasUnidadesMedida()
+        public static void EliminarNotaDePedido(int codigoNotaDePedido)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
             try
             {
-                DataTable tablaUnidadesMedida = new DataTable();
-                tablaUnidadesMedida.Columns.Add("codigo");
-                tablaUnidadesMedida.Columns.Add("descripcion");
-                tablaUnidadesMedida.Columns.Add("abreviatura");
+                NotaDePedido notadePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
 
-                List<UnidadMedida> listaUnidadesMedida = CatalogoUnidadMedida.RecuperarTodos(nhSesion);
+                CatalogoNotaDePedido.Eliminar(notadePedido, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
 
-                listaUnidadesMedida.Aggregate(tablaUnidadesMedida, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.Abreviatura); return dt; });
+        #endregion
 
-                return tablaUnidadesMedida;
+        #region ItemNotaDePedido
+
+        public static DataTable RecuperarItemsNotaDePedido(int codigoNotaDePedido)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaItemsNotaDePedido = new DataTable();
+                tablaItemsNotaDePedido.Columns.Add("codigoItemNotaDePedido");
+                tablaItemsNotaDePedido.Columns.Add("codigoArticulo");
+                tablaItemsNotaDePedido.Columns.Add("descripcionCorta");
+                tablaItemsNotaDePedido.Columns.Add("descripcionLarga");
+                tablaItemsNotaDePedido.Columns.Add("marca");
+                tablaItemsNotaDePedido.Columns.Add("precio");
+                tablaItemsNotaDePedido.Columns.Add("cantidad");
+                tablaItemsNotaDePedido.Columns.Add("fechaEntrega");
+                tablaItemsNotaDePedido.Columns.Add("cantidadEntregada");
+                tablaItemsNotaDePedido.Columns.Add("codigoMoneda");
+                tablaItemsNotaDePedido.Columns.Add("descripcionMoneda");
+                tablaItemsNotaDePedido.Columns.Add("posicion");
+                tablaItemsNotaDePedido.Columns.Add("subtotal");
+                NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
+
+                List<Entrega> listaEntregas = CatalogoEntrega.RecuperarLista(x => x.NotaDePedido.Codigo == codigoNotaDePedido, nhSesion);
+
+                foreach (ItemNotaDePedido item in notaDePedido.ItemsNotaDePedido)
+                {
+                    int cantidadEntregada = (from e in listaEntregas select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == item.Codigo select i.CantidadAEntregar).SingleOrDefault()).Sum();
+
+                    tablaItemsNotaDePedido.Rows.Add(item.Codigo, item.Articulo.Codigo, item.Articulo.DescripcionCorta, item.Articulo.DescripcionLarga, item.Articulo.Marca,
+                    item.Precio, item.CantidadPedida, item.FechaEntrega.ToString("dd/MM/yyyy"), cantidadEntregada, item.Articulo.RecuperarHistorialPrecioActual().Moneda.Codigo,
+                    item.Articulo.RecuperarHistorialPrecioActual().Moneda.Descripcion, item.Posicion, item.CantidadPedida * item.Precio);
+                }
+
+
+                return tablaItemsNotaDePedido;
             }
             catch (Exception ex)
             {
@@ -2128,6 +1573,562 @@ namespace BibliotecaSCF.Controladores
                 listaMonedas.Aggregate(tablaMonedas, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.Abreviatura); return dt; });
 
                 return tablaMonedas;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        public static DataTable RecuperarContratosMarcoVigente()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaContratosMarco = new DataTable();
+                tablaContratosMarco.Columns.Add("codigoContratoMarco");
+                tablaContratosMarco.Columns.Add("fechaInicio");
+                tablaContratosMarco.Columns.Add("fechaFin");
+                tablaContratosMarco.Columns.Add("descripcion");
+
+                List<ContratoMarco> listaContratosMarco = CatalogoContratoMarco.RecuperarLista(x => x.FechaInicio < DateTime.Now, nhSesion);
+
+                listaContratosMarco.Aggregate(tablaContratosMarco, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaInicio, r.FechaFin, r.Descripcion); return dt; });
+
+                return tablaContratosMarco;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #region NotaDePedido
+
+        public static DataTable RecuperarTodasNotasDePedido(bool soloVigentes)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaNotasDePedido = new DataTable();
+                tablaNotasDePedido.Columns.Add("codigoNotaDePedido");
+                tablaNotasDePedido.Columns.Add("numeroInternoCliente");
+                tablaNotasDePedido.Columns.Add("fechaEmision");
+                tablaNotasDePedido.Columns.Add("codigoEstado");
+                tablaNotasDePedido.Columns.Add("codigoContratoMarco");
+                tablaNotasDePedido.Columns.Add("descripcionContratoMarco");
+                tablaNotasDePedido.Columns.Add("codigoCliente");
+                tablaNotasDePedido.Columns.Add("razonSocialCliente");
+                tablaNotasDePedido.Columns.Add("fechaHoraProximaEntrega");
+                tablaNotasDePedido.Columns.Add("observaciones");
+
+                List<NotaDePedido> listaNotasDePedido;
+                if (soloVigentes)
+                {
+                    listaNotasDePedido = CatalogoNotaDePedido.RecuperarLista(x => x.CodigoEstado == Constantes.Estados.VIGENTE, nhSesion);
+                }
+                else
+                {
+                    listaNotasDePedido = CatalogoNotaDePedido.RecuperarTodos(nhSesion);
+                }
+
+                foreach (NotaDePedido notaPedido in listaNotasDePedido.OrderByDescending(x => x.CodigoEstado))
+                {
+                    int codigoEstado = 0;
+                    DateTime fechaHoraProximaEntrega = DateTime.MinValue;
+
+                    if (notaPedido.ItemsNotaDePedido.Count > 0)
+                    {
+                        List<Entrega> listaEntregas = CatalogoEntrega.RecuperarLista(x => x.NotaDePedido.Codigo == notaPedido.Codigo && x.CodigoEstado != Constantes.Estados.ANULADA, nhSesion);
+
+                        switch (notaPedido.CodigoEstado)
+                        {
+                            case Constantes.Estados.VIGENTE:
+                                List<ItemNotaDePedido> listaItemsNotaDePedidoVencidos = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now select n).ToList();
+
+                                if (listaEntregas.Count > 0) //valido que no haya alguna entrega que cumpla el item nota de pedido
+                                {
+                                    List<ItemNotaDePedido> listaBorrar = new List<ItemNotaDePedido>();
+
+                                    foreach (ItemNotaDePedido itemNP in listaItemsNotaDePedidoVencidos)
+                                    {
+                                        List<ItemEntrega> listaItemsEntrega = (from e in listaEntregas where (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault() != null select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault()).ToList();
+                                        int cantidadAEntregarTotal = (from e in listaItemsEntrega select e.CantidadAEntregar).Sum();
+
+                                        if (cantidadAEntregarTotal >= itemNP.CantidadPedida)
+                                        {
+                                            listaBorrar.Add(itemNP);
+                                        }
+                                    }
+
+                                    foreach (ItemNotaDePedido itemBorrar in listaBorrar)
+                                    {
+                                        listaItemsNotaDePedidoVencidos.Remove(itemBorrar);
+                                    }
+                                }
+
+                                if (listaItemsNotaDePedidoVencidos.Count > 0)
+                                {
+                                    codigoEstado = Constantes.Estados.VENCIDA;
+                                    fechaHoraProximaEntrega = listaItemsNotaDePedidoVencidos.OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
+                                }
+                                else
+                                {
+                                    List<ItemNotaDePedido> listaItemsNotaDePedidoProximosAVencer = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now.AddDays(5) select n).ToList();
+
+                                    if (listaEntregas.Count > 0) //valido que no haya alguna entrega que cumpla el item nota de pedido
+                                    {
+                                        List<ItemNotaDePedido> listaBorrar = new List<ItemNotaDePedido>();
+
+                                        foreach (ItemNotaDePedido itemNP in listaItemsNotaDePedidoProximosAVencer)
+                                        {
+                                            List<ItemEntrega> listaItemsEntrega = (from e in listaEntregas where (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault() != null select (from i in e.ItemsEntrega where i.ItemNotaDePedido.Codigo == itemNP.Codigo && i != null select i).SingleOrDefault()).ToList();
+                                            int cantidadAEntregarTotal = (from e in listaItemsEntrega select e.CantidadAEntregar).Sum();
+
+                                            if (cantidadAEntregarTotal >= itemNP.CantidadPedida)
+                                            {
+                                                listaBorrar.Add(itemNP);
+                                            }
+                                        }
+
+                                        foreach (ItemNotaDePedido itemBorrar in listaBorrar)
+                                        {
+                                            listaItemsNotaDePedidoProximosAVencer.Remove(itemBorrar);
+                                        }
+                                    }
+
+                                    if (listaItemsNotaDePedidoProximosAVencer.Count > 0)
+                                    {
+                                        codigoEstado = Constantes.Estados.PROXIMA_VENCER;
+                                        fechaHoraProximaEntrega = listaItemsNotaDePedidoProximosAVencer.OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
+                                    }
+                                    else
+                                    {
+                                        codigoEstado = Constantes.Estados.VIGENTE;
+                                        List<ItemNotaDePedido> listaEntregadas = (from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now.AddDays(5) select n).ToList();
+                                        listaEntregadas.AddRange((from n in notaPedido.ItemsNotaDePedido where n.FechaEntrega < DateTime.Now select n).ToList());
+
+                                        fechaHoraProximaEntrega = notaPedido.ItemsNotaDePedido.Where(x => !listaEntregadas.Select(c => c.Codigo).ToList().Contains(x.Codigo)).OrderBy(x => x.FechaEntrega).ToList()[0].FechaEntrega;
+                                    }
+                                }
+
+                                break;
+                            case Constantes.Estados.ANULADA:
+                                codigoEstado = Constantes.Estados.ANULADA;
+                                break;
+
+                            case Constantes.Estados.ENTREGADA:
+                                codigoEstado = Constantes.Estados.ENTREGADA;
+                                break;
+                        }
+                    }
+
+                    tablaNotasDePedido.Rows.Add(new object[] { notaPedido.Codigo, notaPedido.NumeroInternoCliente, notaPedido.FechaEmision, codigoEstado, notaPedido.ContratoMarco != null ? notaPedido.ContratoMarco.Codigo : 0, 
+                        notaPedido.ContratoMarco != null ? notaPedido.ContratoMarco.Descripcion : "", notaPedido.Cliente.Codigo, notaPedido.Cliente.RazonSocial, fechaHoraProximaEntrega == DateTime.MinValue ? "" : fechaHoraProximaEntrega.ToString(), notaPedido.Observaciones});
+                }
+
+                DataView dv = tablaNotasDePedido.DefaultView;
+                dv.Sort = "codigoEstado desc";
+
+                return dv.ToTable();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Columnas del DataTabla tablaItemsNotaDePedido: codigoItemNotaDePedido, codigoArticulo, cantidad, fechaEntrega
+        /// </summary>
+        public static void InsertarActualizarNotaDePedido(int codigoNotaDePedido, string numeroInternoCliente, DateTime fechaEmision, string observaciones, int codigoContratoMarco, int codigoCliente, DataTable tablaItemsNotaDePedido)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            ITransaction transaccion = nhSesion.BeginTransaction();
+
+            try
+            {
+                NotaDePedido notaDePedido;
+
+                if (codigoNotaDePedido == 0)
+                {
+                    notaDePedido = new NotaDePedido();
+                    notaDePedido.CodigoEstado = Constantes.Estados.VIGENTE;
+                }
+                else
+                {
+                    notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
+                }
+
+                notaDePedido.Cliente = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
+                notaDePedido.ContratoMarco = codigoContratoMarco == 0 ? null : CatalogoContratoMarco.RecuperarPorCodigo(codigoContratoMarco, nhSesion);
+                notaDePedido.FechaEmision = fechaEmision;
+                notaDePedido.NumeroInternoCliente = numeroInternoCliente;
+                notaDePedido.Observaciones = observaciones;
+
+                foreach (DataRow filaItemNotaDePedido in tablaItemsNotaDePedido.Rows)
+                {
+                    int codigoItemNotaDePedido = Convert.ToInt32(filaItemNotaDePedido["codigoItemNotaDePedido"]);
+                    ItemNotaDePedido item;
+
+                    if (codigoItemNotaDePedido < 1)
+                    {
+                        item = new ItemNotaDePedido();
+                        notaDePedido.ItemsNotaDePedido.Add(item);
+                    }
+                    else
+                    {
+                        item = (from n in notaDePedido.ItemsNotaDePedido where n.Codigo == codigoItemNotaDePedido select n).SingleOrDefault();
+
+                        if (!Convert.IsDBNull(filaItemNotaDePedido["isEliminada"]) && Convert.ToBoolean(filaItemNotaDePedido["isEliminada"]))
+                        {
+                            notaDePedido.ItemsNotaDePedido.Remove(item);
+                        }
+
+
+                    }
+
+                    item.Articulo = CatalogoArticulo.RecuperarPorCodigo(Convert.ToInt32(filaItemNotaDePedido["codigoArticulo"]), nhSesion);
+                    item.CantidadPedida = Convert.ToInt32(filaItemNotaDePedido["cantidad"]);
+                    item.FechaEntrega = Convert.ToDateTime(filaItemNotaDePedido["fechaEntrega"]);
+                    item.Precio = Convert.ToDouble(filaItemNotaDePedido["precio"]);
+                    item.Posicion = Convert.ToInt32(filaItemNotaDePedido["posicion"]);
+                }
+
+                CatalogoNotaDePedido.InsertarActualizar(notaDePedido, nhSesion);
+                transaccion.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaccion.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void ActivarAnularNotaDePedido(int codigoNotaDePedido, string observaciones)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                NotaDePedido notaDePedido = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion);
+
+                if (notaDePedido.CodigoEstado == Constantes.Estados.ANULADA)
+                {
+                    notaDePedido.CodigoEstado = Constantes.Estados.VIGENTE;
+                }
+                else
+                {
+                    notaDePedido.CodigoEstado = Constantes.Estados.ANULADA;
+                }
+
+                notaDePedido.Observaciones = observaciones;
+
+                CatalogoNotaDePedido.InsertarActualizar(notaDePedido, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region Proveedores
+
+        public static void InsertarActualizarProveedor(int codigoProveedor, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int numeroInterno, int codigoTipoDocumento)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Proveedor proveedor;
+
+                if (codigoProveedor == 0)
+                {
+                    proveedor = new Proveedor();
+                }
+                else
+                {
+                    proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
+                }
+
+                proveedor.RazonSocial = razonSocial;
+                proveedor.Provincia = provincia;
+                proveedor.Localidad = localidad;
+                proveedor.Direccion = direccion;
+                proveedor.Telefono = telefono;
+                proveedor.Mail = mail;
+                proveedor.NumeroDocumento = numeroDocumento;
+                proveedor.PersonaContacto = personaContacto;
+                proveedor.NumeroCuenta = numeroCuenta;
+                proveedor.Banco = banco;
+                proveedor.Fax = fax;
+                proveedor.Cbu = cbu;
+                proveedor.Observaciones = observaciones;
+                proveedor.IsInactivo = false;
+                proveedor.NumeroInterno = numeroInterno;
+                proveedor.TipoDocumento = CatalogoTipoDocumento.RecuperarPorCodigo(codigoTipoDocumento, nhSesion);
+
+                CatalogoProveedor.InsertarActualizar(proveedor, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarTodosProveedores(bool isInactivos)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaProveedores = new DataTable();
+                tablaProveedores.Columns.Add("codigoProveedor");
+                tablaProveedores.Columns.Add("razonSocial");
+                tablaProveedores.Columns.Add("provincia");
+                tablaProveedores.Columns.Add("localidad");
+                tablaProveedores.Columns.Add("direccion");
+                tablaProveedores.Columns.Add("telefono");
+                tablaProveedores.Columns.Add("mail");
+                tablaProveedores.Columns.Add("cuil");
+                tablaProveedores.Columns.Add("tipoDocumento");
+                tablaProveedores.Columns.Add("codigoTipoDocumento");
+                tablaProveedores.Columns.Add("personaContacto");
+                tablaProveedores.Columns.Add("numeroCuenta");
+                tablaProveedores.Columns.Add("banco");
+                tablaProveedores.Columns.Add("cbu");
+                tablaProveedores.Columns.Add("observaciones");
+                tablaProveedores.Columns.Add("fax");
+
+                List<Proveedor> listaProveedores = CatalogoProveedor.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
+
+                listaProveedores.Aggregate(tablaProveedores, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento,
+                        r.TipoDocumento.Descripcion, r.TipoDocumento.Codigo,
+                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax); return dt;
+                });
+
+                return tablaProveedores;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void ActivarInactivarProveedor(int codigoProveedor)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Proveedor proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
+
+                if (proveedor.IsInactivo)
+                {
+                    proveedor.IsInactivo = false;
+                }
+                else
+                {
+                    proveedor.IsInactivo = true;
+                }
+
+                CatalogoProveedor.InsertarActualizar(proveedor, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static void EliminarProveedor(int codigoProveedor)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Proveedor proveedor = CatalogoProveedor.RecuperarPorCodigo(codigoProveedor, nhSesion);
+
+                CatalogoProveedor.Eliminar(proveedor, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region UnidadMedida
+
+        public static DataTable RecuperarTodasUnidadesMedida()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaUnidadesMedida = new DataTable();
+                tablaUnidadesMedida.Columns.Add("codigo");
+                tablaUnidadesMedida.Columns.Add("descripcion");
+                tablaUnidadesMedida.Columns.Add("abreviatura");
+
+                List<UnidadMedida> listaUnidadesMedida = CatalogoUnidadMedida.RecuperarTodos(nhSesion);
+
+                listaUnidadesMedida.Aggregate(tablaUnidadesMedida, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.Abreviatura); return dt; });
+
+                return tablaUnidadesMedida;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region Usuarios
+
+        public static void InsertarActualizarUsuario(int codigoUsuario, string nombreUsuario, string contraseña)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Usuario usuario;
+
+                if (codigoUsuario == 0)
+                {
+                    usuario = new Usuario();
+                }
+                else
+                {
+                    usuario = CatalogoUsuario.RecuperarPorCodigo(codigoUsuario, nhSesion);
+                }
+
+                usuario.NombreUsuario = nombreUsuario;
+                usuario.Contraseña = contraseña;
+
+                CatalogoUsuario.InsertarActualizar(usuario, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarLogueoUsuario(string nombreUsuario, string contraseña)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaUsuario = new DataTable();
+                tablaUsuario.Columns.Add("codigoUsuario");
+                tablaUsuario.Columns.Add("nombreUsuario");
+                tablaUsuario.Columns.Add("contraseña");
+
+                Usuario usuarioActual = CatalogoUsuario.RecuperarPorUsuarioYContraseña(nombreUsuario, contraseña, nhSesion);
+
+                if (usuarioActual == null)
+                {
+                    tablaUsuario = null;
+                }
+                else
+                {
+                    tablaUsuario.Rows.Add(new object[] { usuarioActual.Codigo, usuarioActual.NombreUsuario, usuarioActual.Contraseña });
+                }
+
+                return tablaUsuario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarTodosUsuarios()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaUsuarios = new DataTable();
+                tablaUsuarios.Columns.Add("codigoUsuario");
+                tablaUsuarios.Columns.Add("nombreUsuario");
+                tablaUsuarios.Columns.Add("contraseña");
+
+                List<Usuario> listaUsuarios = CatalogoUsuario.RecuperarTodos(nhSesion);
+
+                listaUsuarios.Aggregate(tablaUsuarios, (dt, r) => { dt.Rows.Add(r.Codigo, r.NombreUsuario, r.Contraseña); return dt; });
+
+                return tablaUsuarios;
             }
             catch (Exception ex)
             {
@@ -2870,10 +2871,12 @@ namespace BibliotecaSCF.Controladores
                 DataTable tablaDirecciones = new DataTable();
                 tablaDirecciones.Columns.Add("codigoDireccion");
                 tablaDirecciones.Columns.Add("descripcion");
+                tablaDirecciones.Columns.Add("localidad");
+                tablaDirecciones.Columns.Add("provincia");
 
                 Cliente cl = CatalogoCliente.RecuperarPorCodigo(codigoCliente, nhSesion);
 
-                cl.Direcciones.Aggregate(tablaDirecciones, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion); return dt; });
+                cl.Direcciones.Aggregate(tablaDirecciones, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.Localidad, r.Provincia); return dt; });
 
                 return tablaDirecciones;
             }
@@ -2888,7 +2891,7 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void InsertarDireccionPorCliente(int codigoCliente, string direccion)
+        public static void InsertarDireccionPorCliente(int codigoCliente, string direccion, string localidad, string provincia)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -2898,6 +2901,8 @@ namespace BibliotecaSCF.Controladores
 
                 Direccion dir = new Direccion();
                 dir.Descripcion = direccion;
+                dir.Localidad = localidad;
+                dir.Provincia = provincia;
 
                 cl.Direcciones.Add(dir);
 

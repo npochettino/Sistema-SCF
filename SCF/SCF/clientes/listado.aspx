@@ -6,6 +6,8 @@
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
+    <script src="cliente.js" type="text/javascript"></script>
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -63,7 +65,7 @@
                                     <asp:RadioButton type="radio" Text="Activo" ID="rbActivoSi" GroupName="EstadoCliente" runat="server" Checked="true" AutoPostBack="true" OnCheckedChanged="rbActivoSi_CheckedChanged" />
                                     <asp:RadioButton type="radio" Text="Inactivo" ID="rbActivoNo" GroupName="EstadoCliente" runat="server" AutoPostBack="true" OnCheckedChanged="rbActivoNo_CheckedChanged" />
                                 </div>
-                                <dx:ASPxGridView ID="gvClientes" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoCliente" Theme="Metropolis">
+                                <dx:ASPxGridView ID="gvClientes" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoCliente" Theme="Metropolis" ClientInstanceName="gvClientes">
                                     <Columns>
                                         <dx:GridViewDataTextColumn FieldName="codigoCliente" ReadOnly="True" Visible="false" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
@@ -369,7 +371,7 @@
                                                         <div class="form-group">
                                                             <dx:ASPxGridView ID="gvDireccionCliente" ClientInstanceName="gvDireccionCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
                                                                 <Columns>
-                                                                    <dx:GridViewDataTextColumn FieldName="codigoDireccionCliente" ReadOnly="True" Visible="false" VisibleIndex="0">
+                                                                    <dx:GridViewDataTextColumn FieldName="codigoDireccion" ReadOnly="True" Visible="false" VisibleIndex="0">
                                                                         <EditFormSettings Visible="False" />
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="provincia" Caption="Provincia" VisibleIndex="1">
@@ -378,7 +380,7 @@
                                                                     <dx:GridViewDataTextColumn FieldName="localidad" Caption="Localidad" VisibleIndex="1">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="dirreccion" Caption="Dirección" VisibleIndex="1">
+                                                                    <dx:GridViewDataTextColumn FieldName="descripcion" Caption="Dirección" VisibleIndex="1">
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                 </Columns>
@@ -427,7 +429,7 @@
                                                     <div class="col-md-12 ">
                                                         <div class="form-group">
                                                             <label>Ciudad</label>
-                                                            <dx:ASPxTextBox ID="txtCiudad" ClientInstanceName="txtCiudad" runat="server" CssClass="form-control" Width="100%"></dx:ASPxTextBox>
+                                                            <dx:ASPxTextBox ID="txtCiudad" ClientInstanceName="txtLocalidad" runat="server" CssClass="form-control" Width="100%"></dx:ASPxTextBox>
                                                         </div>
                                                     </div>
                                                 </div>

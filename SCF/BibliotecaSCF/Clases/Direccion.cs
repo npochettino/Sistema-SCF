@@ -10,5 +10,7 @@ namespace BibliotecaSCF.Clases
     {
         public virtual int Codigo { get; set; }
         public virtual string Descripcion { get; set; }
+        public virtual string Provincia { get; set; }
+        public virtual string Localidad { get; set; }
     }
 }

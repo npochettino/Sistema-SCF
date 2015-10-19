@@ -16,8 +16,6 @@ namespace BibliotecaSCF.Clases
         public virtual int Codigo { get; set; }
         public virtual int NumeroInterno { get; set; }
         public virtual string RazonSocial { get; set; }
-        public virtual string Provincia { get; set; }
-        public virtual string Localidad { get; set; }
         public virtual string Telefono { get; set; }
         public virtual string Fax { get; set; }
         public virtual string Mail { get; set; }

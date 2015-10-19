@@ -3,15 +3,15 @@
 }
 
 function OnCallBackDireccionCliente(s, e) {
-    PageMethods.InsertarActualizarDireccionCliente(s, txtProvincia.GetValue(), txtLocalidad.GetValue(),txtDireccion.GetValue(), OnSucces, OnFail);
+    PageMethods.InsertarActualizarDireccionCliente(txtProvincia.GetValue(), txtLocalidad.GetValue(), txtDireccion.GetValue(), s, OnSucces, OnFail);
     pcNuevaRelacionDireccionCliente.Hide();
     pcRelacionDireccionCliente.Hide();
 }
 
 function OnSucces(s, e) {
-    alert("Se ha guardado la direccion correctamente");
+    alert("Se ha guardado la dirección correctamente");
 }
 
 function OnFail(s, e) {
-    alert("Error en guardar la direccion");
+    alert("Error en guardar la dirección");
 }

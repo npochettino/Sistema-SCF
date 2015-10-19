@@ -37,9 +37,7 @@ namespace SCF.clientes
 
             txtNroDocumento.Value = oClienteActual.NumeroDocumento;
             txtRazonSocial.Value = oClienteActual.RazonSocial;
-            txtCiudad.Value = oClienteActual.Localidad;
             txtMail.Value = oClienteActual.Mail;
-            txtProvincia.Value = oClienteActual.Provincia;
             txtTelefono.Value = oClienteActual.Telefono;
             txtPersonaContacto.Value = oClienteActual.PersonaContacto;
             txtBanco.Value = oClienteActual.Banco;
@@ -62,12 +60,12 @@ namespace SCF.clientes
             if (Session["codigoOperacion"] == null)
             {
                 oClienteActual = (Cliente)Session["clienteActual"];
-                ControladorGeneral.InsertarActualizarCliente(oClienteActual.Codigo, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, Convert.ToInt32(cbTipoDocumento.Value), txtCodigoConSCF.Value); //agregar tipo documento
+                ControladorGeneral.InsertarActualizarCliente(oClienteActual.Codigo, txtRazonSocial.Value, txtTelefono.Value, txtFax.Value, txtMail.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, Convert.ToInt32(cbTipoDocumento.Value), txtCodigoConSCF.Value); //agregar tipo documento
             }
             //si el codigoOperacion es != null hago un insert.
             else
             {
-                ControladorGeneral.InsertarActualizarCliente(0, txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtTelefono.Value, txtMail.Value, txtFax.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, Convert.ToInt32(cbTipoDocumento.Value), txtCodigoConSCF.Value); //agregar tipo documento
+                ControladorGeneral.InsertarActualizarCliente(0, txtRazonSocial.Value, txtTelefono.Value, txtMail.Value, txtFax.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 0, Convert.ToInt32(cbTipoDocumento.Value), txtCodigoConSCF.Value); //agregar tipo documento
             }
             Response.Redirect("listado.aspx");
         }

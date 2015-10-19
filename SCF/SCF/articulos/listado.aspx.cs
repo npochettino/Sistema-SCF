@@ -188,7 +188,6 @@ namespace SCF.articulos
             gvHistoricoPrecio.DataBind();
         }
 
-
         protected void btnConfirmarEliminarRelacionArticuloCliente_Click(object sender, EventArgs e)
         {
             int codigoArticuloCliente = Convert.ToInt32(gvArticuloCliente.GetRowValues(gvArticuloCliente.FocusedRowIndex, "codigoArticuloCliente").ToString());
@@ -267,11 +266,10 @@ namespace SCF.articulos
         [WebMethod]
         public static string MostrarHistoricoCosto(string codigoProveedor)
         {
-
             //gvHistoricoCosto.DataSource = ControladorGeneral.RecuperarHistorialCostosPorArticuloProveedor(int.Parse(gvArticuloProveedores.GetRowValues(gvArticuloProveedores.FocusedRowIndex, "codigoArticuloProveedor").ToString()));
             //gvHistoricoCosto.DataBind();
             //pcHistoricoCosto.ShowOnPageLoad = true;
-            return "";
+            return "ok";
         }
 
         protected void btnShowHistoricoCosto_Click(object sender, EventArgs e)

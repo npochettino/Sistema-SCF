@@ -16,8 +16,6 @@ namespace BibliotecaSCF.Mapeos
             Id(x => x.Codigo).Column("codigoCliente").GeneratedBy.Identity();
             Map(x => x.NumeroInterno).Column("numeroInterno");
             Map(x => x.RazonSocial).Column("razonSocial");
-            Map(x => x.Provincia).Column("provincia");
-            Map(x => x.Localidad).Column("localidad");
             Map(x => x.Telefono).Column("telefono");
             Map(x => x.Fax).Column("fax");
             Map(x => x.Mail).Column("mail");
