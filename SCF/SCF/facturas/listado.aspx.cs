@@ -74,7 +74,31 @@ namespace SCF.facturas
 
         protected void btnConfirmarEliminarFactura_Click(object sender, EventArgs e)
         {
-            
+            if (gvFacturas.FocusedRowIndex != -1)
+            {
+                pcConfirmarEliminarFactura.ShowOnPageLoad = false;
+                try
+                {
+                    if (gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString() == "")
+                    {
+                        //ControladorGeneral.ElimarF(int.Parse(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "codigoFactura").ToString()));
+                        Response.Redirect("listado.aspx");
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "La factura posee CAE, no puede ser eliminada";
+                        pcMensaje.ShowOnPageLoad = true;
+                    }
+
+                }
+
+                catch
+                {
+                    //Muestro el mensaje que me devuelve del metodo Eliminar
+                    lblMensaje.Text = "La factura esta asociada a un recibo o nota de credito";
+                    pcMensaje.ShowOnPageLoad = true;
+                }
+            }
         }
 
         protected void btnDetalle_Click(object sender, EventArgs e)
@@ -83,22 +107,22 @@ namespace SCF.facturas
             {
                 if (gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString() == "")
                 { btnEmitirComprobante.Visible = true; }
-                
+
                 DataTable dtItemsFacturaActual = ControladorGeneral.RecuperarItemsEntregaPorFactura(Convert.ToInt32(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "codigoFactura")));
                 gvDetalleFactura.DataSource = dtItemsFacturaActual;
                 gvDetalleFactura.DataBind();
-                
+
                 string nroAMostrar = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString();
                 lblNroFacturaAEmitir.Text = "002 - " + Convert.ToInt32(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "numeroFactura")).ToString("D8");
                 lblNroRemitos.Text = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "remitos")).ToString(); //;remitos;
-                lblCondicionVenta.Text = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex,"condicionVenta")).ToString();;
+                lblCondicionVenta.Text = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "condicionVenta")).ToString(); ;
                 lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
                 lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
                 lblNombreApellidoCliente.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialCliente"]);
                 lblNumeroDocumento.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["nroDocumentoCliente"]);
                 //lblFechaVencimientoCAE.Text = Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE")).ToString() == null ? "NO EMITIDO" : Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE")).ToString("dd/MM/yyy");
                 //lblNroCAE.Text = Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae")).ToString() == null ? "NO EMITIDO" : Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae")).ToString();
-                
+
                 pcDetalleComprobante.ShowOnPageLoad = true;
             }
         }
