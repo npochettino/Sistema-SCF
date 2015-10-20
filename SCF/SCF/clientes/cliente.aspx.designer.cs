@@ -49,6 +49,15 @@ namespace SCF.clientes {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtNroDocumento;
         
         /// <summary>
+        /// Control txtCodigoConSCF.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCodigoConSCF;
+        
+        /// <summary>
         /// Control txtMail.
         /// </summary>
         /// <remarks>
@@ -74,15 +83,6 @@ namespace SCF.clientes {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtFax;
-        
-        /// <summary>
-        /// Control txtCodigoConSCF.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCodigoConSCF;
         
         /// <summary>
         /// Control txtBanco.

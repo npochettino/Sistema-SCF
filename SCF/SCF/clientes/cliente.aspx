@@ -86,11 +86,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <%--<div class="form-group">
+                                            <div class="form-group">
+                                                <label class="control-label">Código con SCF</label>
+                                                <input type="text" id="txtCodigoConSCF" runat="server" class="form-control" placeholder="Codigo con SCF">
+                                            </div>
+                                        </div>
+
+                                        <%--<div class="col-md-6">
+                                            <div class="form-group">
                                                 <label class="control-label">Dirección</label>
                                                 <input type="text" id="txtDireccion" runat="server" class="form-control" placeholder="Direccion" required>
-                                            </div>--%>
-                                        </div>
+                                            </div>
+                                        </div>--%>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -99,8 +106,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--/row-->
-                                    <%--<div class="row">
+                                <!--/row-->
+                                <%--<div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Provincia</label>
@@ -116,73 +123,66 @@
                                         </div>
                                         <!--/span-->
                                     </div>--%>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Teléfono</label>
-                                                <input type="text" id="txtTelefono" runat="server" class="form-control" placeholder="Telefono">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Fax</label>
-                                                <input type="text" id="txtFax" runat="server" class="form-control" placeholder="Fax">
-                                            </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Teléfono</label>
+                                            <input type="text" id="txtTelefono" runat="server" class="form-control" placeholder="Telefono">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Código con SCF</label>
-                                                <input type="text" id="txtCodigoConSCF" runat="server" class="form-control" placeholder="Codigo con SCF">
-                                            </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Fax</label>
+                                            <input type="text" id="txtFax" runat="server" class="form-control" placeholder="Fax">
                                         </div>
                                     </div>
-                                    <!--/row-->
-                                    <h3 class="form-section">Datos Bancarios</h3>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Banco</label>
-                                                <input type="text" id="txtBanco" placeholder="Banco" runat="server" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">CBU</label>
-                                                <input type="text" id="txtCBU" runat="server" class="form-control" placeholder="CBU">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nro. de Cuenta</label>
-                                                <input type="text" id="txtNroCuentaBancaria" placeholder="Nro. de Cuenta Bancaria" runat="server" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h3>Observación</h3>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <textarea type="text" id="txtObservacion" placeholder="Observación" runat="server" class="form-control" rows="5"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--/row-->
                                 </div>
-                                <div class="form-actions right">
-                                    <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
-                                    <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" OnClick="btnGuardar_Click" Text="Guardar" />
+
+                                <!--/row-->
+                                <h3 class="form-section">Datos Bancarios</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Banco</label>
+                                            <input type="text" id="txtBanco" placeholder="Banco" runat="server" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">CBU</label>
+                                            <input type="text" id="txtCBU" runat="server" class="form-control" placeholder="CBU">
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
-                            <!-- END FORM-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nro. de Cuenta</label>
+                                            <input type="text" id="txtNroCuentaBancaria" placeholder="Nro. de Cuenta Bancaria" runat="server" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3>Observación</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea type="text" id="txtObservacion" placeholder="Observación" runat="server" class="form-control" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/row-->
                         </div>
+                        <div class="form-actions right">
+                            <button type="button" class="btn default" onclick="location.href='listado.aspx'">Cancelar</button>
+                            <asp:Button type="button" class="btn blue" runat="server" ID="btnGuardar" OnClick="btnGuardar_Click" Text="Guardar" />
+                        </div>
+                        </form>
+                            <!-- END FORM-->
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- END CONTENT -->
 </asp:Content>

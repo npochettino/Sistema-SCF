@@ -55,7 +55,7 @@
                                     <h3 class="form-section">Detalle del Remito</h3>
                                     <!--/row-->
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Nota de Pedido</label>
                                                 <dx:ASPxComboBox ID="cbNotaDePedido" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
@@ -71,8 +71,26 @@
                                             </div>
                                         </div>
                                         <!--/span-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Dirección</label>
+                                                <dx:ASPxComboBox ID="cbDireccion" runat="server" CssClass="form-control"
+                                                    ValueField="codigoDireccion" IncrementalFilteringMode="Contains" ValueType="System.Int32" Width="100%" EnableTheming="True" Theme="Metropolis">
+                                                    <ValidationSettings>
+                                                        <RequiredField IsRequired="true" />
+                                                    </ValidationSettings>
+                                                    <CaptionSettings ShowColon="false" />
+                                                    <Columns>
+                                                        <dx:ListBoxColumn FieldName="codigoDireccion" Visible="false" Width="30%" />
+                                                        <dx:ListBoxColumn FieldName="provincia" Caption="Provincia" />
+                                                        <dx:ListBoxColumn FieldName="ciudad" Caption="Ciudad" />
+                                                        <dx:ListBoxColumn FieldName="direccion" Caption="Dirección" />
+                                                    </Columns>
+                                                </dx:ASPxComboBox>
+                                            </div>
+                                        </div>
                                         <!--/span-->
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Fecha Emisión</label>
                                                 <dx:ASPxDateEdit ID="txtFechaEmision" runat="server" CssClass="form-control" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
@@ -86,7 +104,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Nro Remito</label>
                                                 <dx:ASPxTextBox ID="txtCodigoRemito" runat="server" CssClass="form-control" Width="100%" placeholder="Codigo">
@@ -98,7 +116,7 @@
                                         </div>
                                         <!--/span-->
                                         <!--/span-->
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Transporte</label>
                                                 <dx:ASPxComboBox ID="cbTransporte" runat="server" DropDownStyle="DropDownList" CssClass="form-control"
@@ -106,11 +124,16 @@
                                                     <ValidationSettings>
                                                         <RequiredField IsRequired="true" />
                                                     </ValidationSettings>
+                                                    <CaptionSettings ShowColon="false" RequiredMarkDisplayMode="Hidden" />
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoTransporte" Visible="false" Width="30%" />
                                                         <dx:ListBoxColumn FieldName="razonSocial" Caption="Transporte" />
                                                     </Columns>
                                                 </dx:ASPxComboBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
                                             </div>
                                         </div>
                                     </div>

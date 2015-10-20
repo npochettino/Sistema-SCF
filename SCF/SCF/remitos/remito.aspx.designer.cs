@@ -22,6 +22,15 @@ namespace SCF.remitos {
         protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbNotaDePedido;
         
         /// <summary>
+        /// Control cbDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbDireccion;
+        
+        /// <summary>
         /// Control txtFechaEmision.
         /// </summary>
         /// <remarks>
