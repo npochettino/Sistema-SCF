@@ -133,12 +133,15 @@ namespace SCF.nota_pedido
                             if (gvArticulosSeleccionados.VisibleRowCount < 1)
                                 cbContratoMarco.SelectedItem = cbContratoMarco.Items.FindByValue(getContratoMarco(codigoArticulo));
 
-                            DataRow filaRepetida = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoArticulo"]) == codigoArticulo select t).SingleOrDefault();
+                          
+                            //Se comenta lo de la linea repetida a pedido del cliente
+                            
+                            //DataRow filaRepetida = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoArticulo"]) == codigoArticulo select t).SingleOrDefault();
 
-                            if (filaRepetida == null)
-                            {
-                                tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], 1, 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false, mRow.Row.ItemArray[12]);
-                            }
+                            //if (filaRepetida == null)
+                            //{
+                                tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], tablaItemsNotaDePedido.Rows.Count+1, 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false, mRow.Row.ItemArray[12]);
+                            //}
                         }
                     }
                 }
