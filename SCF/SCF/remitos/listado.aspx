@@ -54,7 +54,7 @@
                                 <div class="btn-set pull-right">
                                     <asp:Button type="button" ID="btnGenerarPDF" runat="server" OnClick="btnGenerarPDF_Click" UseSubmitBehavior="false" class="btn red" Text="PDF" />
                                     <asp:Button type="button" ID="btnEntregada" runat="server" OnClick="btnEntregada_Click" class="btn green" Text="Entregada" CommandName="bb" />
-                                    <asp:Button type="button" ID="btnDevolucion" runat="server" OnClick="btnDevolucion_Click" class="btn red" Text="Devolución" Visible="false"/>
+                                    <asp:Button type="button" ID="btnDevolucion" runat="server" OnClick="btnDevolucion_Click" class="btn red" Text="Devolución" Visible="false" />
                                     <asp:Button type="button" ID="btnVerDetalle" runat="server" OnClick="btnVerDetalle_Click" class="btn green" Text="Detalle" />
                                 </div>
                             </div>
@@ -71,19 +71,23 @@
                                         </dx:GridViewDataDateColumn>
                                         <dx:GridViewDataDateColumn FieldName="razonSocialCliente" VisibleIndex="3" Caption="Cliente">
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="fechaEmision" VisibleIndex="4" Caption="Fecha Emision">
+                                        <dx:GridViewDataDateColumn FieldName="codigoDireccion" VisibleIndex="4" Visible="false">
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataTextColumn FieldName="numeroNotaDePedido" VisibleIndex="5" Caption="Nota de pedido">
+                                        <dx:GridViewDataDateColumn FieldName="direccion" VisibleIndex="5" Caption="Dirección">
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="fechaEmision" VisibleIndex="6" Caption="Fecha Emision">
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataTextColumn FieldName="numeroNotaDePedido" VisibleIndex="7" Caption="Nota de pedido">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="numeroRemito" VisibleIndex="6" Caption="Numero Remito">
+                                        <dx:GridViewDataTextColumn FieldName="numeroRemito" VisibleIndex="8" Caption="Numero Remito">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="codigoEstado" VisibleIndex="7" Visible="false">
+                                        <dx:GridViewDataTextColumn FieldName="codigoEstado" VisibleIndex="9" Visible="false">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="razonSocialTransporte" VisibleIndex="7" Visible="true" Caption="Transporte">
+                                        <dx:GridViewDataTextColumn FieldName="razonSocialTransporte" VisibleIndex="10" Visible="true" Caption="Transporte">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="codigoTransporte" VisibleIndex="7" Visible="false">
+                                        <dx:GridViewDataTextColumn FieldName="codigoTransporte" VisibleIndex="11" Visible="false">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="8" Caption="Observaciones">
+                                        <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="12" Caption="Observaciones">
                                         </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />

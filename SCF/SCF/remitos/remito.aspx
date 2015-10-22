@@ -83,8 +83,8 @@
                                                     <Columns>
                                                         <dx:ListBoxColumn FieldName="codigoDireccion" Visible="false" Width="30%" />
                                                         <dx:ListBoxColumn FieldName="provincia" Caption="Provincia" />
-                                                        <dx:ListBoxColumn FieldName="ciudad" Caption="Ciudad" />
-                                                        <dx:ListBoxColumn FieldName="direccion" Caption="Dirección" />
+                                                        <dx:ListBoxColumn FieldName="localidad" Caption="Ciudad" />
+                                                        <dx:ListBoxColumn FieldName="descripcion" Caption="Dirección" />
                                                     </Columns>
                                                 </dx:ASPxComboBox>
                                             </div>

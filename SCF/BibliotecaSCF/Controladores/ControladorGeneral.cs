@@ -1051,7 +1051,6 @@ namespace BibliotecaSCF.Controladores
                 tablaEntrega.Columns.Add("razonSocialCliente");
                 tablaEntrega.Columns.Add("cuitCliente");//Agrego nro documento
                 tablaEntrega.Columns.Add("codigoSCF");
-                tablaEntrega.Columns.Add("direccion");
                 tablaEntrega.Columns.Add("fechaEmision");
                 tablaEntrega.Columns.Add("numeroNotaDePedido");
                 tablaEntrega.Columns.Add("numeroRemito");
@@ -1059,6 +1058,8 @@ namespace BibliotecaSCF.Controladores
                 tablaEntrega.Columns.Add("observaciones");
                 tablaEntrega.Columns.Add("codigoTransporte");
                 tablaEntrega.Columns.Add("razonSocialTransporte");
+                tablaEntrega.Columns.Add("direccion");
+                tablaEntrega.Columns.Add("codigoDireccion");
 
                 List<Entrega> listaEntregas = CatalogoEntrega.RecuperarTodos(nhSesion);
 
@@ -1066,9 +1067,9 @@ namespace BibliotecaSCF.Controladores
                 {
                     dt.Rows.Add(r.Codigo, r.NotaDePedido.Codigo, r.NotaDePedido.Cliente.Codigo,
                         r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.NotaDePedido.Cliente.CodigoSCF,
-                        r.NotaDePedido.Cliente.Direcciones.Count > 0 ? r.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty, 
                         r.FechaEmision.ToString("dd/MM/yyyy"), r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
-                        r.CodigoEstado, r.Observaciones, r.Transporte.Codigo, r.Transporte.RazonSocial); return dt;
+                        r.CodigoEstado, r.Observaciones, r.Transporte.Codigo, r.Transporte.RazonSocial,
+                        r.Direccion.Descripcion + ", " + r.Direccion.Localidad + ", " + r.Direccion.Provincia, r.Direccion.Codigo); return dt;
                 });
 
                 return tablaEntrega;
@@ -1151,7 +1152,7 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void InsertarActualizarEntrega(int codigoEntrega, DateTime fechaEmision, int codigoNotaPedido, int numeroRemito, string observaciones, DataTable tablaItemsEntrega, int codigoTransporte)
+        public static void InsertarActualizarEntrega(int codigoEntrega, DateTime fechaEmision, int codigoNotaPedido, int numeroRemito, string observaciones, DataTable tablaItemsEntrega, int codigoTransporte, int codigoDireccion)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
             ITransaction tran = nhSesion.BeginTransaction();
@@ -1176,6 +1177,7 @@ namespace BibliotecaSCF.Controladores
                 entrega.NumeroRemito = numeroRemito;
                 entrega.Observaciones = observaciones;
                 entrega.Transporte = CatalogoTransporte.RecuperarPorCodigo(codigoTransporte, nhSesion);
+                entrega.Direccion = CatalogoDireccion.RecuperarPorCodigo(codigoDireccion, nhSesion);
 
                 foreach (DataRow filaItem in tablaItemsEntrega.Rows)
                 {
@@ -2944,7 +2946,37 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
+        public static DataTable RecuperarDireccionesPorNotaDePedido(int codigoNotaDePedido)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaDirecciones = new DataTable();
+                tablaDirecciones.Columns.Add("codigoDireccion");
+                tablaDirecciones.Columns.Add("descripcion");
+                tablaDirecciones.Columns.Add("localidad");
+                tablaDirecciones.Columns.Add("provincia");
+
+                Cliente cl = CatalogoNotaDePedido.RecuperarPorCodigo(codigoNotaDePedido, nhSesion).Cliente;
+
+                cl.Direcciones.Aggregate(tablaDirecciones, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.Localidad, r.Provincia); return dt; });
+
+                return tablaDirecciones;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
         #endregion
+
 
     }
 }

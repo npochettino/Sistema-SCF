@@ -76,6 +76,7 @@
     <Compile Include="Catalogos\CatalogoConcepto.cs" />
     <Compile Include="Catalogos\CatalogoContratoMarco.cs" />
     <Compile Include="Catalogos\CatalogoDatosEmpresa.cs" />
+    <Compile Include="Catalogos\CatalogoDireccion.cs" />
     <Compile Include="Catalogos\CatalogoEntrega.cs" />
     <Compile Include="Catalogos\CatalogoFactura.cs" />
     <Compile Include="Catalogos\CatalogoGenerico.cs" />

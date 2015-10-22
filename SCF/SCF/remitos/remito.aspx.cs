@@ -47,6 +47,10 @@ namespace SCF.remitos
                     gvItemsEntrega.DataSource = tablaItemsEntrega;
                     gvItemsEntrega.DataBind();
 
+                    cbDireccion.DataSource = ControladorGeneral.RecuperarDireccionesPorNotaDePedido(codigoNotaDePedido);
+                    cbDireccion.DataBind();
+                    cbDireccion.SelectedItem = cbDireccion.Items.FindByValue(Convert.ToInt32(tablaEntrega.Rows[0]["codigoDireccion"]));
+
                     Session["tablaItemsEntrega"] = tablaItemsEntrega;
                 }
                 else
@@ -68,13 +72,24 @@ namespace SCF.remitos
                     DataTable tablaEntrega = (DataTable)Session["tablaEntrega"];
                     cbNotaDePedido.SelectedItem = cbNotaDePedido.Items.FindByValue(Convert.ToInt32(tablaEntrega.Rows[0]["codigoNotaDePedido"]));
                     cbNotaDePedido.Value = Convert.ToInt32(tablaEntrega.Rows[0]["codigoNotaDePedido"]);
-                    cbTransporte.SelectedItem = cbTransporte.Items.FindByValue(Convert.ToInt32(tablaEntrega.Rows[0]["codigoTransporte"]));
-                    cbTransporte.Value = Convert.ToInt32(tablaEntrega.Rows[0]["codigoTransporte"]);
+                    //cbTransporte.SelectedItem = cbTransporte.Items.FindByValue(Convert.ToInt32(tablaEntrega.Rows[0]["codigoTransporte"]));
+                    //cbTransporte.Value = Convert.ToInt32(tablaEntrega.Rows[0]["codigoTransporte"]);
+
+                    cbDireccion.DataSource = ControladorGeneral.RecuperarDireccionesPorNotaDePedido(Convert.ToInt32(tablaEntrega.Rows[0]["codigoNotaDePedido"]));
+                    cbDireccion.DataBind();
+                    //cbDireccion.SelectedItem = cbDireccion.Items.FindByValue(Convert.ToInt32(tablaEntrega.Rows[0]["codigoDireccion"]));
                 }
                 else
                 {
                     cbNotaDePedido.DataSource = ControladorGeneral.RecuperarTodasNotasDePedido(true);
                     cbNotaDePedido.DataBind();
+
+                    if (cbNotaDePedido.SelectedItem != null)
+                    {
+                        int codigoNotaDePedido = Convert.ToInt32(cbNotaDePedido.SelectedItem.Value);
+                        cbDireccion.DataSource = ControladorGeneral.RecuperarDireccionesPorNotaDePedido(codigoNotaDePedido);
+                        cbDireccion.DataBind();
+                    }
                 }
             }
         }
@@ -187,14 +202,14 @@ namespace SCF.remitos
                 codigoEntrega = Convert.ToInt32(tablaEntrega.Rows[0]["codigoEntrega"]);
             }
 
-            if (txtFechaEmision.Value.ToString() == "" || cbNotaDePedido.SelectedIndex < 0 || txtCodigoRemito.Text == "" || tablaItemsEntrega.Rows.Count == 0 || cbTransporte.SelectedIndex < 0)
+            if (txtFechaEmision.Value.ToString() == "" || cbNotaDePedido.SelectedIndex < 0 || txtCodigoRemito.Text == "" || tablaItemsEntrega.Rows.Count == 0 || cbTransporte.SelectedIndex < 0 || cbDireccion.SelectedIndex < 0)
             {
                 pcError.ShowOnPageLoad = true;
                 lblError.Text = "Debe completar todos los campos y elegir al menos un artículo";
             }
             else
             {
-                ControladorGeneral.InsertarActualizarEntrega(codigoEntrega, Convert.ToDateTime(txtFechaEmision.Value), Convert.ToInt32(cbNotaDePedido.Value), Convert.ToInt32(txtCodigoRemito.Text), txtObservacion.InnerText, tablaItemsEntrega, Convert.ToInt32(cbTransporte.Value));
+                ControladorGeneral.InsertarActualizarEntrega(codigoEntrega, Convert.ToDateTime(txtFechaEmision.Value), Convert.ToInt32(cbNotaDePedido.Value), Convert.ToInt32(txtCodigoRemito.Text), txtObservacion.InnerText, tablaItemsEntrega, Convert.ToInt32(cbTransporte.Value), Convert.ToInt32(cbDireccion.SelectedItem.Value));
 
                 Response.Redirect("listado.aspx");
             }
@@ -203,6 +218,12 @@ namespace SCF.remitos
         protected void cbNotaDePedido_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarGrillaItemsNotaDePedido();
+            if (cbNotaDePedido.SelectedItem != null)
+            {
+                int codigoNotaDePedido = Convert.ToInt32(cbNotaDePedido.SelectedItem.Value);
+                cbDireccion.DataSource = ControladorGeneral.RecuperarDireccionesPorNotaDePedido(codigoNotaDePedido);
+                cbDireccion.DataBind();
+            }
         }
 
         private void CargarGrillaItemsNotaDePedido()

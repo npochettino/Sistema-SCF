@@ -67,6 +67,7 @@ namespace SCF.remitos
             int codigoEstado = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoEstado"));
             string observaciones = gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "observaciones").ToString();
             int codigoTransporte = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoTransporte"));
+            int codigoDireccion = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoDireccion"));
 
             DataTable tablaEntrega = new DataTable();
             tablaEntrega.Columns.Add("codigoEntrega");
@@ -78,8 +79,9 @@ namespace SCF.remitos
             tablaEntrega.Columns.Add("codigoEstado");
             tablaEntrega.Columns.Add("observaciones");
             tablaEntrega.Columns.Add("codigoTransporte");
+            tablaEntrega.Columns.Add("codigoDireccion");
 
-            tablaEntrega.Rows.Add(new object[] { codigoEntrega, codigoNotaDePedido, codigoCliente, razonSocialCliente, fechaEmision, numeroRemito, codigoEstado, observaciones, codigoTransporte });
+            tablaEntrega.Rows.Add(new object[] { codigoEntrega, codigoNotaDePedido, codigoCliente, razonSocialCliente, fechaEmision, numeroRemito, codigoEstado, observaciones, codigoTransporte, codigoDireccion });
 
             Session["tablaEntrega"] = tablaEntrega;
 

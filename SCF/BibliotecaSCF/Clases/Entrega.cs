@@ -22,5 +22,6 @@ namespace BibliotecaSCF.Clases
         public virtual NotaDePedido NotaDePedido { get; set; }
         public virtual Transporte Transporte { get; set; }
         public virtual IList<ItemEntrega> ItemsEntrega { get; set; }
+        public virtual Direccion Direccion { get; set; }
     }
 }
