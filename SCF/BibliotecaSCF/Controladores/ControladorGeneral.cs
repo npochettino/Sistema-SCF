@@ -1071,7 +1071,7 @@ namespace BibliotecaSCF.Controladores
                         r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.NotaDePedido.Cliente.CodigoSCF,
                         r.FechaEmision.ToString("dd/MM/yyyy"), r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
                         r.CodigoEstado, r.Observaciones, r.Transporte.Codigo, r.Transporte.RazonSocial,
-                        r.Direccion.Descripcion + ", " + r.Direccion.Localidad + ", " + r.Direccion.Provincia, r.Direccion.Codigo,r.Direccion.Descripcion,r.Direccion.Localidad); return dt;
+                        r.Direccion.Descripcion + ", " + r.Direccion.Localidad + ", " + r.Direccion.Provincia, r.Direccion.Codigo, r.Direccion.Descripcion, r.Direccion.Localidad); return dt;
                 });
 
                 return tablaEntrega;
@@ -1461,7 +1461,7 @@ namespace BibliotecaSCF.Controladores
                         entrega.ItemsEntrega.Aggregate(tablaItemsEntrega, (dt, r) =>
                         {
                             dt.Rows.Add(entrega.Codigo, entrega.NumeroRemito, r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.CantidadAEntregar,
-                                r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo,"Posición:" + r.ItemNotaDePedido.Posicion,
+                                r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, "Posición:" + r.ItemNotaDePedido.Posicion,
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
                                 entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar), 2),
@@ -2198,13 +2198,16 @@ namespace BibliotecaSCF.Controladores
                 tablaFacturas.Columns.Add("total");
                 tablaFacturas.Columns.Add("cae");
                 tablaFacturas.Columns.Add("fechaVencimientoCAE");
+                tablaFacturas.Columns.Add("codigoDireccion");
+                tablaFacturas.Columns.Add("direccion");
 
                 Factura factura = CatalogoFactura.RecuperarUltima(nhSesion);
 
                 if (factura != null)
                 {
                     tablaFacturas.Rows.Add(new object[] { factura.Codigo, factura.NumeroFactura,factura.FechaFacturacion,factura.TipoComprobante.Descripcion, factura.Moneda.Descripcion, 
-                    factura.Concepto.Descripcion, factura.Iva.Descripcion,factura.Subtotal,factura.Total,factura.Cae,factura.FechaVencimiento });
+                    factura.Concepto.Descripcion, factura.Iva.Descripcion,factura.Subtotal,factura.Total,factura.Cae,factura.FechaVencimiento, factura.Entregas[0].Direccion.Codigo,
+                    factura.Entregas[0].Direccion.Descripcion +", "+factura.Entregas[0].Direccion.Localidad+", "+factura.Entregas[0].Direccion.Provincia});
                 }
 
                 return tablaFacturas;
@@ -2240,8 +2243,8 @@ namespace BibliotecaSCF.Controladores
                 tablaFacturas.Columns.Add("fechaVencimientoCAE");
                 tablaFacturas.Columns.Add("remitos");
                 tablaFacturas.Columns.Add("condicionVenta");
-                tablaFacturas.Columns.Add("domicilio");
-                tablaFacturas.Columns.Add("localidad");
+                tablaFacturas.Columns.Add("codigoDireccion");
+                tablaFacturas.Columns.Add("direccion");
 
                 List<Factura> listaFacturas = CatalogoFactura.RecuperarTodos(nhSesion);
 
@@ -2249,7 +2252,8 @@ namespace BibliotecaSCF.Controladores
                 {
                     dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion, r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
                         r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento, string.Join(", ", r.Entregas.Select(x => x.NumeroRemito)),
-                        r.CondicionVenta, r.Entregas.Select(x => x.Direccion.Descripcion), r.Entregas.Select(x => x.Direccion.Localidad)); return dt;
+                        r.CondicionVenta, r.Entregas[0].Direccion.Codigo, r.Entregas[0].Direccion.Descripcion + ", " + r.Entregas[0].Direccion.Localidad + ", " +
+                        r.Entregas[0].Direccion.Provincia); return dt;
                 });
 
                 return tablaFacturas;
