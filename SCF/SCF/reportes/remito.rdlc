@@ -215,7 +215,10 @@
               <Width>2.11668cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>15.05478cm</Width>
+              <Width>10.05416cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>5.00062cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.02375cm</Width>
@@ -287,6 +290,37 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="posicion">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!posicion.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>posicion</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="cantidad">
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -321,6 +355,7 @@
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
+            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -452,6 +487,10 @@
         </Field>
         <Field Name="descripcion">
           <DataField>descripcion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="posicion">
+          <DataField>posicion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="cantidad">

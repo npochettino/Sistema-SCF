@@ -102,6 +102,12 @@
                                         <dx:GridViewDataDateColumn FieldName="condicionVenta" Visible="false" VisibleIndex="9" Caption="Condición Venta">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="domicilio" Visible="false" VisibleIndex="9" Caption="Condición Venta">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataDateColumn FieldName="localidad" Visible="false" VisibleIndex="9" Caption="Condición Venta">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />

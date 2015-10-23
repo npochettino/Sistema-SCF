@@ -117,13 +117,13 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox12">
+                    <Textbox Name="posicion">
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Fields!posicion.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -132,7 +132,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox12</rd:DefaultName>
+                      <rd:DefaultName>posicion</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -743,6 +743,10 @@
         </Field>
         <Field Name="descripcionCorta">
           <DataField>descripcionCorta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="posicion">
+          <DataField>posicion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="cantidad">

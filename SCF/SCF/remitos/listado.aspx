@@ -89,6 +89,10 @@
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="observaciones" VisibleIndex="12" Caption="Observaciones">
                                         </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="domicilio" VisibleIndex="12" Caption="Observaciones" Visible="false">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="localidad" VisibleIndex="12" Caption="Observaciones" Visible="false">
+                                        </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />

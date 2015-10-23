@@ -1060,6 +1060,8 @@ namespace BibliotecaSCF.Controladores
                 tablaEntrega.Columns.Add("razonSocialTransporte");
                 tablaEntrega.Columns.Add("direccion");
                 tablaEntrega.Columns.Add("codigoDireccion");
+                tablaEntrega.Columns.Add("domicilio");
+                tablaEntrega.Columns.Add("localidad");
 
                 List<Entrega> listaEntregas = CatalogoEntrega.RecuperarTodos(nhSesion);
 
@@ -1069,7 +1071,7 @@ namespace BibliotecaSCF.Controladores
                         r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.NotaDePedido.Cliente.CodigoSCF,
                         r.FechaEmision.ToString("dd/MM/yyyy"), r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
                         r.CodigoEstado, r.Observaciones, r.Transporte.Codigo, r.Transporte.RazonSocial,
-                        r.Direccion.Descripcion + ", " + r.Direccion.Localidad + ", " + r.Direccion.Provincia, r.Direccion.Codigo); return dt;
+                        r.Direccion.Descripcion + ", " + r.Direccion.Localidad + ", " + r.Direccion.Provincia, r.Direccion.Codigo,r.Direccion.Descripcion,r.Direccion.Localidad); return dt;
                 });
 
                 return tablaEntrega;
@@ -1399,7 +1401,7 @@ namespace BibliotecaSCF.Controladores
                     entrega.ItemsEntrega.Aggregate(tablaItemsEntrega, (dt, r) =>
                     {
                         dt.Rows.Add(r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.CantidadAEntregar,
-                            r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, r.ItemNotaDePedido.Posicion,
+                            r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, "Posición:" + r.ItemNotaDePedido.Posicion,
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
                             entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar), 2),
@@ -1459,7 +1461,7 @@ namespace BibliotecaSCF.Controladores
                         entrega.ItemsEntrega.Aggregate(tablaItemsEntrega, (dt, r) =>
                         {
                             dt.Rows.Add(entrega.Codigo, entrega.NumeroRemito, r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.CantidadAEntregar,
-                                r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, r.ItemNotaDePedido.Posicion,
+                                r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo,"Posición:" + r.ItemNotaDePedido.Posicion,
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
                                 entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar), 2),
@@ -2238,7 +2240,8 @@ namespace BibliotecaSCF.Controladores
                 tablaFacturas.Columns.Add("fechaVencimientoCAE");
                 tablaFacturas.Columns.Add("remitos");
                 tablaFacturas.Columns.Add("condicionVenta");
-
+                tablaFacturas.Columns.Add("domicilio");
+                tablaFacturas.Columns.Add("localidad");
 
                 List<Factura> listaFacturas = CatalogoFactura.RecuperarTodos(nhSesion);
 
@@ -2246,7 +2249,7 @@ namespace BibliotecaSCF.Controladores
                 {
                     dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion, r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
                         r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento, string.Join(", ", r.Entregas.Select(x => x.NumeroRemito)),
-                        r.CondicionVenta); return dt;
+                        r.CondicionVenta, r.Entregas.Select(x => x.Direccion.Descripcion), r.Entregas.Select(x => x.Direccion.Localidad)); return dt;
                 });
 
                 return tablaFacturas;
@@ -2921,7 +2924,7 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void EliminarDireccionPorCliente(int codigoCliente, int codigoDireccion)
+        public static string EliminarDireccionPorCliente(int codigoCliente, int codigoDireccion)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -2934,6 +2937,7 @@ namespace BibliotecaSCF.Controladores
                 cl.Direcciones.Remove(dir);
 
                 CatalogoCliente.InsertarActualizar(cl, nhSesion);
+                return "ok";
             }
             catch (Exception ex)
             {

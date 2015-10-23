@@ -11,7 +11,7 @@ using Microsoft.Reporting.WebForms;
 namespace SCF.remitos
 {
     public partial class generar_pdf : System.Web.UI.Page
-    {
+    {        
         dsItemsRemito dsReporte = new dsItemsRemito();
         DataTable tablaReporte = new DataTable();
 
@@ -30,14 +30,14 @@ namespace SCF.remitos
             rvRemito.LocalReport.ReportPath = Server.MapPath("..") + "\\reportes\\remito.rdlc";
             ReportParameter txtNroRemito = new ReportParameter("txtNroRemito", Convert.ToInt32(dtRemitoActual.Rows[0]["numeroRemito"]).ToString("D8"));
             ReportParameter txtCliente = new ReportParameter("txtCliente", Convert.ToString(dtRemitoActual.Rows[0]["razonSocialCliente"]));
-            ReportParameter txtDomicilio = new ReportParameter("txtDomicilio", Convert.ToString(dtItemsRemitoActual.Rows[0]["direccionCliente"]));
-            ReportParameter txtLocalidad = new ReportParameter("txtLocalidad", Convert.ToString(dtItemsRemitoActual.Rows[0]["localidadCliente"]));
+            ReportParameter txtDomicilio = new ReportParameter("txtDomicilio", Convert.ToString(dtRemitoActual.Rows[0]["domicilio"]));
+            ReportParameter txtLocalidad = new ReportParameter("txtLocalidad", Convert.ToString(dtRemitoActual.Rows[0]["localidad"]));
             ReportParameter txtNroDocumento = new ReportParameter("txtNroDocumento", Convert.ToString(dtItemsRemitoActual.Rows[0]["nroDocumentoCliente"]));
             ReportParameter txtCondicionVenta = new ReportParameter("txtCondicionVenta", "15 días");
             ReportParameter txtFechaRemito = new ReportParameter("txtFechaRemito", Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaEmision"]).ToString("dd/MM/yyyy"));
             ReportParameter txtRespInsc = new ReportParameter("txtRespInsc", "X");
             ReportParameter txtTransporte = new ReportParameter("txtTransporte", Convert.ToString(dtRemitoActual.Rows[0]["razonSocialTransporte"]));
-
+            
             this.rvRemito.LocalReport.SetParameters(new ReportParameter[] { txtNroRemito,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,
             txtCondicionVenta,txtFechaRemito,txtRespInsc, txtTransporte});
 
@@ -49,6 +49,7 @@ namespace SCF.remitos
                 DataRow filaReporte = dsReporte.DataTable1.NewRow();
                 filaReporte["codigoArticulo"] = fila["codigoArticuloCliente"];
                 filaReporte["descripcion"] = fila["descripcionCorta"];
+                filaReporte["posicion"] = fila["posicion"];
                 filaReporte["cantidad"] = fila["cantidad"];
                 
                 dsReporte.DataTable1.Rows.Add(filaReporte);

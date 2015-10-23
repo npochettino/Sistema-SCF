@@ -283,6 +283,8 @@ namespace SCF {
             
             private global::System.Data.DataColumn columndescripcionCorta;
             
+            private global::System.Data.DataColumn columnposicion;
+            
             private global::System.Data.DataColumn columncantidad;
             
             private global::System.Data.DataColumn columnprecioUnitario;
@@ -335,6 +337,14 @@ namespace SCF {
             public global::System.Data.DataColumn descripcionCortaColumn {
                 get {
                     return this.columndescripcionCorta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn posicionColumn {
+                get {
+                    return this.columnposicion;
                 }
             }
             
@@ -399,11 +409,12 @@ namespace SCF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string codigoArticulo, string descripcionCorta, string cantidad, string precioUnitario, string precioTotal) {
+            public DataTable1Row AddDataTable1Row(string codigoArticulo, string descripcionCorta, string posicion, string cantidad, string precioUnitario, string precioTotal) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         codigoArticulo,
                         descripcionCorta,
+                        posicion,
                         cantidad,
                         precioUnitario,
                         precioTotal};
@@ -431,6 +442,7 @@ namespace SCF {
             internal void InitVars() {
                 this.columncodigoArticulo = base.Columns["codigoArticulo"];
                 this.columndescripcionCorta = base.Columns["descripcionCorta"];
+                this.columnposicion = base.Columns["posicion"];
                 this.columncantidad = base.Columns["cantidad"];
                 this.columnprecioUnitario = base.Columns["precioUnitario"];
                 this.columnprecioTotal = base.Columns["precioTotal"];
@@ -443,6 +455,8 @@ namespace SCF {
                 base.Columns.Add(this.columncodigoArticulo);
                 this.columndescripcionCorta = new global::System.Data.DataColumn("descripcionCorta", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndescripcionCorta);
+                this.columnposicion = new global::System.Data.DataColumn("posicion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnposicion);
                 this.columncantidad = new global::System.Data.DataColumn("cantidad", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncantidad);
                 this.columnprecioUnitario = new global::System.Data.DataColumn("precioUnitario", typeof(string), null, global::System.Data.MappingType.Element);
@@ -623,6 +637,22 @@ namespace SCF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string posicion {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.posicionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'posicion\' de la tabla \'DataTable1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.posicionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string cantidad {
                 get {
                     try {
@@ -691,6 +721,18 @@ namespace SCF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetdescripcionCortaNull() {
                 this[this.tableDataTable1.descripcionCortaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsposicionNull() {
+                return this.IsNull(this.tableDataTable1.posicionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetposicionNull() {
+                this[this.tableDataTable1.posicionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

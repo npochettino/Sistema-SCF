@@ -188,7 +188,7 @@ namespace SCF.clientes
             {
                 try
                 {
-                    string rta = "";// ControladorGeneral.EliminarDireccion(int.Parse(gvDireccionCliente.GetRowValues(gvDireccionCliente.FocusedRowIndex, "codigoDireccionCliente").ToString()));
+                    string rta = ControladorGeneral.EliminarDireccionPorCliente(Convert.ToInt32(gvClientes.GetRowValues(gvClientes.FocusedRowIndex, "codigoCliente")), int.Parse(gvDireccionCliente.GetRowValues(gvDireccionCliente.FocusedRowIndex, "codigoDireccionCliente").ToString()));
                     pcError.ShowOnPageLoad = true;
 
                     if (rta == "ok")

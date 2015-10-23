@@ -50,6 +50,8 @@ namespace SCF.facturas
             DateTime fechaVencimientoCAE = Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE"));
             string condicionVenta = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "condicionVenta").ToString();
             string remitos = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "remitos")).ToString();
+            string domicilio = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "domicilio")).ToString();
+            string localidad = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "localidad")).ToString();
 
             DataTable tablaFactura = new DataTable();
             tablaFactura.Columns.Add("codigoFactura");
@@ -65,9 +67,11 @@ namespace SCF.facturas
             tablaFactura.Columns.Add("fechaVencimientoCAE");
             tablaFactura.Columns.Add("condicionVenta");
             tablaFactura.Columns.Add("remitos");
+            tablaFactura.Columns.Add("domicilio");
+            tablaFactura.Columns.Add("localidad");
 
             tablaFactura.Rows.Add(new object[] { codigoFactura, numeroFactura, fechaFacturacion, descripcionTipoComprobante, descripcionTipoMoneda, descripcionConcepto, descripcionIVA, subtotal,
-            total,cae,fechaVencimientoCAE,condicionVenta,remitos});
+            total,cae,fechaVencimientoCAE,condicionVenta,remitos,domicilio,localidad});
 
             return tablaFactura;
         }

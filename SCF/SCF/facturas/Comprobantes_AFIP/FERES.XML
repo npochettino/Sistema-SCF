@@ -4,22 +4,28 @@
     <Cuit>27296804385</Cuit>
     <PtoVta>2</PtoVta>
     <CbteTipo>1</CbteTipo>
-    <FchProceso>20151014235023</FchProceso>
+    <FchProceso>20151022201311</FchProceso>
     <CantReg>1</CantReg>
-    <Resultado>A</Resultado>
+    <Resultado>R</Resultado>
     <Reproceso>N</Reproceso>
   </FeCabResp>
   <FeDetResp xmlns="http://ar.gov.afip.dif.FEV1/">
     <FECAEDetResponse>
       <Concepto>1</Concepto>
       <DocTipo>80</DocTipo>
-      <DocNro>30516888241</DocNro>
-      <CbteDesde>12</CbteDesde>
-      <CbteHasta>12</CbteHasta>
-      <CbteFch>20151014</CbteFch>
-      <Resultado>A</Resultado>
-      <CAE>65415320130517</CAE>
-      <CAEFchVto>20151024</CAEFchVto>
+      <DocNro>1</DocNro>
+      <CbteDesde>13</CbteDesde>
+      <CbteHasta>13</CbteHasta>
+      <CbteFch>20151022</CbteFch>
+      <Resultado>R</Resultado>
+      <Observaciones>
+        <Obs>
+          <Code>10015</Code>
+          <Msg>El campo  DocNro es invalido.</Msg>
+        </Obs>
+      </Observaciones>
+      <CAE />
+      <CAEFchVto />
     </FECAEDetResponse>
   </FeDetResp>
 </FECAEResponse>

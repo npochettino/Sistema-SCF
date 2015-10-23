@@ -20,7 +20,7 @@ namespace SCF {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("dsRemito")]
+    [global::System.Xml.Serialization.XmlRootAttribute("dsItemsRemito")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class dsItemsRemito : global::System.Data.DataSet {
         
@@ -199,9 +199,9 @@ namespace SCF {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "dsRemito";
+            this.DataSetName = "dsItemsRemito";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/dsRemito.xsd";
+            this.Namespace = "http://tempuri.org/dsItemsRemito.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableDataTable1 = new DataTable1DataTable();
@@ -283,6 +283,8 @@ namespace SCF {
             
             private global::System.Data.DataColumn columndescripcion;
             
+            private global::System.Data.DataColumn columnposicion;
+            
             private global::System.Data.DataColumn columncantidad;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -336,6 +338,14 @@ namespace SCF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn posicionColumn {
+                get {
+                    return this.columnposicion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn cantidadColumn {
                 get {
                     return this.columncantidad;
@@ -379,11 +389,12 @@ namespace SCF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string codigoArticulo, string descripcion, string cantidad) {
+            public DataTable1Row AddDataTable1Row(string codigoArticulo, string descripcion, string posicion, string cantidad) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         codigoArticulo,
                         descripcion,
+                        posicion,
                         cantidad};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
@@ -409,6 +420,7 @@ namespace SCF {
             internal void InitVars() {
                 this.columncodigoArticulo = base.Columns["codigoArticulo"];
                 this.columndescripcion = base.Columns["descripcion"];
+                this.columnposicion = base.Columns["posicion"];
                 this.columncantidad = base.Columns["cantidad"];
             }
             
@@ -419,6 +431,8 @@ namespace SCF {
                 base.Columns.Add(this.columncodigoArticulo);
                 this.columndescripcion = new global::System.Data.DataColumn("descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndescripcion);
+                this.columnposicion = new global::System.Data.DataColumn("posicion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnposicion);
                 this.columncantidad = new global::System.Data.DataColumn("cantidad", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncantidad);
             }
@@ -595,6 +609,22 @@ namespace SCF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string posicion {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.posicionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'posicion\' de la tabla \'DataTable1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.posicionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string cantidad {
                 get {
                     try {
@@ -631,6 +661,18 @@ namespace SCF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetdescripcionNull() {
                 this[this.tableDataTable1.descripcionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsposicionNull() {
+                return this.IsNull(this.tableDataTable1.posicionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetposicionNull() {
+                this[this.tableDataTable1.posicionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

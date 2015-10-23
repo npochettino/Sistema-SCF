@@ -366,7 +366,7 @@
                                                     <div class="col-md-12">
                                                         <div class="btn-set pull-left" style="padding-bottom: 5px">
                                                             <button type="button" onclick="ShowNuevaRelacionDireccionCliente()" class="btn blue">Nuevo</button>
-                                                            <button type="button" onclick="ShowEliminarRelacionDireccionCliente()" class="btn red">Eliminar</button>
+                                                            <%--<button type="button" onclick="ShowEliminarRelacionDireccionCliente()" class="btn red">Eliminar</button>--%>
                                                         </div>
                                                         <div class="form-group">
                                                             <dx:ASPxGridView ID="gvDireccionCliente" ClientInstanceName="gvDireccionCliente" runat="server" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" EnableTheming="True">
@@ -384,6 +384,9 @@
                                                                         <Settings AutoFilterCondition="Contains" />
                                                                     </dx:GridViewDataTextColumn>
                                                                 </Columns>
+                                                                <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
+                                                                <SettingsBehavior AllowFocusedRow="True" />
+                                                                <Settings ShowFilterRow="True" />
                                                             </dx:ASPxGridView>
                                                         </div>
                                                     </div>

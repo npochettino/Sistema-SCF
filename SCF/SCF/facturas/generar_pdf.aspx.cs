@@ -38,8 +38,8 @@ namespace SCF.facturas
             ReportParameter txtRespInsc = new ReportParameter("txtRespInsc", "X");
             ReportParameter txtNroFactura = new ReportParameter("txtNroFactura", "002 - " + Convert.ToInt32(dtFacturaActual.Rows[0]["numeroFactura"]).ToString("D8").Trim());
             ReportParameter txtCliente = new ReportParameter("txtCliente", Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialCliente"]).Trim());
-            ReportParameter txtDomicilio = new ReportParameter("txtDomicilio", Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]).Trim());
-            ReportParameter txtLocalidad = new ReportParameter("txtLocalidad", Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]).Trim());
+            ReportParameter txtDomicilio = new ReportParameter("txtDomicilio", Convert.ToString(dtFacturaActual.Rows[0]["domicilio"]).Trim());
+            ReportParameter txtLocalidad = new ReportParameter("txtLocalidad", Convert.ToString(dtFacturaActual.Rows[0]["localidad"]).Trim());
             ReportParameter txtNroDocumento = new ReportParameter("txtNroDocumento", Convert.ToString(dtItemsFacturaActual.Rows[0]["nroDocumentoCliente"]).Trim());
             ReportParameter txtNroRemitos = new ReportParameter("txtNroRemitos", Convert.ToString(dtFacturaActual.Rows[0]["remitos"]).Trim());
             ReportParameter txtCondicionVenta = new ReportParameter("txtCondicionVenta", Convert.ToString(dtFacturaActual.Rows[0]["condicionVenta"]).Trim());
@@ -81,6 +81,7 @@ namespace SCF.facturas
                 DataRow filaReporte = dsReporte.DataTable1.NewRow();
                 filaReporte["codigoArticulo"] = fila["codigoArticulo"];
                 filaReporte["descripcionCorta"] = fila["descripcionCorta"];
+                filaReporte["posicion"] = fila["posicion"];
                 filaReporte["cantidad"] = fila["cantidad"];
                 filaReporte["precioUnitario"] = fila["precioUnitario"];
                 filaReporte["precioTotal"] = fila["precioTotal"];
