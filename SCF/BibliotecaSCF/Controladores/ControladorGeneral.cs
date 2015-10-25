@@ -2245,6 +2245,8 @@ namespace BibliotecaSCF.Controladores
                 tablaFacturas.Columns.Add("condicionVenta");
                 tablaFacturas.Columns.Add("codigoDireccion");
                 tablaFacturas.Columns.Add("direccion");
+                tablaFacturas.Columns.Add("domicilio");
+                tablaFacturas.Columns.Add("localidad");
 
                 List<Factura> listaFacturas = CatalogoFactura.RecuperarTodos(nhSesion);
 
@@ -2253,7 +2255,7 @@ namespace BibliotecaSCF.Controladores
                     dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion, r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
                         r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento, string.Join(", ", r.Entregas.Select(x => x.NumeroRemito)),
                         r.CondicionVenta, r.Entregas[0].Direccion.Codigo, r.Entregas[0].Direccion.Descripcion + ", " + r.Entregas[0].Direccion.Localidad + ", " +
-                        r.Entregas[0].Direccion.Provincia); return dt;
+                        r.Entregas[0].Direccion.Provincia, r.Entregas[0].Direccion.Descripcion, r.Entregas[0].Direccion.Localidad); return dt;
                 });
 
                 return tablaFacturas;

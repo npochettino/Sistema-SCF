@@ -9,23 +9,23 @@
     <FECAEDetRequest>
       <Concepto>1</Concepto>
       <DocTipo>80</DocTipo>
-      <DocNro>1</DocNro>
+      <DocNro>30516888241</DocNro>
       <CbteDesde>13</CbteDesde>
       <CbteHasta>13</CbteHasta>
-      <CbteFch>20151022</CbteFch>
-      <ImpTotal>62.34</ImpTotal>
+      <CbteFch>20151023</CbteFch>
+      <ImpTotal>1241.17</ImpTotal>
       <ImpTotConc>0</ImpTotConc>
-      <ImpNeto>51.52</ImpNeto>
+      <ImpNeto>1025.76</ImpNeto>
       <ImpOpEx>0</ImpOpEx>
       <ImpTrib>0</ImpTrib>
-      <ImpIVA>10.82</ImpIVA>
+      <ImpIVA>215.41</ImpIVA>
       <MonId>PES</MonId>
       <MonCotiz>1</MonCotiz>
       <Iva>
         <AlicIva>
           <Id>5</Id>
-          <BaseImp>51.52</BaseImp>
-          <Importe>10.82</Importe>
+          <BaseImp>1025.76</BaseImp>
+          <Importe>215.41</Importe>
         </AlicIva>
       </Iva>
     </FECAEDetRequest>

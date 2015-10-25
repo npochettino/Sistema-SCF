@@ -4642,7 +4642,6 @@
     <Content Include="dsItemsFacturaA.xss">
       <DependentUpon>dsItemsFacturaA.xsd</DependentUpon>
     </Content>
-    <Content Include="facturas\Comprobantes_AFIP\SCF_PRODUCCION.pfx" />
     <Content Include="dsItemsRemito.xsc">
       <DependentUpon>dsItemsRemito.xsd</DependentUpon>
     </Content>
@@ -4654,6 +4653,7 @@
     <Content Include="dsItemsRemito.xss">
       <DependentUpon>dsItemsRemito.xsd</DependentUpon>
     </Content>
+    <Content Include="facturas\Comprobantes_AFIP\SCF_Pro.pfx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
