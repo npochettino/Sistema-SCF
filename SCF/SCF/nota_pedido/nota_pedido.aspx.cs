@@ -264,8 +264,8 @@ namespace SCF.nota_pedido
         protected void gvItemsEntrega_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
         {
             DataTable tablaItemsNotaDePedido = (DataTable)Session["tablaItemsNotaDePedido"];
-            int codigoArticulo = Convert.ToInt32(e.Keys["codigoArticulo"]);
-            DataRow fila = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["codigoArticulo"]) == codigoArticulo select t).SingleOrDefault();
+            int posicion = Convert.ToInt32(e.Keys["posicion"]);
+            DataRow fila = (from t in tablaItemsNotaDePedido.AsEnumerable() where Convert.ToInt32(t["posicion"]) == posicion select t).SingleOrDefault();
 
             fila["posicion"] = Convert.ToInt32(e.NewValues["posicion"]);
             fila["cantidad"] = Convert.ToInt32(e.NewValues["cantidad"]);
