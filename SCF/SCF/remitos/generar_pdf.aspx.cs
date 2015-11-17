@@ -48,7 +48,7 @@ namespace SCF.remitos
             bc.RegistrationName = "demo";
             bc.RegistrationKey = "demo";
             bc.DrawCaption = false;
-            bc.Value = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtRemitoActual.Rows[0]["cai"]), Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaEmision"]));
+            bc.Value = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtRemitoActual.Rows[0]["cai"]), Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaEmision"]),"91","0001");
             byte[] imgCodigoDeBarra = bc.GetImageBytesPNG();
             string urlBarCode = Server.MapPath(".") + "\\Comprobantes_AFIP\\codeBar.png";
             File.WriteAllBytes(urlBarCode, imgCodigoDeBarra);
@@ -57,7 +57,7 @@ namespace SCF.remitos
             ReportParameter imgBarCode = new ReportParameter("imgBarCode", imagePath);
 
             //Agrego numero de codigo de barra
-            string NumeroCodigoBarra = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtRemitoActual.Rows[0]["cai"]), Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaEmision"]));
+            string NumeroCodigoBarra = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtRemitoActual.Rows[0]["cai"]), Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaVencimientoCai"]), "91", "0001");
             ReportParameter txtNumeroCodigoBarra = new ReportParameter("txtNumeroCodigoBarra", NumeroCodigoBarra);
 
 

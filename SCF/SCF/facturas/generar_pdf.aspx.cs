@@ -55,7 +55,7 @@ namespace SCF.facturas
             bc.RegistrationName = "demo";
             bc.RegistrationKey = "demo";
             bc.DrawCaption = false;
-            bc.Value = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtFacturaActual.Rows[0]["cae"]), Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaFacturacion"]));
+            bc.Value = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtFacturaActual.Rows[0]["cae"]), Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaVencimientoCAE"]), "01", "0002");
             byte[] imgCodigoDeBarra = bc.GetImageBytesPNG();
             string urlBarCode = Server.MapPath(".") + "\\Comprobantes_AFIP\\codeBar.png";
             File.WriteAllBytes(urlBarCode, imgCodigoDeBarra);
@@ -64,7 +64,7 @@ namespace SCF.facturas
             ReportParameter imgBarCode = new ReportParameter("imgBarCode", imagePath);
 
             //Agrego numero de codigo de barra
-            string NumeroCodigoBarra = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtFacturaActual.Rows[0]["cae"]), Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaFacturacion"]));
+            string NumeroCodigoBarra = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtFacturaActual.Rows[0]["cae"]), Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaVencimientoCAE"]), "01", "0002");
             ReportParameter txtNumeroCodigoBarra = new ReportParameter("txtNumeroCodigoBarra", NumeroCodigoBarra);
 
             this.rvFacturaA.LocalReport.SetParameters(new ReportParameter[] { txtNroFactura,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,txtNroRemitos,

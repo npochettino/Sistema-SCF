@@ -2434,7 +2434,7 @@ namespace BibliotecaSCF.Controladores
             return string.Format("{0}{1}{2}", fecha.Year.ToString("0000"), fecha.Month.ToString("00"), fecha.Day.ToString("00"));
         }
 
-        public static string ConvertirBarCode(string nroCae, DateTime fechaFactura)
+        public static string ConvertirBarCode(string nroCae, DateTime fechaFactura,string nroComprobante, string ptoVenta)
         {
             //- C.U.I.T. (Clave Unica de Identificación Tributaria) del emisor (11 caracteres).
             //- Código de tipo de comprobante (2 caracteres).
@@ -2442,7 +2442,7 @@ namespace BibliotecaSCF.Controladores
             //- Código de Autorización de Impresión (14 caracteres).
             //- Fecha de vencimiento (8 caracteres).
             //- Dígito verificador (1 carácter).
-            string nroCodeBar = "30711039704010002" + nroCae + fechaFactura.Year.ToString("0000") + fechaFactura.Month.ToString("00") + fechaFactura.Day.ToString("00");
+            string nroCodeBar = "30711039704"+ nroComprobante + ptoVenta + nroCae + fechaFactura.Year.ToString("0000") + fechaFactura.Month.ToString("00") + fechaFactura.Day.ToString("00");
             return nroCodeBar + GetCodigoVerificador(nroCodeBar);
         }
 
