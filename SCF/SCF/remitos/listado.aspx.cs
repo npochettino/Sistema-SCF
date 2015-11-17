@@ -68,6 +68,8 @@ namespace SCF.remitos
             string observaciones = gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "observaciones").ToString();
             int codigoTransporte = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoTransporte"));
             int codigoDireccion = Convert.ToInt32(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "codigoDireccion"));
+            string cai = gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "cai").ToString();
+            DateTime fechaVencimientoCai = Convert.ToDateTime(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "fechaVencimientoCai"));
 
             DataTable tablaEntrega = new DataTable();
             tablaEntrega.Columns.Add("codigoEntrega");
@@ -80,8 +82,11 @@ namespace SCF.remitos
             tablaEntrega.Columns.Add("observaciones");
             tablaEntrega.Columns.Add("codigoTransporte");
             tablaEntrega.Columns.Add("codigoDireccion");
+            tablaEntrega.Columns.Add("cai");
+            tablaEntrega.Columns.Add("fechaVencimientoCai");
 
-            tablaEntrega.Rows.Add(new object[] { codigoEntrega, codigoNotaDePedido, codigoCliente, razonSocialCliente, fechaEmision, numeroRemito, codigoEstado, observaciones, codigoTransporte, codigoDireccion });
+            tablaEntrega.Rows.Add(new object[] { codigoEntrega, codigoNotaDePedido, codigoCliente, razonSocialCliente, fechaEmision, numeroRemito, codigoEstado, observaciones, codigoTransporte, 
+                codigoDireccion, cai, fechaVencimientoCai });
 
             Session["tablaEntrega"] = tablaEntrega;
 
@@ -225,6 +230,8 @@ namespace SCF.remitos
             string razonSocialTransporte = gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "razonSocialTransporte").ToString();
             string domicilio = gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "domicilio").ToString();
             string localidad = gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "localidad").ToString();
+            string cai = gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "cai").ToString();
+            DateTime fechaVencimientoCAI = Convert.ToDateTime(gvEntregas.GetRowValues(gvEntregas.FocusedRowIndex, "fechaVencimientoCai"));
 
             DataTable tablaEntrega = new DataTable();
             tablaEntrega.Columns.Add("codigoEntrega");
@@ -238,9 +245,11 @@ namespace SCF.remitos
             tablaEntrega.Columns.Add("razonSocialTransporte");
             tablaEntrega.Columns.Add("domicilio");
             tablaEntrega.Columns.Add("localidad");
+            tablaEntrega.Columns.Add("cai");
+            tablaEntrega.Columns.Add("fechaVencimientoCai");
 
             tablaEntrega.Rows.Add(new object[] { codigoEntrega, codigoNotaDePedido, codigoCliente, razonSocialCliente, fechaEmision, numeroRemito, codigoEstado, observaciones, razonSocialTransporte,
-            domicilio, localidad});
+            domicilio, localidad, cai, fechaVencimientoCAI});
 
             return tablaEntrega;
         }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BibliotecaSCF.Controladores;
+using Bytescout.BarCode;
 using Microsoft.Reporting.WebForms;
 
 namespace SCF.remitos
@@ -27,6 +29,7 @@ namespace SCF.remitos
             DataTable dtItemsRemitoActual = ControladorGeneral.RecuperarItemsEntrega(Convert.ToInt32(dtRemitoActual.Rows[0]["codigoEntrega"]));
 
             rvRemito.ProcessingMode = ProcessingMode.Local;
+            rvRemito.LocalReport.EnableExternalImages = true;
             rvRemito.LocalReport.ReportPath = Server.MapPath("..") + "\\reportes\\remito.rdlc";
             ReportParameter txtNroRemito = new ReportParameter("txtNroRemito", Convert.ToInt32(dtRemitoActual.Rows[0]["numeroRemito"]).ToString("D8"));
             ReportParameter txtCliente = new ReportParameter("txtCliente", Convert.ToString(dtRemitoActual.Rows[0]["razonSocialCliente"]));
@@ -37,9 +40,29 @@ namespace SCF.remitos
             ReportParameter txtFechaRemito = new ReportParameter("txtFechaRemito", Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaEmision"]).ToString("dd/MM/yyyy"));
             ReportParameter txtRespInsc = new ReportParameter("txtRespInsc", "X");
             ReportParameter txtTransporte = new ReportParameter("txtTransporte", Convert.ToString(dtRemitoActual.Rows[0]["razonSocialTransporte"]));
-            
+            ReportParameter txtCai = new ReportParameter("txtCai", Convert.ToString(dtRemitoActual.Rows[0]["cai"]).Trim());
+            ReportParameter txtFechaVencimientoCai = new ReportParameter("txtFechaVencimientoCai", Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaVencimientoCai"]).ToString("dd/MM/yyyy"));
+
+            // Create and setup an instance of Bytescout Barcode SDK
+            Barcode bc = new Barcode(SymbologyType.Code128);
+            bc.RegistrationName = "demo";
+            bc.RegistrationKey = "demo";
+            bc.DrawCaption = false;
+            bc.Value = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtRemitoActual.Rows[0]["cai"]), Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaEmision"]));
+            byte[] imgCodigoDeBarra = bc.GetImageBytesPNG();
+            string urlBarCode = Server.MapPath(".") + "\\Comprobantes_AFIP\\codeBar.png";
+            File.WriteAllBytes(urlBarCode, imgCodigoDeBarra);
+
+            string imagePath = new Uri(Server.MapPath("~/remitos/Comprobantes_AFIP/codeBar.png")).AbsoluteUri;
+            ReportParameter imgBarCode = new ReportParameter("imgBarCode", imagePath);
+
+            //Agrego numero de codigo de barra
+            string NumeroCodigoBarra = ControladorGeneral.ConvertirBarCode(Convert.ToString(dtRemitoActual.Rows[0]["cai"]), Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaEmision"]));
+            ReportParameter txtNumeroCodigoBarra = new ReportParameter("txtNumeroCodigoBarra", NumeroCodigoBarra);
+
+
             this.rvRemito.LocalReport.SetParameters(new ReportParameter[] { txtNroRemito,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,
-            txtCondicionVenta,txtFechaRemito,txtRespInsc, txtTransporte});
+            txtCondicionVenta,txtFechaRemito,txtRespInsc, txtTransporte, txtCai, txtFechaVencimientoCai,imgBarCode,txtNumeroCodigoBarra});
 
             dsReporte.DataTable1.Clear();
             tablaReporte = dtItemsRemitoActual;

@@ -151,6 +151,25 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <h3 class="form-section">Datos del Remito Impreso</h3>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>CAI</label>
+                                                <input type="text" id="txtCai" placeholder="Nro Cai" runat="server" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Fecha Vencimiento CAI</label>
+                                                <%--<input type="text" id="txtFechaVencimientoCai" runat="server" class="form-control" placeholder="Vencimiento Cai">--%>
+                                                <dx:ASPxDateEdit ID="txtFechaVencimientoCai" runat="server" CssClass="form-control" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
+                                                      <TimeSectionProperties Visible="True">
+                                                    </TimeSectionProperties>
+                                                </dx:ASPxDateEdit>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <h3>Observación</h3>
                                     <div class="row">
                                         <div class="col-md-12">

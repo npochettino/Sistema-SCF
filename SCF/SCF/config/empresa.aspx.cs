@@ -34,12 +34,15 @@ namespace SCF.config
             txtNroCuentaBancaria.Value = Convert.ToString(dtDatosEmpresa.Rows[0]["numeroCuenta"]);
             txtObservacion.Value = Convert.ToString(dtDatosEmpresa.Rows[0]["observaciones"]);
             txtFax.Value = Convert.ToString(dtDatosEmpresa.Rows[0]["fax"]);
+            txtCai.Value = Convert.ToString(dtDatosEmpresa.Rows[0]["cai"]);
+            txtFechaVencimientoCai.Value = Convert.ToString(dtDatosEmpresa.Rows[0]["fechaVencimientoCai"]);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             ControladorGeneral.InsertarActualizarDatosEmpresa(Convert.ToInt32(Session["codigoDatosEmpresa"]), txtRazonSocial.Value, txtProvincia.Value, txtCiudad.Value, txtDireccion.Value, txtTelefono.Value,
-                    txtFax.Value, txtMail.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 80); //agregar tipo documento
+                    txtFax.Value, txtMail.Value, txtNroDocumento.Value, txtPersonaContacto.Value, txtNroCuentaBancaria.Value, txtBanco.Value, txtCBU.Value, txtObservacion.Value, 80,
+                    txtCai.Value, DateTime.Parse(txtFechaVencimientoCai.Value.ToString())); //agregar tipo documento
         }
     }
 }

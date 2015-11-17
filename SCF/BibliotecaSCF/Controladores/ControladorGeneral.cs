@@ -1062,6 +1062,9 @@ namespace BibliotecaSCF.Controladores
                 tablaEntrega.Columns.Add("codigoDireccion");
                 tablaEntrega.Columns.Add("domicilio");
                 tablaEntrega.Columns.Add("localidad");
+                tablaEntrega.Columns.Add("cai");
+                tablaEntrega.Columns.Add("fechaVencimientoCai");
+
 
                 List<Entrega> listaEntregas = CatalogoEntrega.RecuperarTodos(nhSesion);
 
@@ -1071,7 +1074,8 @@ namespace BibliotecaSCF.Controladores
                         r.NotaDePedido.Cliente.RazonSocial, r.NotaDePedido.Cliente.NumeroDocumento, r.NotaDePedido.Cliente.CodigoSCF,
                         r.FechaEmision.ToString("dd/MM/yyyy"), r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
                         r.CodigoEstado, r.Observaciones, r.Transporte.Codigo, r.Transporte.RazonSocial,
-                        r.Direccion.Descripcion + ", " + r.Direccion.Localidad + ", " + r.Direccion.Provincia, r.Direccion.Codigo, r.Direccion.Descripcion, r.Direccion.Localidad); return dt;
+                        r.Direccion.Descripcion + ", " + r.Direccion.Localidad + ", " + r.Direccion.Provincia, r.Direccion.Codigo, r.Direccion.Descripcion, r.Direccion.Localidad,
+                        r.Cai,r.FechaVencimientoCai.ToString("dd/MM/yyyy")); return dt;
                 });
 
                 return tablaEntrega;
@@ -1154,7 +1158,7 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
-        public static void InsertarActualizarEntrega(int codigoEntrega, DateTime fechaEmision, int codigoNotaPedido, int numeroRemito, string observaciones, DataTable tablaItemsEntrega, int codigoTransporte, int codigoDireccion)
+        public static void InsertarActualizarEntrega(int codigoEntrega, DateTime fechaEmision, int codigoNotaPedido, int numeroRemito, string observaciones, DataTable tablaItemsEntrega, int codigoTransporte, int codigoDireccion, string cai, DateTime fechaVencimientoCai)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
             ITransaction tran = nhSesion.BeginTransaction();
@@ -1180,6 +1184,8 @@ namespace BibliotecaSCF.Controladores
                 entrega.Observaciones = observaciones;
                 entrega.Transporte = CatalogoTransporte.RecuperarPorCodigo(codigoTransporte, nhSesion);
                 entrega.Direccion = CatalogoDireccion.RecuperarPorCodigo(codigoDireccion, nhSesion);
+                entrega.Cai = cai;
+                entrega.FechaVencimientoCai = fechaVencimientoCai;
 
                 foreach (DataRow filaItem in tablaItemsEntrega.Rows)
                 {
@@ -2686,7 +2692,7 @@ namespace BibliotecaSCF.Controladores
 
         #region DatosEmpresa
 
-        public static void InsertarActualizarDatosEmpresa(int codigoDatosEmpresa, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int codigoTipoDocumento)
+        public static void InsertarActualizarDatosEmpresa(int codigoDatosEmpresa, string razonSocial, string provincia, string localidad, string direccion, string telefono, string fax, string mail, string numeroDocumento, string personaContacto, string numeroCuenta, string banco, string cbu, string observaciones, int codigoTipoDocumento, string cai, DateTime fechaVencimientoCai)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -2718,6 +2724,8 @@ namespace BibliotecaSCF.Controladores
                 datosEmpresa.Observaciones = observaciones;
                 datosEmpresa.IsInactivo = false;
                 datosEmpresa.TipoDocumento = CatalogoTipoDocumento.RecuperarPorCodigo(codigoTipoDocumento, nhSesion);
+                datosEmpresa.nroCai = cai;
+                datosEmpresa.fechaVencimientoCai = fechaVencimientoCai;
 
                 CatalogoDatosEmpresa.InsertarActualizar(datosEmpresa, nhSesion);
             }
@@ -2753,13 +2761,15 @@ namespace BibliotecaSCF.Controladores
                 tablaDatosEmpresa.Columns.Add("cbu");
                 tablaDatosEmpresa.Columns.Add("observaciones");
                 tablaDatosEmpresa.Columns.Add("fax");
+                tablaDatosEmpresa.Columns.Add("cai");
+                tablaDatosEmpresa.Columns.Add("fechaVencimientoCai");
 
                 List<DatosEmpresa> listaDatosEmpresa = CatalogoDatosEmpresa.RecuperarLista(x => x.IsInactivo == isInactivos, nhSesion);
 
                 listaDatosEmpresa.Aggregate(tablaDatosEmpresa, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.RazonSocial, r.Provincia, r.Localidad, r.Direccion, r.Telefono, r.Mail, r.NumeroDocumento,
-                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax); return dt;
+                        r.PersonaContacto, r.NumeroCuenta, r.Banco, r.Cbu, r.Observaciones, r.Fax, r.nroCai, r.fechaVencimientoCai); return dt;
                 });
 
                 return tablaDatosEmpresa;

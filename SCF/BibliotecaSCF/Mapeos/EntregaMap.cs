@@ -18,6 +18,8 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.NumeroRemito).Column("numeroRemito");
             Map(x => x.CodigoEstado).Column("codigoEstado");
             Map(x => x.Observaciones).Column("observaciones");
+            Map(x => x.Cai).Column("cai");
+            Map(x => x.FechaVencimientoCai).Column("fechaVencimientoCai");
 
             References(x => x.NotaDePedido).Column("codigoNotaDePedido").Cascade.None().LazyLoad(Laziness.Proxy);
             References(x => x.Transporte).Column("codigoTransporte").Cascade.None().LazyLoad(Laziness.Proxy);

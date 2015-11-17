@@ -4664,6 +4664,7 @@
   <ItemGroup>
     <Folder Include="assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
     <Folder Include="contrato_marco\contratos\" />
+    <Folder Include="remitos\Comprobantes_AFIP\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BibliotecaSCF\BibliotecaSCF.csproj">

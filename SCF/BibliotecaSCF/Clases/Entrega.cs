@@ -23,5 +23,8 @@ namespace BibliotecaSCF.Clases
         public virtual Transporte Transporte { get; set; }
         public virtual IList<ItemEntrega> ItemsEntrega { get; set; }
         public virtual Direccion Direccion { get; set; }
+
+        public virtual string Cai { get; set; }
+        public virtual DateTime FechaVencimientoCai { get; set; }
     }
 }

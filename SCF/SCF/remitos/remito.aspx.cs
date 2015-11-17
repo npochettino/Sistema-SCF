@@ -209,7 +209,11 @@ namespace SCF.remitos
             }
             else
             {
-                ControladorGeneral.InsertarActualizarEntrega(codigoEntrega, Convert.ToDateTime(txtFechaEmision.Value), Convert.ToInt32(cbNotaDePedido.Value), Convert.ToInt32(txtCodigoRemito.Text), txtObservacion.InnerText, tablaItemsEntrega, Convert.ToInt32(cbTransporte.Value), Convert.ToInt32(cbDireccion.SelectedItem.Value));
+                DataTable dtDatosEmpresa = ControladorGeneral.RecuperarTodosDatosEmpresa(false);
+                string caiAfip = Convert.ToString(dtDatosEmpresa.Rows[0]["cai"]);
+                DateTime fechaVencimientoCaiAfip = Convert.ToDateTime(dtDatosEmpresa.Rows[0]["fechaVencimientoCai"]);
+                
+                ControladorGeneral.InsertarActualizarEntrega(codigoEntrega, Convert.ToDateTime(txtFechaEmision.Value), Convert.ToInt32(cbNotaDePedido.Value), Convert.ToInt32(txtCodigoRemito.Text), txtObservacion.InnerText, tablaItemsEntrega, Convert.ToInt32(cbTransporte.Value), Convert.ToInt32(cbDireccion.SelectedItem.Value),caiAfip,fechaVencimientoCaiAfip);
 
                 Response.Redirect("listado.aspx");
             }

@@ -28,6 +28,8 @@ namespace BibliotecaSCF.Mapeos
             Map(x => x.Cbu).Column("cbu");
             Map(x => x.Observaciones).Column("observaciones");
             Map(x => x.IsInactivo).Column("isInactivo");
+            Map(x => x.nroCai).Column("cai");
+            Map(x => x.fechaVencimientoCai).Column("fechaVencimientoCai");
 
             References(x => x.TipoDocumento).Column("codigoTipoDocumento").Cascade.None().LazyLoad(Laziness.Proxy);
         }
