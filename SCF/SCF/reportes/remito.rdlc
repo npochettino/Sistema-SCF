@@ -388,14 +388,12 @@
             <TextRuns>
               <TextRun>
                 <Value>Transporte: </Value>
-                <Style>
-                  <FontSize>12pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
               <TextRun>
                 <Value>=Parameters!txtTransporte.Value</Value>
                 <Style>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -403,10 +401,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtTransporte</rd:DefaultName>
-        <Top>20.81953cm</Top>
+        <Top>20.49349cm</Top>
         <Left>3.59516cm</Left>
         <Height>0.70583cm</Height>
-        <Width>13.89063cm</Width>
+        <Width>14.2875cm</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -465,10 +463,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtCAE</rd:DefaultName>
-
-        <Top>25.19655cm</Top>
+        <Top>25.68174cm</Top>
         <Left>16.40099cm</Left>
-        <Height>0.50299cm</Height>
+        <Height>0.38848cm</Height>
         <Width>3.45701cm</Width>
         <ZIndex>10</ZIndex>
         <Style>
@@ -478,6 +475,8 @@
         </Style>
       </Textbox>
       <Textbox Name="txtFechaVenciminetoCAE">
+        <CanGrow>true</CanGrow>
+        <CanShrink>true</CanShrink>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
@@ -495,9 +494,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtFechaVenciminetoCAE</rd:DefaultName>
-        <Top>25.73482cm</Top>
+        <Top>26.07022cm</Top>
         <Left>16.40099cm</Left>
-        <Height>0.51179cm</Height>
+        <Height>0.3354cm</Height>
         <Width>3.45701cm</Width>
         <ZIndex>11</ZIndex>
         <Style>
@@ -510,7 +509,7 @@
         <Source>External</Source>
         <Value>=Parameters!imgBarCode.Value</Value>
         <Sizing>Fit</Sizing>
-        <Top>25.38246cm</Top>
+        <Top>24.99356cm</Top>
         <Left>1.21842cm</Left>
         <Height>1.07666cm</Height>
         <Width>8.74417cm</Width>
@@ -541,9 +540,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtNumeroCodigoBarra</rd:DefaultName>
-        <Top>26.49439cm</Top>
+        <Top>26.07022cm</Top>
         <Left>3.59516cm</Left>
-        <Height>0.41479cm</Height>
+        <Height>0.49395cm</Height>
         <Width>6.36743cm</Width>
         <ZIndex>13</ZIndex>
         <Style>
@@ -564,14 +563,12 @@
             <TextRuns>
               <TextRun>
                 <Value>Proveedor:</Value>
-                <Style>
-                  <FontSize>12pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
               <TextRun>
                 <Value>=Parameters!txtRazonSocialProveedor.Value</Value>
                 <Style>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -582,7 +579,7 @@
         <Top>19.62891cm</Top>
         <Left>3.59516cm</Left>
         <Height>0.75875cm</Height>
-        <Width>13.89063cm</Width>
+        <Width>14.2875cm</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -602,14 +599,12 @@
             <TextRuns>
               <TextRun>
                 <Value>Nro. Pedido:</Value>
-                <Style>
-                  <FontSize>12pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
               <TextRun>
                 <Value>=Parameters!txtNumeroNotaDePedido.Value</Value>
                 <Style>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -620,7 +615,7 @@
         <Top>18.89662cm</Top>
         <Left>3.59516cm</Left>
         <Height>0.73229cm</Height>
-        <Width>13.89063cm</Width>
+        <Width>14.2875cm</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -632,8 +627,43 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="txtTransporte2">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Observaciones: </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!txtObservaciones.Value</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>txtTransporte</rd:DefaultName>
+        <Top>21.30516cm</Top>
+        <Left>3.59516cm</Left>
+        <Height>0.70583cm</Height>
+        <Width>14.2875cm</Width>
+        <ZIndex>16</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>10.875in</Height>
+    <Height>10.45833in</Height>
     <Style>
       <Border>
         <Style>None</Style>
@@ -763,6 +793,12 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="txtRazonSocialProveedor">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="txtObservaciones">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

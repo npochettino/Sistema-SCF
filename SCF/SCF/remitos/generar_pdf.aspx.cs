@@ -31,7 +31,7 @@ namespace SCF.remitos
             rvRemito.ProcessingMode = ProcessingMode.Local;
             rvRemito.LocalReport.EnableExternalImages = true;
             rvRemito.LocalReport.ReportPath = Server.MapPath("..") + "\\reportes\\remito.rdlc";
-            ReportParameter txtNroRemito = new ReportParameter("txtNroRemito", "001 - " + Convert.ToInt32(dtRemitoActual.Rows[0]["numeroRemito"]).ToString("D8"));
+            ReportParameter txtNroRemito = new ReportParameter("txtNroRemito", "0001 - " + Convert.ToInt32(dtRemitoActual.Rows[0]["numeroRemito"]).ToString("D8"));
             ReportParameter txtCliente = new ReportParameter("txtCliente", Convert.ToString(dtRemitoActual.Rows[0]["razonSocialCliente"]));
             ReportParameter txtDomicilio = new ReportParameter("txtDomicilio", Convert.ToString(dtRemitoActual.Rows[0]["domicilio"]));
             ReportParameter txtLocalidad = new ReportParameter("txtLocalidad", Convert.ToString(dtRemitoActual.Rows[0]["localidad"]));
@@ -42,7 +42,7 @@ namespace SCF.remitos
             ReportParameter txtTransporte = new ReportParameter("txtTransporte", Convert.ToString(dtRemitoActual.Rows[0]["razonSocialTransporte"]));
             ReportParameter txtCai = new ReportParameter("txtCai", dtRemitoActual.Rows[0]["cai"].ToString());
             ReportParameter txtFechaVencimientoCai = new ReportParameter("txtFechaVencimientoCai", Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaVencimientoCai"]).ToString("dd/MM/yyyy"));
-
+            ReportParameter txtObservaciones = new ReportParameter("txtObservaciones", Convert.ToString(dtRemitoActual.Rows[0]["observaciones"]));
             //Mod 10/31/2016
             ReportParameter txtNumeroNotaDePedido = new ReportParameter("txtNumeroNotaDePedido", Convert.ToString(dtItemsRemitoActual.Rows[0]["numeroNotaDePedido"]));
             ReportParameter txtRazonSocialProveedor = new ReportParameter("txtRazonSocialProveedor", Convert.ToString(dtItemsRemitoActual.Rows[0]["codigoSCF"]));
@@ -67,7 +67,7 @@ namespace SCF.remitos
 
             this.rvRemito.LocalReport.SetParameters(new ReportParameter[] { txtNroRemito,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,
             txtCondicionVenta,txtFechaRemito,txtRespInsc, txtTransporte, txtCai, txtFechaVencimientoCai,imgBarCode,txtNumeroCodigoBarra,
-            txtNumeroNotaDePedido, txtRazonSocialProveedor});
+            txtNumeroNotaDePedido, txtRazonSocialProveedor, txtObservaciones});
 
             dsReporte.DataTable1.Clear();
             tablaReporte = dtItemsRemitoActual;
