@@ -27,11 +27,11 @@ namespace SCF.remitos
         {           
             DataTable dtRemitoActual = (DataTable)Session["tablaRemito"];
             DataTable dtItemsRemitoActual = ControladorGeneral.RecuperarItemsEntrega(Convert.ToInt32(dtRemitoActual.Rows[0]["codigoEntrega"]));
-
+            //numeroNotaDePedido;razonSocialProveedor
             rvRemito.ProcessingMode = ProcessingMode.Local;
             rvRemito.LocalReport.EnableExternalImages = true;
             rvRemito.LocalReport.ReportPath = Server.MapPath("..") + "\\reportes\\remito.rdlc";
-            ReportParameter txtNroRemito = new ReportParameter("txtNroRemito", Convert.ToInt32(dtRemitoActual.Rows[0]["numeroRemito"]).ToString("D8"));
+            ReportParameter txtNroRemito = new ReportParameter("txtNroRemito", "001 - " + Convert.ToInt32(dtRemitoActual.Rows[0]["numeroRemito"]).ToString("D8"));
             ReportParameter txtCliente = new ReportParameter("txtCliente", Convert.ToString(dtRemitoActual.Rows[0]["razonSocialCliente"]));
             ReportParameter txtDomicilio = new ReportParameter("txtDomicilio", Convert.ToString(dtRemitoActual.Rows[0]["domicilio"]));
             ReportParameter txtLocalidad = new ReportParameter("txtLocalidad", Convert.ToString(dtRemitoActual.Rows[0]["localidad"]));
@@ -40,9 +40,13 @@ namespace SCF.remitos
             ReportParameter txtFechaRemito = new ReportParameter("txtFechaRemito", Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaEmision"]).ToString("dd/MM/yyyy"));
             ReportParameter txtRespInsc = new ReportParameter("txtRespInsc", "X");
             ReportParameter txtTransporte = new ReportParameter("txtTransporte", Convert.ToString(dtRemitoActual.Rows[0]["razonSocialTransporte"]));
-            ReportParameter txtCai = new ReportParameter("txtCai", Convert.ToString(dtRemitoActual.Rows[0]["cai"]).Trim());
+            ReportParameter txtCai = new ReportParameter("txtCai", dtRemitoActual.Rows[0]["cai"].ToString());
             ReportParameter txtFechaVencimientoCai = new ReportParameter("txtFechaVencimientoCai", Convert.ToDateTime(dtRemitoActual.Rows[0]["fechaVencimientoCai"]).ToString("dd/MM/yyyy"));
 
+            //Mod 10/31/2016
+            ReportParameter txtNumeroNotaDePedido = new ReportParameter("txtNumeroNotaDePedido", Convert.ToString(dtItemsRemitoActual.Rows[0]["numeroNotaDePedido"]));
+            ReportParameter txtRazonSocialProveedor = new ReportParameter("txtRazonSocialProveedor", Convert.ToString(dtItemsRemitoActual.Rows[0]["codigoSCF"]));
+            //
             // Create and setup an instance of Bytescout Barcode SDK
             Barcode bc = new Barcode(SymbologyType.Code128);
             bc.RegistrationName = "demo";
@@ -62,7 +66,8 @@ namespace SCF.remitos
 
 
             this.rvRemito.LocalReport.SetParameters(new ReportParameter[] { txtNroRemito,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,
-            txtCondicionVenta,txtFechaRemito,txtRespInsc, txtTransporte, txtCai, txtFechaVencimientoCai,imgBarCode,txtNumeroCodigoBarra});
+            txtCondicionVenta,txtFechaRemito,txtRespInsc, txtTransporte, txtCai, txtFechaVencimientoCai,imgBarCode,txtNumeroCodigoBarra,
+            txtNumeroNotaDePedido, txtRazonSocialProveedor});
 
             dsReporte.DataTable1.Clear();
             tablaReporte = dtItemsRemitoActual;
