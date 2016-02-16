@@ -458,7 +458,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtSubtotal</rd:DefaultName>
-        <Top>21.4282cm</Top>
+        <Top>21.61368cm</Top>
         <Left>18.22662cm</Left>
         <Height>0.44125cm</Height>
         <Width>2.10312cm</Width>
@@ -485,7 +485,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtIVA</rd:DefaultName>
-        <Top>21.94002cm</Top>
+        <Top>22.1255cm</Top>
         <Left>18.20016cm</Left>
         <Height>0.58236cm</Height>
         <Width>1.83854cm</Width>
@@ -516,7 +516,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtTotal</rd:DefaultName>
-        <Top>22.52237cm</Top>
+        <Top>22.70785cm</Top>
         <Left>18.20016cm</Left>
         <Height>0.57354cm</Height>
         <Width>1.81208cm</Width>
@@ -549,8 +549,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtCAE</rd:DefaultName>
-        <Top>24.24189cm</Top>
-        <Left>16.79787cm</Left>
+        <Top>24.31245cm</Top>
+        <Left>16.77141cm</Left>
         <Height>0.45007cm</Height>
         <Width>3.24083cm</Width>
         <ZIndex>11</ZIndex>
@@ -578,8 +578,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtFechaVenciminetoCAE</rd:DefaultName>
-        <Top>24.69196cm</Top>
-        <Left>18.22662cm</Left>
+        <Top>24.76252cm</Top>
+        <Left>18.20016cm</Left>
         <Height>0.3795cm</Height>
         <Width>1.81208cm</Width>
         <ZIndex>12</ZIndex>
@@ -622,8 +622,8 @@
         <Source>External</Source>
         <Value>=Parameters!imgBarCode.Value</Value>
         <Sizing>Fit</Sizing>
-        <Top>23.54474cm</Top>
-        <Left>1.21391cm</Left>
+        <Top>23.6153cm</Top>
+        <Left>1.18745cm</Left>
         <Height>1.07666cm</Height>
         <Width>8.74417cm</Width>
         <ZIndex>14</ZIndex>
@@ -653,8 +653,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtNumeroCodigoBarra</rd:DefaultName>
-        <Top>24.65667cm</Top>
-        <Left>3.59065cm</Left>
+        <Top>24.72723cm</Top>
+        <Left>3.56419cm</Left>
         <Height>0.41479cm</Height>
         <Width>6.36743cm</Width>
         <ZIndex>15</ZIndex>
@@ -697,8 +697,109 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="txtNumeroNotaDePedido">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Nro. Orden de Compra:</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!txtNroNotaPedidoCliente.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>txtNumeroNotaDePedido</rd:DefaultName>
+        <Top>17.02482cm</Top>
+        <Left>3.20633cm</Left>
+        <Height>0.73229cm</Height>
+        <Width>14.2875cm</Width>
+        <ZIndex>17</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="txtRazonSocialProveedor">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Proveedor:</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!txtRazonSocialProveedor.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>txtRazonSocialProveedor</rd:DefaultName>
+        <Top>17.75711cm</Top>
+        <Left>3.20633cm</Left>
+        <Height>0.75875cm</Height>
+        <Width>14.2875cm</Width>
+        <ZIndex>18</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="txtTipoMoneda">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Tipo Moneda:</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!txtTipoMoneda.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <Top>18.51586cm</Top>
+        <Left>3.20633cm</Left>
+        <Height>0.75875cm</Height>
+        <Width>14.2875cm</Width>
+        <ZIndex>19</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>10.04784in</Height>
+    <Height>9.98534in</Height>
     <Style>
       <Border>
         <Style>None</Style>
@@ -709,7 +810,7 @@
       </BackgroundImage>
     </Style>
   </Body>
-  <Width>8.14967in</Width>
+  <Width>8.00383in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
@@ -835,6 +936,24 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="txtRespInsc">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="txtTipoMoneda">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="txtNroNotaPedidoCliente">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="txtRazonSocialProveedor">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

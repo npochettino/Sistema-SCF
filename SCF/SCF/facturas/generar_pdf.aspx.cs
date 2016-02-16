@@ -49,7 +49,9 @@ namespace SCF.facturas
             ReportParameter txtCAE = new ReportParameter("txtCAE", Convert.ToString(dtFacturaActual.Rows[0]["cae"]).Trim());
             ReportParameter txtFechaVencimientoCAE = new ReportParameter("txtFechaVencimientoCAE", Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaVencimientoCAE"]).ToString("dd/MM/yyyy"));
             ReportParameter txtFechaFacturacion = new ReportParameter("txtFechaFacturacion", Convert.ToDateTime(dtFacturaActual.Rows[0]["fechaFacturacion"]).ToString("dd/MM/yyyy"));
-
+            ReportParameter txtNroNotaPedidoCliente = new ReportParameter("txtNroNotaPedidoCliente", Convert.ToString(dtItemsFacturaActual.Rows[0]["numeroNotaDePedido"]).ToString());
+            ReportParameter txtRazonSocialProveedor = new ReportParameter("txtRazonSocialProveedor", Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialProveedor"]).ToString());
+            ReportParameter txtTipoMoneda = new ReportParameter("txtTipoMoneda", Convert.ToString(dtFacturaActual.Rows[0]["descripcionTipoMoneda"]).Trim());
             // Create and setup an instance of Bytescout Barcode SDK
             Barcode bc = new Barcode(SymbologyType.Code128);
             bc.RegistrationName = "demo";
@@ -68,7 +70,8 @@ namespace SCF.facturas
             ReportParameter txtNumeroCodigoBarra = new ReportParameter("txtNumeroCodigoBarra", NumeroCodigoBarra);
 
             this.rvFacturaA.LocalReport.SetParameters(new ReportParameter[] { txtNroFactura,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,txtNroRemitos,
-            txtCondicionVenta,txtSubtotal,txtIVA,txtTotal,txtCAE,txtFechaVencimientoCAE,txtFechaFacturacion,imgBarCode,txtNumeroCodigoBarra,txtRespInsc});
+            txtCondicionVenta,txtSubtotal,txtIVA,txtTotal,txtCAE,txtFechaVencimientoCAE,txtFechaFacturacion,imgBarCode,txtNumeroCodigoBarra,txtRespInsc,
+            txtNroNotaPedidoCliente,txtRazonSocialProveedor,txtTipoMoneda});
             
 
             dsReporte.DataTable1.Clear();
