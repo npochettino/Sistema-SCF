@@ -1075,7 +1075,7 @@ namespace BibliotecaSCF.Controladores
                         r.FechaEmision.ToString("dd/MM/yyyy"), r.NotaDePedido.NumeroInternoCliente, r.NumeroRemito,
                         r.CodigoEstado, r.Observaciones, r.Transporte.Codigo, r.Transporte.RazonSocial,
                         r.Direccion.Descripcion + ", " + r.Direccion.Localidad + ", " + r.Direccion.Provincia, r.Direccion.Codigo, r.Direccion.Descripcion, r.Direccion.Localidad,
-                        r.Cai,r.FechaVencimientoCai.ToString("dd/MM/yyyy")); return dt;
+                        r.Cai, r.FechaVencimientoCai.ToString("dd/MM/yyyy")); return dt;
                 });
 
                 return tablaEntrega;
@@ -1408,7 +1408,7 @@ namespace BibliotecaSCF.Controladores
                     {
                         dt.Rows.Add(r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.CantidadAEntregar,
                             r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "",
-                            r.ItemNotaDePedido.Codigo, "Posición:" + r.ItemNotaDePedido.Posicion,                            
+                            r.ItemNotaDePedido.Codigo, "Posición:" + r.ItemNotaDePedido.Posicion,
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
                             entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar), 2),
@@ -2435,7 +2435,7 @@ namespace BibliotecaSCF.Controladores
             return string.Format("{0}{1}{2}", fecha.Year.ToString("0000"), fecha.Month.ToString("00"), fecha.Day.ToString("00"));
         }
 
-        public static string ConvertirBarCode(string nroCae, DateTime fechaFactura,string nroComprobante, string ptoVenta)
+        public static string ConvertirBarCode(string nroCae, DateTime fechaFactura, string nroComprobante, string ptoVenta)
         {
             //- C.U.I.T. (Clave Unica de Identificación Tributaria) del emisor (11 caracteres).
             //- Código de tipo de comprobante (2 caracteres).
@@ -2443,7 +2443,7 @@ namespace BibliotecaSCF.Controladores
             //- Código de Autorización de Impresión (14 caracteres).
             //- Fecha de vencimiento (8 caracteres).
             //- Dígito verificador (1 carácter).
-            string nroCodeBar = "30711039704"+ nroComprobante + ptoVenta + nroCae + fechaFactura.Year.ToString("0000") + fechaFactura.Month.ToString("00") + fechaFactura.Day.ToString("00");
+            string nroCodeBar = "30711039704" + nroComprobante + ptoVenta + nroCae + fechaFactura.Year.ToString("0000") + fechaFactura.Month.ToString("00") + fechaFactura.Day.ToString("00");
             return nroCodeBar + GetCodigoVerificador(nroCodeBar);
         }
 
@@ -2477,6 +2477,29 @@ namespace BibliotecaSCF.Controladores
                 if (((total + i) % 10) == 0)
                 { digitoVerificador = Convert.ToString(i); break; }
             return digitoVerificador;
+        }
+
+        public static string EliminarFactura(int codigoFactura)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                Factura factura = CatalogoFactura.RecuperarPorCodigo(codigoFactura, nhSesion);
+
+                CatalogoFactura.Eliminar(factura, nhSesion);
+                return "ok";
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         #endregion

@@ -199,7 +199,7 @@
                                                                 </dx:GridViewDataTextColumn>
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
-                                                            <SettingsPager PageSize="10">
+                                                            <SettingsPager PageSize="50">
                                                             </SettingsPager>
                                                             <Settings ShowFilterRow="True" />
                                                         </dx:ASPxGridView>

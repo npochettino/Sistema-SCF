@@ -14,8 +14,7 @@ namespace BibliotecaSCF
     {
         public static void Main()
         {
-            DataTable tabla = ControladorGeneral.RecuperarUltimaFactura();
-            DataTable t = ControladorGeneral.RecuperarTodasFacturas();
+            string rta = ControladorGeneral.EliminarFactura(19);
 
 
         }
