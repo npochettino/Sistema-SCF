@@ -125,8 +125,9 @@ namespace SCF.facturas
                 codigoRemitos.Add(Convert.ToInt32(itmes[0].ToString()));
             }
 
-            ControladorGeneral.InsertarActualizarFactura(0, Convert.ToInt32(txtNroFactura.Text), Convert.ToDateTime(txtFechaFacturacion.Text), codigoRemitos, Convert.ToInt32(cbTipoMoneda.Value), Convert.ToInt32(cbConcepto.Value),
-               Convert.ToInt32(cbCondicionIVA.Value), Convert.ToDouble(txtSubtotal.Text), Convert.ToDouble(txtTotal.Text), Convert.ToString(cbCondicionVenta.Text));
+            ControladorGeneral.InsertarActualizarFactura(0, Convert.ToInt32(txtNroFactura.Text), Convert.ToDateTime(txtFechaFacturacion.Text), codigoRemitos, Convert.ToInt32(cbTipoMoneda.Value), 
+            Convert.ToInt32(cbConcepto.Value), Convert.ToInt32(cbCondicionIVA.Value), Convert.ToDouble(txtSubtotal.Text), Convert.ToDouble(txtTotal.Text), 
+            Convert.ToString(cbCondicionVenta.Text), Convert.ToDouble(txtCotizacion.Text));
 
             //Obtengo ultimo codigo de factura y emito la factura
             DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
@@ -197,6 +198,8 @@ namespace SCF.facturas
                 subtotal = subtotal + Convert.ToDouble(dtItemsFacturaActual.Rows[i]["precioTotal"].ToString());
             }
 
+            subtotal = subtotal * Convert.ToDouble(txtCotizacion.Text);
+
             txtSubtotal.Text = Convert.ToString((double)decimal.Round((decimal)subtotal, 2));
             txtImporteIVA.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 0.21), 2));
             txtTotal.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 1.21), 2));
@@ -222,6 +225,11 @@ namespace SCF.facturas
 
             CalcularImporteTotal();
 
+        }
+
+        protected void txtCotizacion_TextChanged(object sender, EventArgs e)
+        {
+            CalcularImporteTotal();
         }
     }
 }

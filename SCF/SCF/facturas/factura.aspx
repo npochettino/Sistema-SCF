@@ -87,7 +87,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">Tipo de Comprobante</label>
                                                 <dx:ASPxComboBox ID="cbTipoComprobante" runat="server" ValueField="codigoTipoComprobante" TextField="descripcion" DropDownStyle="DropDownList" EnableTheming="True" Theme="Metropolis" CssClass="form-control" Width="100%">
-                                                 </dx:ASPxComboBox>
+                                                </dx:ASPxComboBox>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -151,6 +151,16 @@
                                         <!--/span-->
                                     </div>
                                     <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Cotización</label>
+                                                <dx:ASPxTextBox ID="txtCotizacion" runat="server" OnTextChanged="txtCotizacion_TextChanged" AutoPostBack="true" CssClass="form-control" Width="100%" placeholder="Cotizacón" Text="1">
+                                                </dx:ASPxTextBox>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
 
                                     <!-- BEGIN ROW Detalle del cliente
                                     <h3 class="form-section">Detalle del cliente</h3>-->
@@ -201,7 +211,7 @@
                                                 <div class="portlet-body">
                                                     <div id="chart_8" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ARTICULOS-->
-                                                        <dx:ASPxGridView ID="gvItemsFactura" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoItemEntrega" OnRowUpdating="gvItemsFactura_RowUpdating" Theme="Metropolis" Width="100%">
+                                                        <dx:ASPxGridView ID="gvItemsFactura" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoItemEntrega" OnRowUpdating="gvItemsFactura_RowUpdating"  Theme="Metropolis" Width="100%">
                                                             <Columns>
                                                                 <dx:GridViewDataTextColumn FieldName="codigoItemEntrega" ReadOnly="True" Visible="False" VisibleIndex="1">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
@@ -213,7 +223,7 @@
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="cantidad" VisibleIndex="2" Visible="true" Caption="Cantidad">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                                                    <EditFormSettings Visible="False"  />
+                                                                    <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn FieldName="codigoProveedor" VisibleIndex="2" Visible="true" Caption="Cod. Prov">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
@@ -250,7 +260,7 @@
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="True" VisibleIndex="8" />
+                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="false" Visible="false" VisibleIndex="8" />
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
                                                             <SettingsPager PageSize="10">
@@ -281,7 +291,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3">SUBTOTAL</label>
                                                         <div class="col-md-9">
-                                                            <dx:ASPxLabel ID="txtSubtotal"  runat="server" Text=" "></dx:ASPxLabel>
+                                                            <dx:ASPxLabel ID="txtSubtotal" runat="server" Text=" "></dx:ASPxLabel>
                                                         </div>
                                                     </div>
                                                 </div>

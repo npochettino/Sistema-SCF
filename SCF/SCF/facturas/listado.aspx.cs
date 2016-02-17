@@ -83,9 +83,9 @@ namespace SCF.facturas
                 pcConfirmarEliminarFactura.ShowOnPageLoad = false;
                 try
                 {
-                    if (gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString() == "")
+                    if (gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString() == null)
                     {
-                        //ControladorGeneral.ElimarF(int.Parse(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "codigoFactura").ToString()));
+                        //ControladorGeneral.ElimarFactura(int.Parse(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "codigoFactura").ToString()));
                         Response.Redirect("listado.aspx");
                     }
                     else
@@ -124,6 +124,16 @@ namespace SCF.facturas
                 lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
                 lblNombreApellidoCliente.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialCliente"]);
                 lblNumeroDocumento.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["nroDocumentoCliente"]);
+
+                lblSubtotal.Text = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "subtotal").ToString();
+                lblImporteTotal.Text = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "total"));
+                
+                if (gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString() != null)
+                {
+                    lblNroCAE.Text = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString();
+                    lblFechaVencimientoCAE.Text = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE").ToString();
+                }
+                
                 //lblFechaVencimientoCAE.Text = Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE")).ToString() == null ? "NO EMITIDO" : Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE")).ToString("dd/MM/yyy");
                 //lblNroCAE.Text = Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae")).ToString() == null ? "NO EMITIDO" : Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae")).ToString();
 

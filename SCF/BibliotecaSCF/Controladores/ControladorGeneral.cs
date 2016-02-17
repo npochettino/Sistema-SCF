@@ -2281,11 +2281,12 @@ namespace BibliotecaSCF.Controladores
         public static int ConsultarUltimoNroComprobante(int ptoVenta, int tipoComptobanteAfip)
         {
             var clsFac = new clsFacturacion();
+            
             var ultNroComprobante = clsFac.ConsultarUltNroOrden(ptoVenta, tipoComptobanteAfip);
             return ultNroComprobante;
         }
 
-        public static void InsertarActualizarFactura(int codigoFactura, int numeroFactura, DateTime fechaFacturacion, List<int> listaCodigosEntrega, int codigoMoneda, int codigoConcepto, int codigoIva, double subtotal, double total, string condicionVenta)
+        public static void InsertarActualizarFactura(int codigoFactura, int numeroFactura, DateTime fechaFacturacion, List<int> listaCodigosEntrega, int codigoMoneda, int codigoConcepto, int codigoIva, double subtotal, double total, string condicionVenta, double cotizacion)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -2329,6 +2330,7 @@ namespace BibliotecaSCF.Controladores
                 factura.Total = total;
                 factura.FechaVencimiento = null;
                 factura.CondicionVenta = condicionVenta;
+                factura.Cotizacion = cotizacion;
 
                 CatalogoFactura.InsertarActualizar(factura, nhSesion);
             }

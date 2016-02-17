@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FECAEResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <FeCabResp xmlns="http://ar.gov.afip.dif.FEV1/">
-    <Cuit>27296804385</Cuit>
+    <Cuit>30711039704</Cuit>
     <PtoVta>2</PtoVta>
     <CbteTipo>1</CbteTipo>
-    <FchProceso>20151023021015</FchProceso>
+    <FchProceso>20160216184902</FchProceso>
     <CantReg>1</CantReg>
-    <Resultado>A</Resultado>
+    <Resultado>R</Resultado>
     <Reproceso>N</Reproceso>
   </FeCabResp>
   <FeDetResp xmlns="http://ar.gov.afip.dif.FEV1/">
@@ -14,12 +14,18 @@
       <Concepto>1</Concepto>
       <DocTipo>80</DocTipo>
       <DocNro>30516888241</DocNro>
-      <CbteDesde>13</CbteDesde>
-      <CbteHasta>13</CbteHasta>
-      <CbteFch>20151023</CbteFch>
-      <Resultado>A</Resultado>
-      <CAE>65435321804547</CAE>
-      <CAEFchVto>20151102</CAEFchVto>
+      <CbteDesde>4</CbteDesde>
+      <CbteHasta>4</CbteHasta>
+      <CbteFch>20160216</CbteFch>
+      <Resultado>R</Resultado>
+      <Observaciones>
+        <Obs>
+          <Code>10037</Code>
+          <Msg>El campo  MonId es obligatorio  y debe corresponder a algÃºn valor devuelto  por  el  mÃ©todo FEParamGetTiposMonedas.</Msg>
+        </Obs>
+      </Observaciones>
+      <CAE />
+      <CAEFchVto />
     </FECAEDetResponse>
   </FeDetResp>
 </FECAEResponse>
