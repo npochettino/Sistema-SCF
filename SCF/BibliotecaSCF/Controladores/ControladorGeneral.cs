@@ -2487,9 +2487,15 @@ namespace BibliotecaSCF.Controladores
             {
                 Factura factura = CatalogoFactura.RecuperarPorCodigo(codigoFactura, nhSesion);
 
-                CatalogoFactura.Eliminar(factura, nhSesion);
-                return "ok";
-
+                if (string.IsNullOrEmpty(factura.Cae))
+                {
+                    CatalogoFactura.Eliminar(factura, nhSesion);
+                    return "ok";
+                }
+                else
+                {
+                    return "TieneCAE";
+                }
             }
             catch (Exception ex)
             {
