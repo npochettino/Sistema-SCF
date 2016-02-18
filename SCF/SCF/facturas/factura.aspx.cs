@@ -127,9 +127,23 @@ namespace SCF.facturas
                 codigoRemitos.Add(Convert.ToInt32(itmes[0].ToString()));
             }
 
+            DataTable tablaItemsEntrega = new DataTable();
+            tablaItemsEntrega.Columns.Add("codigoEntrega");
+            tablaItemsEntrega.Columns.Add("codigoItemEntrega");
+            tablaItemsEntrega.Columns.Add("precio");
+
+            for (int i = 0; i < gvItemsFactura.VisibleRowCount; i++)
+            {
+                DataRow row = tablaItemsEntrega.NewRow();
+                row["codigoEntrega"] = gvItemsFactura.GetRowValues(i, "codigoEntrega");
+                row["codigoItemEntrega"] = gvItemsFactura.GetRowValues(i, "codigoItemEntrega");
+                row["precio"] = gvItemsFactura.GetRowValues(i, "precioUnitario");
+                tablaItemsEntrega.Rows.Add(row); 
+            }
+
             ControladorGeneral.InsertarActualizarFactura(0, Convert.ToInt32(txtNroFactura.Text), Convert.ToDateTime(txtFechaFacturacion.Text), codigoRemitos, Convert.ToInt32(cbTipoMoneda.Value), 
             Convert.ToInt32(cbConcepto.Value), Convert.ToInt32(cbCondicionIVA.Value), Convert.ToDouble(txtSubtotal.Text), Convert.ToDouble(txtTotal.Text), 
-            Convert.ToString(cbCondicionVenta.Text), Convert.ToDouble(txtCotizacion.Text));
+            Convert.ToString(cbCondicionVenta.Text), Convert.ToDouble(txtCotizacion.Text), tablaItemsEntrega);
 
             //Obtengo ultimo codigo de factura y emito la factura
             DataTable tablaUltimaFactura = ControladorGeneral.RecuperarUltimaFactura();
@@ -215,7 +229,7 @@ namespace SCF.facturas
 
             fila["precioUnitario"] = Convert.ToDouble(e.NewValues["precioUnitario"]);
 
-            fila["precioTotal"] = Convert.ToDouble(fila.ItemArray[3].ToString()) * Convert.ToDouble(e.NewValues["precioUnitario"]);
+            fila["precioTotal"] = Convert.ToDouble(fila.ItemArray[4].ToString()) * Convert.ToDouble(e.NewValues["precioUnitario"]);
 
             Session["dtItemsFacturaActual"] = tablaItemFactura;
 

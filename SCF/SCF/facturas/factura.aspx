@@ -213,7 +213,11 @@
                                                         <!-- GRID VIEW ARTICULOS-->
                                                         <dx:ASPxGridView ID="gvItemsFactura" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoItemEntrega" OnRowUpdating="gvItemsFactura_RowUpdating"  Theme="Metropolis" Width="100%">
                                                             <Columns>
-                                                                <dx:GridViewDataTextColumn FieldName="codigoItemEntrega" ReadOnly="True" Visible="False" VisibleIndex="1">
+                                                                <dx:GridViewDataTextColumn FieldName="codigoItemEntrega" ReadOnly="True" Visible="False" VisibleIndex="0">
+                                                                    <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                                                    <EditFormSettings Visible="False" />
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="codigoEntrega" ReadOnly="True" Visible="False" VisibleIndex="1">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>

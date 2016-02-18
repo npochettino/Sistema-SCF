@@ -1195,11 +1195,18 @@ namespace BibliotecaSCF.Controladores
                     if (codigoItemEntrega < 1)
                     {
                         item = new ItemEntrega();
+                        item.Precio = (from i in notaDePedido.ItemsNotaDePedido where i.Codigo == Convert.ToInt32(filaItem["codigoItemNotaDePedido"]) select i.Precio).SingleOrDefault();
                         entrega.ItemsEntrega.Add(item);
                     }
                     else
                     {
                         item = (from i in entrega.ItemsEntrega where i.Codigo == codigoItemEntrega select i).SingleOrDefault();
+
+                        if (item.Precio == 0)
+                        {
+                            item.Precio = (from i in notaDePedido.ItemsNotaDePedido where i.Codigo == Convert.ToInt32(filaItem["codigoItemNotaDePedido"]) select i.Precio).SingleOrDefault();
+                        }
+
                         if (!Convert.IsDBNull(filaItem["isEliminada"]) && Convert.ToBoolean(filaItem["isEliminada"]))
                         {
                             entrega.ItemsEntrega.Remove(item);
@@ -1382,6 +1389,7 @@ namespace BibliotecaSCF.Controladores
             {
                 DataTable tablaItemsEntrega = new DataTable();
                 tablaItemsEntrega.Columns.Add("codigoItemEntrega");
+                tablaItemsEntrega.Columns.Add("codigoEntrega");
                 tablaItemsEntrega.Columns.Add("codigoArticulo");
                 tablaItemsEntrega.Columns.Add("descripcionCorta");
                 tablaItemsEntrega.Columns.Add("cantidad");
@@ -1406,12 +1414,12 @@ namespace BibliotecaSCF.Controladores
                 {
                     entrega.ItemsEntrega.Aggregate(tablaItemsEntrega, (dt, r) =>
                     {
-                        dt.Rows.Add(r.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.CantidadAEntregar,
+                        dt.Rows.Add(r.Codigo, entrega.Codigo, r.ItemNotaDePedido.Articulo.Codigo, r.ItemNotaDePedido.Articulo.DescripcionCorta, r.CantidadAEntregar,
                             r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "",
                             r.ItemNotaDePedido.Codigo, "Posición:" + r.ItemNotaDePedido.Posicion,
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                             r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
-                            entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar), 2),
+                            entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.Precio, (double)decimal.Round((decimal)(r.Precio * r.CantidadAEntregar), 2),
                             entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento,
                             entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Localidad : string.Empty,
                             entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty); return dt;
@@ -1471,7 +1479,7 @@ namespace BibliotecaSCF.Controladores
                                 r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.Codigo : 0, r.ArticuloProveedor != null ? r.ArticuloProveedor.Proveedor.RazonSocial : "", r.ItemNotaDePedido.Codigo, "Posición:" + r.ItemNotaDePedido.Posicion,
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault() != null ?
                                 r.ItemNotaDePedido.Articulo.ArticulosClientes.Where(x => x.Cliente.Codigo == entrega.NotaDePedido.Cliente.Codigo).SingleOrDefault().CodigoInterno : string.Empty,
-                                entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.ItemNotaDePedido.Precio, (double)decimal.Round((decimal)(r.ItemNotaDePedido.Precio * r.CantidadAEntregar), 2),
+                                entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.Precio, (double)decimal.Round((decimal)(r.Precio * r.CantidadAEntregar), 2),
                                 entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento,
                                 entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Localidad : string.Empty,
                                 entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty); return dt;
@@ -2286,7 +2294,7 @@ namespace BibliotecaSCF.Controladores
             return ultNroComprobante;
         }
 
-        public static void InsertarActualizarFactura(int codigoFactura, int numeroFactura, DateTime fechaFacturacion, List<int> listaCodigosEntrega, int codigoMoneda, int codigoConcepto, int codigoIva, double subtotal, double total, string condicionVenta, double cotizacion)
+        public static string InsertarActualizarFactura(int codigoFactura, int numeroFactura, DateTime fechaFacturacion, List<int> listaCodigosEntrega, int codigoMoneda, int codigoConcepto, int codigoIva, double subtotal, double total, string condicionVenta, double cotizacion, DataTable tablaItemsEntrega)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -2301,16 +2309,23 @@ namespace BibliotecaSCF.Controladores
                 else
                 {
                     factura = CatalogoFactura.RecuperarPorCodigo(codigoFactura, nhSesion);
+                    
+                    if (!string.IsNullOrEmpty(factura.Cae))
+                    {
+                        return "TieneCAE";
+                    }
                 }
 
                 factura.Concepto = CatalogoConcepto.RecuperarPorCodigo(codigoConcepto, nhSesion);
 
+                //Borramos las entregas eliminadas en la pantalla
                 List<Entrega> listaEntregasBorradas = (from e in factura.Entregas where !listaCodigosEntrega.Contains(e.Codigo) select e).ToList();
                 foreach (Entrega entregaBorrar in listaEntregasBorradas)
                 {
                     factura.Entregas.Remove(entregaBorrar);
                 }
 
+                //Agrego las entregas que no estaban en la factura hasta el momento
                 foreach (int codigoEntrega in listaCodigosEntrega)
                 {
                     Entrega ent = (from e in factura.Entregas where e.Codigo == codigoEntrega select e).SingleOrDefault();
@@ -2321,6 +2336,24 @@ namespace BibliotecaSCF.Controladores
                     }
                 }
 
+                //Editamos los precios de los items entrega
+                foreach (DataRow row in tablaItemsEntrega.Rows)
+                {
+                    int codigoEntrega = Convert.ToInt32(row["codigoEntrega"]);
+                    Entrega entrega = (from e in factura.Entregas where e.Codigo == codigoEntrega select e).SingleOrDefault();
+
+                    int codigoItemEntrega = Convert.ToInt32(row["codigoItemEntrega"]);
+                    ItemEntrega itemEntrega = (from i in entrega.ItemsEntrega where i.Codigo == codigoItemEntrega select i).SingleOrDefault();
+
+                    double precio = Convert.ToDouble(row["precio"]);
+                    if (itemEntrega.Precio != precio)
+                    {
+                        itemEntrega.Precio = precio;
+                        CatalogoGenerico<ItemEntrega>.InsertarActualizar(itemEntrega, nhSesion);
+                    }
+                }
+
+
                 factura.FechaFacturacion = fechaFacturacion;
                 factura.Iva = CatalogoIva.RecuperarPorCodigo(codigoIva, nhSesion);
                 factura.Moneda = CatalogoMoneda.RecuperarPorCodigo(codigoMoneda, nhSesion);
@@ -2330,9 +2363,10 @@ namespace BibliotecaSCF.Controladores
                 factura.Total = total;
                 factura.FechaVencimiento = null;
                 factura.CondicionVenta = condicionVenta;
-                factura.Cotizacion = cotizacion;
+                factura.Cotizacion = codigoMoneda == Constantes.Moneda.PESO ? 1 : cotizacion; //Si la moneda es peso guardamos 1 en cotizacion
 
                 CatalogoFactura.InsertarActualizar(factura, nhSesion);
+                return "ok";
             }
             catch (Exception ex)
             {
@@ -2378,7 +2412,9 @@ namespace BibliotecaSCF.Controladores
                     detalleReq.FchVtoPago = ConvertirFechaAFIP(factura.FechaFacturacion);
                 }
 
-                detalleReq.ImpIVA = (double)decimal.Round((decimal)(factura.Cotizacion * factura.Subtotal * 0.21), 2); // VERRR!!!!!!!!!!!
+                double cotizacion = factura.Moneda.Codigo == Constantes.Moneda.PESO ? 1 : factura.Cotizacion; // Si la moneda es peso argentino se pone la cotizacion ingresada, sino va 1
+
+                detalleReq.ImpIVA = (double)decimal.Round((decimal)(cotizacion * factura.Subtotal * 0.21), 2); 
                 detalleReq.ImpNeto = factura.Cotizacion * factura.Subtotal;
                 detalleReq.ImpOpEx = 0; //por que??
                 detalleReq.ImpTotal = factura.Cotizacion * factura.Total;
@@ -2912,7 +2948,6 @@ namespace BibliotecaSCF.Controladores
 
         #endregion
 
-
         #region Direccion
 
         public static DataTable RecuperarDireccionesPorCliente(int codigoCliente)
@@ -3028,7 +3063,5 @@ namespace BibliotecaSCF.Controladores
         }
 
         #endregion
-
-
     }
 }

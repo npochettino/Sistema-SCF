@@ -15,6 +15,7 @@ namespace BibliotecaSCF.Mapeos
             Table("ItemsEntrega");
             Id(x => x.Codigo).Column("codigoItemEntrega").GeneratedBy.Identity();
             Map(x => x.CantidadAEntregar).Column("cantidad");
+            Map(x => x.Precio).Column("precio");
 
             References(x => x.ArticuloProveedor).Column("codigoArticuloProveedor").Cascade.None().Nullable().LazyLoad(Laziness.Proxy);
             References(x => x.ItemNotaDePedido).Column("codigoItemNotaDePedido").Cascade.None().LazyLoad(Laziness.Proxy);
