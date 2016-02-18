@@ -2397,7 +2397,7 @@ namespace BibliotecaSCF.Controladores
                 detalleReq.Iva = ls.ToArray();
 
                 detalleReq.MonCotiz = 1; //siempre facturan en pesos ??
-                detalleReq.MonId = factura.Moneda.CodigoAFIP;
+                detalleReq.MonId = "PES";// factura.Moneda.CodigoAFIP;
                 //detalleReq.Opcionales = ?????
                 //detalleReq.Tributos = new Tributo[0];
                 detalleReq.ImpTrib = 0;

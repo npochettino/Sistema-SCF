@@ -260,10 +260,10 @@
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                     <EditFormSettings Visible="False" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="false" Visible="false" VisibleIndex="8" />
+                                                                <dx:GridViewCommandColumn Caption="Opciones" ShowEditButton="true" Visible="true" VisibleIndex="8" />
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
-                                                            <SettingsPager PageSize="10">
+                                                            <SettingsPager PageSize="20">
                                                             </SettingsPager>
                                                             <Settings ShowFilterRow="True" />
                                                         </dx:ASPxGridView>
@@ -280,6 +280,7 @@
                                             <div class="caption">
                                                 <i class="icon-calculator font-green-haze"></i>
                                                 <span class="caption-subject bold uppercase font-green-haze">Total</span>
+                                                <asp:Button type="button" class="btn blue" runat="server" ID="btnUpdateImporte" UseSubmitBehavior="false" Text="Actualizar Importe" OnClick="btnUpdateImporte_Click" />
                                             </div>
                                             <div class="tools">
                                                 <a href="javascript:;" class="collapse"></a>

@@ -7,32 +7,28 @@
   </FeCabReq>
   <FeDetReq xmlns="http://ar.gov.afip.dif.FEV1/">
     <FECAEDetRequest>
-      <Concepto>1</Concepto>
+      <Concepto>3</Concepto>
       <DocTipo>80</DocTipo>
       <DocNro>30516888241</DocNro>
-<<<<<<< HEAD
-      <CbteDesde>1</CbteDesde>
-      <CbteHasta>1</CbteHasta>
-      <CbteFch>20160217</CbteFch>
-      <ImpTotal>1241.17</ImpTotal>
-=======
-      <CbteDesde>4</CbteDesde>
-      <CbteHasta>4</CbteHasta>
-      <CbteFch>20160216</CbteFch>
-      <ImpTotal>154.78</ImpTotal>
->>>>>>> advance on facturacion
+      <CbteDesde>14</CbteDesde>
+      <CbteHasta>14</CbteHasta>
+      <CbteFch>20160218</CbteFch>
+      <ImpTotal>6677.75</ImpTotal>
       <ImpTotConc>0</ImpTotConc>
-      <ImpNeto>127.92</ImpNeto>
+      <ImpNeto>5518.8</ImpNeto>
       <ImpOpEx>0</ImpOpEx>
       <ImpTrib>0</ImpTrib>
-      <ImpIVA>26.86</ImpIVA>
-      <MonId>DOL</MonId>
+      <ImpIVA>1158.95</ImpIVA>
+      <FchServDesde>20160218</FchServDesde>
+      <FchServHasta>20160218</FchServHasta>
+      <FchVtoPago>20160218</FchVtoPago>
+      <MonId>PES</MonId>
       <MonCotiz>1</MonCotiz>
       <Iva>
         <AlicIva>
           <Id>5</Id>
-          <BaseImp>127.92</BaseImp>
-          <Importe>26.86</Importe>
+          <BaseImp>5518.8</BaseImp>
+          <Importe>1158.95</Importe>
         </AlicIva>
       </Iva>
     </FECAEDetRequest>

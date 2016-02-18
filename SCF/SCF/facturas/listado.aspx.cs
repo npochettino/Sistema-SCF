@@ -83,9 +83,9 @@ namespace SCF.facturas
                 pcConfirmarEliminarFactura.ShowOnPageLoad = false;
                 try
                 {
-                    if (gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString() == null)
+                    if (gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString() == "")
                     {
-                        //ControladorGeneral.ElimarFactura(int.Parse(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "codigoFactura").ToString()));
+                        ControladorGeneral.EliminarFactura(int.Parse(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "codigoFactura").ToString()));
                         Response.Redirect("listado.aspx");
                     }
                     else

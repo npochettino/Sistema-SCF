@@ -191,7 +191,6 @@ namespace SCF.facturas
         {
             DataTable dtItemsFacturaActual = (DataTable)Session["dtItemsFacturaActual"];
             Double subtotal = 0;
-            Double total = 0;
 
             for (int i = 0; i < dtItemsFacturaActual.Rows.Count; i++)
             {
@@ -212,9 +211,9 @@ namespace SCF.facturas
             int codigoItemNotaPedido = Convert.ToInt32(e.Keys["codigoItemEntrega"]);
             DataRow fila = (from t in tablaItemFactura.AsEnumerable() where Convert.ToInt32(t["codigoItemEntrega"]) == codigoItemNotaPedido select t).SingleOrDefault();
 
-            fila["precioUnitario"] = Convert.ToInt32(e.NewValues["precioUnitario"]);
+            fila["precioUnitario"] = Convert.ToDouble(e.NewValues["precioUnitario"]);
 
-            fila["precioTotal"] = int.Parse(fila.ItemArray[3].ToString()) * Convert.ToInt32(e.NewValues["precioUnitario"]);
+            fila["precioTotal"] = Convert.ToDouble(fila.ItemArray[3].ToString()) * Convert.ToDouble(e.NewValues["precioUnitario"]);
 
             Session["dtItemsFacturaActual"] = tablaItemFactura;
 
@@ -231,5 +230,12 @@ namespace SCF.facturas
         {
             CalcularImporteTotal();
         }
+
+        protected void btnUpdateImporte_Click(object sender, EventArgs e)
+        {
+            CalcularImporteTotal();
+        }
+
+        
     }
 }

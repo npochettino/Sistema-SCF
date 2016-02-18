@@ -139,6 +139,15 @@ namespace SCF.facturas {
         protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvItemsFactura;
         
         /// <summary>
+        /// Control btnUpdateImporte.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateImporte;
+        
+        /// <summary>
         /// Control txtSubtotal.
         /// </summary>
         /// <remarks>
