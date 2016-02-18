@@ -337,6 +337,24 @@ namespace SCF.facturas {
         protected global::System.Web.UI.WebControls.Label lblNroRemitos;
         
         /// <summary>
+        /// Control lblTipoMoneda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTipoMoneda;
+        
+        /// <summary>
+        /// Control lblCotizacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCotizacion;
+        
+        /// <summary>
         /// Control gvDetalleFactura.
         /// </summary>
         /// <remarks>

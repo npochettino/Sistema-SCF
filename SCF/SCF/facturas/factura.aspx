@@ -440,6 +440,22 @@
                                                                 <!--/span-->
                                                             </div>
                                                             <!--/row-->
+                                                            <!--/row-->
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-6">Tipo Moneda: &nbsp;&nbsp;<asp:Label ID="lblTipoMoneda" runat="server"></asp:Label></label>
+                                                                    </div>
+                                                                </div>
+                                                                <!--/span-->
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-6">Cotización: &nbsp;&nbsp;<asp:Label ID="lblCotizacion" runat="server"></asp:Label></label>
+                                                                    </div>
+                                                                </div>
+                                                                <!--/span-->
+                                                            </div>
+                                                            <!--/row-->
                                                         </div>
                                                         <div class="form-group">
                                                             <dx:ASPxGridView ID="gvDetalleFactura" runat="server" Width="100%" Theme="Metropolis" KeyFieldName="codigoItemEntrega" AutoGenerateColumns="False" EnableTheming="True">

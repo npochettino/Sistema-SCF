@@ -108,6 +108,8 @@ namespace SCF.facturas
                     lblSubtotal.Text = txtSubtotal.Text;
                     lblImporteIVA.Text = txtImporteIVA.Text;
                     lblImporteTotal.Text = txtTotal.Text;
+                    lblCotizacion.Text = txtCotizacion.Text;
+                    lblTipoMoneda.Text = cbTipoMoneda.Text;
 
                     pcValidarComprobante.ShowOnPageLoad = true;
                 }
@@ -197,7 +199,7 @@ namespace SCF.facturas
                 subtotal = subtotal + Convert.ToDouble(dtItemsFacturaActual.Rows[i]["precioTotal"].ToString());
             }
 
-            subtotal = subtotal * Convert.ToDouble(txtCotizacion.Text);
+            //subtotal = subtotal * Convert.ToDouble(txtCotizacion.Text);
 
             txtSubtotal.Text = Convert.ToString((double)decimal.Round((decimal)subtotal, 2));
             txtImporteIVA.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 0.21), 2));

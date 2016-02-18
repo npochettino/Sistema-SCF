@@ -2378,10 +2378,10 @@ namespace BibliotecaSCF.Controladores
                     detalleReq.FchVtoPago = ConvertirFechaAFIP(factura.FechaFacturacion);
                 }
 
-                detalleReq.ImpIVA = (double)decimal.Round((decimal)(factura.Subtotal * 0.21), 2); // VERRR!!!!!!!!!!!
-                detalleReq.ImpNeto = factura.Subtotal;
+                detalleReq.ImpIVA = (double)decimal.Round((decimal)(factura.Cotizacion * factura.Subtotal * 0.21), 2); // VERRR!!!!!!!!!!!
+                detalleReq.ImpNeto = factura.Cotizacion * factura.Subtotal;
                 detalleReq.ImpOpEx = 0; //por que??
-                detalleReq.ImpTotal = factura.Total;
+                detalleReq.ImpTotal = factura.Cotizacion * factura.Total;
                 detalleReq.ImpTotConc = 0; //por que ????
                 detalleReq.ImpTrib = 0; //ver tributos
 
@@ -2390,8 +2390,8 @@ namespace BibliotecaSCF.Controladores
                 var ls = new List<AlicIva>();
                 AlicIva alicIva = new AlicIva();
                 alicIva.Id = factura.Iva.Codigo;
-                alicIva.BaseImp = factura.Subtotal;
-                alicIva.Importe = (double)decimal.Round((decimal)factura.Subtotal * (decimal)0.21, 2);
+                alicIva.BaseImp = factura.Cotizacion * factura.Subtotal;
+                alicIva.Importe = (double)decimal.Round((decimal)factura.Cotizacion * (decimal)factura.Subtotal * (decimal)0.21, 2);
                 ls.Add(alicIva);
 
                 detalleReq.Iva = ls.ToArray();
