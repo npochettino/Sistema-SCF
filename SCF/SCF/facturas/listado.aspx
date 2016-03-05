@@ -28,7 +28,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="listado_facturas.aspx">Listado Facturas</a>
+                    <a href="../facturas/listado.aspx">Listado Facturas</a>
                     <i class="fa fa-circle"></i>
                 </li>
             </ul>
@@ -106,6 +106,9 @@
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
                                         <dx:GridViewDataDateColumn FieldName="localidad" Visible="false" VisibleIndex="9" Caption="Condición Venta">
+                                            <Settings AllowSort="True" AutoFilterCondition="Contains" />
+                                        </dx:GridViewDataDateColumn>
+                                         <dx:GridViewDataDateColumn FieldName="cotizacion" Visible="false" VisibleIndex="9" Caption="Cotizacion">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
                                     </Columns>

@@ -2272,6 +2272,7 @@ namespace BibliotecaSCF.Controladores
                 tablaFacturas.Columns.Add("direccion");
                 tablaFacturas.Columns.Add("domicilio");
                 tablaFacturas.Columns.Add("localidad");
+                tablaFacturas.Columns.Add("cotizacion");
 
                 List<Factura> listaFacturas = CatalogoFactura.RecuperarTodos(nhSesion);
 
@@ -2280,7 +2281,7 @@ namespace BibliotecaSCF.Controladores
                     dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion, r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
                         r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento, string.Join(", ", r.Entregas.Select(x => x.NumeroRemito)),
                         r.CondicionVenta, r.Entregas[0].Direccion.Codigo, r.Entregas[0].Direccion.Descripcion + ", " + r.Entregas[0].Direccion.Localidad + ", " +
-                        r.Entregas[0].Direccion.Provincia, r.Entregas[0].Direccion.Descripcion, r.Entregas[0].Direccion.Localidad); return dt;
+                        r.Entregas[0].Direccion.Provincia, r.Entregas[0].Direccion.Descripcion, r.Entregas[0].Direccion.Localidad,r.Cotizacion); return dt;
                 });
 
                 return tablaFacturas;
@@ -2424,10 +2425,10 @@ namespace BibliotecaSCF.Controladores
 
                 double cotizacion = factura.Moneda.Codigo == Constantes.Moneda.PESO ? 1 : factura.Cotizacion; // Si la moneda es peso argentino se pone la cotizacion ingresada, sino va 1
 
-                detalleReq.ImpIVA = (double)decimal.Round((decimal)(cotizacion * factura.Subtotal * 0.21), 2); 
-                detalleReq.ImpNeto = factura.Cotizacion * factura.Subtotal;
+                detalleReq.ImpIVA = (double)decimal.Round((decimal)(cotizacion * factura.Subtotal * 0.21), 2);
+                detalleReq.ImpNeto = (double)decimal.Round((decimal)cotizacion * (decimal)factura.Subtotal, 2);
                 detalleReq.ImpOpEx = 0; //por que??
-                detalleReq.ImpTotal = factura.Cotizacion * factura.Total;
+                detalleReq.ImpTotal = (double)decimal.Round((decimal)cotizacion * (decimal)factura.Total, 2);
                 detalleReq.ImpTotConc = 0; //por que ????
                 detalleReq.ImpTrib = 0; //ver tributos
 
@@ -2436,8 +2437,8 @@ namespace BibliotecaSCF.Controladores
                 var ls = new List<AlicIva>();
                 AlicIva alicIva = new AlicIva();
                 alicIva.Id = factura.Iva.Codigo;
-                alicIva.BaseImp = factura.Cotizacion * factura.Subtotal;
-                alicIva.Importe = (double)decimal.Round((decimal)factura.Cotizacion * (decimal)factura.Subtotal * (decimal)0.21, 2);
+                alicIva.BaseImp = (double)decimal.Round((decimal)cotizacion * (decimal)factura.Subtotal, 2);
+                alicIva.Importe = (double)decimal.Round((decimal)cotizacion * (decimal)factura.Subtotal * (decimal)0.21, 2);
                 ls.Add(alicIva);
 
                 detalleReq.Iva = ls.ToArray();

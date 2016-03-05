@@ -96,7 +96,7 @@ namespace SCF.facturas
                     gvDetalleFactura.DataSource = dtItemsFacturaActual;
                     gvDetalleFactura.DataBind();
 
-                    lblNroFacturaAEmitir.Text = "002 - " + (Convert.ToInt32(txtNroFactura.Value)).ToString("D8");
+                    lblNroFacturaAEmitir.Text = "0002 - " + (Convert.ToInt32(txtNroFactura.Value)).ToString("D8");
                     lblCondicionVenta.Text = cbCondicionVenta.Text;
                     lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
                     lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
@@ -225,11 +225,14 @@ namespace SCF.facturas
 
             DataTable tablaItemFactura = (DataTable)Session["dtItemsFacturaActual"];
             int codigoItemNotaPedido = Convert.ToInt32(e.Keys["codigoItemEntrega"]);
+            
             DataRow fila = (from t in tablaItemFactura.AsEnumerable() where Convert.ToInt32(t["codigoItemEntrega"]) == codigoItemNotaPedido select t).SingleOrDefault();
-
+            int cantidad = Convert.ToInt32(fila.ItemArray[4]);
+            
             fila["precioUnitario"] = Convert.ToDouble(e.NewValues["precioUnitario"]);
 
-            fila["precioTotal"] = Convert.ToDouble(fila.ItemArray[4].ToString()) * Convert.ToDouble(e.NewValues["precioUnitario"]);
+            //fila["precioTotal"] = Convert.ToDouble(fila.ItemArray[4].ToString()) * Convert.ToDouble(e.NewValues["precioUnitario"]);
+            fila["precioTotal"] = Convert.ToInt32(fila.ItemArray[4]) * Convert.ToDouble(e.NewValues["precioUnitario"]);
 
             Session["dtItemsFacturaActual"] = tablaItemFactura;
 

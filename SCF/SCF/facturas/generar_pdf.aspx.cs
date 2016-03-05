@@ -36,7 +36,7 @@ namespace SCF.facturas
             rvFacturaA.LocalReport.EnableExternalImages = true;
 
             ReportParameter txtRespInsc = new ReportParameter("txtRespInsc", "X");
-            ReportParameter txtNroFactura = new ReportParameter("txtNroFactura", "002 - " + Convert.ToInt32(dtFacturaActual.Rows[0]["numeroFactura"]).ToString("D8").Trim());
+            ReportParameter txtNroFactura = new ReportParameter("txtNroFactura", "0002 - " + Convert.ToInt32(dtFacturaActual.Rows[0]["numeroFactura"]).ToString("D8").Trim());
             ReportParameter txtCliente = new ReportParameter("txtCliente", Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialCliente"]).Trim());
             ReportParameter txtDomicilio = new ReportParameter("txtDomicilio", Convert.ToString(dtFacturaActual.Rows[0]["domicilio"]).Trim());
             ReportParameter txtLocalidad = new ReportParameter("txtLocalidad", Convert.ToString(dtFacturaActual.Rows[0]["localidad"]).Trim());
@@ -52,6 +52,7 @@ namespace SCF.facturas
             ReportParameter txtNroNotaPedidoCliente = new ReportParameter("txtNroNotaPedidoCliente", Convert.ToString(dtItemsFacturaActual.Rows[0]["numeroNotaDePedido"]).ToString());
             ReportParameter txtRazonSocialProveedor = new ReportParameter("txtRazonSocialProveedor", Convert.ToString(dtItemsFacturaActual.Rows[0]["codigoSCF"]).ToString());
             ReportParameter txtTipoMoneda = new ReportParameter("txtTipoMoneda", Convert.ToString(dtFacturaActual.Rows[0]["descripcionTipoMoneda"]).Trim());
+            ReportParameter txtCotizacion = new ReportParameter("txtCotizacion", Convert.ToString(dtFacturaActual.Rows[0]["cotizacion"]).Trim());
             // Create and setup an instance of Bytescout Barcode SDK
             Barcode bc = new Barcode(SymbologyType.Code128);
             bc.RegistrationName = "demo";
@@ -71,7 +72,7 @@ namespace SCF.facturas
 
             this.rvFacturaA.LocalReport.SetParameters(new ReportParameter[] { txtNroFactura,txtCliente,txtDomicilio,txtLocalidad,txtNroDocumento,txtNroRemitos,
             txtCondicionVenta,txtSubtotal,txtIVA,txtTotal,txtCAE,txtFechaVencimientoCAE,txtFechaFacturacion,imgBarCode,txtNumeroCodigoBarra,txtRespInsc,
-            txtNroNotaPedidoCliente,txtRazonSocialProveedor,txtTipoMoneda});
+            txtNroNotaPedidoCliente,txtRazonSocialProveedor,txtTipoMoneda,txtCotizacion});
             
 
             dsReporte.DataTable1.Clear();
