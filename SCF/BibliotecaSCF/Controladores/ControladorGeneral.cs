@@ -324,8 +324,18 @@ namespace BibliotecaSCF.Controladores
 
                 if (codigoArticuloCliente == 0)
                 {
-                    articuloCliente = new ArticuloCliente();
-                    articulo.ArticulosClientes.Add(articuloCliente);
+                    //validamos que no haya un articulo cliente ya existente para ese articulo y ese cliente
+                    articuloCliente = (from a in articulo.ArticulosClientes where a.Cliente.Codigo == codigoCliente select a).SingleOrDefault();
+                    
+                    if (articuloCliente == null)
+                    {
+                        articuloCliente = new ArticuloCliente();
+                        articulo.ArticulosClientes.Add(articuloCliente);
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
                 else
                 {
