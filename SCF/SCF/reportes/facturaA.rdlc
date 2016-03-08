@@ -64,7 +64,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!codigoArticulo.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -94,7 +96,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!descripcionCorta.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -124,7 +128,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!posicion.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -154,7 +160,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!cantidad.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -184,7 +192,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!precioUnitario.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -214,7 +224,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!precioTotal.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -705,11 +717,15 @@
             <TextRuns>
               <TextRun>
                 <Value>Nro. Orden de Compra:</Value>
-                <Style />
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>=Parameters!txtNroNotaPedidoCliente.Value</Value>
-                <Style />
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -718,7 +734,7 @@
         <rd:DefaultName>txtNumeroNotaDePedido</rd:DefaultName>
         <Top>17.02482cm</Top>
         <Left>3.20633cm</Left>
-        <Height>0.73229cm</Height>
+        <Height>0.5559cm</Height>
         <Width>14.2875cm</Width>
         <ZIndex>17</ZIndex>
         <Style>
@@ -739,20 +755,24 @@
             <TextRuns>
               <TextRun>
                 <Value>Proveedor:</Value>
-                <Style />
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>=Parameters!txtRazonSocialProveedor.Value</Value>
-                <Style />
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtRazonSocialProveedor</rd:DefaultName>
-        <Top>17.75711cm</Top>
+        <Top>17.58072cm</Top>
         <Left>3.20633cm</Left>
-        <Height>0.75875cm</Height>
+        <Height>0.58236cm</Height>
         <Width>14.2875cm</Width>
         <ZIndex>18</ZIndex>
         <Style>
@@ -773,19 +793,23 @@
             <TextRuns>
               <TextRun>
                 <Value>Tipo Moneda:</Value>
-                <Style />
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>=Parameters!txtTipoMoneda.Value</Value>
-                <Style />
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>18.51586cm</Top>
+        <Top>18.16308cm</Top>
         <Left>3.20633cm</Left>
-        <Height>0.75875cm</Height>
+        <Height>0.54708cm</Height>
         <Width>14.2875cm</Width>
         <ZIndex>19</ZIndex>
         <Style>
