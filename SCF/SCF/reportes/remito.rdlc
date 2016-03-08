@@ -148,7 +148,6 @@
         </Style>
       </Textbox>
       <Textbox Name="txtCondicionVenta">
-        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
@@ -237,7 +236,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!codigoArticulo.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -267,7 +268,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!descripcion.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -298,7 +301,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!posicion.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -328,7 +333,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!cantidad.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -388,7 +395,9 @@
             <TextRuns>
               <TextRun>
                 <Value>Transporte: </Value>
-                <Style />
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>=Parameters!txtTransporte.Value</Value>
@@ -401,9 +410,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtTransporte</rd:DefaultName>
-        <Top>20.49349cm</Top>
+        <Top>17.81018cm</Top>
         <Left>3.59516cm</Left>
-        <Height>0.70583cm</Height>
+        <Height>0.4677cm</Height>
         <Width>14.2875cm</Width>
         <ZIndex>8</ZIndex>
         <Style>
@@ -463,7 +472,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtCAE</rd:DefaultName>
-        <Top>25.68174cm</Top>
+        <Top>21.91584cm</Top>
         <Left>16.40099cm</Left>
         <Height>0.38848cm</Height>
         <Width>3.45701cm</Width>
@@ -494,7 +503,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtFechaVenciminetoCAE</rd:DefaultName>
-        <Top>26.07022cm</Top>
+        <Top>22.30432cm</Top>
         <Left>16.40099cm</Left>
         <Height>0.3354cm</Height>
         <Width>3.45701cm</Width>
@@ -509,7 +518,7 @@
         <Source>External</Source>
         <Value>=Parameters!imgBarCode.Value</Value>
         <Sizing>Fit</Sizing>
-        <Top>24.99356cm</Top>
+        <Top>21.56306cm</Top>
         <Left>1.21842cm</Left>
         <Height>1.07666cm</Height>
         <Width>8.74417cm</Width>
@@ -540,7 +549,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtNumeroCodigoBarra</rd:DefaultName>
-        <Top>26.07022cm</Top>
+        <Top>22.63972cm</Top>
         <Left>3.59516cm</Left>
         <Height>0.49395cm</Height>
         <Width>6.36743cm</Width>
@@ -563,7 +572,9 @@
             <TextRuns>
               <TextRun>
                 <Value>Proveedor:</Value>
-                <Style />
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>=Parameters!txtRazonSocialProveedor.Value</Value>
@@ -576,9 +587,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtRazonSocialProveedor</rd:DefaultName>
-        <Top>19.62891cm</Top>
+        <Top>17.31601cm</Top>
         <Left>3.59516cm</Left>
-        <Height>0.75875cm</Height>
+        <Height>0.49417cm</Height>
         <Width>14.2875cm</Width>
         <ZIndex>14</ZIndex>
         <Style>
@@ -599,7 +610,9 @@
             <TextRuns>
               <TextRun>
                 <Value>Nro. Pedido:</Value>
-                <Style />
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>=Parameters!txtNumeroNotaDePedido.Value</Value>
@@ -612,9 +625,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtNumeroNotaDePedido</rd:DefaultName>
-        <Top>18.89662cm</Top>
+        <Top>16.76011cm</Top>
         <Left>3.59516cm</Left>
-        <Height>0.73229cm</Height>
+        <Height>0.5559cm</Height>
         <Width>14.2875cm</Width>
         <ZIndex>15</ZIndex>
         <Style>
@@ -634,7 +647,9 @@
             <TextRuns>
               <TextRun>
                 <Value>Observaciones: </Value>
-                <Style />
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>=Parameters!txtObservaciones.Value</Value>
@@ -647,9 +662,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtTransporte</rd:DefaultName>
-        <Top>21.30516cm</Top>
+        <Top>18.27788cm</Top>
         <Left>3.59516cm</Left>
-        <Height>0.70583cm</Height>
+        <Height>0.49416cm</Height>
         <Width>14.2875cm</Width>
         <ZIndex>16</ZIndex>
         <Style>

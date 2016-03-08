@@ -181,7 +181,7 @@
                                                             </Columns>
                                                             <SettingsBehavior ColumnResizeMode="NextColumn" />
                                                             <SettingsBehavior AllowFocusedRow="True" />
-                                                            <SettingsPager PageSize="10">
+                                                            <SettingsPager PageSize="40">
                                                             </SettingsPager>
                                                             <Settings ShowFilterRow="True" />
                                                         </dx:ASPxGridView>
@@ -262,6 +262,8 @@
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
                                                             <Settings ShowFilterRow="True" />
+                                                            <SettingsPager PageSize="40">
+                                                            </SettingsPager>
                                                         </dx:ASPxGridView>
                                                         <br />
                                                         <div>

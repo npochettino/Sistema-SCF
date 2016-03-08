@@ -99,6 +99,8 @@
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />
                                     <Settings ShowFilterRow="True" />
+                                    <SettingsPager PageSize="15">
+                                    </SettingsPager>
                                 </dx:ASPxGridView>
                             </div>
                         </div>
