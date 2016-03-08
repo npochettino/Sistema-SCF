@@ -258,6 +258,8 @@
                                                             </Columns>
                                                             <SettingsBehavior AllowFocusedRow="True" />
                                                             <Settings ShowFilterRow="True" />
+                                                            <SettingsPager PageSize="50">
+                                                            </SettingsPager>
                                                         </dx:ASPxGridView>
                                                         <br />
                                                         <div>
