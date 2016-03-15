@@ -65,18 +65,18 @@
                                         <dx:GridViewDataTextColumn FieldName="codigoEntrega" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataDateColumn FieldName="codigoNotaDePedido" VisibleIndex="1" Visible="false">
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="codigoCliente" VisibleIndex="2" Visible="false">
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="razonSocialCliente" VisibleIndex="3" Caption="Cliente">
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="codigoDireccion" VisibleIndex="4" Visible="false">
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="direccion" VisibleIndex="5" Caption="Dirección">
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="fechaEmision" VisibleIndex="6" Caption="Fecha Emision">
-                                        </dx:GridViewDataDateColumn>
+                                        <dx:GridViewDataTextColumn FieldName="codigoNotaDePedido" VisibleIndex="1" Visible="false">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="codigoCliente" VisibleIndex="2" Visible="false">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="3" Caption="Cliente">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="codigoDireccion" VisibleIndex="4" Visible="false">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="direccion" VisibleIndex="5" Caption="Dirección">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="fechaEmision" VisibleIndex="6" Caption="Fecha Emision">
+                                        </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="numeroNotaDePedido" VisibleIndex="7" Caption="Nota de pedido">
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="numeroRemito" VisibleIndex="8" Caption="Numero Remito">

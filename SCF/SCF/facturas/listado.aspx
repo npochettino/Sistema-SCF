@@ -66,56 +66,56 @@
                                         <dx:GridViewDataTextColumn FieldName="codigoFactura" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataDateColumn FieldName="numeroFactura" VisibleIndex="1" Caption="Numero Factura">
+                                        <dx:GridViewDataTextColumn FieldName="numeroFactura" VisibleIndex="1" Caption="Numero Factura">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="fechaFacturacion" VisibleIndex="2" Caption="Fecha Facturación">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="fechaFacturacion" VisibleIndex="2" Caption="Fecha Facturación">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="descripcionTipoComprobante" Visible="false" VisibleIndex="3" Caption="Tipo Comprobante">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="descripcionTipoComprobante" Visible="false" VisibleIndex="3" Caption="Tipo Comprobante">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="descripcionTipoMoneda" VisibleIndex="9" Caption="Tipo Moneda" Visible="true">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="descripcionTipoMoneda" VisibleIndex="9" Caption="Tipo Moneda" Visible="true">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="remitos" VisibleIndex="5" Caption="Remito" Visible="true">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="remitos" VisibleIndex="5" Caption="Remito" Visible="true">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="descripcionConcepto" VisibleIndex="5" Caption="Concepto" Visible="false">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="descripcionConcepto" VisibleIndex="5" Caption="Concepto" Visible="false">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="descripcionIVA" VisibleIndex="6" Caption="IVA" Visible="false">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="descripcionIVA" VisibleIndex="6" Caption="IVA" Visible="false">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="subtotal" VisibleIndex="7" Caption="Sobtotal">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="subtotal" VisibleIndex="7" Caption="Sobtotal">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="total" VisibleIndex="8" Caption="Total">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="total" VisibleIndex="8" Caption="Total">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="cae" VisibleIndex="9" Caption="CAE">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="cae" VisibleIndex="9" Caption="CAE">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
+                                        </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataDateColumn FieldName="fechaVencimientoCAE" VisibleIndex="10" Caption="Fecha Venc. CAE" Visible="true">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                         </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="condicionVenta" Visible="false" VisibleIndex="9" Caption="Condición Venta">
+                                        <dx:GridViewDataTextColumn FieldName="condicionVenta" Visible="false" VisibleIndex="9" Caption="Condición Venta">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="domicilio" Visible="false" VisibleIndex="9" Caption="Condición Venta">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="domicilio" Visible="false" VisibleIndex="9" Caption="Condición Venta">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                        <dx:GridViewDataDateColumn FieldName="localidad" Visible="false" VisibleIndex="9" Caption="Condición Venta">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="localidad" Visible="false" VisibleIndex="9" Caption="Condición Venta">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
-                                         <dx:GridViewDataDateColumn FieldName="cotizacion" Visible="false" VisibleIndex="9" Caption="Cotizacion">
+                                        </dx:GridViewDataTextColumn>
+                                         <dx:GridViewDataTextColumn FieldName="cotizacion" Visible="false" VisibleIndex="9" Caption="Cotizacion">
                                             <Settings AllowSort="True" AutoFilterCondition="Contains" />
-                                        </dx:GridViewDataDateColumn>
+                                        </dx:GridViewDataTextColumn>
                                     </Columns>
                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
                                     <SettingsBehavior AllowFocusedRow="True" />
                                     <Settings ShowFilterRow="True" />
-                                    <SettingsPager PageSize="15">
+                                    <SettingsPager PageSize="20">
                                     </SettingsPager>
                                 </dx:ASPxGridView>
 
