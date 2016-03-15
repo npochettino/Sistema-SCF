@@ -809,15 +809,10 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-<<<<<<< HEAD
-        <Top>18.16308cm</Top>
-        <Left>3.20633cm</Left>
-        <Height>0.54708cm</Height>
-=======
+
         <Top>14.48619cm</Top>
         <Left>3.20633cm</Left>
         <Height>0.49417cm</Height>
->>>>>>> update on pdf factura
         <Width>14.2875cm</Width>
         <ZIndex>19</ZIndex>
         <Style>
