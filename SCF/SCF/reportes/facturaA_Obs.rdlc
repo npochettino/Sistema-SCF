@@ -732,15 +732,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtNumeroNotaDePedido</rd:DefaultName>
-<<<<<<< HEAD
-        <Top>17.1742cm</Top>
-        <Left>3.20633cm</Left>
-        <Height>0.5559cm</Height>
-=======
+
         <Top>12.87924cm</Top>
         <Left>3.17987cm</Left>
         <Height>0.41479cm</Height>
->>>>>>> update on pdf factura
         <Width>14.2875cm</Width>
         <ZIndex>17</ZIndex>
         <Style>
@@ -776,15 +771,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtRazonSocialProveedor</rd:DefaultName>
-<<<<<<< HEAD
-        <Top>17.7301cm</Top>
-        <Left>3.20633cm</Left>
-        <Height>0.46771cm</Height>
-=======
+
         <Top>13.29403cm</Top>
         <Left>3.17987cm</Left>
         <Height>0.41479cm</Height>
->>>>>>> update on pdf factura
         <Width>14.2875cm</Width>
         <ZIndex>18</ZIndex>
         <Style>
@@ -819,15 +809,10 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-<<<<<<< HEAD
-        <Top>18.19781cm</Top>
-        <Left>3.20633cm</Left>
-        <Height>0.58236cm</Height>
-=======
+
         <Top>13.70882cm</Top>
         <Left>3.17987cm</Left>
         <Height>0.41479cm</Height>
->>>>>>> update on pdf factura
         <Width>14.2875cm</Width>
         <ZIndex>19</ZIndex>
         <Style>
@@ -862,15 +847,10 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-<<<<<<< HEAD
-        <Top>18.78017cm</Top>
-        <Left>3.20633cm</Left>
-        <Height>0.54708cm</Height>
-=======
+
         <Top>14.12361cm</Top>
         <Left>3.17987cm</Left>
         <Height>0.46771cm</Height>
->>>>>>> update on pdf factura
         <Width>14.2875cm</Width>
         <ZIndex>20</ZIndex>
         <Style>

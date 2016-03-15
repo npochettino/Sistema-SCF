@@ -734,11 +734,8 @@
         <rd:DefaultName>txtNumeroNotaDePedido</rd:DefaultName>
         <Top>13.63015cm</Top>
         <Left>3.20633cm</Left>
-<<<<<<< HEAD
-        <Height>0.5559cm</Height>
-=======
+
         <Height>0.44125cm</Height>
->>>>>>> update on pdf factura
         <Width>14.2875cm</Width>
         <ZIndex>17</ZIndex>
         <Style>
@@ -774,15 +771,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>txtRazonSocialProveedor</rd:DefaultName>
-<<<<<<< HEAD
-        <Top>17.58072cm</Top>
-        <Left>3.20633cm</Left>
-        <Height>0.58236cm</Height>
-=======
+
         <Top>14.0714cm</Top>
         <Left>3.20633cm</Left>
         <Height>0.41479cm</Height>
->>>>>>> update on pdf factura
         <Width>14.2875cm</Width>
         <ZIndex>18</ZIndex>
         <Style>
