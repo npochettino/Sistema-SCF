@@ -94,6 +94,7 @@ namespace SCF.facturas
             }
 
             //for (int i = 0; i < (5 - tablaReporte.Rows.Count); i++)
+
             for (int i = tablaReporte.Rows.Count; i <= 10; i++)
             {
                 DataRow filaReporte = dsReporte.DataTable1.NewRow();
