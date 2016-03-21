@@ -2428,7 +2428,8 @@ namespace BibliotecaSCF.Controladores
                 detalleReq.ImpIVA = (double)decimal.Round((decimal)(cotizacion * factura.Subtotal * 0.21), 2);
                 detalleReq.ImpNeto = (double)decimal.Round((decimal)cotizacion * (decimal)factura.Subtotal, 2);
                 detalleReq.ImpOpEx = 0; //por que??
-                detalleReq.ImpTotal = (double)decimal.Round((decimal)cotizacion * (decimal)factura.Total, 2);
+                detalleReq.ImpTotal = detalleReq.ImpIVA + detalleReq.ImpNeto;
+                //detalleReq.ImpTotal = (double)decimal.Round((decimal)cotizacion * (decimal)factura.Total, 2);
                 detalleReq.ImpTotConc = 0; //por que ????
                 detalleReq.ImpTrib = 0; //ver tributos
 

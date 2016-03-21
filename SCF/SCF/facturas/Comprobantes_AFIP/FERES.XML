@@ -4,22 +4,22 @@
     <Cuit>27296804385</Cuit>
     <PtoVta>2</PtoVta>
     <CbteTipo>1</CbteTipo>
-    <FchProceso>20160220105341</FchProceso>
+    <FchProceso>20160321185300</FchProceso>
     <CantReg>1</CantReg>
     <Resultado>A</Resultado>
     <Reproceso>N</Reproceso>
   </FeCabResp>
   <FeDetResp xmlns="http://ar.gov.afip.dif.FEV1/">
     <FECAEDetResponse>
-      <Concepto>1</Concepto>
+      <Concepto>3</Concepto>
       <DocTipo>80</DocTipo>
-      <DocNro>30516888241</DocNro>
-      <CbteDesde>19</CbteDesde>
-      <CbteHasta>19</CbteHasta>
-      <CbteFch>20160220</CbteFch>
+      <DocNro>30547981029</DocNro>
+      <CbteDesde>21</CbteDesde>
+      <CbteHasta>21</CbteHasta>
+      <CbteFch>20160321</CbteFch>
       <Resultado>A</Resultado>
-      <CAE>66085347151492</CAE>
-      <CAEFchVto>20160301</CAEFchVto>
+      <CAE>66125370330797</CAE>
+      <CAEFchVto>20160331</CAEFchVto>
     </FECAEDetResponse>
   </FeDetResp>
 </FECAEResponse>
