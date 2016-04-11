@@ -4,7 +4,7 @@
     <Cuit>27296804385</Cuit>
     <PtoVta>2</PtoVta>
     <CbteTipo>1</CbteTipo>
-    <FchProceso>20160321185300</FchProceso>
+    <FchProceso>20160328232842</FchProceso>
     <CantReg>1</CantReg>
     <Resultado>A</Resultado>
     <Reproceso>N</Reproceso>
@@ -13,13 +13,13 @@
     <FECAEDetResponse>
       <Concepto>3</Concepto>
       <DocTipo>80</DocTipo>
-      <DocNro>30547981029</DocNro>
-      <CbteDesde>21</CbteDesde>
-      <CbteHasta>21</CbteHasta>
-      <CbteFch>20160321</CbteFch>
+      <DocNro>30516888241</DocNro>
+      <CbteDesde>22</CbteDesde>
+      <CbteHasta>22</CbteHasta>
+      <CbteFch>20160328</CbteFch>
       <Resultado>A</Resultado>
-      <CAE>66125370330797</CAE>
-      <CAEFchVto>20160331</CAEFchVto>
+      <CAE>66135372147285</CAE>
+      <CAEFchVto>20160407</CAEFchVto>
     </FECAEDetResponse>
   </FeDetResp>
 </FECAEResponse>

@@ -9,26 +9,26 @@
     <FECAEDetRequest>
       <Concepto>3</Concepto>
       <DocTipo>80</DocTipo>
-      <DocNro>30547981029</DocNro>
-      <CbteDesde>21</CbteDesde>
-      <CbteHasta>21</CbteHasta>
-      <CbteFch>20160321</CbteFch>
-      <ImpTotal>347.79</ImpTotal>
+      <DocNro>30516888241</DocNro>
+      <CbteDesde>22</CbteDesde>
+      <CbteHasta>22</CbteHasta>
+      <CbteFch>20160328</CbteFch>
+      <ImpTotal>2110.14</ImpTotal>
       <ImpTotConc>0</ImpTotConc>
-      <ImpNeto>287.43</ImpNeto>
+      <ImpNeto>1743.92</ImpNeto>
       <ImpOpEx>0</ImpOpEx>
       <ImpTrib>0</ImpTrib>
-      <ImpIVA>60.36</ImpIVA>
-      <FchServDesde>20160321</FchServDesde>
-      <FchServHasta>20160321</FchServHasta>
-      <FchVtoPago>20160321</FchVtoPago>
+      <ImpIVA>366.22</ImpIVA>
+      <FchServDesde>20160328</FchServDesde>
+      <FchServHasta>20160328</FchServHasta>
+      <FchVtoPago>20160328</FchVtoPago>
       <MonId>PES</MonId>
       <MonCotiz>1</MonCotiz>
       <Iva>
         <AlicIva>
           <Id>5</Id>
-          <BaseImp>287.43</BaseImp>
-          <Importe>60.36</Importe>
+          <BaseImp>1743.92</BaseImp>
+          <Importe>366.22</Importe>
         </AlicIva>
       </Iva>
     </FECAEDetRequest>

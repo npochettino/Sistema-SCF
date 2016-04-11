@@ -184,7 +184,7 @@
                                                                 <dx:GridViewDataTextColumn Caption="Moneda" Visible="true" Width="40px" VisibleIndex="5" FieldName="descripcionMoneda">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Visible="true" VisibleIndex="5" FieldName="codigoMoneda">
+                                                                <dx:GridViewDataTextColumn Visible="false" VisibleIndex="5" FieldName="codigoMoneda">
                                                                     <Settings AllowSort="True" AutoFilterCondition="Contains" />
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="Total Entregar" Visible="true" Width="50" VisibleIndex="6" FieldName="cantidad">

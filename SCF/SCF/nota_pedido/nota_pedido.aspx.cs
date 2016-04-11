@@ -140,8 +140,11 @@ namespace SCF.nota_pedido
 
                             //if (filaRepetida == null)
                             //{
+                            if (Session["tablaNotaDePedido"] == null)
                                 tablaItemsNotaDePedido.Rows.Add(mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], tablaItemsNotaDePedido.Rows.Count+1, 1, DateTime.Now, -i, mRow.Row.ItemArray[4], false, mRow.Row.ItemArray[12]);
-                            //}
+                            else
+                                tablaItemsNotaDePedido.Rows.Add(0, mRow.Row.ItemArray[0], mRow.Row.ItemArray[1], mRow.Row.ItemArray[2], mRow.Row.ItemArray[3], mRow.Row.ItemArray[4], 1, DateTime.Now, 1, mRow.Row.ItemArray[11], mRow.Row.ItemArray[12], tablaItemsNotaDePedido.Rows.Count + 1, mRow.Row.ItemArray[4],false);
+                            //} 
                         }
                     }
                 }
