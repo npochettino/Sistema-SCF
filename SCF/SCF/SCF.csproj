@@ -4051,6 +4051,10 @@
     <Content Include="assets\sweetalert.css" />
     <Content Include="assets\sweetalert.min.js" />
     <Content Include="clientes\cliente.js" />
+    <Content Include="credito\credito.aspx" />
+    <Content Include="credito\generar_pdf.aspx" />
+    <Content Include="credito\listado.aspx" />
+    <Content Include="dashboard\reporte_facturas.aspx" />
     <Content Include="facturas\generar_pdf.aspx" />
     <Content Include="facturas\tipo_comprobante.aspx" />
     <Content Include="remitos\generar_pdf.aspx" />
@@ -4105,6 +4109,34 @@
     </Compile>
     <Compile Include="articulos\articulo.aspx.designer.cs">
       <DependentUpon>articulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="credito\credito.aspx.cs">
+      <DependentUpon>credito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="credito\credito.aspx.designer.cs">
+      <DependentUpon>credito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="credito\generar_pdf.aspx.cs">
+      <DependentUpon>generar_pdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="credito\generar_pdf.aspx.designer.cs">
+      <DependentUpon>generar_pdf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="credito\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="credito\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dashboard\reporte_facturas.aspx.cs">
+      <DependentUpon>reporte_facturas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dashboard\reporte_facturas.aspx.designer.cs">
+      <DependentUpon>reporte_facturas.aspx</DependentUpon>
     </Compile>
     <Compile Include="dsItemsFacturaA.Designer.cs">
       <AutoGen>True</AutoGen>

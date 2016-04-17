@@ -188,6 +188,12 @@ License: SempaIT - Todos los derechos reservados.
                             </a>
                         </li>
                         <li>
+                            <a href="../credito/listado.aspx">
+                                <i class="icon-wallet"></i>
+                                <span class="title">Nota de Credito</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="../transportes/listado.aspx">
                                 <i class="icon-flag"></i>
                                 <span class="title">Transporte</span>
