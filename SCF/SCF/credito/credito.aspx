@@ -44,7 +44,11 @@
                             </div>
                         </div>
                         <div class="portlet-body form">
-
+                            <div class="form-actions top">
+                                <div class="btn-set pull-left">
+                                    <asp:Button type="button" ID="btnUltimoNroComprobante" runat="server" OnClick="btnUltimoNroComprobante_Click" UseSubmitBehavior="false" class="btn blue" Text="Ult. Nro Comprobante" />
+                                </div>
+                            </div>
                             <!-- BEGIN FORM-->
                             <form action="#" class="horizontal-form">
                                 <div class="form-body">
@@ -434,6 +438,53 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
     <!--END POPUP-->
+
+
+    <dx:ASPxPopupControl ID="pcUltimoComprobanteAfip" runat="server" CloseAction="OuterMouseClick" CloseOnEscape="true"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="pcUltimoComprobanteAfip"
+        HeaderText="Ultimo Comprobante AFIP" AllowDragging="True" Modal="True" PopupAnimationType="Fade" Width="650"
+        EnableViewState="False" Theme="Metropolis">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
+                <dx:ASPxPanel ID="ASPxPanel2" runat="server" DefaultButton="">
+                    <PanelCollection>
+                        <dx:PanelContent ID="PanelContent1" runat="server">
+                            <div>
+                                <div class="modal-body">
+                                    <h3 class="form-section">Datos Enviados</h3>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-12">CUIT Contribuyente: 30-71103970-4</label>
+
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-12">Punto de Venta: 002</label>
+
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-12">Tipo de Comprobante: Nota Credito Tipo A</label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                    <h3 class="form-section">Ultimo Nro. de comprobante: &nbsp;&nbsp; <strong>
+                                        <asp:Label ID="lblUltimoNroComprobante" runat="server" Text="0001-00002345"></asp:Label></strong></h3>
+                                </div>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
 
 </asp:Content>
 

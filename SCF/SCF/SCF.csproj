@@ -4696,6 +4696,7 @@
   <ItemGroup>
     <Folder Include="assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
     <Folder Include="contrato_marco\contratos\" />
+    <Folder Include="credito\Comprobantes_AFIP\" />
     <Folder Include="remitos\Comprobantes_AFIP\" />
   </ItemGroup>
   <ItemGroup>
@@ -4706,6 +4707,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="reportes\notaCreditoA.rdlc" />
     <EmbeddedResource Include="reportes\facturaA_Obs.rdlc" />
     <EmbeddedResource Include="reportes\facturaA.rdlc" />
     <EmbeddedResource Include="reportes\remito.rdlc" />

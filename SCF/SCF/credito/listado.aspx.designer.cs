@@ -49,13 +49,13 @@ namespace SCF.credito {
         protected global::System.Web.UI.WebControls.Button btnVerDetalle;
         
         /// <summary>
-        /// Control gvEntregas.
+        /// Control gvNotaCredito.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvEntregas;
+        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvNotaCredito;
         
         /// <summary>
         /// Control pcConfirmarEliminarNotaCredito.

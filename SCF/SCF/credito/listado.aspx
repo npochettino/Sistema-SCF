@@ -58,7 +58,7 @@
                             </div>
                             <div class="form-body" style="height: 600px">
                                 <!-- devexpress-->
-                                <dx:ASPxGridView ID="gvEntregas" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoEntrega" Theme="Metropolis" ClientInstanceName="gvEntregas">
+                                <dx:ASPxGridView ID="gvNotaCredito" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoEntrega" Theme="Metropolis" ClientInstanceName="gvNotaCredito">
                                     <Columns>
                                         <dx:GridViewDataTextColumn FieldName="codigoNotaCredito" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
