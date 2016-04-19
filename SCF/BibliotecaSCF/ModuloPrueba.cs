@@ -14,7 +14,7 @@ namespace BibliotecaSCF
     {
         public static void Main()
         {
-            string rta = ControladorGeneral.EliminarFactura(19);
+            ControladorGeneral.RecuperarFacturasPorFechas(DateTime.Now.AddDays(-40), DateTime.Now);
 
 
         }

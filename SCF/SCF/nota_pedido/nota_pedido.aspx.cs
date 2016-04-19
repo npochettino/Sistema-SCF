@@ -26,7 +26,10 @@ namespace SCF.nota_pedido
             //realacion con ese codigo pero no solo los que tiene como relacion
             CargarGrillaArticulosPorCliente();
 
-            txtFechaEmision.Value = DateTime.Now;
+            if (txtFechaEmision.Value == null || string.IsNullOrEmpty(txtFechaEmision.Value.ToString()))
+            {
+                txtFechaEmision.Value = DateTime.Now;
+            }
 
             if (!IsPostBack)
             {

@@ -20,7 +20,7 @@ namespace SCF.remitos
 
         private void CargarGrilla()
         {
-            gvEntregas.DataSource = ControladorGeneral.RecuperarTodasEntregas();
+            gvEntregas.DataSource = ControladorGeneral.RecuperarTodasEntregas(false);
             gvEntregas.DataBind();
         }
 

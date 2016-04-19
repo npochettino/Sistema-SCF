@@ -326,7 +326,7 @@ namespace BibliotecaSCF.Controladores
                 {
                     //validamos que no haya un articulo cliente ya existente para ese articulo y ese cliente
                     articuloCliente = (from a in articulo.ArticulosClientes where a.Cliente.Codigo == codigoCliente select a).SingleOrDefault();
-                    
+
                     if (articuloCliente == null)
                     {
                         articuloCliente = new ArticuloCliente();
@@ -1048,7 +1048,7 @@ namespace BibliotecaSCF.Controladores
 
         #region Entregas/Remitos
 
-        public static DataTable RecuperarTodasEntregas()
+        public static DataTable RecuperarTodasEntregas(bool sinFacturaAsociada)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
@@ -1075,8 +1075,17 @@ namespace BibliotecaSCF.Controladores
                 tablaEntrega.Columns.Add("cai");
                 tablaEntrega.Columns.Add("fechaVencimientoCai");
 
+                List<Entrega> listaEntregas = new List<Entrega>();
 
-                List<Entrega> listaEntregas = CatalogoEntrega.RecuperarTodos(nhSesion);
+                if (sinFacturaAsociada)
+                {
+                    List<Entrega> listaEntregasConFacturas = (from f in CatalogoFactura.RecuperarTodos(nhSesion) select f.Entregas).SelectMany(x => x).ToList();
+                    listaEntregas = CatalogoEntrega.RecuperarLasQueNoEstanEnLaLista(listaEntregasConFacturas, nhSesion);
+                }
+                else
+                {
+                    listaEntregas = CatalogoEntrega.RecuperarTodos(nhSesion);
+                }
 
                 listaEntregas.OrderByDescending(x => x.CodigoEstado).Aggregate(tablaEntrega, (dt, r) =>
                 {
@@ -1788,11 +1797,14 @@ namespace BibliotecaSCF.Controladores
 
         /// <summary>
         /// Columnas del DataTabla tablaItemsNotaDePedido: codigoItemNotaDePedido, codigoArticulo, cantidad, fechaEntrega
+        /// Devuelve un string.Empty si está todo OK, si algun item nota de pedido tiene asociado un remito, devuelve "TieneAsociadoRemito"
         /// </summary>
-        public static void InsertarActualizarNotaDePedido(int codigoNotaDePedido, string numeroInternoCliente, DateTime fechaEmision, string observaciones, int codigoContratoMarco, int codigoCliente, DataTable tablaItemsNotaDePedido)
+        public static string InsertarActualizarNotaDePedido(int codigoNotaDePedido, string numeroInternoCliente, DateTime fechaEmision, string observaciones, int codigoContratoMarco, int codigoCliente, DataTable tablaItemsNotaDePedido)
         {
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
             ITransaction transaccion = nhSesion.BeginTransaction();
+
+            string rta = string.Empty;
 
             try
             {
@@ -1828,12 +1840,19 @@ namespace BibliotecaSCF.Controladores
                     {
                         item = (from n in notaDePedido.ItemsNotaDePedido where n.Codigo == codigoItemNotaDePedido select n).SingleOrDefault();
 
+                        //Me fijo si el item esta eliminado
                         if (!Convert.IsDBNull(filaItemNotaDePedido["isEliminada"]) && Convert.ToBoolean(filaItemNotaDePedido["isEliminada"]))
                         {
+                            //Valido que el item nota de pedido no tenga asociado un remito
+                            //if (CatalogoEntrega.TieneRemito(item.Codigo, nhSesion)) POR AHORA QUEDA COMENTADO POR QUE EL METODO DEL CATALOGO NO FUNCIONA
+                            //{
                             notaDePedido.ItemsNotaDePedido.Remove(item);
+                            //}
+                            //else
+                            //{
+                            //    rta = "TieneAsociadoRemito";
+                            //}
                         }
-
-
                     }
 
                     item.Articulo = CatalogoArticulo.RecuperarPorCodigo(Convert.ToInt32(filaItemNotaDePedido["codigoArticulo"]), nhSesion);
@@ -1845,6 +1864,8 @@ namespace BibliotecaSCF.Controladores
 
                 CatalogoNotaDePedido.InsertarActualizar(notaDePedido, nhSesion);
                 transaccion.Commit();
+
+                return rta;
             }
             catch (Exception ex)
             {
@@ -2276,12 +2297,12 @@ namespace BibliotecaSCF.Controladores
 
                 List<Factura> listaFacturas = CatalogoFactura.RecuperarTodos(nhSesion);
 
-                listaFacturas.Aggregate(tablaFacturas, (dt, r) =>
+                listaFacturas.OrderBy(x => x.NumeroFactura).Aggregate(tablaFacturas, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion, r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
                         r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento, string.Join(", ", r.Entregas.Select(x => x.NumeroRemito)),
                         r.CondicionVenta, r.Entregas[0].Direccion.Codigo, r.Entregas[0].Direccion.Descripcion + ", " + r.Entregas[0].Direccion.Localidad + ", " +
-                        r.Entregas[0].Direccion.Provincia, r.Entregas[0].Direccion.Descripcion, r.Entregas[0].Direccion.Localidad,r.Cotizacion); return dt;
+                        r.Entregas[0].Direccion.Provincia, r.Entregas[0].Direccion.Descripcion, r.Entregas[0].Direccion.Localidad, r.Cotizacion); return dt;
                 });
 
                 return tablaFacturas;
@@ -2300,7 +2321,7 @@ namespace BibliotecaSCF.Controladores
         public static int ConsultarUltimoNroComprobante(int ptoVenta, int tipoComptobanteAfip)
         {
             var clsFac = new clsFacturacion();
-            
+
             var ultNroComprobante = clsFac.ConsultarUltNroOrden(ptoVenta, tipoComptobanteAfip);
             return ultNroComprobante;
         }
@@ -2320,7 +2341,7 @@ namespace BibliotecaSCF.Controladores
                 else
                 {
                     factura = CatalogoFactura.RecuperarPorCodigo(codigoFactura, nhSesion);
-                    
+
                     if (!string.IsNullOrEmpty(factura.Cae))
                     {
                         return "TieneCAE";
@@ -2428,8 +2449,8 @@ namespace BibliotecaSCF.Controladores
                 detalleReq.ImpIVA = (double)decimal.Round((decimal)(cotizacion * factura.Subtotal * 0.21), 2);
                 detalleReq.ImpNeto = (double)decimal.Round((decimal)cotizacion * (decimal)factura.Subtotal, 2);
                 detalleReq.ImpOpEx = 0; //por que??
-               //detalleReq.ImpTotal = detalleReq.ImpIVA + detalleReq.ImpNeto;
-                detalleReq.ImpTotal = (double)decimal.Round((decimal)detalleReq.ImpIVA + (decimal)detalleReq.ImpNeto,2);
+                //detalleReq.ImpTotal = detalleReq.ImpIVA + detalleReq.ImpNeto;
+                detalleReq.ImpTotal = (double)decimal.Round((decimal)detalleReq.ImpIVA + (decimal)detalleReq.ImpNeto, 2);
                 //detalleReq.ImpTotal = (double)decimal.Round((decimal)cotizacion * (decimal)factura.Total, 2);
                 detalleReq.ImpTotConc = 0; //por que ????
                 detalleReq.ImpTrib = 0; //ver tributos
@@ -2547,6 +2568,57 @@ namespace BibliotecaSCF.Controladores
                 {
                     return "TieneCAE";
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarFacturasPorFechas(DateTime fechaHoraDesde, DateTime fechaHoraHasta)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaFacturas = new DataTable();
+                tablaFacturas.Columns.Add("codigoFactura");
+                tablaFacturas.Columns.Add("numeroFactura");
+                tablaFacturas.Columns.Add("fechaFacturacion");
+                tablaFacturas.Columns.Add("descripcionTipoComprobante");
+                tablaFacturas.Columns.Add("descripcionTipoMoneda");
+                tablaFacturas.Columns.Add("descripcionConcepto");
+                tablaFacturas.Columns.Add("descripcionIVA");
+                tablaFacturas.Columns.Add("subtotal");
+                tablaFacturas.Columns.Add("total");
+                tablaFacturas.Columns.Add("cae");
+                tablaFacturas.Columns.Add("fechaVencimientoCAE");
+                tablaFacturas.Columns.Add("remitos");
+                tablaFacturas.Columns.Add("condicionVenta");
+                tablaFacturas.Columns.Add("codigoDireccion");
+                tablaFacturas.Columns.Add("direccion");
+                tablaFacturas.Columns.Add("domicilio");
+                tablaFacturas.Columns.Add("localidad");
+                tablaFacturas.Columns.Add("cotizacion");
+                tablaFacturas.Columns.Add("cliente");
+
+                List<Factura> listaFacturas = CatalogoFactura.RecuperarLista(x => x.FechaFacturacion >= fechaHoraDesde && x.FechaFacturacion <= fechaHoraHasta, nhSesion);
+
+                listaFacturas.OrderBy(x => x.NumeroFactura).Aggregate(tablaFacturas, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion, r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
+                        r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento, string.Join(", ", r.Entregas.Select(x => x.NumeroRemito)),
+                        r.CondicionVenta, r.Entregas[0].Direccion.Codigo, r.Entregas[0].Direccion.Descripcion + ", " + r.Entregas[0].Direccion.Localidad + ", " +
+                        r.Entregas[0].Direccion.Provincia, r.Entregas[0].Direccion.Descripcion, r.Entregas[0].Direccion.Localidad, r.Cotizacion,
+                        r.Entregas[0].NotaDePedido.Cliente.NumeroDocumento + " - " + r.Entregas[0].NotaDePedido.Cliente.RazonSocial); return dt;
+                });
+
+                return tablaFacturas;
             }
             catch (Exception ex)
             {
