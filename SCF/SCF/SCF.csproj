@@ -382,6 +382,7 @@
     <Content Include="assets\admin\pages\scripts\ui-notific8.js" />
     <Content Include="assets\admin\pages\scripts\ui-toastr.js" />
     <Content Include="assets\admin\pages\scripts\ui-tree.js" />
+    <Content Include="assets\encabezado_1.JPG" />
     <Content Include="assets\FacturaA_SCF_base.jpg" />
     <Content Include="assets\global\css\components-md.css" />
     <Content Include="assets\global\css\components-rounded.css" />
@@ -4148,6 +4149,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsItemsRemito.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dtReporteFacturas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtReporteFacturas.xsd</DependentUpon>
+    </Compile>
     <Compile Include="facturas\generar_pdf.aspx.cs">
       <DependentUpon>generar_pdf.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4686,6 +4692,17 @@
       <DependentUpon>dsItemsRemito.xsd</DependentUpon>
     </Content>
     <Content Include="facturas\Comprobantes_AFIP\SCF_Pro.pfx" />
+    <Content Include="dtReporteFacturas.xsc">
+      <DependentUpon>dtReporteFacturas.xsd</DependentUpon>
+    </Content>
+    <None Include="dtReporteFacturas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtReporteFacturas.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="dtReporteFacturas.xss">
+      <DependentUpon>dtReporteFacturas.xsd</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4707,6 +4724,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="reportes\reporteFacturas.rdlc" />
     <EmbeddedResource Include="reportes\notaCreditoA.rdlc" />
     <EmbeddedResource Include="reportes\facturaA_Obs.rdlc" />
     <EmbeddedResource Include="reportes\facturaA.rdlc" />

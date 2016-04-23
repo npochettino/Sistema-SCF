@@ -2611,7 +2611,7 @@ namespace BibliotecaSCF.Controladores
 
                 listaFacturas.OrderBy(x => x.NumeroFactura).Aggregate(tablaFacturas, (dt, r) =>
                 {
-                    dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion, r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
+                    dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion.ToString("dd/MM/yyyy"), r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
                         r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento, string.Join(", ", r.Entregas.Select(x => x.NumeroRemito)),
                         r.CondicionVenta, r.Entregas[0].Direccion.Codigo, r.Entregas[0].Direccion.Descripcion + ", " + r.Entregas[0].Direccion.Localidad + ", " +
                         r.Entregas[0].Direccion.Provincia, r.Entregas[0].Direccion.Descripcion, r.Entregas[0].Direccion.Localidad, r.Cotizacion,

@@ -146,6 +146,18 @@ License: SempaIT - Todos los derechos reservados.
                             </a>
                         </li>
                         <li>
+                            <a href="javascript:;">
+                                <i class="icon-settings"></i>
+                                <span class="title">Dashboard</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="../dashboard/reporte_facturas.aspx">Reporte Facturas</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="../proveedores/listado.aspx">
                                 <i class="icon-users"></i>
                                 <span class="title">Proveedores</span>
