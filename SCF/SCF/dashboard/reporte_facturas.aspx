@@ -50,7 +50,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Fecha Desde</label>
-                                                <dx:ASPxDateEdit ID="deFechaDesde" runat="server" CssClass="form-control" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
+                                                <dx:ASPxDateEdit ID="deFechaDesde" runat="server" CssClass="form-control" Theme="Metropolis" Width="100%" EditFormat="Date" AutoPostBack="false">
                                                     <TimeSectionProperties Visible="True">
                                                     </TimeSectionProperties>
                                                 </dx:ASPxDateEdit>
@@ -61,7 +61,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Fecha Hasta</label>
-                                                <dx:ASPxDateEdit ID="deFechaHasta" runat="server" CssClass="form-control" Theme="Metropolis" Width="100%" EditFormat="DateTime" AutoPostBack="false">
+                                                <dx:ASPxDateEdit ID="deFechaHasta" runat="server" CssClass="form-control" Theme="Metropolis" Width="100%" EditFormat="Date" AutoPostBack="false">
                                                     <TimeSectionProperties Visible="True">
                                                     </TimeSectionProperties>
                                                 </dx:ASPxDateEdit>

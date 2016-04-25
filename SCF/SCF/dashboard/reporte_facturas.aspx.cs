@@ -33,8 +33,8 @@ namespace SCF.dashboard
             rvFacturas.LocalReport.EnableExternalImages = true;
             rvFacturas.LocalReport.ReportPath = Server.MapPath("..") + "\\reportes\\reporteFacturas.rdlc";
 
-            ReportParameter txtFechaDesde = new ReportParameter("txtFechaDesde", Convert.ToDateTime(dtRecuperarFacturas.Rows[0]["fechaFacturacion"]).ToString("dd/MM/yyyy"));
-            ReportParameter txtFechaHasta = new ReportParameter("txtFechaHasta", Convert.ToDateTime(dtRecuperarFacturas.Rows[0]["fechaFacturacion"]).ToString("dd/MM/yyyy"));
+            ReportParameter txtFechaDesde = new ReportParameter("txtFechaDesde", deFechaDesde.Value.ToString());
+            ReportParameter txtFechaHasta = new ReportParameter("txtFechaHasta", deFechaHasta.Value.ToString());
 
             this.rvFacturas.LocalReport.SetParameters(new ReportParameter[] { txtFechaDesde,txtFechaHasta});
 

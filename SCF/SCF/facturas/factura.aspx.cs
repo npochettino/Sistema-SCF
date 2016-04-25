@@ -228,12 +228,18 @@ namespace SCF.facturas
             
             DataRow fila = (from t in tablaItemFactura.AsEnumerable() where Convert.ToInt32(t["codigoItemEntrega"]) == codigoItemNotaPedido select t).SingleOrDefault();
             int cantidad = Convert.ToInt32(fila.ItemArray[4]);
-            
-            fila["precioUnitario"] = Convert.ToDouble(e.NewValues["precioUnitario"]);
 
-            //fila["precioTotal"] = Convert.ToDouble(fila.ItemArray[4].ToString()) * Convert.ToDouble(e.NewValues["precioUnitario"]);
-            fila["precioTotal"] = Convert.ToInt32(fila.ItemArray[4]) * Convert.ToDouble(e.NewValues["precioUnitario"]);
-
+            if (Convert.ToDouble(fila["precioUnitario"]) != Convert.ToDouble(e.NewValues["precioUnitario"]))
+            {
+                fila["precioUnitario"] = Convert.ToDouble(e.NewValues["precioUnitario"]);
+                fila["precioTotal"] = Convert.ToInt32(fila.ItemArray[4]) * Convert.ToDouble(e.NewValues["precioUnitario"]);
+            }
+            else
+            {
+                fila["precioTotal"] = Convert.ToDouble(e.NewValues["precioTotal"]);
+                fila["precioUnitario"] = Math.Round(Convert.ToDouble(e.NewValues["precioTotal"]) / Convert.ToInt32(fila.ItemArray[4]),2);
+            }
+                        
             Session["dtItemsFacturaActual"] = tablaItemFactura;
 
             e.Cancel = true;

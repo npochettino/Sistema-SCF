@@ -2297,7 +2297,7 @@ namespace BibliotecaSCF.Controladores
 
                 List<Factura> listaFacturas = CatalogoFactura.RecuperarTodos(nhSesion);
 
-                listaFacturas.OrderBy(x => x.NumeroFactura).Aggregate(tablaFacturas, (dt, r) =>
+                listaFacturas.OrderByDescending(x => x.NumeroFactura).Aggregate(tablaFacturas, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.NumeroFactura, r.FechaFacturacion, r.TipoComprobante.Descripcion, r.Moneda.Descripcion,
                         r.Concepto.Descripcion, r.Iva.Descripcion, r.Subtotal, r.Total, r.Cae, r.FechaVencimiento, string.Join(", ", r.Entregas.Select(x => x.NumeroRemito)),
