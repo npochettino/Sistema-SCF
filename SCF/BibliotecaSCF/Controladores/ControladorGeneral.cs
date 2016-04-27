@@ -1844,14 +1844,14 @@ namespace BibliotecaSCF.Controladores
                         if (!Convert.IsDBNull(filaItemNotaDePedido["isEliminada"]) && Convert.ToBoolean(filaItemNotaDePedido["isEliminada"]))
                         {
                             //Valido que el item nota de pedido no tenga asociado un remito
-                            //if (CatalogoEntrega.TieneRemito(item.Codigo, nhSesion)) POR AHORA QUEDA COMENTADO POR QUE EL METODO DEL CATALOGO NO FUNCIONA
-                            //{
-                            notaDePedido.ItemsNotaDePedido.Remove(item);
-                            //}
-                            //else
-                            //{
-                            //    rta = "TieneAsociadoRemito";
-                            //}
+                            if (CatalogoEntrega.TieneRemito(item.Codigo, nhSesion)) //POR AHORA QUEDA COMENTADO POR QUE EL METODO DEL CATALOGO NO FUNCIONA
+                            {
+                                notaDePedido.ItemsNotaDePedido.Remove(item);
+                            }
+                            else
+                            {
+                                rta = "TieneAsociadoRemito";
+                            }
                         }
                     }
 

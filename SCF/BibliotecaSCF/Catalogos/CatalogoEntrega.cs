@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BibliotecaSCF.Clases;
 using NHibernate;
+using NHibernate.Linq;
 
 namespace BibliotecaSCF.Catalogos
 {
@@ -32,7 +33,7 @@ namespace BibliotecaSCF.Catalogos
         {
             try
             {
-                List<Entrega> listaEntregas = (nhSesion.QueryOver<Entrega>().Where(e => e.ItemsEntrega.Where(ie => ie.ItemNotaDePedido.Codigo == codigoItemNotaDePedido).Count() > 0)).List().ToList();
+                List<Entrega> listaEntregas = nhSesion.Query<Entrega>().Where(e => e.ItemsEntrega.Any(ie => ie.ItemNotaDePedido.Codigo == codigoItemNotaDePedido)).ToList();
                 return listaEntregas.Count > 0;
             }
             catch (Exception ex)

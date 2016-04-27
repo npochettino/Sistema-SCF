@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BibliotecaSCF.Catalogos;
 
 namespace BibliotecaSCF
 {
@@ -14,7 +15,9 @@ namespace BibliotecaSCF
     {
         public static void Main()
         {
-            ControladorGeneral.RecuperarFacturasPorFechas(DateTime.Now.AddDays(-40), DateTime.Now);
+            
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+            CatalogoEntrega.TieneRemito(885, nhSesion);
 
 
         }
