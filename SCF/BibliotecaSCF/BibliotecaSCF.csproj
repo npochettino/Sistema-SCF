@@ -105,8 +105,10 @@
     <Compile Include="Clases\HistorialPrecio.cs" />
     <Compile Include="Clases\ItemContratoMarco.cs" />
     <Compile Include="Clases\ItemEntrega.cs" />
+    <Compile Include="Clases\ItemNotaDeCredito.cs" />
     <Compile Include="Clases\ItemNotaDePedido.cs" />
     <Compile Include="Clases\Iva.cs" />
+    <Compile Include="Clases\NotaDeCredito.cs" />
     <Compile Include="Clases\TipoMoneda.cs" />
     <Compile Include="Clases\NotaDePedido.cs" />
     <Compile Include="Clases\Proveedor.cs" />
@@ -130,8 +132,10 @@
     <Compile Include="Mapeos\HistorialPrecioMap.cs" />
     <Compile Include="Mapeos\ItemContratoMarcoMap.cs" />
     <Compile Include="Mapeos\ItemEntregaMap.cs" />
+    <Compile Include="Mapeos\ItemNotaDeCreditoMap.cs" />
     <Compile Include="Mapeos\ItemNotaDePedidoMap.cs" />
     <Compile Include="Mapeos\IvaMap.cs" />
+    <Compile Include="Mapeos\NotaDeCreditoMap.cs" />
     <Compile Include="Mapeos\TipoMonedaMap.cs" />
     <Compile Include="Mapeos\NotaDePedidoMap.cs" />
     <Compile Include="Mapeos\ProveedorMap.cs" />

@@ -3148,5 +3148,123 @@ namespace BibliotecaSCF.Controladores
         }
 
         #endregion
+
+        #region NotaDeCredito
+
+        public static DataTable RecuperarTodasNotasDeCredito()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                return NotaDeCredito.RecuperarTabla(CatalogoGenerico<NotaDeCredito>.RecuperarTodos(nhSesion));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarNotaDeCredito(int codigoNotaDeCredito)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                return NotaDeCredito.RecuperarTabla(CatalogoGenerico<NotaDeCredito>.RecuperarPorCodigo(codigoNotaDeCredito, nhSesion));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Columnas de la tablaItemsNotaDeCredito: codigoItemNotaDeCredito, codigoItemEntrega, cantidad
+        /// </summary>
+        /// <param name="codigoNotaDeCredito"></param>
+        /// <param name="codigoFactura"></param>
+        /// <param name="total"></param>
+        /// <param name="isFacturaCompleta"></param>
+        /// <param name="tablaItemsEntrega"></param>
+        public static string InsertarActualizarNotaDeCredito(int codigoNotaDeCredito, int codigoFactura, double total, bool isFacturaCompleta, double subtotal, DateTime fechaHoraNotaDeCredito, int codigoTipoComprobante, DataTable tablaItemsNotaDeCredito)
+        {
+
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                NotaDeCredito notaDeCredito;
+
+                if (codigoNotaDeCredito == 0)
+                {
+                    notaDeCredito = new NotaDeCredito();
+                }
+                else
+                {
+                    notaDeCredito = CatalogoGenerico<NotaDeCredito>.RecuperarPorCodigo(codigoNotaDeCredito, nhSesion);
+
+                    if (!string.IsNullOrEmpty(notaDeCredito.CAE))
+                    {
+                        return "TieneCAE";
+                    }
+                }
+
+                notaDeCredito.Factura = CatalogoGenerico<Factura>.RecuperarPorCodigo(codigoFactura, nhSesion);
+                notaDeCredito.IsFacturaCompleta = isFacturaCompleta;
+                notaDeCredito.Total = total;
+                notaDeCredito.Subtotal = subtotal;
+                notaDeCredito.FechaHoraNotaDeCredito = fechaHoraNotaDeCredito;
+                notaDeCredito.TipoComprobante = CatalogoGenerico<TipoComprobante>.RecuperarPorCodigo(codigoTipoComprobante, nhSesion);
+                notaDeCredito.FechaHoraVencimientoCAE = null;
+
+                //Si no es una nota de credito para una factura completa le creo sus items con sus cantidades, sino esta lista queda vacia ya que se puede acceder por la factura
+                if (!isFacturaCompleta)
+                {
+                    foreach (DataRow fila in tablaItemsNotaDeCredito.Rows)
+                    {
+                        ItemNotaDeCredito item;
+                        int codigoItemNotaDeCredito = Convert.ToInt32(fila["itemNotaDeCredito"]);
+
+                        if (codigoItemNotaDeCredito == 0)
+                        {
+                            item = new ItemNotaDeCredito();
+                            notaDeCredito.ItemsNotaDeCredito.Add(item);
+                        }
+                        else
+                        {
+                            item = notaDeCredito.ItemsNotaDeCredito.Where(x => x.Codigo == codigoItemNotaDeCredito).SingleOrDefault();
+                        }
+
+                        item.Cantidad = Convert.ToInt32(fila["cantidad"]);
+                        item.ItemEntrega = CatalogoGenerico<ItemEntrega>.RecuperarPorCodigo(Convert.ToInt32(fila["codigoItemEntrega"]), nhSesion);
+                    }
+                }
+
+                CatalogoGenerico<NotaDeCredito>.InsertarActualizar(notaDeCredito, nhSesion);
+                return "ok";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
     }
 }
