@@ -228,8 +228,8 @@ namespace SCF.credito
 
             DataTable dtDatosFactura = (DataTable)Session["dtFacturaActual"];
 
-            ControladorGeneral.InsertarActualizarNotaDeCredito(0, Convert.ToInt32(txtNotaCredito.Text), Convert.ToInt32(dtDatosFactura.Rows[0]["codigoFactura"].ToString()), Convert.ToDouble(txtTotal.Text), isFacturaCompleta, Convert.ToDouble(txtSubtotal.Text),
-                Convert.ToDateTime(txtFechaEmision.Text), 3, itemsNotaDeCredito);
+            //ControladorGeneral.InsertarActualizarNotaDeCreditoCompleta(0, Convert.ToInt32(txtNotaCredito.Text), Convert.ToInt32(dtDatosFactura.Rows[0]["codigoFactura"].ToString()), Convert.ToDouble(txtTotal.Text), isFacturaCompleta, Convert.ToDouble(txtSubtotal.Text),
+                //Convert.ToDateTime(txtFechaEmision.Text), 3, itemsNotaDeCredito);
                 
             //Obtengo ultimo codigo de factura y emito la factura
             DataTable tablaUltimaNotaDeCredito = ControladorGeneral.RecuperarUltimaNotaDeCredito();

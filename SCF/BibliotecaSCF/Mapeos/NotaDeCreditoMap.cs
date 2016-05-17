@@ -24,7 +24,7 @@ namespace BibliotecaSCF.Mapeos
 
             References(x => x.Factura).Column("codigoFactura").Cascade.None().LazyLoad(Laziness.Proxy);
             References(x => x.TipoComprobante).Column("codigoTipoComprobante").Cascade.None().LazyLoad(Laziness.Proxy);
-            HasMany<ItemNotaDePedido>(x => x.ItemsNotaDeCredito).KeyColumn("codigoNotaDeCredito").Not.KeyNullable().Cascade.AllDeleteOrphan();
+            HasMany<ItemNotaDeCredito>(x => x.ItemsNotaDeCredito).KeyColumn("codigoNotaDeCredito").Not.KeyNullable().Cascade.AllDeleteOrphan();
         }
     }
 }
