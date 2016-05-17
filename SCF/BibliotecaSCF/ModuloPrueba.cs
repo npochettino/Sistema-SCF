@@ -18,9 +18,9 @@ namespace BibliotecaSCF
 
             //ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
 
-            ControladorGeneral.InsertarActualizarNotaDeCredito(0, 19, 15, true, 5, DateTime.Now, 1, new DataTable());
-            ControladorGeneral.RecuperarNotaDeCredito(1);
-            DataTable t = ControladorGeneral.RecuperarTodasNotasDeCredito();
+            //ControladorGeneral.InsertarActualizarNotaDeCredito(0, 19, 15, true, 5, DateTime.Now, 1, new DataTable());
+            //ControladorGeneral.RecuperarNotaDeCredito(1);
+            //DataTable t = ControladorGeneral.RecuperarTodasNotasDeCredito();
 
 
         }

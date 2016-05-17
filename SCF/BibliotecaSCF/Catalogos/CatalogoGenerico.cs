@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace BibliotecaSCF.Catalogos
 {
     public abstract class CatalogoGenerico<TClase> where TClase : class
-    {
+    {        
         public static TClase RecuperarPorCodigo(int codigo, ISession nhSesion)
         {
             try

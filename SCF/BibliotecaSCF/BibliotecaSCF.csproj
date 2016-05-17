@@ -89,6 +89,7 @@
     <Compile Include="Catalogos\CatalogoTransporte.cs" />
     <Compile Include="Catalogos\CatalogoUnidadMedida.cs" />
     <Compile Include="Catalogos\CatalogoUsuario.cs" />
+    <Compile Include="Catalogos\CatalogoNotaDeCredito.cs" />
     <Compile Include="ClasesComplementarias\Constantes.cs" />
     <Compile Include="ClasesComplementarias\ManejoDeNHibernate.cs" />
     <Compile Include="Clases\Articulo.cs" />

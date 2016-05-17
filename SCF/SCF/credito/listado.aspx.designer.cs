@@ -157,84 +157,183 @@ namespace SCF.credito {
         protected global::DevExpress.Web.ASPxEditors.ASPxLabel lblMensaje;
         
         /// <summary>
-        /// Control pcShowDetalleNotaCredito.
+        /// Control pcDetalleComprobante.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxPopupControl.ASPxPopupControl pcShowDetalleNotaCredito;
+        protected global::DevExpress.Web.ASPxPopupControl.ASPxPopupControl pcDetalleComprobante;
         
         /// <summary>
-        /// Control PopupControlContentControl2.
+        /// Control PopupControlContentControl5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxPopupControl.PopupControlContentControl PopupControlContentControl2;
+        protected global::DevExpress.Web.ASPxPopupControl.PopupControlContentControl PopupControlContentControl5;
         
         /// <summary>
-        /// Control Panel1.
+        /// Control ASPxPanel3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxPanel.ASPxPanel Panel1;
+        protected global::DevExpress.Web.ASPxPanel.ASPxPanel ASPxPanel3;
         
         /// <summary>
-        /// Control PanelContent2.
+        /// Control PanelContent5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxPanel.PanelContent PanelContent2;
+        protected global::DevExpress.Web.ASPxPanel.PanelContent PanelContent5;
         
         /// <summary>
-        /// Control txtNotaDeCredito.
+        /// Control lblNroFacturaAEmitir.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtNotaDeCredito;
+        protected global::System.Web.UI.WebControls.Label lblNroFacturaAEmitir;
         
         /// <summary>
-        /// Control txtFechaEmision.
+        /// Control lblNombreApellidoCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxDateEdit txtFechaEmision;
+        protected global::System.Web.UI.WebControls.Label lblNombreApellidoCliente;
         
         /// <summary>
-        /// Control txtCodigo.
+        /// Control lblDomicilio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtCodigo;
+        protected global::System.Web.UI.WebControls.Label lblDomicilio;
         
         /// <summary>
-        /// Control gvItemsNotaCredito.
+        /// Control lblLocalidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvItemsNotaCredito;
+        protected global::System.Web.UI.WebControls.Label lblLocalidad;
         
         /// <summary>
-        /// Control txtObservacion.
+        /// Control lblNumeroDocumento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtObservacion;
+        protected global::System.Web.UI.WebControls.Label lblNumeroDocumento;
+        
+        /// <summary>
+        /// Control lblCondicionVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCondicionVenta;
+        
+        /// <summary>
+        /// Control lblNroRemitos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNroRemitos;
+        
+        /// <summary>
+        /// Control lblTipoMoneda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTipoMoneda;
+        
+        /// <summary>
+        /// Control lblCotizacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCotizacion;
+        
+        /// <summary>
+        /// Control gvDetalleNotaDeCredito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvDetalleNotaDeCredito;
+        
+        /// <summary>
+        /// Control lblNroCAE.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNroCAE;
+        
+        /// <summary>
+        /// Control lblSubtotal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubtotal;
+        
+        /// <summary>
+        /// Control lblFechaVencimientoCAE.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaVencimientoCAE;
+        
+        /// <summary>
+        /// Control lblImporteIVA.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblImporteIVA;
+        
+        /// <summary>
+        /// Control lblImporteTotal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblImporteTotal;
+        
+        /// <summary>
+        /// Control btnEmitirComprobante.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEmitirComprobante;
     }
 }

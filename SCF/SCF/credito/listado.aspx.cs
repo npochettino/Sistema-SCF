@@ -18,8 +18,8 @@ namespace SCF.credito
 
         private void cargarGrilla()
         {
-            //gvNotaCredito.DataSource = ControladorGeneral.RecuperarTodasNotaCredito();
-            //gvNotaCredito.DataBind();
+            gvNotaCredito.DataSource = ControladorGeneral.RecuperarTodasNotasDeCredito();
+            gvNotaCredito.DataBind();
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -46,12 +46,67 @@ namespace SCF.credito
 
         private DataTable GetTablaNotaCreditoActualSession()
         {
-            throw new NotImplementedException();
+            int codigoNotaDeCredito = Convert.ToInt32(gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "codigoNotaDeCredito"));
+            int numeroNotaDeCredito = Convert.ToInt32(gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "numeroNotaDeCredito"));
+            DateTime fechaNotaDeCredito = Convert.ToDateTime(gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "fechaEmisionNotaDeCredito"));
+            string descripcionTipoComprobante = gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "descripcionTipoComprobante").ToString();
+            string descripcionTipoMoneda = gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "descripcionTipoMoneda").ToString();
+            Double subtotal = Convert.ToDouble(gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "subtotal"));
+            Double total = Convert.ToDouble(gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "total"));
+            string cae = gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "cae").ToString();
+            DateTime fechaVencimientoCAE = Convert.ToDateTime(gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "fechaHoraVencimientoCAE"));
+            
+            DataTable tablaNotaDeCredito = new DataTable();
+            tablaNotaDeCredito.Columns.Add("codigoNotaDeCredito");
+            tablaNotaDeCredito.Columns.Add("numeroNotaDeCredito");
+            tablaNotaDeCredito.Columns.Add("fechaEmisionNotaDeCredito");
+            tablaNotaDeCredito.Columns.Add("descripcionTipoComprobante");
+            tablaNotaDeCredito.Columns.Add("descripcionTipoMoneda");
+            tablaNotaDeCredito.Columns.Add("subtotal");
+            tablaNotaDeCredito.Columns.Add("total");
+            tablaNotaDeCredito.Columns.Add("cae");
+            tablaNotaDeCredito.Columns.Add("fechaHoraVencimientoCAE");
+            
+            tablaNotaDeCredito.Rows.Add(new object[] { codigoNotaDeCredito, numeroNotaDeCredito, fechaNotaDeCredito, descripcionTipoComprobante, descripcionTipoMoneda, subtotal,
+            total,cae,fechaVencimientoCAE});
+
+            return tablaNotaDeCredito;
         }
 
         protected void btnVerDetalle_Click(object sender, EventArgs e)
         {
+            if (gvNotaCredito.FocusedRowIndex != -1)
+            {
+                if (gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "cae").ToString() == "")
+                { btnEmitirComprobante.Visible = true; }
 
+                DataTable dtItemsNotaDeCreditoActual = ControladorGeneral.RecuperarNotaDeCredito(Convert.ToInt32(gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "codigoNotaDeCredito")));
+                gvDetalleNotaDeCredito.DataSource = dtItemsNotaDeCreditoActual;
+                gvDetalleNotaDeCredito.DataBind();
+
+                /*string nroAMostrar = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString();
+                lblNroFacturaAEmitir.Text = "0002 - " + Convert.ToInt32(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "numeroFactura")).ToString("D8");
+                lblNroRemitos.Text = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "remitos")).ToString(); //;remitos;
+                lblCondicionVenta.Text = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "condicionVenta")).ToString(); ;
+                lblLocalidad.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["localidadCliente"]);
+                lblDomicilio.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["direccionCliente"]);
+                lblNombreApellidoCliente.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["razonSocialCliente"]);
+                lblNumeroDocumento.Text = Convert.ToString(dtItemsFacturaActual.Rows[0]["nroDocumentoCliente"]);
+
+                lblSubtotal.Text = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "subtotal").ToString();
+                lblImporteTotal.Text = Convert.ToString(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "total"));
+
+                if (gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString() != null)
+                {
+                    lblNroCAE.Text = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae").ToString();
+                    lblFechaVencimientoCAE.Text = gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE").ToString();
+                }
+                */
+                //lblFechaVencimientoCAE.Text = Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE")).ToString() == null ? "NO EMITIDO" : Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "fechaVencimientoCAE")).ToString("dd/MM/yyy");
+                //lblNroCAE.Text = Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae")).ToString() == null ? "NO EMITIDO" : Convert.ToDateTime(gvFacturas.GetRowValues(gvFacturas.FocusedRowIndex, "cae")).ToString();
+
+                pcDetalleComprobante.ShowOnPageLoad = true;
+            }
         }
 
         protected void btnAceptarEliminarNotaCredito_Click(object sender, EventArgs e)
@@ -63,7 +118,7 @@ namespace SCF.credito
                 {
                     if (gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "cai").ToString() == "")
                     {
-                        //ControladorGeneral.EliminarNotaCredito(int.Parse(gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "codigoNotaCredito").ToString()));
+                        //ControladorGeneral.EliminarNotaDeCredito(int.Parse(gvNotaCredito.GetRowValues(gvNotaCredito.FocusedRowIndex, "codigoNotaCredito").ToString()));
                         Response.Redirect("listado.aspx");
                     }
                     else
@@ -81,6 +136,11 @@ namespace SCF.credito
                     pcError.ShowOnPageLoad = true;
                 }
             }
+        }
+
+        protected void btnEmitirComprobante_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1485,6 +1485,7 @@ namespace BibliotecaSCF.Controladores
                 tablaItemsEntrega.Columns.Add("nroDocumentoCliente");
                 tablaItemsEntrega.Columns.Add("localidadCliente");
                 tablaItemsEntrega.Columns.Add("direccionCliente");
+                tablaItemsEntrega.Columns.Add("razonSocialTransporte");
 
                 Factura factura = CatalogoFactura.RecuperarPorCodigo(codigoFactura, nhSesion);
 
@@ -1501,7 +1502,7 @@ namespace BibliotecaSCF.Controladores
                                 entrega.NotaDePedido.Codigo, entrega.NotaDePedido.NumeroInternoCliente, entrega.NotaDePedido.Cliente.CodigoSCF, r.Precio, (double)decimal.Round((decimal)(r.Precio * r.CantidadAEntregar), 2),
                                 entrega.NotaDePedido.Cliente.RazonSocial, entrega.NotaDePedido.Cliente.NumeroDocumento,
                                 entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Localidad : string.Empty,
-                                entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty); return dt;
+                                entrega.NotaDePedido.Cliente.Direcciones.Count > 0 ? entrega.NotaDePedido.Cliente.Direcciones[0].Descripcion : string.Empty, entrega.Transporte.RazonSocial); return dt;
                         });
                     }
                 }
@@ -2317,6 +2318,26 @@ namespace BibliotecaSCF.Controladores
                 nhSesion.Dispose();
             }
         }
+
+        public static DataTable RecuperarFacturaPorCodigo(int codigoFactura)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                return Factura.RecuperarTabla(CatalogoGenerico<Factura>.RecuperarPorCodigo(codigoFactura, nhSesion));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
 
         public static int ConsultarUltimoNroComprobante(int ptoVenta, int tipoComptobanteAfip)
         {
@@ -3197,7 +3218,7 @@ namespace BibliotecaSCF.Controladores
         /// <param name="total"></param>
         /// <param name="isFacturaCompleta"></param>
         /// <param name="tablaItemsEntrega"></param>
-        public static string InsertarActualizarNotaDeCredito(int codigoNotaDeCredito, int codigoFactura, double total, bool isFacturaCompleta, double subtotal, DateTime fechaHoraNotaDeCredito, int codigoTipoComprobante, DataTable tablaItemsNotaDeCredito)
+        public static string InsertarActualizarNotaDeCredito(int codigoNotaDeCredito, int numeroNotaDeCredito, int codigoFactura, double total, bool isFacturaCompleta, double subtotal, DateTime fechaHoraNotaDeCredito, int codigoTipoComprobante, DataTable tablaItemsNotaDeCredito)
         {
 
             ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
@@ -3220,6 +3241,7 @@ namespace BibliotecaSCF.Controladores
                     }
                 }
 
+                notaDeCredito.NumeroNotaDeCredito = numeroNotaDeCredito;
                 notaDeCredito.Factura = CatalogoGenerico<Factura>.RecuperarPorCodigo(codigoFactura, nhSesion);
                 notaDeCredito.IsFacturaCompleta = isFacturaCompleta;
                 notaDeCredito.Total = total;
@@ -3265,6 +3287,140 @@ namespace BibliotecaSCF.Controladores
             }
         }
 
+        public static DataTable RecuperarUltimaNotaDeCredito()
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaNotaDeCreditos = new DataTable();
+                tablaNotaDeCreditos.Columns.Add("codigoNotaDeCredito");
+                tablaNotaDeCreditos.Columns.Add("numeroNotaDeCredito");
+                tablaNotaDeCreditos.Columns.Add("fechaNotaDeCreditocion");
+                tablaNotaDeCreditos.Columns.Add("descripcionTipoComprobante");
+                tablaNotaDeCreditos.Columns.Add("descripcionTipoMoneda");
+                tablaNotaDeCreditos.Columns.Add("descripcionConcepto");
+                tablaNotaDeCreditos.Columns.Add("descripcionIVA");
+                tablaNotaDeCreditos.Columns.Add("subtotal");
+                tablaNotaDeCreditos.Columns.Add("total");
+                tablaNotaDeCreditos.Columns.Add("cae");
+                tablaNotaDeCreditos.Columns.Add("fechaVencimientoCAE");
+                tablaNotaDeCreditos.Columns.Add("codigoDireccion");
+                tablaNotaDeCreditos.Columns.Add("direccion");
+
+                NotaDeCredito NotaDeCredito = CatalogoNotaDeCredito.RecuperarUltima(nhSesion);
+
+                if (NotaDeCredito != null)
+                {
+                    tablaNotaDeCreditos.Rows.Add(new object[] { NotaDeCredito.Codigo, NotaDeCredito.NumeroNotaDeCredito,NotaDeCredito.FechaHoraNotaDeCredito,NotaDeCredito.TipoComprobante.Descripcion, NotaDeCredito.Factura.Moneda.Descripcion, 
+                    NotaDeCredito.Factura.Concepto.Descripcion, NotaDeCredito.Factura.Iva.Descripcion,NotaDeCredito.Subtotal,NotaDeCredito.Total,NotaDeCredito.CAE,NotaDeCredito.FechaHoraVencimientoCAE, NotaDeCredito.Factura.Entregas[0].Direccion.Codigo,
+                    NotaDeCredito.Factura.Entregas[0].Direccion.Descripcion +", "+NotaDeCredito.Factura.Entregas[0].Direccion.Localidad+", "+NotaDeCredito.Factura.Entregas[0].Direccion.Provincia});
+                }
+
+                return tablaNotaDeCreditos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
         #endregion
+
+        public static string EmitirNotaDeCredito(int codigoNotaDeCredito)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                NotaDeCredito notaDeCredito = CatalogoNotaDeCredito.RecuperarPorCodigo(codigoNotaDeCredito, nhSesion);
+
+                FECAERequest request = new FECAERequest();
+
+                FECAECabRequest cabeceraReq = new FECAECabRequest();
+                cabeceraReq.CantReg = 1;
+                cabeceraReq.CbteTipo = 3; //factura A
+                cabeceraReq.PtoVta = 2;
+
+                request.FeCabReq = cabeceraReq;
+
+                FECAEDetRequest detalleReq = new FECAEDetRequest();
+                detalleReq.CbteDesde = notaDeCredito.NumeroNotaDeCredito;
+                detalleReq.CbteHasta = notaDeCredito.NumeroNotaDeCredito;
+                detalleReq.CbteFch = ConvertirFechaAFIP(notaDeCredito.FechaHoraNotaDeCredito);
+                detalleReq.Concepto = notaDeCredito.Factura.Concepto.Codigo;
+                detalleReq.DocNro = Convert.ToInt64(notaDeCredito.Factura.Entregas[0].NotaDePedido.Cliente.NumeroDocumento.Replace("-", ""));
+                detalleReq.DocTipo = notaDeCredito.Factura.Entregas[0].NotaDePedido.Cliente.TipoDocumento.Codigo;
+                //detalleReq.CbtesAsoc = ??????
+
+                if (notaDeCredito.Factura.Concepto.Codigo != 1)
+                {
+                    detalleReq.FchServDesde = ConvertirFechaAFIP(notaDeCredito.Factura.FechaFacturacion);
+                    detalleReq.FchServHasta = ConvertirFechaAFIP(notaDeCredito.Factura.FechaFacturacion);
+                    detalleReq.FchVtoPago = ConvertirFechaAFIP(notaDeCredito.Factura.FechaFacturacion);
+                }
+
+                double cotizacion = notaDeCredito.Factura.Moneda.Codigo == Constantes.Moneda.PESO ? 1 : notaDeCredito.Factura.Cotizacion; // Si la moneda es peso argentino se pone la cotizacion ingresada, sino va 1
+
+                detalleReq.ImpIVA = (double)decimal.Round((decimal)(cotizacion * notaDeCredito.Subtotal * 0.21), 2);
+                detalleReq.ImpNeto = (double)decimal.Round((decimal)cotizacion * (decimal)notaDeCredito.Subtotal, 2);
+                detalleReq.ImpOpEx = 0; //por que??
+                //detalleReq.ImpTotal = detalleReq.ImpIVA + detalleReq.ImpNeto;
+                detalleReq.ImpTotal = (double)decimal.Round((decimal)detalleReq.ImpIVA + (decimal)detalleReq.ImpNeto, 2);
+                //detalleReq.ImpTotal = (double)decimal.Round((decimal)cotizacion * (decimal)factura.Total, 2);
+                detalleReq.ImpTotConc = 0; //por que ????
+                detalleReq.ImpTrib = 0; //ver tributos
+
+                AlicIva[] listaAlicIva = new AlicIva[1];
+
+                var ls = new List<AlicIva>();
+                AlicIva alicIva = new AlicIva();
+                alicIva.Id = notaDeCredito.Factura.Iva.Codigo;
+                alicIva.BaseImp = (double)decimal.Round((decimal)cotizacion * (decimal)notaDeCredito.Subtotal, 2);
+                alicIva.Importe = (double)decimal.Round((decimal)cotizacion * (decimal)notaDeCredito.Subtotal * (decimal)0.21, 2);
+                ls.Add(alicIva);
+
+                detalleReq.Iva = ls.ToArray();
+
+                detalleReq.MonCotiz = 1; //siempre facturan en pesos ??
+                detalleReq.MonId = "PES";// factura.Moneda.CodigoAFIP;
+                //detalleReq.Opcionales = ?????
+                //detalleReq.Tributos = new Tributo[0];
+                detalleReq.ImpTrib = 0;
+
+                request.FeDetReq = new FECAEDetRequest[] { detalleReq };
+                                
+                clsFacturacion facturar = new clsFacturacion();
+                ResultadoFacturarAFIP resultado = facturar.FacturarAFIP(request, true, true);
+
+                string rta = string.Empty;
+                if (resultado.ResultadoAFIP == WSFEv1.Logica.EnumResultadoAFIP.Facturado)
+                {
+                    rta = string.Format("CAE: {0}\nFecha Vto.: {1}", resultado.CAE, resultado.FechaVtoCAE.ToString()) + " Todo Correcto!";
+                    notaDeCredito.CAE = resultado.CAE;
+                    notaDeCredito.FechaHoraVencimientoCAE = resultado.FechaVtoCAE;
+                    CatalogoNotaDeCredito.InsertarActualizar(notaDeCredito, nhSesion);
+                }
+                else
+                {
+                    rta = "Mensaje Afip/Error: " + resultado.MensajeAFIP + " Algo fallo!";
+                }
+                return rta;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
     }
 }

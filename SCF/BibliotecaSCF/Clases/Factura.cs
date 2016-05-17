@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,5 +29,30 @@ namespace BibliotecaSCF.Clases
         public virtual TipoMoneda Moneda { get; set; }
         public virtual Concepto Concepto { get; set; }
         public virtual Iva Iva { get; set; }
+
+        private static DataTable Tabla
+        {
+            get
+            {
+                DataTable tablaNotaDeCredito = new DataTable();
+                tablaNotaDeCredito.Columns.Add("codigoFactura");
+                tablaNotaDeCredito.Columns.Add("numeroFactura");
+                tablaNotaDeCredito.Columns.Add("descripcionTipoMoneda");
+                tablaNotaDeCredito.Columns.Add("condicionVenta");
+                tablaNotaDeCredito.Columns.Add("concepto");
+                tablaNotaDeCredito.Columns.Add("cotizacion");
+
+                return tablaNotaDeCredito;
+            }
+        }
+
+        internal static DataTable RecuperarTabla(Factura factura)
+        {
+            DataTable tablaFactura = Tabla;
+
+            tablaFactura.Rows.Add(factura.Codigo, factura.NumeroFactura, factura.Moneda.Descripcion, factura.CondicionVenta, factura.Concepto.Descripcion, factura.Cotizacion);
+
+            return tablaFactura;
+        }
     }
 }

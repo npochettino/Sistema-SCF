@@ -3,23 +3,23 @@
   <FeCabResp xmlns="http://ar.gov.afip.dif.FEV1/">
     <Cuit>27296804385</Cuit>
     <PtoVta>2</PtoVta>
-    <CbteTipo>1</CbteTipo>
-    <FchProceso>20160328232842</FchProceso>
+    <CbteTipo>3</CbteTipo>
+    <FchProceso>20160516232012</FchProceso>
     <CantReg>1</CantReg>
     <Resultado>A</Resultado>
     <Reproceso>N</Reproceso>
   </FeCabResp>
   <FeDetResp xmlns="http://ar.gov.afip.dif.FEV1/">
     <FECAEDetResponse>
-      <Concepto>3</Concepto>
+      <Concepto>1</Concepto>
       <DocTipo>80</DocTipo>
       <DocNro>30516888241</DocNro>
-      <CbteDesde>22</CbteDesde>
-      <CbteHasta>22</CbteHasta>
-      <CbteFch>20160328</CbteFch>
+      <CbteDesde>1</CbteDesde>
+      <CbteHasta>1</CbteHasta>
+      <CbteFch>20160516</CbteFch>
       <Resultado>A</Resultado>
-      <CAE>66135372147285</CAE>
-      <CAEFchVto>20160407</CAEFchVto>
+      <CAE>66205396194072</CAE>
+      <CAEFchVto>20160526</CAEFchVto>
     </FECAEDetResponse>
   </FeDetResp>
 </FECAEResponse>

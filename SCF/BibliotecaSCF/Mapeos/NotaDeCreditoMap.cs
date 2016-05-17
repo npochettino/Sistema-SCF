@@ -14,6 +14,7 @@ namespace BibliotecaSCF.Mapeos
         {
             Table("NotasDeCredito");
             Id(x => x.Codigo).Column("codigoNotaDeCredito").GeneratedBy.Identity();
+            Map(x => x.NumeroNotaDeCredito).Column("numeroNotaDeCredito");
             Map(x => x.IsFacturaCompleta).Column("isFacturaCompleta");
             Map(x => x.Total).Column("total");
             Map(x => x.Subtotal).Column("subtotal");
