@@ -102,6 +102,9 @@ namespace SCF.credito
 
         protected void btnSeleccionarArticulos_Click(object sender, EventArgs e)
         {
+            Session["tablaNotaCredito"] = null;
+            Session["tablaItemsNotaDeCredito"] = null;
+
             CargarGrillaItemsEntrega(true);
         }
 
@@ -153,6 +156,7 @@ namespace SCF.credito
 
             gvItemsNotaDeCredito.DataSource = tablaNotaCredito;
             gvItemsNotaDeCredito.DataBind();
+            UpdateImporte();
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
@@ -162,6 +166,11 @@ namespace SCF.credito
 
         protected void btnUpdateImporte_Click(object sender, EventArgs e)
         {
+            UpdateImporte();
+        }
+
+        private void UpdateImporte()
+        {
             DataTable dtNotaCredito = (DataTable)Session["tablaNotaCredito"];
             Double subtotal = 0;
 
@@ -169,7 +178,7 @@ namespace SCF.credito
             {
                 subtotal = subtotal + Convert.ToDouble(dtNotaCredito.Rows[i]["precioTotal"].ToString());
             }
-            
+
             txtSubtotal.Text = Convert.ToString((double)decimal.Round((decimal)subtotal, 2));
             txtImporteIVA.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 0.21), 2));
             txtTotal.Text = Convert.ToString((double)decimal.Round((decimal)(subtotal * 1.21), 2));
@@ -218,30 +227,41 @@ namespace SCF.credito
 
         protected void btnEmitirComprobante_Click(object sender, EventArgs e)
         {
-            bool isFacturaCompleta = false;
+            /*bool isFacturaCompleta = false;
             if (gvItemsFactura.VisibleRowCount == gvItemsNotaDeCredito.VisibleRowCount)
                 isFacturaCompleta = true;
-
+            */
             DataTable itemsNotaDeCredito = (DataTable)Session["tablaItemsNotaDeCredito"];
 
             pcValidarComprobante.ShowOnPageLoad = false;
 
-            DataTable dtDatosFactura = (DataTable)Session["dtFacturaActual"];
+            DataTable dtFacturaActual = (DataTable)Session["dtFacturaActual"];
 
-            //ControladorGeneral.InsertarActualizarNotaDeCreditoCompleta(0, Convert.ToInt32(txtNotaCredito.Text), Convert.ToInt32(dtDatosFactura.Rows[0]["codigoFactura"].ToString()), Convert.ToDouble(txtTotal.Text), isFacturaCompleta, Convert.ToDouble(txtSubtotal.Text),
-                //Convert.ToDateTime(txtFechaEmision.Text), 3, itemsNotaDeCredito);
-                
+
+            if (gvItemsFactura.VisibleRowCount == gvItemsNotaDeCredito.VisibleRowCount)
+            {
+                ControladorGeneral.InsertarActualizarNotaDeCreditoCompleta(0, Convert.ToInt32(txtNotaCredito.Text), Convert.ToInt32(dtFacturaActual.Rows[0]["codigoFactura"].ToString()), Convert.ToDouble(txtTotal.Text), Convert.ToDouble(txtSubtotal.Text),
+                Convert.ToDateTime(txtFechaEmision.Text), 3, Convert.ToInt32(dtFacturaActual.Rows[0]["codigoEntrega"].ToString()));
+            }
+            else
+            {
+                ControladorGeneral.InsertarActualizarNotaDeCreditoIncompleta(0, Convert.ToInt32(txtNotaCredito.Text), Convert.ToInt32(dtFacturaActual.Rows[0]["codigoFactura"].ToString()), Convert.ToDouble(txtTotal.Text), Convert.ToDouble(txtSubtotal.Text),
+                Convert.ToDateTime(txtFechaEmision.Text), 3,itemsNotaDeCredito);
+            }
+
             //Obtengo ultimo codigo de factura y emito la factura
             DataTable tablaUltimaNotaDeCredito = ControladorGeneral.RecuperarUltimaNotaDeCredito();
             string codigoNotaDeCredito = tablaUltimaNotaDeCredito.Rows.Count > 0 ? (Convert.ToInt32(tablaUltimaNotaDeCredito.Rows[0]["codigoNotaDeCredito"])).ToString() : string.Empty;
             try
             {
                 string status = ControladorGeneral.EmitirNotaDeCredito(Convert.ToInt32(codigoNotaDeCredito));
+                pcError.HeaderText = "Nota de Credito Emitida";
                 lblError.Text = status;
                 pcError.ShowOnPageLoad = true;
             }
             catch
             {
+                pcError.HeaderText = "Error";
                 lblError.Text = "Ha ocurrido un error. No hay conexion con los servidor de AFIP, vuelva a intentar.";
                 pcError.ShowOnPageLoad = true;
             }

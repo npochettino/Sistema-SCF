@@ -3502,5 +3502,34 @@ namespace BibliotecaSCF.Controladores
                 nhSesion.Dispose();
             }
         }
+
+        public static string EliminarNotaDeCredito(int codigoNotaDeCredito)
+        {
+            ISession nhSesion = ManejoDeNHibernate.IniciarSesion();
+
+            try
+            {
+                NotaDeCredito nc = CatalogoNotaDeCredito.RecuperarPorCodigo(codigoNotaDeCredito, nhSesion);
+
+                if (string.IsNullOrEmpty(nc.CAE))
+                {
+                    CatalogoNotaDeCredito.Eliminar(nc, nhSesion);
+                    return "ok";
+                }
+                else
+                {
+                    return "TieneCAE";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
     }
 }

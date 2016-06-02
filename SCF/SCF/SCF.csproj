@@ -4144,6 +4144,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsItemsFacturaA.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dsItemsNotaDeCredito.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsItemsNotaDeCredito.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dsItemsRemito.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4682,6 +4687,17 @@
     </Content>
     <Content Include="dsItemsRemito.xsc">
       <DependentUpon>dsItemsRemito.xsd</DependentUpon>
+    </Content>
+    <Content Include="dsItemsNotaDeCredito.xsc">
+      <DependentUpon>dsItemsNotaDeCredito.xsd</DependentUpon>
+    </Content>
+    <None Include="dsItemsNotaDeCredito.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsItemsNotaDeCredito.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="dsItemsNotaDeCredito.xss">
+      <DependentUpon>dsItemsNotaDeCredito.xsd</DependentUpon>
     </Content>
     <None Include="dsItemsRemito.xsd">
       <SubType>Designer</SubType>

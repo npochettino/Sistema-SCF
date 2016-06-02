@@ -41,6 +41,7 @@ namespace BibliotecaSCF.Clases
                 tablaNotaDeCredito.Columns.Add("condicionVenta");
                 tablaNotaDeCredito.Columns.Add("concepto");
                 tablaNotaDeCredito.Columns.Add("cotizacion");
+                tablaNotaDeCredito.Columns.Add("codigoEntrega");
 
                 return tablaNotaDeCredito;
             }
@@ -50,7 +51,7 @@ namespace BibliotecaSCF.Clases
         {
             DataTable tablaFactura = Tabla;
 
-            tablaFactura.Rows.Add(factura.Codigo, factura.NumeroFactura, factura.Moneda.Descripcion, factura.CondicionVenta, factura.Concepto.Descripcion, factura.Cotizacion);
+            tablaFactura.Rows.Add(factura.Codigo, factura.NumeroFactura, factura.Moneda.Descripcion, factura.CondicionVenta, factura.Concepto.Descripcion, factura.Cotizacion, factura.Entregas[0].Codigo);
 
             return tablaFactura;
         }

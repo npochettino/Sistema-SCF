@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster.Master" AutoEventWireup="true" CodeBehind="generar_pdf.aspx.cs" Inherits="SCF.credito.generar_pdf" %>
+﻿<%@ Page Title="Nota de Credito - SCF" Language="C#" AutoEventWireup="true" CodeBehind="generar_pdf.aspx.cs" Inherits="SCF.credito.generar_pdf" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 

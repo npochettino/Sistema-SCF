@@ -47,7 +47,15 @@ namespace BibliotecaSCF.Clases
                 tablaNotaDeCredito.Columns.Add("fechaHoraVencimientoCAE");
                 tablaNotaDeCredito.Columns.Add("codigoTipoComprobante");
                 tablaNotaDeCredito.Columns.Add("descripcionTipoComprobante");
-
+                tablaNotaDeCredito.Columns.Add("razonSocialCliente");
+                tablaNotaDeCredito.Columns.Add("domicilio");
+                tablaNotaDeCredito.Columns.Add("localidad");
+                tablaNotaDeCredito.Columns.Add("nroDocumentoCliente");
+                tablaNotaDeCredito.Columns.Add("remitos");
+                tablaNotaDeCredito.Columns.Add("condicionVenta");
+                tablaNotaDeCredito.Columns.Add("numeroNotaDePedido");
+                tablaNotaDeCredito.Columns.Add("codigoSCF");
+                
                 return tablaNotaDeCredito;
             }
         }
@@ -60,10 +68,11 @@ namespace BibliotecaSCF.Clases
         public static DataTable RecuperarTabla(List<NotaDeCredito> listaNotasDeCredito)
         {
             DataTable tablaNotasDeCredito = Tabla;
-
-            listaNotasDeCredito.Aggregate(tablaNotasDeCredito, (dt, r) =>
+            listaNotasDeCredito.OrderByDescending(x => x.NumeroNotaDeCredito).Aggregate(tablaNotasDeCredito, (dt, r) =>
             {
-                dt.Rows.Add(r.Codigo, r.NumeroNotaDeCredito, r.FechaHoraNotaDeCredito.ToString("dd/MM/yyyy"), r.Factura.Moneda.Descripcion, r.Factura.Cotizacion, r.Subtotal, r.Total, r.IsFacturaCompleta, r.Factura.Codigo, r.Factura.NumeroFactura, r.Factura.Total, r.CAE, r.FechaHoraVencimientoCAE, r.TipoComprobante.Codigo, r.TipoComprobante.Descripcion); 
+                dt.Rows.Add(r.Codigo, r.NumeroNotaDeCredito, r.FechaHoraNotaDeCredito.ToString("dd/MM/yyyy"), r.Factura.Moneda.Descripcion, r.Factura.Cotizacion, r.Subtotal, r.Total, r.IsFacturaCompleta, r.Factura.Codigo, r.Factura.NumeroFactura, r.Factura.Total, r.CAE, r.FechaHoraVencimientoCAE, r.TipoComprobante.Codigo, r.TipoComprobante.Descripcion,
+                    r.Factura.Entregas[0].NotaDePedido.Cliente.RazonSocial, r.Factura.Entregas[0].Direccion.Descripcion, r.Factura.Entregas[0].Direccion.Localidad, r.Factura.Entregas[0].NotaDePedido.Cliente.NumeroDocumento,
+                    string.Join(", ", r.Factura.Entregas.Select(x => x.NumeroRemito)), r.Factura.CondicionVenta, r.Factura.Entregas[0].NotaDePedido.NumeroInternoCliente, r.Factura.Entregas[0].NotaDePedido.Cliente.CodigoSCF); 
                 return dt;
             });
 
@@ -78,21 +87,6 @@ namespace BibliotecaSCF.Clases
         public static DataTable RecuperarTabla(NotaDeCredito notaDeCredito)
         {
             DataTable tablaNotaDeCredito = Tabla;
-            /*tablaNotaDeCredito.Columns.Add("codigoNotaDeCredito");
-                tablaNotaDeCredito.Columns.Add("numeroNotaDeCredito");
-                tablaNotaDeCredito.Columns.Add("fechaEmisionNotaDeCredito");
-                tablaNotaDeCredito.Columns.Add("descripcionTipoMoneda");
-                tablaNotaDeCredito.Columns.Add("cotizacion");
-                tablaNotaDeCredito.Columns.Add("subtotal");
-                tablaNotaDeCredito.Columns.Add("total");
-                tablaNotaDeCredito.Columns.Add("isFacturaCompleta");
-                tablaNotaDeCredito.Columns.Add("codigoFactura");
-                tablaNotaDeCredito.Columns.Add("numeroFactura");
-                tablaNotaDeCredito.Columns.Add("totalFactura");
-                tablaNotaDeCredito.Columns.Add("cae");
-                tablaNotaDeCredito.Columns.Add("fechaHoraVencimientoCAE");
-                tablaNotaDeCredito.Columns.Add("codigoTipoComprobante");
-                tablaNotaDeCredito.Columns.Add("descripcionTipoComprobante");*/
             tablaNotaDeCredito.Rows.Add(notaDeCredito.Codigo, notaDeCredito.NumeroNotaDeCredito, notaDeCredito.Subtotal, notaDeCredito.Total, notaDeCredito.IsFacturaCompleta, notaDeCredito.Factura.Codigo, notaDeCredito.Factura.NumeroFactura, notaDeCredito.Factura.Total, notaDeCredito.CAE, notaDeCredito.FechaHoraVencimientoCAE, notaDeCredito.TipoComprobante.Codigo, notaDeCredito.TipoComprobante.Descripcion); 
 
             return tablaNotaDeCredito;

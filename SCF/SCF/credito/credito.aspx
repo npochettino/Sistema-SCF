@@ -208,7 +208,7 @@
                                                 <div class="portlet-body">
                                                     <div id="chart_8" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ARTICULOS-->
-                                                        <dx:ASPxGridView ID="gvItemsFactura" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoEntrega" Theme="Metropolis" Width="100%">
+                                                        <dx:ASPxGridView ID="gvItemsFactura" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoItemEntrega" Theme="Metropolis" Width="100%">
                                                             <Columns>
                                                                 <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Caption=" ">
                                                                 </dx:GridViewCommandColumn>
@@ -267,7 +267,7 @@
                                                 <div class="portlet-body">
                                                     <div id="chart_9" class="chart" style="height: auto">
                                                         <!-- GRID VIEW ITEMS SELECCIONADOS-->
-                                                        <dx:ASPxGridView ID="gvItemsNotaDeCredito" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoEntrega" Width="100%" ClientInstanceName="gvItemsEntrega"
+                                                        <dx:ASPxGridView ID="gvItemsNotaDeCredito" runat="server" Theme="Metropolis" AutoGenerateColumns="False" KeyFieldName="codigoItemEntrega" Width="100%" ClientInstanceName="gvItemsEntrega"
                                                             OnHtmlRowPrepared="gvItemsEntrega_HtmlRowPrepared">
                                                             <Columns>
                                                                 <dx:GridViewDataTextColumn VisibleIndex="0" FieldName="codigoItemEntrega" Visible="false">

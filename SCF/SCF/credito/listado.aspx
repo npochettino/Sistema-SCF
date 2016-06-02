@@ -56,9 +56,27 @@
                                 </div>
                             </div>
                             <div class="form-body" style="height: 600px">
-                                <!-- devexpress-->
+                                <!-- devexpress
+                                    /* cotizacion */
+                                    -->
                                 <dx:ASPxGridView ID="gvNotaCredito" runat="server" Width="100%" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="codigoNotaDeCredito" Theme="Metropolis" ClientInstanceName="gvNotaCredito">
                                     <Columns>
+                                        <dx:GridViewDataTextColumn FieldName="razonSocialCliente" VisibleIndex="6" Visible="false" Caption="N° Nota Credito">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="domicilio" VisibleIndex="6" Visible="false" Caption="N° Nota Credito">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="localidad" VisibleIndex="6" Visible="false" Caption="N° Nota Credito">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="nroDocumentoCliente" VisibleIndex="6" Visible="false" Caption="N° Nota Credito">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="remitos" VisibleIndex="6" Visible="false" Caption="N° Nota Credito">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="condicionVenta" VisibleIndex="6" Visible="false" Caption="N° Nota Credito">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="numeroNotaDePedido" VisibleIndex="6" Visible="false" Caption="N° Nota Credito">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="codigoSCF" VisibleIndex="6" Visible="false" Caption="N° Nota Credito">
+                                        </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn FieldName="codigoNotaDeCredito" ReadOnly="True" Visible="False" VisibleIndex="0">
                                             <EditFormSettings Visible="False" />
                                         </dx:GridViewDataTextColumn>

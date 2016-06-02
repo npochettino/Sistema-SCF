@@ -24,6 +24,9 @@ namespace BibliotecaSCF.Clases
                 tablaItemNotaDeCredito.Columns.Add("codigoArticulo");
                 tablaItemNotaDeCredito.Columns.Add("descripcionCorta");
                 tablaItemNotaDeCredito.Columns.Add("cantidadAEntregar"); //Cantidad del item entrega
+                tablaItemNotaDeCredito.Columns.Add("posicion");
+                tablaItemNotaDeCredito.Columns.Add("precioUnitario");
+                tablaItemNotaDeCredito.Columns.Add("precioTotal");
 
                 return tablaItemNotaDeCredito;
             }
@@ -40,7 +43,8 @@ namespace BibliotecaSCF.Clases
 
             listaItemsNotasDeCredito.Aggregate(tablaNotasDeCredito, (dt, r) =>
             {
-                dt.Rows.Add(r.Codigo, r.Cantidad, r.ItemEntrega.Codigo, r.ItemEntrega.ItemNotaDePedido.Articulo.Codigo, r.ItemEntrega.ItemNotaDePedido.Articulo.DescripcionCorta, r.ItemEntrega.CantidadAEntregar);
+                dt.Rows.Add(r.Codigo, r.Cantidad, r.ItemEntrega.Codigo, r.ItemEntrega.ItemNotaDePedido.Articulo.Codigo, r.ItemEntrega.ItemNotaDePedido.Articulo.DescripcionCorta, r.ItemEntrega.CantidadAEntregar, r.ItemEntrega.ItemNotaDePedido.Posicion,
+                    r.ItemEntrega.Precio, r.ItemEntrega.Precio * r.ItemEntrega.CantidadAEntregar);
                 return dt;
             });
 

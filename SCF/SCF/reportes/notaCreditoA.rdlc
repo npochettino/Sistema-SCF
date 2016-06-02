@@ -268,7 +268,7 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>dsItemsFacturaA</DataSetName>
+        <DataSetName>dsItemsNotaDeCredito</DataSetName>
         <Top>10.34203cm</Top>
         <Left>1.21391cm</Left>
         <Height>0.87781cm</Height>
@@ -847,18 +847,18 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="dsItemsFacturaA">
+    <DataSource Name="dsItemsNotaDeCredito">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>e79922df-c128-4e50-a0ca-9ccfe1e82391</rd:DataSourceID>
+      <rd:DataSourceID>c495c0b5-f575-450d-87de-a9bc61685153</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="dsItemsFacturaA">
+    <DataSet Name="dsItemsNotaDeCredito">
       <Query>
-        <DataSourceName>dsItemsFacturaA</DataSourceName>
+        <DataSourceName>dsItemsNotaDeCredito</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -888,8 +888,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>dsItemsFacturaA</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Nicolas\SempaIT\scf\SCF\SCF\dsItemsFacturaA.xsd</rd:SchemaPath>
+        <rd:DataSetName>dsItemsNotaDeCredito</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\Nicolas\SempaIT\scf\SCF\SCF\dsItemsNotaDeCredito.xsd</rd:SchemaPath>
         <rd:TableName>DataTable1</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
